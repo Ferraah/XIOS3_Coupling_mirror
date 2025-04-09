@@ -91,12 +91,12 @@ class XiosCouplerPlotter:
     '''
         Add the legend to the plot.
     '''
-    def add_legend(self, plt):
+    def _add_legend(self, plt):
         # Add arrows legend
         plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.2),
             fancybox=True, shadow=True, ncol=2)
 
-    def add_parameters_to_legend(self, ax, send_freq, recv_freq, send_offset, recv_offset):
+    def _add_parameters_to_legend(self, ax, send_freq, recv_freq, send_offset, recv_offset):
 
         label = f"  {self.field_bottom_label}      →      {self.field_top_label}" 
         plt.plot([],[], ' ', label=f"{label}\nfreq_op: {send_freq}      freq_op: {recv_freq}\nfreq_offset: {send_offset} freq_offset: {recv_offset}")
@@ -126,8 +126,8 @@ class XiosCouplerPlotter:
         self._add_internal_exchanges(ax, timesteps, recv_freq, recv_offset, restart_file) 
         self._add_coupling_links(ax, timesteps, send_freq, send_offset, restart_file) 
         self._add_savinfile_arrow(ax, timesteps, save_file)
-        self.add_parameters_to_legend(plt, send_freq, recv_freq, send_offset, recv_offset)
-        self.add_legend(plt)
+        self._add_parameters_to_legend(plt, send_freq, recv_freq, send_offset, recv_offset)
+        self._add_legend(plt)
         # -------------------------------------------------------------------------------- #
 
         # Save and close
