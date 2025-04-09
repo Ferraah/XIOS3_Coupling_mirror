@@ -3,6 +3,9 @@ import numpy as np
 
 class XiosCouplerPlotter:
     
+    field_bottom_label = "OCN"
+    field_top_label = "ATM"
+
     '''
         Add ticks but manually add the labels of the timesteps between two consecutive ticks.
     '''
@@ -14,6 +17,10 @@ class XiosCouplerPlotter:
         # Show ticks on bottom and top
         ax.tick_params(axis='x', which='both', top=True, bottom=True)
         ax.set_xlabel("XIOS timestep", labelpad=20)
+
+        # FIELDS LABELS
+        ax.text(-0.5, -0.5, self.field_bottom_label, ha='center', va='center', color='black')
+        ax.text(-0.5, self.figsize[1] + 0.5, self.field_top_label, ha='center', va='center', color='black')
 
         # Setting manually the labels of the timesteps between two consecutive ticks,
         # meaning placing the timestep 1 label between t=0 and t=1 and so on.
@@ -45,7 +52,7 @@ class XiosCouplerPlotter:
             # Reciving calls are only done at coupling frequency (current limitation of XIOS)
             # Do not plot the first receive if there is a starting file recv
             # If there is no file to load, then plot the arrow also at the first timestep
-            if (ts-1) % recv_freq == 0 and (ts >= (recv_offset+1) or not restart_file):
+            if (ts-1) % recv_freq == 0 and (ts >= recv_offset or not restart_file):
 
                 ax.arrow(time + self.padding, self.figsize[1] - self.arrow_height, 0, self.arrow_height, head_width=0.1, head_length=0.05, 
                     color='r',
@@ -62,8 +69,11 @@ class XiosCouplerPlotter:
 
         lag = 1 if restart_file else 0 
 
+        # Emulating the behaviour of XIOS paramaters, still to indagate
+        starting_timestep = send_freq + send_offset 
+
         # Display coupling (connect the arrows)
-        for ts in range(send_offset, timesteps+1, send_freq):
+        for ts in range(starting_timestep, timesteps+1, send_freq):
             # Draw a line connecting the arrowheads
             if(ts > 0):
                 ax.plot([ts - self.padding, ts - 1 + lag + self.padding], [self.arrow_height, self.figsize[1] - self.arrow_height], color='gray', linestyle='--', alpha=0.7)
@@ -87,7 +97,9 @@ class XiosCouplerPlotter:
             fancybox=True, shadow=True, ncol=2)
 
     def add_parameters_to_legend(self, ax, send_freq, recv_freq, send_offset, recv_offset):
-        plt.plot([],[], ' ', label=f"send_freq: {send_freq} send_offset: {send_offset}\nrecv_freq: {recv_freq} recv_offset: {recv_offset}")
+
+        label = f"  {self.field_bottom_label}      →      {self.field_top_label}" 
+        plt.plot([],[], ' ', label=f"{label}\nfreq_op: {send_freq}      freq_op: {recv_freq}\nfreq_offset: {send_offset} freq_offset: {recv_offset}")
 
     def __init__(self, figsize=None, arrow_height=2, padding=0.2):
         self.figsize = figsize
@@ -128,5 +140,5 @@ class XiosCouplerPlotter:
 pl = XiosCouplerPlotter(arrow_height=2, padding=0.2)
 
 # Specific algorithm parameters for the plot
-#pl.plot(timesteps=20, send_freq=4, recv_freq=4, recv_offset=5, send_offset=0, restart_file=True, save_file=True)
-pl.plot(timesteps=128, send_freq=4, recv_freq=4, recv_offset=1, send_offset=0, restart_file=True, save_file=True)
+pl.plot(timesteps=30, send_freq=5, send_offset=0, recv_freq=5, recv_offset=6,  restart_file=True, save_file=True)
+#pl.plot(timesteps=31, send_freq=4, send_offset=-3, recv_freq=4, recv_offset=1)
