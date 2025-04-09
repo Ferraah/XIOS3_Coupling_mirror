@@ -1,0 +1,96 @@
+diff --git a/4_apple/4_apple.f90 b/4_apple/4_apple.f90
+index 120aa21..5575ab4 100644
+--- a/4_apple/4_apple.f90
++++ b/4_apple/4_apple.f90
+@@ -62,12 +62,12 @@ PROGRAM basic_couple
+ CONTAINS
+     
+     ! Init XIOS environment (context, timestep, duration, etc.) by loading parameters from xml and usual XIOS routines
+-    SUBROUTINE initEnvironment(model_id, x_start_date, x_end_date, x_timestep, x_duration, freq_op, ni_glo, nj_glo)
++    SUBROUTINE initEnvironment(model_id, x_start_date, x_end_date, x_timestep, x_duration, freq_op, ni_glo, nj_glo, ni, nj, ibegin, jbegin)
+         CHARACTER(LEN=*), INTENT(IN) :: model_id
+         TYPE(xios_date), INTENT(OUT) :: x_start_date, x_end_date
+         TYPE(xios_duration), INTENT(OUT) :: x_timestep, x_duration
+         INTEGER, INTENT(OUT) :: freq_op
+-        INTEGER :: ni_glo, nj_glo
++        INTEGER :: ni_glo, nj_glo, ni, nj, ibegin, jbegin
+         INTEGER :: local_comm
+         TYPE(xios_context) :: ctx
+         TYPE(xios_duration) :: x_freq_op
+@@ -103,6 +103,7 @@ CONTAINS
+ 
+         ! Getting the frequency of the operation
+         CALL xios_get_field_attr("field2D_oce_to_atm", freq_op=x_freq_op)
++        print *, "Frequency of operation: ", x_freq_op
+         CALL xios_duration_convert_to_string(x_freq_op, tmp)
+         ! Remove the last two characters from the string to retrieve the pure number "(xx)ts"
+         tmp = tmp(1:LEN_TRIM(tmp)-2)
+@@ -110,9 +111,12 @@ CONTAINS
+         READ(tmp, *) freq_op
+         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 
+-        CALL xios_get_domain_attr("domain", ni_glo=ni_glo, nj_glo=nj_glo)
++        IF(model_id == "oce") THEN
++            CALL xios_get_domain_attr("field2D::", ni_glo=ni_glo, nj_glo=nj_glo, ni=ni, nj=nj, ibegin=ibegin, jbegin=jbegin)   
++            print *, "DEBUG Model ", model_id, " ni_glo = ", ni_glo, " nj_glo = ", nj_glo, " ni = ", ni, " nj = ", nj, " ibegin = ", ibegin, " jbegin = ", jbegin
++        END IF
++
+ 
+-        ! Close the context definition
+ 
+ 
+     END SUBROUTINE initEnvironment
+@@ -130,19 +134,9 @@ CONTAINS
+         DOUBLE PRECISION, POINTER :: field_recv(:,:)
+ 
+         ! Init XIOS environment (context, timestep, duration, etc.) by loading parameters from xml and usual XIOS routines
+-        CALL initEnvironment(model_id, x_start_date, x_end_date, x_timestep, x_duration, freq_op, ni_glo, nj_glo)
+-
+-        !  Defining the local sizes and offsets !!!!!!!!!
+-        ni = ni_glo/(size-2) ! Divide by number of ocean processes 
+-        nj = nj_glo
+-        ibegin = (rank)*ni
+-        jbegin = 0
+-
+-        IF (model_id == "ocn") THEN
+-            ! Add the local sizes and begin indices to the domain referred in the xml
+-            CALL xios_set_domain_attr("domain", ni=ni, nj=nj, ibegin=ibegin, jbegin=jbegin)
+-            print * , "Model ", model_id, " ni_glo = ", ni_glo, " nj_glo = ", nj_glo, " ni = ", ni, " nj = ", nj, " ibegin = ", ibegin, " jbegin = ", jbegin
+-        END IF
++        CALL initEnvironment(model_id, x_start_date, x_end_date, x_timestep, x_duration, freq_op, ni_glo, nj_glo, ni, nj, ibegin, jbegin)
++
++        if(model_id=="oce") print * , "Model ", model_id, " ni_glo = ", ni_glo, " nj_glo = ", nj_glo, " ni = ", ni, " nj = ", nj, " ibegin = ", ibegin, " jbegin = ", jbegin
+         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 
+         CALL xios_close_context_definition()
+@@ -170,7 +164,7 @@ CONTAINS
+ 
+                 ! Start sending field starting from 1 with a certain frequency
+                 IF (modulo(curr_timestep-1, freq_op) == 0) THEN
+-                    CALL xios_send_field("field2D_oce_to_atm", field_send)
++                    CALL xios_send_field("field2D", field_send)
+                     print *, "Model ", model_id, " sended @ts =", curr_timestep
+                 END IF
+ 
+diff --git a/4_apple/iodef.xml b/4_apple/iodef.xml
+index 54ad35f..504749c 100644
+--- a/4_apple/iodef.xml
++++ b/4_apple/iodef.xml
+@@ -22,9 +22,13 @@
+             <variable id="duration">31d</variable>
+         </variable_definition>
+ 
++        <field_definiton>
++            <field id="field2D" grid_ref="grid_2D" />
++        </field_definiton>
++
+         <coupler_out_definition>
+             <coupler_out context="atm::atm" >
+-                <field id="field2D_oce_to_atm" grid_ref="grid_2D" freq_op="1ts" read_access="true"/>
++                <field id="field2D_oce_to_atm" field_ref="field2D" freq_op="1ts" read_access="true"/>
+             </coupler_out>
+         </coupler_out_definition>
+ 
+diff --git a/4_apple/output_out.nc b/4_apple/output_out.nc
+index 19f6e4d..00ffb93 100644
+Binary files a/4_apple/output_out.nc and b/4_apple/output_out.nc differ

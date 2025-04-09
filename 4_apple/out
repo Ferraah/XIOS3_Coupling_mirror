@@ -1,0 +1,78 @@
+ Initializing MPI...
+ Initializing MPI...
+ Initializing MPI...
+ Initializing MPI...
+ MPI initialized. Rank:            2  Size:            4
+ Rank 1: Running toy model with model_id = atm
+ MPI initialized. Rank:            3  Size:            4
+ Rank 0: Initializing XIOS server...
+ MPI initialized. Rank:            1  Size:            4
+ Rank            1 : Running toy model with model_id = ocn
+ MPI initialized. Rank:            0  Size:            4
+ Rank            0 : Running toy model with model_id = ocn
+ Loading toy model configuration...
+ Duration: 30d
+ Timestep duration: 6h
+ Loading toy model configuration...
+ Duration: 30d
+ Timestep duration: 6h
+ Loading toy model configuration...
+ Duration: 30d
+ Timestep duration: 6h
+ Global ni:           60
+ Global nj:           20
+ Field type: 
+ rectilinear                                                                    
+                                                                                
+                                                                                
+                   
+ Global ni:           60
+ Global nj:           20
+ Field type: 
+ rectilinear                                                                    
+                                                                                
+                                                                                
+                   
+ Global ni:           60
+ Global nj:           20
+ Field type: 
+ rectilinear                                                                    
+                                                                                
+                                                                                
+                   
+ Frequency of operation in timesteps:            4
+ Start date:         2025           1           1           0           0
+           0
+ Configuring XIOS with model data...
+ Frequency of operation in timesteps:            4
+ Start date:         2025           1           1           0           0
+           0
+ Configuring XIOS with model data...
+ Frequency of operation in timesteps:            4
+ Start date:         2025           1           1           0           0
+           0
+ Configuring XIOS with model data...
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 0 PID 1207 RUNNING AT kglobc1
+=   KILLED BY SIGNAL: 6 (Aborted)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 1 PID 1208 RUNNING AT kglobc1
+=   KILLED BY SIGNAL: 6 (Aborted)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 2 PID 1209 RUNNING AT kglobc1
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 3 PID 1210 RUNNING AT kglobc1
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
