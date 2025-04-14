@@ -32,12 +32,30 @@ extern "C"
   void cxios_get_domain_nj_glo(xios::CDomain* domain_hdl, int* nj_glo);
   void cxios_set_domain_ni(xios::CDomain* domain_hdl, int ni);
   void cxios_set_domain_nj(xios::CDomain* domain_hdl, int nj);
+  void cxios_set_domain_ni_glo(xios::CDomain* domain_hdl, int ni);
+  void cxios_set_domain_nj_glo(xios::CDomain* domain_hdl, int ni);
   void cxios_set_domain_ibegin(xios::CDomain* domain_hdl, int ibegin);
   void cxios_set_domain_jbegin(xios::CDomain* domain_hdl, int jbegin);
   void cxios_set_domain_lonvalue_1d(xios::CDomain* domain_hdl, double* lonvalue_1d, int* extent);
   void cxios_set_domain_latvalue_1d(xios::CDomain* domain_hdl, double* latvalue_1d, int* extent);
 
+  void cxios_field_handle_create (xios::CField** ret, const char * id, int _id_len);
+
   void cxios_update_calendar(int step);
   void cxios_write_data_k83(const char* fieldid, int fieldid_size, double* data_k8, int data_Xsize, int data_Ysize, int data_Zsize, int tileid);
 
+
+  void cxios_get_variable_data_k8(const char* varId, int varIdSize, double* data, bool* isVarExisted);
+  void cxios_get_variable_data_k4(const char* varId, int varIdSize, float* data, bool* isVarExisted);
+  void cxios_get_variable_data_int(const char* varId, int varIdSize, int* data, bool* isVarExisted);
+  void cxios_get_variable_data_logic(const char* varId, int varIdSize, bool* data, bool* isVarExisted);
+  void cxios_get_variable_data_char(const char* varId, int varIdSize, char* data, int dataSizeIn, bool* isVarExisted);
+  void cxios_get_field_freq_op(xios::CField* field_hdl, cxios_duration* freq_op_c);
+  void cxios_set_domain_ni(xios::CDomain* domain_hdl, int ni);
+  void cxios_set_domain_nj(xios::CDomain* domain_hdl, int ni);
+  cxios_duration cxios_duration_convert_from_string(const char* str, int str_size);
+  void cxios_duration_convert_to_string(cxios_duration dur_c, char* str, int str_size);
+  cxios_date cxios_date_add_duration(cxios_date date_c, cxios_duration dur_c);
+  bool cxios_date_lt(cxios_date date1_c, cxios_date date2_c);
+  bool cxios_date_le(cxios_date date1_c, cxios_date date2_c);
 };

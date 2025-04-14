@@ -127,7 +127,6 @@ contains
         print *, "Start date: ", config%start_date
 
         if(model_id == "ocn") then
-
             config%ni = config%ni_glo
             config%nj = config%nj_glo
             config%ibegin = 0

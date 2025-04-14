@@ -18,7 +18,7 @@
 
         <variable_definition>
             <variable id="toymodel_timestep_duration">6h</variable>
-            <variable id="toymodel_duration">31d</variable>
+            <variable id="toymodel_duration">4d</variable>
             <variable id="toymodel_ni_glo">10</variable>
             <variable id="toymodel_nj_glo">10</variable>
             <variable id="toymodel_type">rectilinear</variable>
@@ -27,13 +27,13 @@
         <!-- Field reference for xios_send_field -->
         <field_definition>
             <!-- It will average on this field -->
-            <field id="field2D_send" grid_ref="grid_2D"  operation="average" read_access="true" expr="@this"/>
+            <field id="field2D_send" grid_ref="grid_2D"  operation="instant" read_access="true"/>
         </field_definition>
 
         <coupler_out_definition>
             <coupler_out context="atm::atm" >
                 <!-- Define the interface for the outgoing field to be received in atmosphere -->
-                <field id="field2D_oce_to_atm" field_ref="field2D_send" freq_op="4ts"/>
+                <field id="field2D_oce_to_atm" field_ref="field2D_send" expr="@this" freq_op="4ts"  />
                 <!-- Define the interface for the outgoing field loaded from file to be received in atmosphere -->
                 <field id="field2D_restart" field_ref="field2D_read" freq_op="1y" />
             </coupler_out>
@@ -73,7 +73,7 @@
 
         <variable_definition>
             <variable id="toymodel_timestep_duration">6h</variable>
-            <variable id="toymodel_duration">31d</variable>
+            <variable id="toymodel_duration">4d</variable>
             <variable id="toymodel_ni_glo">10</variable>
             <variable id="toymodel_nj_glo">10</variable>
             <variable id="toymodel_type">rectilinear</variable>
