@@ -44,3 +44,5 @@ In a coupling setting, we could see this file as the equivalent of the namcouple
 
 4. It is not possible to access a field given a specific date from a nc file. It would be very handy to select a restarting field given a date. Up to now we can only access the nth timestep related field in the file with record_offset="n" where n is a pure number. 
 Hence, we should manually set in `iodef.xml` the record offset to the index of the last one. (record_offset="-1" to retrieve the last one automatically is not supported yet).
+
+5. Time integration for coupling seems to not working exactly as for writes to file. In particular, `freq_op` for fields in `coupler_out` cause different behaviours compared to `output_freq`.

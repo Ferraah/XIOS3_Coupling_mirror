@@ -17,6 +17,7 @@ This translates to:
 
 \* arbitrarily large, so to load one time during the run
 
+![Visualization](./3_singlefield_integrate.png)
 ## Algorithm explaination
 We are exploiting the **time filter** functionality of XIOS. 
 As before, the field is sent by the model each timestep and saved in a buffer. We define the operation to perform on this field reference, `field2D_send`.
