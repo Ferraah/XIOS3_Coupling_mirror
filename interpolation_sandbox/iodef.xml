@@ -1,0 +1,50 @@
+
+<?xml version="1.0"?>
+<simulation>
+
+  <context id="client">
+
+     <!-- Starting on January 1 -->
+      <calendar type="Gregorian" time_origin="2025-01-01" start_date="2025-01-01"/>
+
+
+    <grid_definition>
+      <grid id="grid">
+        <domain id="domain" ni_glo="144" nj_glo="143" type="rectilinear">
+          <generate_rectilinear_domain bounds_lon_start="0" bounds_lon_end="360" bounds_lat_start="-90" bounds_lat_end="90" />
+        </domain>
+      </grid> 
+      <grid id="grid_interp">
+        <domain id="domain_interp" ni_glo="120" nj_glo="45" type="rectilinear" > 
+          <generate_rectilinear_domain bounds_lon_start="0" bounds_lon_end="360" bounds_lat_start="-90" bounds_lat_end="90" />
+          <interpolate_domain order="1" weight_filename="weigths.nc" write_weight="true"/>
+        </domain>
+      </grid>
+    </grid_definition>
+
+    <field_definition>
+      <field id="field_2D" grid_ref="grid" operation="instant"/>
+    </field_definition>
+
+    <file_definition>
+      <file id="outfile" name="outfile" output_freq="1ts" type="one_file" >
+          <field id="field2D_interp" field_ref="field_2D" grid_ref="grid_interp"/>
+          <field field_ref="field_2D"/>
+      </file>
+    </file_definition>
+
+  </context>
+
+
+  <!-- XIOS server parameters -->
+  <context id="xios">
+     <variable_definition>
+        <variable_group id="parameters" >
+          <variable id="print_file" type="bool">true</variable>
+          <!-- <variable id="info_level" type="int">100</variable> -->
+          <!-- <variable id="transport_protocol" type="string">p2p</variable> -->
+        </variable_group>
+     </variable_definition>
+  </context>
+
+</simulation>

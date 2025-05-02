@@ -1,0 +1,127 @@
+
+<?xml version="1.0"?>
+<simulation>
+
+    <context id="ocn">
+
+        <!-- Starting on January 1 -->
+        <calendar type="Gregorian" time_origin="2025-01-01" start_date="2025-01-01"/>
+
+        <!-- Ocean field grid definition -->
+        <grid_definition>
+            <grid id="grid_2D">
+                <domain id="domain_oce_src"/>
+            </grid>
+        </grid_definition>
+
+        <variable_definition>
+            <variable id="toymodel_timestep_duration">1d</variable>
+            <variable id="toymodel_duration">31d</variable>
+            <variable id="toymodel_grids_filename">points_files/grids.nc</variable>
+            <variable id="toymodel_masks_filename">points_files/masks.nc</variable>
+            <variable id="toymodel_areas_filename">points_files/areas.nc</variable>
+            <!-- <variable id="toymodel_src_domain_name">bggd</variable>
+            <variable id="toymodel_dst_domain_name">nogt</variable> -->
+            <variable id="toymodel_src_domain_name">nogt</variable>
+            <variable id="toymodel_dst_domain_name">bggd</variable>
+        </variable_definition>
+
+
+
+        <!-- Field reference for xios_send_field -->
+        <field_definition>
+            <!-- Operation instant will consider the field at the current timestep -->
+            <field id="field2D_send" grid_ref="grid_2D"  operation="instant" read_access="true" expr="@this" freq_offset="-3ts"/>
+        </field_definition>
+
+        <coupler_out_definition>
+            <coupler_out context="atm::atm" >
+                <!-- Define the interface for the outgoing field to be received in atmosphere -->
+                <field id="field2D_oce_to_atm" field_ref="field2D_send" freq_op="4ts"/>
+            </coupler_out>
+        </coupler_out_definition>
+
+        <file_definition>
+            <!-- Save field on the last send -->
+            <file id="last_send" name="last_send" output_freq="1d"  type="one_file" enabled="true">
+                <field field_ref="field2D_oce_to_atm"  operation="instant" />
+            </file>
+        </file_definition>
+
+    </context>
+
+
+    <context id="atm">
+
+        <calendar type="Gregorian" time_origin="2025-01-01" start_date="2025-01-01"/>
+
+        <!-- Grid of the incoming ocean field (Same as the one in ocn context) -->
+        <grid_definition>
+            <grid id="grid_2D">
+                <domain id="domain_oce_dst">
+                </domain>
+            </grid>
+            <grid id="grid_2D_interp">
+                <domain id="domain_interp">
+                    <interpolate_domain 
+                        order="1" 
+                        mode="read_or_compute" 
+                        write_weight="true" 
+                        weight_filename="bggd_nogt.nc"
+                        use_area="true"
+                        />
+                </domain>
+            </grid>
+            <grid id="grid_1D">
+                <domain ni="1"/>
+            </grid>
+        </grid_definition>
+
+        <variable_definition>
+            <variable id="toymodel_timestep_duration">1d</variable>
+            <variable id="toymodel_duration">31d</variable>
+            <variable id="toymodel_grids_filename">points_files/grids.nc</variable>
+            <variable id="toymodel_masks_filename">points_files/masks.nc</variable>
+            <variable id="toymodel_areas_filename">points_files/areas.nc</variable>
+            <!-- <variable id="toymodel_src_domain_name">bggd</variable>
+            <variable id="toymodel_dst_domain_name">nogt</variable> -->
+            <variable id="toymodel_src_domain_name">nogt</variable>
+            <variable id="toymodel_dst_domain_name">bggd</variable>
+        </variable_definition>
+
+
+        <!-- Field reference for xios_recv_field --> 
+        <field_definition>
+            <field id="field2D_recv" field_ref="field2D_oce_to_atm" grid_ref="grid_2D_interp"  />
+        </field_definition>
+
+
+        <!-- Fields coming from ocean -->
+        <coupler_in_definition>
+            <coupler_in context="ocn::ocn" >
+                <!-- Define the interface for the incoming field to be received in atmosphere (same id)-->
+                <field id="field2D_oce_to_atm" grid_ref="grid_2D" freq_op="4ts" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+        </coupler_in_definition>
+
+        <file_definition>
+            <file id="interpolated_field"  output_freq="4ts"  type="one_file" enabled="true">
+                <field field_ref="field2D_recv" name="interpolated_field" operation="instant" />
+            </file>
+        </file_definition>
+
+    </context>
+
+
+  <!-- XIOS server parameters -->
+  <context id="xios">
+     <variable_definition>
+        <variable_group id="parameters" >
+          <variable id="print_file" type="bool">true</variable>
+          <!-- <variable id="info_level" type="int">100</variable> -->
+          <variable id="transport_protocol" type="string">p2p</variable>
+        </variable_group>
+     </variable_definition>
+  </context>
+
+</simulation>
