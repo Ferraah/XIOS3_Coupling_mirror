@@ -84,6 +84,7 @@ contains
     !! @param lat Array of latitudes.
     !! @param mask Logical array indicating valid grid points.
     !! @param field_2d Output 2D field initialized with a vortex pattern.
+    !! 
     !! @author Andrea Piacentini
     subroutine init_field2d_gulfstream(ni_glo, nj_glo, lon, lat, mask, field_2d)
         implicit none

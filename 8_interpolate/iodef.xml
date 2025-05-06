@@ -2,18 +2,19 @@
 <?xml version="1.0"?>
 <simulation>
 
-    <context id="ocn">
+    <context id="model_source">
 
-        <!-- Starting on January 1 -->
+        <!-- Starting simulation on January 1 -->
         <calendar type="Gregorian" time_origin="2025-01-01" start_date="2025-01-01"/>
 
-        <!-- Ocean field grid definition -->
+        <!-- Domain definition for the source model -->
         <grid_definition>
             <grid id="grid_2D">
                 <domain id="domain_oce_src"/>
             </grid>
         </grid_definition>
 
+        <!-- Toymodels attributes, not in real model coupling -->
         <variable_definition>
             <variable id="toymodel_timestep_duration">1d</variable>
             <variable id="toymodel_duration">31d</variable>
@@ -27,56 +28,51 @@
         </variable_definition>
 
 
-
-        <!-- Field reference for xios_send_field -->
+        <!-- Field definition for the source model -->
         <field_definition>
-            <!-- Operation instant will consider the field at the current timestep -->
-            <field id="field2D_send" grid_ref="grid_2D"  operation="instant" read_access="true" expr="@this" freq_offset="-3ts"/>
+            <!-- Endpoint to send field to destination in toymodel -->
+            <field id="field2D_send" grid_ref="grid_2D"  operation="instant" read_access="true"  freq_offset="-3ts"/>
         </field_definition>
 
         <coupler_out_definition>
-            <coupler_out context="atm::atm" >
+            <coupler_out context="model_destination::model_destination" >
                 <!-- Define the interface for the outgoing field to be received in atmosphere -->
-                <field id="field2D_oce_to_atm" field_ref="field2D_send" freq_op="4ts"/>
+                <field id="field2D_cpl" field_ref="field2D_send" freq_op="4ts" expr="@this"/>
             </coupler_out>
         </coupler_out_definition>
 
         <file_definition>
             <!-- Save field on the last send -->
             <file id="last_send" name="last_send" output_freq="1d"  type="one_file" enabled="true">
-                <field field_ref="field2D_oce_to_atm"  operation="instant" />
+                <field field_ref="field2D_cpl"  operation="instant" />
             </file>
         </file_definition>
 
     </context>
 
 
-    <context id="atm">
+    <context id="model_destination">
 
         <calendar type="Gregorian" time_origin="2025-01-01" start_date="2025-01-01"/>
 
-        <!-- Grid of the incoming ocean field (Same as the one in ocn context) -->
         <grid_definition>
+            <!-- Intermediate grid inferred by incoming field -->
             <grid id="grid_2D">
-                <domain id="domain_oce_dst">
+                <domain id="domain_src">
                 </domain>
             </grid>
+
+            <!-- Grid onto which the field will be interpolated -->
             <grid id="grid_2D_interp">
                 <domain id="domain_interp">
-                    <!-- <interpolate_domain 
-                        order="1" 
-                        mode="read_or_compute" 
-                        write_weight="true" 
-                        weight_filename="nogt_bggd.nc"
-                        use_area="true"
-                        /> -->
-                    <!-- <interpolate_domain order="1" detect_missing_value="true" renormalize="true" weight_filename="nogt_bggd.nc"  mode="read_or_compute" write_weight="true"/> -->
+                    <!-- Interpolation attributes -->
                     <interpolate_domain order="1" renormalize="true" use_area="true" weight_filename="points_files/nogt_bggd.nc"  mode="read_or_compute" write_weight="true"/>
                 </domain>
             </grid>
 
         </grid_definition>
 
+        <!-- Toymodels attributes, not in real model coupling -->
         <variable_definition>
             <variable id="toymodel_timestep_duration">1d</variable>
             <variable id="toymodel_duration">31d</variable>
@@ -90,21 +86,21 @@
         </variable_definition>
 
 
-        <!-- Field reference for xios_recv_field --> 
         <field_definition>
-            <field id="field2D_recv" field_ref="field2D_oce_to_atm" grid_ref="grid_2D_interp"  default_value="-1"/>
+            <!-- Endpoint to retrieve interpolated field on toymodel -->
+            <field id="field2D_recv" field_ref="field2D_cpl" grid_ref="grid_2D_interp" />
         </field_definition>
 
-
-        <!-- Fields coming from ocean -->
+        <!-- Incoming coupling definition -->
         <coupler_in_definition>
-            <coupler_in context="ocn::ocn" >
-                <!-- Define the interface for the incoming field to be received in atmosphere (same id)-->
-                <field id="field2D_oce_to_atm" grid_ref="grid_2D" freq_op="4ts" freq_offset="1ts" read_access="true"/>
+            <coupler_in context="model_source::model_source" >
+                <!-- Interface for the incoming field to be received in destination (same field id)-->
+                <field id="field2D_cpl" grid_ref="grid_2D" freq_op="4ts" freq_offset="1ts" read_access="true"/>
             </coupler_in>
         </coupler_in_definition>
 
         <file_definition>
+            <!-- Save field at the same frequency as coupling -->
             <file id="interpolated_field"  output_freq="4ts"  type="one_file" enabled="true">
                 <field field_ref="field2D_recv" name="interpolated_field" operation="instant" />
             </file>

@@ -31,10 +31,10 @@ program basic_couple
     if(rank==0) then
         call xios_init_server()
     else if (rank==1) then
-        model_id = "atm"
+        model_id = "model_destination"
         call run_toymodel()
     else if (rank==2) then
-        model_id = "ocn"
+        model_id = "model_source"
         call run_toymodel()
     end if
 
@@ -112,7 +112,7 @@ contains
         print *, "Areas filename: ", TRIM(config%areas_filename)
 
         ! Getting the frequency of the operation
-        CALL xios_get_field_attr("field2D_oce_to_atm", freq_op=tmp2)
+        CALL xios_get_field_attr("field2D_cpl", freq_op=tmp2)
         CALL xios_duration_convert_to_string(tmp2, tmp)
         ! Remove the last two characters from the string to retrieve the pure number "(xx)ts"
         tmp = tmp(1:LEN_TRIM(tmp)-2)
@@ -131,9 +131,9 @@ contains
         type(field_description), intent(out) :: dst_fd
         call xios_set_timestep(config%timestep)
 
-        if (model_id=="ocn") then
+        if (model_id=="model_source") then
             call init_domain(local_comm, "domain_oce_src", config, config%src_domain, src_fd)
-        else if ( model_id=="atm")then
+        else if ( model_id=="model_destination")then
             call init_domain(local_comm, "domain_interp", config, config%dst_domain, dst_fd)
         end if
         
@@ -148,12 +148,10 @@ contains
         double precision, allocatable:: field_send_original(:,:), field_send(:,:), field_recv(:,:)
         integer :: curr_timestep
 
-        if(model_id=="ocn") allocate(field_send(src_fd%ni, src_fd%nj))
-        if(model_id=="atm") allocate(field_recv(dst_fd%ni_glo, dst_fd%nj_glo))
+        if(model_id=="model_source") allocate(field_send(src_fd%ni, src_fd%nj))
+        if(model_id=="model_destination") allocate(field_recv(dst_fd%ni_glo, dst_fd%nj_glo))
 
-        if(model_id == "ocn") call init_field2d_gulfstream(src_fd%ni_glo, src_fd%nj_glo, src_fd%lon, src_fd%lat, src_fd%mask, field_send_original)
-
-        print *, "Field send original: ", field_send_original
+        if(model_id == "model_source") call init_field2d_gulfstream(src_fd%ni_glo, src_fd%nj_glo, src_fd%lon, src_fd%lat, src_fd%mask, field_send_original)
 
         config%end_date = config%start_date + config%duration
         config%curr_date = config%start_date
@@ -166,14 +164,14 @@ contains
 
             call xios_update_calendar(curr_timestep)
 
-            if (model_id=="ocn") then
+            if (model_id=="model_source") then
                 field_send = field_send_original*curr_timestep
                 call xios_send_field("field2D_send", field_send)
-                print *, "OCN: sending field @ts=", curr_timestep, " with value ", field_send(1,1)
-            else if (model_id=="atm") then
+                print *, "SRC: sending field @ts=", curr_timestep, " with value ", field_send(1,1)
+            else if (model_id=="model_destination") then
                 if (mod(curr_timestep-1, config%freq_op_in_ts) == 0) then
                     call xios_recv_field("field2D_recv", field_recv)
-                    print *, "  ATM: receiving field @ts=", curr_timestep, " with value ", field_recv(1,1)
+                    print *, "  DST: receiving field @ts=", curr_timestep, " with value ", field_recv(1,1)
                 end if
             end if
 
