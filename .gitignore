@@ -4,4 +4,4 @@
 *.o
 basic_couple
 basic_couple_restart
-/scratch/globc/ferrario/xios_experiments/8_interpolate/GRIDS
+8_interpolate/GRIDS

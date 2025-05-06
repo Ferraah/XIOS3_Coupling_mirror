@@ -14,7 +14,7 @@ LIBS = -L/scratch/globc/ferrario/trunk/build_ifort_CERFACS_debug/lib \
 	   -lnetcdff -lnetcdf -lhdf5_hl -lhdf5 -lxios -lstdc++
 
 # Source files and objects
-SRC = grids_utils.f90 8_interpolate.f90
+SRC = grids_utils.f90 field_initializer.f90 8_interpolate.f90 
 OBJ = $(SRC:.f90=.o)
 
 # Executable name

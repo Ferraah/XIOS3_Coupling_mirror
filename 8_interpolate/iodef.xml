@@ -63,18 +63,18 @@
             </grid>
             <grid id="grid_2D_interp">
                 <domain id="domain_interp">
-                    <interpolate_domain 
+                    <!-- <interpolate_domain 
                         order="1" 
                         mode="read_or_compute" 
                         write_weight="true" 
-                        weight_filename="bggd_nogt.nc"
+                        weight_filename="nogt_bggd.nc"
                         use_area="true"
-                        />
+                        /> -->
+                    <!-- <interpolate_domain order="1" detect_missing_value="true" renormalize="true" weight_filename="nogt_bggd.nc"  mode="read_or_compute" write_weight="true"/> -->
+                    <interpolate_domain order="1" renormalize="true" use_area="true" weight_filename="points_files/nogt_bggd.nc"  mode="read_or_compute" write_weight="true"/>
                 </domain>
             </grid>
-            <grid id="grid_1D">
-                <domain ni="1"/>
-            </grid>
+
         </grid_definition>
 
         <variable_definition>
@@ -92,7 +92,7 @@
 
         <!-- Field reference for xios_recv_field --> 
         <field_definition>
-            <field id="field2D_recv" field_ref="field2D_oce_to_atm" grid_ref="grid_2D_interp"  />
+            <field id="field2D_recv" field_ref="field2D_oce_to_atm" grid_ref="grid_2D_interp"  default_value="-1"/>
         </field_definition>
 
 

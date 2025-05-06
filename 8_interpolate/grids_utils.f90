@@ -4,11 +4,26 @@ module grids_utils
     implicit none
     include "mpif.h"
 
+    !> @brief Structure to store the coupling configuration. 
+    !! To load these informations, we exploit xios routines
+    !! which provide an easy way to retrieve variables at runtime for our toymodels.
+    !! 
+    !! @param start_date Start date of the simulation
+    !! @param end_date End date of the simulation
+    !! @param curr_date Current date of the simulation
+    !! @param timestep Timestep of the simulation
+    !! @param duration Duration of the simulation
+    !! @param freq_op_in_ts Frequency of operations in timesteps
+    !! @param grids_filename Filename of the grid file
+    !! @param masks_filename Filename of the mask file
+    !! @param areas_filename Filename of the area file
+    !! @param src_domain Source domain name in files (e.g., "bggd", "nogt", ..)
+    !! @param dst_domain Destination domain name in files (e.g., "bggd", "nogt", ..)
+    !! @param domain_mask Logical flag for applying domain mask
     type :: coupling_config
         type(xios_date) :: start_date, end_date, curr_date
         type(xios_duration) :: timestep, duration
         integer :: freq_op_in_ts
-        character(len=255) :: field_type = "" 
         character(len=255) :: grids_filename = ""
         character(len=255) :: masks_filename = ""
         character(len=255) :: areas_filename = ""
@@ -17,37 +32,33 @@ module grids_utils
         logical :: domain_mask = .true.
     end type coupling_config
 
+    !> @brief Structure to store the field description globally and locally
+    !!
+    !! @param ni_glo Global number of points in i direction
+    !! @param nj_glo Global number of points in j direction
+    !! @param ncrn Number of corners for the grid
+    !! @param ni Local number of points in i direction
+    !! @param nj Local number of points in j direction
+    !! @param ibegin Starting index in i direction
+    !! @param jbegin Starting index in j direction
+    !! @param lon Array of longitudes
+    !! @param lat Array of latitudes
+    !! @param mask Logical array for the mask
     type :: field_description
         integer :: ni_glo, nj_glo, ncrn, ni, nj, ibegin, jbegin
-        double precision, pointer :: lon(:)
-        double precision, pointer :: lat(:)
-        logical, pointer :: mask(:)
-        integer, pointer :: indices(:)
+        double precision, allocatable :: lon(:)
+        double precision, allocatable :: lat(:)
+        logical, allocatable:: mask(:)
     end type field_description
 contains
-    subroutine init_domain_src(local_comm, domain_id, cpl_conf, fd)
-        implicit none 
-         
-        integer, intent(in) :: local_comm
-        character(len=*), intent(in) :: domain_id
-        type(coupling_config), intent(in) :: cpl_conf
-        type(field_description), intent(out) :: fd
 
-        call init_domain(local_comm, domain_id, cpl_conf, cpl_conf%src_domain,  fd)
-    end subroutine init_domain_src
-
-    subroutine init_domain_dst(local_comm, domain_id, cpl_conf, fd)
-        implicit none 
-        
-        integer, intent(in) :: local_comm
-        character(len=*), intent(in) :: domain_id
-        type(coupling_config), intent(in) :: cpl_conf
-        type(field_description), intent(out) :: fd
-
-        call init_domain(local_comm, domain_id, cpl_conf, cpl_conf%dst_domain,  fd)
-    end subroutine init_domain_dst
-
-
+    !> @brief Initialize the domain based on the coupling configuration and domain type which could be the 
+    !! source or the destination domain, in the coupling configuration.
+    !! @param[in] local_comm MPI communicator of the model
+    !! @param[in] domain_id Domain id of the tag in iodef.xml
+    !! @param[in] cpl_conf Coupling configuration retrieved previously
+    !! @param[in] cpl_conf_domain The content of variable "src_domain" or "dst_domain" in the coupling configuration
+    !! @param[out] fd Description of the global and local distribution of the field
     subroutine init_domain(local_comm, domain_id, cpl_conf, cpl_conf_domain, fd)
         implicit none 
          
@@ -62,12 +73,19 @@ contains
         else if (cpl_conf_domain == "nogt") then
             call init_domain_orca(local_comm, domain_id, cpl_conf, cpl_conf_domain, fd)
         else
-            print *, "Unknown field type: ", cpl_conf%field_type
+            print *, "Unknown domain type: ", trim(cpl_conf_domain)
             stop 1
         end if
 
     end subroutine init_domain
 
+    !> @brief Initialize a NOGT domain as it were a real mode, firstly calculating the distribution of data
+    !! and then setting xios domain attributes.
+    !! @param[in] local_comm MPI communicator of the model
+    !! @param[in] domain_id Domain id of the tag in iodef.xml
+    !! @param[in] cpl_conf Coupling configuration retrieved previously
+    !! @param[in] cpl_conf_domain Identifier for the nogt grid to be loaded from grid file
+    !! @param[out] fd Description of the local distribution of the field
     subroutine init_domain_orca(local_comm, domain_id, cpl_conf, cpl_conf_domain, fd)
         implicit none 
          
@@ -80,7 +98,7 @@ contains
         integer :: mpi_rank, mpi_size
         integer :: ierr
 
-        ! Local variables to retrieve data from file in 2D
+        ! Global variables to retrieve data from file in 2D
         double precision, pointer :: lon_glo2d(:,:), lat_glo2d(:,:)
         double precision, pointer :: clo_glo2d(:,:,:), cla_glo2d(:,:,:)
         integer, pointer :: msk_glo2d(:,:)
@@ -89,32 +107,30 @@ contains
         ! Local variables to calculate the local grids
         integer :: ni, nj, ni_glo, nj_glo, ncrn
         integer :: ibegin, jbegin
-        integer :: offset_i, offset_j
-        double precision, allocatable :: lon(:,:), lat(:,:), bounds_lon(:,:,:), bounds_lat(:,:,:), srf_loc2d(:,:)
+        double precision, allocatable :: lon2d(:,:), lat2d(:,:), srf_loc2d(:,:)
+        double precision, allocatable :: bounds_lon(:,:,:), bounds_lat(:,:,:)
         logical, allocatable :: mask(:)
-        logical, allocatable :: dom_mask(:)
-        double precision, allocatable :: return_lon(:), return_lat(:)
-        logical, allocatable :: return_mask(:)
-        integer, allocatable :: return_index(:)
-        integer :: i, j, ij, ic
-        integer :: nproc_i, nproc_j
-        integer :: r
-        integer, allocatable :: size_i(:), begin_i(:), size_j(:), begin_j(:)
+        integer :: nbp, nbp_glo, offset
 
+        integer :: i, j, ij, ic
+        integer :: base_rows, remainder
+        integer :: nproc_i, nproc_j
+        integer, allocatable :: size_i(:), begin_i(:), size_j(:), begin_j(:)
+        integer :: r
+
+        ! Get MPI rank and size
         call mpi_comm_rank(local_comm, mpi_rank, ierr)
         call mpi_comm_size(local_comm, mpi_size, ierr)
 
-        ! Call read_oasis_grid to get the global grid, mask and surface from files defined in config
+        ! GRID, MASKS, AREAS READING from files
         call read_oasis_grid(cpl_conf, cpl_conf_domain, ni_glo, nj_glo, ncrn, lon_glo2d, lat_glo2d, clo_glo2d, cla_glo2d, msk_glo2d, srf_glo2d)
 
         ! Calculate the number of processes in each dimension
-
         nproc_j = int(sqrt(mpi_size * 1.0))
         do while (mod(mpi_size, nproc_j) /= 0)
             nproc_j = nproc_j - 1
         end do
-        nproc_i = mpi_size/ nproc_j
-
+        nproc_i = mpi_size / nproc_j
 
         ! Calculate size and starting indices for each process in i and j dimensions
         allocate(size_i(0:nproc_i-1), begin_i(0:nproc_i-1))
@@ -127,7 +143,6 @@ contains
                 begin_i(i) = begin_i(i-1) + size_i(i-1)
             end if
         end do
-
 
         allocate(size_j(0:nproc_j-1), begin_j(0:nproc_j-1))
         do j = 0, nproc_j-1
@@ -153,54 +168,56 @@ contains
                 r = r + 1
             end do
         end do
-        offset_i = 2    ! halo of 2 on i
-        offset_j = 1    ! halo of 1 on j
 
-        allocate(lon(0:ni-1, 0:nj-1))
-        allocate(lat(0:ni-1, 0:nj-1))
+        ! Allocate local arrays
+        allocate(mask(0:ni*nj-1))
+        allocate(lon2d(0:ni-1, 0:nj-1), lat2d(0:ni-1, 0:nj-1))
         allocate(bounds_lon(ncrn, 0:ni-1, 0:nj-1))
         allocate(bounds_lat(ncrn, 0:ni-1, 0:nj-1))
         allocate(srf_loc2d(0:ni-1, 0:nj-1))
 
-        allocate(return_lon(0:ni*nj-1))
-        allocate(return_lat(0:ni*nj-1))
-        allocate(return_mask(0:ni*nj-1))
-        allocate(return_index(0:(ni+2*offset_i)*(nj+2*offset_j)-1))
+        ! Extract local domain values
+        lon2d(:,:) = lon_glo2d(ibegin:ibegin+ni-1, jbegin:jbegin+nj-1)
+        lat2d(:,:) = lat_glo2d(ibegin:ibegin+ni-1, jbegin:jbegin+nj-1)
+        srf_loc2d(:,:) = srf_glo2d(ibegin:ibegin+ni-1, jbegin:jbegin+nj-1)
 
-        return_index = -1
         do j = 0, nj-1
             do i = 0, ni-1
-                ij = j * ni + i
-                return_lon(ij) = lon_glo2d(ibegin+i, jbegin+j)
-                return_lat(ij) = lat_glo2d(ibegin+i, jbegin+j)
-                return_mask(ij) = msk_glo2d(ibegin+i, jbegin+j) == 0
-                srf_loc2d(i, j) = srf_glo2d(ibegin+i, jbegin+j)
-                lon(i, j) = return_lon(ij)
-                lat(i, j) = return_lat(ij)
+                ij = i + j * ni
+                mask(ij) = msk_glo2d(ibegin+i, jbegin+j) == 0
                 do ic = 1, ncrn
                     bounds_lon(ic, i, j) = clo_glo2d(ibegin+i, jbegin+j, ic)
                     bounds_lat(ic, i, j) = cla_glo2d(ibegin+i, jbegin+j, ic)
                 end do
-
-                ij = (j+offset_j) * (ni+2*offset_i) + i + offset_i
-                return_index(ij) = i + j * ni
             end do
         end do
 
+        ! Set XIOS domain attributes
         if (xios_is_valid_domain(trim(domain_id))) then
             call xios_set_domain_attr(trim(domain_id), type="curvilinear", data_dim=2)
             call xios_set_domain_attr(trim(domain_id), ni_glo=ni_glo, nj_glo=nj_glo)
             call xios_set_domain_attr(trim(domain_id), ni=ni, nj=nj, ibegin=ibegin, jbegin=jbegin)
-            call xios_set_domain_attr(trim(domain_id), lonvalue_2d=lon, latvalue_2d=lat)
+            call xios_set_domain_attr(trim(domain_id), lonvalue_2d=lon2d, latvalue_2d=lat2d)
+            call xios_set_domain_attr(trim(domain_id), mask_1d=fd%mask)
             call xios_set_domain_attr(trim(domain_id), bounds_lon_2d=bounds_lon, bounds_lat_2d=bounds_lat, nvertex=ncrn)
             call xios_set_domain_attr(trim(domain_id), area=srf_loc2d)
-            call xios_set_domain_attr(trim(domain_id), radius=1.0_8)
+
+            print *, "NOGT set in XIOS: ", trim(domain_id)
+            print *, "ni_glo: ", ni_glo
+            print *, "nj_glo: ", nj_glo
+            print *, "ni: ", ni
+            print *, "nj: ", nj
+            print *, "ibegin: ", ibegin
+            print *, "jbegin: ", jbegin
+            print *, "ncrn: ", ncrn
+        else
+            print *, "Domain not found in XIOS: ", trim(domain_id)
         end if
 
-        fd%lon = return_lon
-        fd%lat = return_lat
-        fd%mask = return_mask
-        fd%indices = return_index
+        ! Populate field_description structure
+        fd%lon = reshape(lon2d, [ni*nj])
+        fd%lat = reshape(lat2d, [ni*nj])
+        fd%mask = mask
         fd%ni_glo = ni_glo
         fd%nj_glo = nj_glo
         fd%ncrn = ncrn
@@ -209,23 +226,32 @@ contains
         fd%ni = ni
         fd%nj = nj
 
-        deallocate(lon, lat, bounds_lon, bounds_lat, srf_loc2d, size_i, begin_i, size_j, begin_j)
+        ! Deallocate global pointers
+        deallocate(lon_glo2d, lat_glo2d, clo_glo2d, cla_glo2d, msk_glo2d, srf_glo2d)
+
     end subroutine init_domain_orca
 
-
-    subroutine init_domain_bggd(local_comm, domain_id, cpl_conf, cpl_conf_domain, fd)
+    !> @brief Initialize a BGGD domain as it were a real mode, firstly calculating the diustribution of data
+    !! and then setting xios domain attributes. 
+    !! @param[in] local_comm MPI communicator of the model
+    !! @param[in] domain_id Domain id of the tag in iodef.xml
+    !! @param[in] cpl_conf Coupling configuration retrieved previously
+    !! @param[in] file_domain_id Identifier for the bggd grid to be loaded from grid file
+    !! @param[out] fd Description of the local distribution of the field
+    subroutine init_domain_bggd(local_comm, domain_id, cpl_conf, file_domain_id, fd)
         implicit none 
 
         integer, intent(in) :: local_comm
         character(len=*), intent(in) :: domain_id
         type(coupling_config), intent(in) :: cpl_conf
-        character(len=255), intent(in) :: cpl_conf_domain
-        type(field_description), intent(out) :: fd
+        character(len=255), intent(in) :: file_domain_id
+        type(field_description), intent(out), optional :: fd
 
+        ! Model mpi communicator
         integer :: mpi_rank, mpi_size
         integer ::  ierr
 
-        ! Local variables to retrieve data from file in 2D
+        ! Global variables to retrieve data from file in 2D
         double precision, pointer :: lon_glo2d(:,:), lat_glo2d(:,:)
         double precision, pointer :: clo_glo2d(:,:,:), cla_glo2d(:,:,:)
         integer, pointer :: msk_glo2d(:,:)
@@ -234,56 +260,49 @@ contains
         ! Local variables to calculate the local grids
         integer :: ni,nj,ni_glo,nj_glo, ncrn
         integer :: ibegin,jbegin
-        integer :: nbp,nbp_glo, offset
         double precision, allocatable :: lon2d(:,:), lat2d(:,:), srf_loc2d(:,:)
         double precision, allocatable :: bounds_lon(:,:,:), bounds_lat(:,:,:)
         logical,allocatable :: mask(:)
         logical,allocatable :: dom_mask(:)
+        integer :: nbp,nbp_glo,offset
+
         integer :: i,j,ij,ic
         integer :: base_rows, remainder
-
-        double precision, allocatable :: return_lon(:), return_lat(:)
-        logical, allocatable :: return_mask(:)
-        integer, allocatable :: return_index(:)
         ! ------------------------------------------------------------------------------
 
-        ! Call read_oasis_grid to get the global grid, mask and surface from files defined in config
-        call read_oasis_grid(cpl_conf, cpl_conf_domain, ni_glo, nj_glo, ncrn, lon_glo2d, lat_glo2d, clo_glo2d, cla_glo2d, msk_glo2d, srf_glo2d)
-
-        
         call mpi_comm_rank(local_comm,mpi_rank,ierr)
         call mpi_comm_size(local_comm,mpi_size,ierr)
+       
+        ! GRID, MASKS, AREAS READING from files
+        call read_oasis_grid(cpl_conf, file_domain_id, ni_glo, nj_glo, ncrn, lon_glo2d, lat_glo2d, clo_glo2d, cla_glo2d, msk_glo2d, srf_glo2d)
 
-        ! Calculating distribuition parameters ROW MAJOR ------------------------
+        ! Calculating distribuition parameters ROW MAJOR --------------------------------
 
         ! Compute base number of rows per process
-        base_rows = nj_glo / mpi_size
-        remainder = mod(nj_glo, mpi_size)
+        base_rows = nj_glo / mpi_size ! Rows per process
+        remainder = mod(nj_glo, mpi_size) ! Remaining rows
+        nbp_glo = ni_glo*nj_glo ! Total number of points
 
         ! Local number of rows (nj) and starting row index (jbegin)
         if (mpi_rank < remainder) then
-            nj = base_rows + 1
-            jbegin = mpi_rank * (base_rows + 1)
+            nj = base_rows + 1 
+            jbegin = mpi_rank * nj
         else
             nj = base_rows
-            jbegin = remainder * (base_rows + 1) + (mpi_rank- remainder) * base_rows
+            jbegin = base_rows * mpi_rank + remainder ! Starting local row index
         end if
 
-        ! Local full width
+        nbp = ni_glo * nj ! Local number of points
+
+        ! Local full width as global
         ni = ni_glo
         ibegin = 0
 
         ! Row-major offset to first local element
         offset = jbegin * ni_glo + ibegin
 
-        !!  ------------------------------------------------------------------
-
         allocate(mask(0:ni*nj-1), dom_mask(0:ni*nj-1))
         allocate(lon2d(0:ni-1,0:nj-1), lat2d(0:ni-1,0:nj-1))
-
-        ! Mark which are the points of the local grid
-        mask(:)=.false.
-        mask(offset:offset+nbp-1)=.true.
 
         ! Extract local domain values of longitude and latitude (2D arrays)
         lon2d(:,:)=lon_glo2d(ibegin:ibegin+ni-1,jbegin:jbegin+nj-1)
@@ -301,21 +320,20 @@ contains
         srf_loc2d(:,:)=srf_glo2d(ibegin:ibegin+ni-1,jbegin:jbegin+nj-1)
 
         ! Monodimensional arrays for the local grid
-        allocate(return_lon(0:ni*nj-1))
-        allocate(return_lat(0:ni*nj-1))
-        allocate(return_mask(0:ni*nj-1))
-        allocate(return_index(0:ni*nj-1))
+        allocate(fd%lon(0:ni*nj-1))
+        allocate(fd%lat(0:ni*nj-1))
+        allocate(fd%mask(0:ni*nj-1))
 
         do j=0,nj-1
             do i=0,ni-1
                 ij = i+j*ni
 
                 ! 2D to 1D points definitions array
-                return_lon(ij)=lon_glo2d(ibegin+i,jbegin+j)
-                return_lat(ij)=lat_glo2d(ibegin+i,jbegin+j)
+                fd%lon(ij)=lon_glo2d(ibegin+i,jbegin+j)
+                fd%lat(ij)=lat_glo2d(ibegin+i,jbegin+j)
+
                 ! Local domain mask from global one
-                dom_mask(ij) = msk_glo2d(ibegin+i,jbegin+j) == 0 
-                return_index(ij)=ij
+                fd%mask(ij) = msk_glo2d(ibegin+i,jbegin+j) == 0 
 
                 ! For each corner of the rectangle 
                 do ic = 1, ncrn
@@ -326,28 +344,6 @@ contains
             enddo
         enddo
 
-        
-        ! @TODO
-        return_mask = mask .and. dom_mask
-        if ( .not. cpl_conf%domain_mask ) return_mask = mask
-
-
-
-        if (xios_is_valid_domain(trim(domain_id))) then
-            call xios_set_domain_attr(trim(domain_id), type="rectilinear", data_dim=2)
-            call xios_set_domain_attr(trim(domain_id), ni_glo=ni_glo, nj_glo=nj_glo)
-            call xios_set_domain_attr(trim(domain_id), ni=ni, nj=nj, ibegin=ibegin, jbegin=jbegin)
-            call xios_set_domain_attr(trim(domain_id), lonvalue_2d=lon2d, latvalue_2d=lat2d)
-            call xios_set_domain_attr(trim(domain_id), bounds_lon_2d=bounds_lon, bounds_lat_2d=bounds_lat, nvertex=ncrn)
-            ! @TODO: to set only if receiver
-            ! call xios_set_domain_attr(trim(domain_id), area=srf_loc2d)
-            ! call xios_set_domain_attr(trim(domain_id), radius=1.0_8)
-        end if
-
-        fd%lon=return_lon
-        fd%lat=return_lat
-        fd%mask=return_mask
-        fd%indices=return_index
         fd%ni_glo=ni_glo
         fd%nj_glo=nj_glo
         fd%ncrn=ncrn
@@ -356,11 +352,48 @@ contains
         fd%ni=ni
         fd%nj=nj
 
-        deallocate(lon2d, lat2d, srf_loc2d, bounds_lon, bounds_lat, mask, dom_mask)
-        
+
+        if (xios_is_valid_domain(trim(domain_id))) then
+            call xios_set_domain_attr(trim(domain_id), type="rectilinear", data_dim=2)
+            call xios_set_domain_attr(trim(domain_id), ni_glo=ni_glo, nj_glo=nj_glo)
+            call xios_set_domain_attr(trim(domain_id), ni=ni, nj=nj, ibegin=ibegin, jbegin=jbegin)
+            call xios_set_domain_attr(trim(domain_id), lonvalue_2d=lon2d, latvalue_2d=lat2d)
+            call xios_set_domain_attr(trim(domain_id), mask_1d=fd%mask)
+            call xios_set_domain_attr(trim(domain_id), bounds_lon_2d=bounds_lon, bounds_lat_2d=bounds_lat, nvertex=ncrn)
+            call xios_set_domain_attr(trim(domain_id), area=srf_loc2d)
+            call xios_set_domain_attr(trim(domain_id), radius=1.0_8)
+
+            print *, "BGGD setted in XIOS: ", trim(domain_id)
+            print *, "ni_glo: ", ni_glo
+            print *, "nj_glo: ", nj_glo
+            print *, "ni: ", ni
+            print *, "nj: ", nj
+            print *, "ibegin: ", ibegin
+            print *, "jbegin: ", jbegin
+            print *, "ncrn: ", ncrn
+
+
+        else
+            print *, "Domain not found in XIOS: ", trim(domain_id)
+        end if
+
+        ! Deallocating pointers 
+        deallocate(lon_glo2d, lat_glo2d, clo_glo2d, cla_glo2d, msk_glo2d, srf_glo2d)
+
    end subroutine init_domain_bggd
 
-   
+    !> @brief Read the grid, mask and area files to get the global grid information
+    !! @param[in] cpl_conf Coupling configuration retrieved previously
+    !! @param[in] cpl_conf_domain Identifier for the grid to be loaded from grid file
+    !! @param[out] ni_glo Global number of points in i direction
+    !! @param[out] nj_glo Global number of points in j direction
+    !! @param[out] ncrn Number of corners for the grid
+    !! @param[out] lon_glo2d 2D array of longitudes
+    !! @param[out] lat_glo2d 2D array of latitudes
+    !! @param[out] clo_glo2d 3D array of longitudes for corners
+    !! @param[out] cla_glo2d 3D array of latitudes for corners
+    !! @param[out] msk_glo2d 2D array of masks
+    !! @param[out] srf_glo2d 2D array of surface values
     subroutine read_oasis_grid(cpl_conf, cpl_conf_domain,  ni_glo, nj_glo, ncrn,&
       & lon_glo2d, lat_glo2d, clo_glo2d, cla_glo2d, msk_glo2d, srf_glo2d)
       implicit none 
@@ -463,11 +496,9 @@ contains
       call handle_f90err(nf90_close(il_file_id))
     end subroutine read_oasis_grid
 
+    ! --------------------------------------------------------------------------
 
-
-
-
-    !! ERROR HANDLERS !!
+    !> @brief Handle errors from NetCDF Fortran API
     subroutine handle_f90err(status)
         implicit none
         integer, intent ( in) :: status
@@ -477,6 +508,7 @@ contains
         end if
     end subroutine handle_f90err   
 
+    !> @brief Handle errors from XIOS API
     subroutine handle_xioserr(func, msg)
         implicit none
         integer, intent(in) :: func

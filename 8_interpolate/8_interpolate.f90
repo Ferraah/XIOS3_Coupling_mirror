@@ -2,7 +2,8 @@ program basic_couple
     use xios
     use netcdf
     use grids_utils
-    
+    use field_initializer    
+
     implicit none
 
 
@@ -131,29 +132,9 @@ contains
         call xios_set_timestep(config%timestep)
 
         if (model_id=="ocn") then
-            call init_domain_src(local_comm, "domain_oce_src", config, src_fd)
-        else if (model_id=="atm") then
-            call init_domain_src(local_comm, "domain_oce_dst", config, src_fd)
-            call init_domain_dst(local_comm, "domain_interp", config, dst_fd)
-        end if
-
-        
-        if (model_id=="atm") then
-            print *, "Source field for model_id: ", model_id, " and rank: ", rank
-            print *, "ni_glo: ", src_fd%ni_glo
-            print *, "nj_glo: ", src_fd%nj_glo
-            print *, "ni: ", src_fd%ni
-            print *, "nj: ", src_fd%nj
-            print *, "ibegin: ", src_fd%ibegin
-            print *, "jbegin: ", src_fd%jbegin
-
-            print *, "Dest field for model_id: ", model_id, " and rank: ", rank
-            print *, "ni_glo: ", dst_fd%ni_glo
-            print *, "nj_glo: ", dst_fd%nj_glo
-            print *, "ni: ", dst_fd%ni
-            print *, "nj: ", dst_fd%nj
-            print *, "ibegin: ", dst_fd%ibegin
-            print *, "jbegin: ", dst_fd%jbegin
+            call init_domain(local_comm, "domain_oce_src", config, config%src_domain, src_fd)
+        else if ( model_id=="atm")then
+            call init_domain(local_comm, "domain_interp", config, config%dst_domain, dst_fd)
         end if
         
         call xios_close_context_definition()
@@ -162,14 +143,17 @@ contains
 
     subroutine run_coupling(config, src_fd, dst_fd)
     implicit none 
-        type(coupling_config) :: config 
-        type(field_description) :: src_fd, dst_fd 
-        double precision, pointer:: field_send(:,:), field_recv(:,:)
+        type(coupling_config), intent(inout):: config 
+        type(field_description), intent(in) :: src_fd, dst_fd 
+        double precision, allocatable:: field_send_original(:,:), field_send(:,:), field_recv(:,:)
         integer :: curr_timestep
-        double precision :: error
 
         if(model_id=="ocn") allocate(field_send(src_fd%ni, src_fd%nj))
-        if(model_id=="atm") allocate(field_recv(dst_fd%ni_glo, dst_fd%nj_glo), field_send(src_fd%ni_glo, src_fd%nj_glo))
+        if(model_id=="atm") allocate(field_recv(dst_fd%ni_glo, dst_fd%nj_glo))
+
+        if(model_id == "ocn") call init_field2d_gulfstream(src_fd%ni_glo, src_fd%nj_glo, src_fd%lon, src_fd%lat, src_fd%mask, field_send_original)
+
+        print *, "Field send original: ", field_send_original
 
         config%end_date = config%start_date + config%duration
         config%curr_date = config%start_date
@@ -182,16 +166,13 @@ contains
 
             call xios_update_calendar(curr_timestep)
 
-            field_send = curr_timestep
-
             if (model_id=="ocn") then
+                field_send = field_send_original*curr_timestep
                 call xios_send_field("field2D_send", field_send)
                 print *, "OCN: sending field @ts=", curr_timestep, " with value ", field_send(1,1)
             else if (model_id=="atm") then
                 if (mod(curr_timestep-1, config%freq_op_in_ts) == 0) then
                     call xios_recv_field("field2D_recv", field_recv)
-                    error = abs(field_recv(1,1) - field_send(1,1))
-                    print *, "  ATM: absolute difference @ts=", curr_timestep, " is " , error
                     print *, "  ATM: receiving field @ts=", curr_timestep, " with value ", field_recv(1,1)
                 end if
             end if
@@ -200,8 +181,6 @@ contains
             curr_timestep = curr_timestep + 1
         end do
 
-        if(associated(field_send)) deallocate(field_send)
-        if(associated(field_recv)) deallocate(field_recv)
         
     end subroutine  run_coupling 
 end program
