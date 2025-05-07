@@ -132,7 +132,7 @@ contains
         call xios_set_timestep(config%timestep)
 
         if (model_id=="model_source") then
-            call init_domain(local_comm, "domain_oce_src", config, config%src_domain, src_fd)
+            call init_domain(local_comm, "domain_model_src", config, config%src_domain, src_fd)
         else if ( model_id=="model_destination")then
             call init_domain(local_comm, "domain_interp", config, config%dst_domain, dst_fd)
         end if
@@ -165,12 +165,16 @@ contains
             call xios_update_calendar(curr_timestep)
 
             if (model_id=="model_source") then
-                field_send = field_send_original*curr_timestep
+                field_send = curr_timestep * field_send_original
                 call xios_send_field("field2D_send", field_send)
                 print *, "SRC: sending field @ts=", curr_timestep, " with value ", field_send(1,1)
             else if (model_id=="model_destination") then
                 if (mod(curr_timestep-1, config%freq_op_in_ts) == 0) then
-                    call xios_recv_field("field2D_recv", field_recv)
+                    if(curr_timestep == 1) then
+                        call xios_recv_field("field2D_recv_restart", field_recv)
+                    else
+                        call xios_recv_field("field2D_recv", field_recv)
+                    end if
                     print *, "  DST: receiving field @ts=", curr_timestep, " with value ", field_recv(1,1)
                 end if
             end if
