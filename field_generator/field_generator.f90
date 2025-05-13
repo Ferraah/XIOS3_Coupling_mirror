@@ -24,7 +24,7 @@ PROGRAM field_generator
   
   DOUBLE PRECISION, ALLOCATABLE :: field_A(:,:)
  
-  INTEGER :: ts
+  INTEGER :: ts, duration_ts
  
   CALL MPI_INIT(ierr)
 
@@ -56,13 +56,15 @@ PROGRAM field_generator
   if(rank.EQ.0) print*, "domain type = ", domain_type
   if(rank.EQ.0) print*, "domain size = ", ni_glo, "*", nj_glo
 
+  ierr =  xios_getvar("duration_in_ts", duration_ts)
+  if(rank.EQ.0) print*, "duration_in_ts = ", duration_ts
 
   CALL xios_close_context_definition()
 
   ALLOCATE(field_A(ni_glo, nj_glo))
 
-  DO ts=1,1
-    field_A = 0
+  DO ts=1,duration_ts
+    field_A = ts
     CALL xios_update_calendar(ts)
     CALL xios_send_field("field_A", field_A)
   ENDDO

@@ -9,12 +9,12 @@ for f90_file in $(find . -maxdepth 1 -name "*.f90"); do
     executable_file="${f90_file%.f90}.exe"
 
     mpiifort -o ${object_file} \
-        -I/scratch/globc/ferrario/trunk/build_ifort_CERFACS_debug/inc \
+        -I/scratch/globc/ferrario/trunk_andrea/build_ifort_CERFACS_prod/inc \
         -I/softs/local_intel/netcdf/4.4.4_phdf5_1.10.4/include \
-        -I/scratch/globc/ferrario/trunk/extern/boost_extraction/include \
-        -I/scratch/globc/ferrario/trunk/extern/blitz \
+        -I/scratch/globc/ferrario/trunk_andrea/extern/boost_extraction/include \
+        -I/scratch/globc/ferrario/trunk_andrea/extern/blitz \
         -g -O0 -traceback \
         -c ${f90_file}
 
-    mpiifort -g -O0 -traceback -o ${executable_file} ${object_file} -L/scratch/globc/ferrario/trunk/build_ifort_CERFACS_debug/lib -L/softs/local_intel/netcdf/4.4.4_phdf5_1.10.4/lib -L/softs/local_intel/phdf5/1.10.4_impi/lib -lnetcdff -lnetcdf -lhdf5_hl -lhdf5 -lxios -lstdc++
+    mpiifort -g -O0 -traceback -o ${executable_file} ${object_file} -L/scratch/globc/ferrario/trunk_andrea/build_ifort_CERFACS_prod/lib -L/softs/local_intel/netcdf/4.4.4_phdf5_1.10.4/lib -L/softs/local_intel/phdf5/1.10.4_impi/lib -lnetcdff -lnetcdf -lhdf5_hl -lhdf5 -lxios -lstdc++
 done
