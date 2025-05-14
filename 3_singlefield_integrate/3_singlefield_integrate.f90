@@ -126,7 +126,7 @@ contains
         type(toymodel_config), intent(in) :: config
 
         call xios_set_timestep(config%timestep)
-        call xios_set_domain_attr("domain", ni_glo=config%ni_glo, nj_glo=config%nj_glo, type=config%field_type)
+        if(model_id=="ocn") call xios_set_domain_attr("domain", ni_glo=config%ni_glo, nj_glo=config%nj_glo, type=config%field_type)
         call xios_close_context_definition()
 
     end subroutine configure_xios_from_model

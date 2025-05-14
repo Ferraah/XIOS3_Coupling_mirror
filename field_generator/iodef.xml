@@ -16,12 +16,12 @@
 
    <field_definition>
      <field id="field_A" name="field2D_oce_to_atm" operation="instant"  grid_ref="grid_2D" build_workflow_graph="true" />
-     <field id="field_A_acc" field_ref="field_A" operation="average" freq_op="2ts" expr="@this"/>
+     <field id="field_A2" field_ref="field_A" operation="average" freq_op="2ts" expr="@this"/>
    </field_definition>
 
    <file_definition>
-     <file id="restart" name="restart" output_freq="5ts" type="one_file">
-       <field id="field_A_final" field_ref="field_A_acc" name="field2D_oce_to_atm" freq_op="4ts" operation="accumulate"  expr="@this" />
+     <file id="restart" name="restart" output_freq="8ts" type="one_file">
+       <field id="field_A3" field_ref="field_A2" name="field2D_oce_to_atm" freq_op="4ts" operation="accumulate"  expr="@this" />
      </file>
    </file_definition>
 

@@ -25,7 +25,7 @@
         </variable_definition>
 
         <field_definition>
-            <field id="field2D_send" grid_ref="grid_2D" operation="average"/>
+            <field id="field2D_send" grid_ref="grid_2D" operation="instant" build_workflow_graph="true"/>
         </field_definition>
 
         <coupler_out_definition>
@@ -62,9 +62,7 @@
         <!-- Grid of the incoming ocean field (Same as the one in ocn context) -->
         <grid_definition>
             <grid id="grid_2D">
-                <domain id="domain">
-                    <generate_rectilinear_domain/>
-                </domain>
+                <domain id="domain"/>
             </grid>
         </grid_definition>
 
