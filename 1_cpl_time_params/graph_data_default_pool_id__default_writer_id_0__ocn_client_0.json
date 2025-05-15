@@ -1,0 +1,29 @@
+{"nodes":[
+{"id":0,
+"label":"Server from Client Source filter",
+"class":1,
+"filled":0,
+"context":"default_pool_id__default_writer_id_0__ocn",
+"entry":"0",
+"attributes":"build_workflow_graph=true</br> freq_offset=0ts</br> freq_op=5ts</br> grid_ref= --> sent__ --> grid_2D --> grid_2D --> grid_2D</br> name=field2D_oce_to_atm</br> operation=average</br> read_access=true</br> ",
+"type":""}
+,{"id":1,
+"label":"File Writer Store filter",
+"class":5,
+"filled":0,
+"context":"default_pool_id__default_writer_id_0__ocn",
+"entry":"1",
+"attributes":"build_workflow_graph=true</br> freq_offset=0ts</br> freq_op=5ts</br> grid_ref= --> sent__ --> grid_2D --> grid_2D --> grid_2D</br> name=field2D_oce_to_atm</br> operation=average</br> read_access=true</br> ",
+"type":""}
+
+],
+"edges" : [
+{"id":0,
+"from":0,
+"to":1,
+"label":"\n2025-05-01 00:00:00",
+"context":"default_pool_id__default_writer_id_0__ocn",
+"attributes":"build_workflow_graph=true</br> freq_offset=0ts</br> freq_op=5ts</br> grid_ref= --> sent__ --> grid_2D --> grid_2D --> grid_2D</br> name=field2D_oce_to_atm</br> operation=average</br> read_access=true</br> ",
+"date":"2025-05-01 00:00:00"}
+
+]}

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<simulation>
+ <context id="test">
+   <calendar type="Gregorian" time_origin="2025-01-01" start_date="2025-01-01" />
+
+   <grid_definition>
+     <grid id="grid_2D">
+        <domain id="domain" type="rectilinear" ni_glo="10" nj_glo="10">
+          <generate_rectilinear_domain/> <!-- To generate other missing attributes such as lon/lat array ecc. for a rectilinear domain -->
+        </domain>
+     </grid>
+   </grid_definition>
+
+    <variable_definition>
+      <!-- If >8, provide more than 8 fields timesteps in the loaded_file -->
+      <variable id="duration_in_ts">8</variable>
+    </variable_definition>
+
+   <field_definition>
+     <field id="field_2d_send" grid_ref="grid_2D"  />
+   </field_definition>
+
+   <file_definition>
+     <file  name="saved_file" output_freq="2ts" type="one_file">
+       <field field_ref="field_2d_send" name="field2D_oce_to_atm" operation="average"/>
+     </file>
+
+      <file name="loaded_file" output_freq="2ts" mode="read">
+        <field id="field_2d_recv" name="field2D_oce_to_atm" freq_offset="1ts" grid_ref="grid_2D"  operation="instant" read_access="true"/>
+      </file>
+   </file_definition>
+
+  </context>
+
+  <context id="xios">
+     <variable_definition>
+        <variable_group id="parameters" >
+          <variable id="print_file" type="bool">true</variable>
+        </variable_group>
+     </variable_definition>
+  </context>
+
+</simulation>
