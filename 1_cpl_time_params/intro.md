@@ -17,7 +17,7 @@ This translates to:
 | (Restart field) freq_offset |  | 1ts|
 | (Save field) output_freq | 30d | | 
 
-![plot](2_singlefield_restart.png)
+![plot](1_cpl_time_params.png)
 \* arbitrarily large, so to load one time during the run
 
 ## Algorithm explaination
