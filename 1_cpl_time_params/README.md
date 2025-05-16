@@ -1,6 +1,6 @@
 # Monodirectional coupling of a single field with restart file
 
-This folder contains a single source file (representing the two coupled models as always) and three iodef files. These iodef files correspond to three different run configurations, demonstrating the restart coupling scheme and the interoperability between a single continuous run and two consecutive runs.
+This folder contains a single source file (representing the two coupled models as always), and four iodef files. These iodef files correspond to four different run configurations, demonstrating the restart coupling scheme and the interoperability between a single continuous run and two consecutive runs.
 ## a. Algorithm with restart file introduction
 A general introduction to the implementation of a coupling algorithm with restarting files in XIOS.
 - [intro.md](intro.md)
