@@ -31,13 +31,13 @@
         <!-- Field definition for the source model -->
         <field_definition>
             <!-- Endpoint to send field to destination in toymodel -->
-            <field id="field2D_send" grid_ref="grid_2D"  operation="instant" read_access="true"/>
+            <field id="field2D_send" grid_ref="grid_2D"  operation="instant" freq_op="1ts" freq_offset="0ts"/>
         </field_definition>
 
         <coupler_out_definition>
             <coupler_out context="model_destination::model_destination" >
                 <!-- Define the interface for the outgoing field to be received in atmosphere -->
-                <field id="field2D_cpl" field_ref="field2D_send" freq_op="5ts" expr="@this"/>
+                <field id="field2D_cpl" field_ref="field2D_send" freq_op="5ts" expr="@this_ref"/>
                 <field id="field2D_cpl_restart" field_ref="field2D_restart" freq_op="1y" />
             </coupler_out>
         </coupler_out_definition>

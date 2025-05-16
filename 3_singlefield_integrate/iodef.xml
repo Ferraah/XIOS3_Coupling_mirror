@@ -25,15 +25,15 @@
         </variable_definition>
 
         <field_definition>
-            <field id="field2D_send" grid_ref="grid_2D" operation="instant" build_workflow_graph="true"/>
+            <field id="field2D_send" grid_ref="grid_2D" freq_op="2ts" freq_offset="1ts" operation="average"/>
         </field_definition>
 
         <coupler_out_definition>
             <coupler_out context="atm::atm" >
                 <!-- Define the interface for the outgoing field to be received in atmosphere -->
-                <field id="field2D_oce_to_atm" field_ref="field2D_send" freq_op="4ts" expr="@this" />
+                <field id="field2D_oce_to_atm" field_ref="field2D_send" freq_op="4ts" freq_offset="3ts" expr="@this_ref" />
                 <!-- Define the interface for the outgoing field loaded from file to be received in atmosphere -->
-                <field id="field2D_restart" field_ref="field2D_read" freq_op="1y" />
+                <field id="field2D_restart" field_ref="field2D_read"/>
             </coupler_out>
         </coupler_out_definition>
 
@@ -42,12 +42,12 @@
 
             <!-- Save field on file after 5d (The last send, corresponding to the run duration)-->
             <file id="restart_next" name="restart_next" output_freq="5d" type="one_file" enabled="true" append="false">
-                <field field_ref="field2D_oce_to_atm" operation="instant"/>
+                <field field_ref="field2D_oce_to_atm"  operation= "instant"/>
             </file>
 
             <!-- Restart file to READ (No output is done on this file). output_freq referes to the reading freq in this mode -->
-            <file id="restart_zerofield" name="restart_zerofield" enabled="true" type="one_file" output_freq="1y" record_offset="-1" mode="read">
-                <field id="field2D_read" name="field2D_oce_to_atm" grid_ref="grid_2D" operation="instant" read_access="true"  />
+            <file id="restart_zerofield" name="restart_zerofield" enabled="true" type="one_file" output_freq="1y" mode="read">
+                <field id="field2D_read" name="field2D_oce_to_atm" grid_ref="grid_2D" operation="instant" read_access="true" />
             </file> 
 
         </file_definition>

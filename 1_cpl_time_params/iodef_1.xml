@@ -27,13 +27,13 @@
         <!-- Field reference for xios_send_field -->
         <field_definition>
             <!-- It will average on this field -->
-            <field id="field2D_send" grid_ref="grid_2D"  operation="instant" read_access="true" expr="@this"/>
+            <field id="field2D_send" grid_ref="grid_2D"  operation="instant" />
         </field_definition>
 
         <coupler_out_definition>
             <coupler_out context="atm::atm" >
                 <!-- Define the interface for the outgoing field to be received in atmosphere -->
-                <field id="field2D_oce_to_atm" field_ref="field2D_send" freq_op="4ts"/>
+                <field id="field2D_oce_to_atm" field_ref="field2D_send" freq_op="4ts" expr="@this_ref"/>
                 <!-- Define the interface for the outgoing field loaded from file to be received in atmosphere -->
                 <field id="field2D_restart" field_ref="field2D_read" freq_op="1y" />
             </coupler_out>

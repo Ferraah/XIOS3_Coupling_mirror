@@ -26,20 +26,19 @@
         <!-- Field reference for xios_send_field -->
         <field_definition>
             <!-- Operation instant will consider the field at the current timestep -->
-            <field id="field2D_send" grid_ref="grid_2D"  operation="instant" read_access="true" expr="@this" freq_offset="-3ts"/>
+            <field id="field2D_send" grid_ref="grid_2D"  operation="instant" freq_op="4ts" freq_offset="1ts" build_workflow_graph="true"/>
         </field_definition>
 
         <coupler_out_definition>
             <coupler_out context="atm::atm" >
                 <!-- Define the interface for the outgoing field to be received in atmosphere -->
-                <field id="field2D_oce_to_atm" field_ref="field2D_send" freq_op="4ts"/>
+                <field id="field2D_oce_to_atm" field_ref="field2D_send" freq_op="4ts" expr="@this_ref"/>
             </coupler_out>
         </coupler_out_definition>
 
         <file_definition>
-            <!-- Save field on the last send -->
             <file id="output_out" name="output_out" output_freq="4ts"  type="one_file" enabled="true">
-                <field field_ref="field2D_oce_to_atm"  operation="instant" />
+                <field field_ref="field2D_oce_to_atm" operation="instant" />
             </file>
         </file_definition>
 

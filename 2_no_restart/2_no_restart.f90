@@ -25,23 +25,30 @@ program basic_couple
     call MPI_COMM_SIZE(MPI_COMM_WORLD, size, ierr)
     call MPI_COMM_RANK(MPI_COMM_WORLD, rank, ierr)
 
-    if (size < 3) then
-        print *, "This program must be run with at least 3 processes. Currently, there are ", size, " processes."
-        call MPI_FINALIZE(ierr)
-        stop
-    end if 
+    ! if (size < 3) then
+    !     print *, "This program must be run with at least 3 processes. Currently, there are ", size, " processes."
+    !     call MPI_FINALIZE(ierr)
+    !     stop
+    ! end if 
     ! -------------------------------
 
-    if(rank==0) then
-        call xios_init_server()
-    else if (rank==1) then
+    ! if(rank==0) then
+    !     call xios_init_server()
+    ! else if (rank==1) then
+    !     model_id = "atm"
+    !     call run_toymodel()
+    ! else if (rank==2) then
+    !     model_id = "ocn"
+    !     call run_toymodel()
+    ! end if
+
+    if (rank==0) then
         model_id = "atm"
         call run_toymodel()
-    else if (rank==2) then
+    else if (rank==1) then
         model_id = "ocn"
         call run_toymodel()
     end if
-
     call MPI_FINALIZE(ierr)
 
 contains

@@ -30,9 +30,9 @@ if freq_offset is not defined:
 $$ freq\_ offset^{default} = 0 $$
 For these reason, in the iodef.xml the first reading from file is offsetted by one ts to be then read from the model `@ts=1`. There is no need to offset the writing to file because the first value sent will be already done at `@ts=1` by not specifying any freq_offset.
 ### xios_send_field & xios_recv_field
-The routine `xios_send_field` will send a field to xios and that will be stored in a buffer. Periodically, and defined with the time attributes discussed before, XIOS will perform an opertation on these buffered values. `operation="instant"` will just take the last element, basically writing the last element sent.
+The routine `xios_send_field` will send a field to xios and that will be stored in a buffer. Periodically, and defined with the time attributes discussed before, XIOS will perform an opertation on these buffered values. How this operations are applied is described on later examples.
 
-The routine `xios_recv_field` will retrieve a field that has been made available at a certain timestep, for example a field that has been read from file or one that is the result of an operation. Keep in mind that when calling `xios_recv_field` when there no field has been made available will result in a deadlock. 
+The routine `xios_recv_field` will retrieve a field that has been made available at a certain timestep, for example a field that has been read from file or one that is the result of an operation. Keep in mind that when calling `xios_recv_field` when no field has been made available will result in a deadlock. 
 **For this reason, `xios_recv_field` should be called only on the "right" timesteps that are coherent with the time attributes of the time filters.**
 Furthermore, it should be clear that values are retrieved in order without skipping them: when reading from a file with a frequency of 4ts starting from 1ts, we will get the the first value of the file when calling recv `@ts=1`, but we will receive the second value of the file (not the fourth) `@ts=5`. 
 

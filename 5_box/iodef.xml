@@ -29,7 +29,7 @@
         </field_definition>
 
         <coupler_out_definition>
-            <coupler_out context="atm::atm" >
+            <coupler_out context="atim::atm" >
                 <!-- Define the interface for the outgoing field to be received in atmosphere -->
                 <field id="field2D_oce_to_atm" field_ref="field2D_send" freq_op="1ts"/>
             </coupler_out>

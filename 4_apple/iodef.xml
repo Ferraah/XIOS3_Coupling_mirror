@@ -10,37 +10,34 @@
         <!-- Ocean field grid definition -->
         <grid_definition>
             <grid id="grid_2D">
-                <domain id="domain">
+                <domain id="domain" type="rectilinear" ni_glo="60" nj_glo="20">
                 <generate_rectilinear_domain/>
                 </domain>
             </grid>
         </grid_definition>
 
-         <variable_definition>
-            <variable id="toymodel_timestep_duration">6h</variable>
-            <variable id="toymodel_duration">30d</variable>
-            <variable id="toymodel_ni_glo">60</variable>
-            <variable id="toymodel_nj_glo">20</variable>
-            <variable id="toymodel_type">rectilinear</variable>
+        <variable_definition>
+            <!-- Simulate month of January -->
+            <variable id="timestep_duration">1d</variable>
+            <variable id="duration">31d</variable>
         </variable_definition>
-
 
         <!-- Field reference for xios_send_field -->
         <field_definition>
             <!-- Operation instant will consider the field at the current timestep -->
-            <field id="field2D_send" grid_ref="grid_2D"  operation="instant" read_access="true" expr="@this" freq_offset="-3ts"/>
+            <field id="field2D_send" grid_ref="grid_2D"  operation="instant" read_access="true" expr="@this"/>
         </field_definition>
 
         <coupler_out_definition>
-            <coupler_out context="atm::atm" >
+            <coupler_out context="atim::atm" >
                 <!-- Define the interface for the outgoing field to be received in atmosphere -->
-                <field id="field2D_oce_to_atm" field_ref="field2D_send" freq_op="4ts"/>
+                <field id="field2D_oce_to_atm" field_ref="field2D_send" freq_op="1ts"/>
             </coupler_out>
         </coupler_out_definition>
 
         <file_definition>
             <!-- Save field on the last send -->
-            <file id="output_out" name="output_out" output_freq="4ts" type="one_file" enabled="true">
+            <file id="output_out" name="output_out" output_freq="31ts" type="one_file" enabled="true">
                 <field field_ref="field2D_oce_to_atm"  operation="instant" />
             </file>
         </file_definition>
@@ -55,16 +52,14 @@
         <!-- Grid of the incoming ocean field (Same as the one in ocn context) -->
         <grid_definition>
         <grid id="grid_2D">
-            <domain id="domain"/>
+            <domain id="domain" ni_glo="60" nj_glo="20" />
         </grid>
         </grid_definition>
 
         <variable_definition>
-            <variable id="toymodel_timestep_duration">6h</variable>
-            <variable id="toymodel_duration">30d</variable>
-            <variable id="toymodel_ni_glo">60</variable>
-            <variable id="toymodel_nj_glo">20</variable>
-            <variable id="toymodel_type">rectilinear</variable>
+            <!-- Simulate month of January -->
+            <variable id="timestep_duration">1d</variable>
+            <variable id="duration">31d</variable>
         </variable_definition>
 
         <!-- Field reference for xios_recv_field --> 
@@ -77,7 +72,7 @@
         <coupler_in_definition>
             <coupler_in context="ocn::ocn" >
                 <!-- Define the interface for the incoming field to be received in atmosphere (same id)-->
-                <field id="field2D_oce_to_atm" grid_ref="grid_2D" freq_op="4ts" freq_offset="1ts" read_access="true"/>
+                <field id="field2D_oce_to_atm" grid_ref="grid_2D" freq_op="1ts" freq_offset="1ts" read_access="true"/>
             </coupler_in>
         </coupler_in_definition>
 
