@@ -1,7 +1,7 @@
 # Monodirectional coupling of a single field with restart file and integration
 
-This example showcases an coupling scheme that includes a time integration over the coupling period.  
-The parameters are the following: 5 days and 4 exchanges every day, with restarting and save file.
+This example showcases an coupling scheme that includes a time integration on sampled elements over the coupling period.  
+The simulation is done over 5 days with exchanges every day (4ts) of a field that is the result of an operation applied to the sampled element over a day. Sampled elements refer to the elements that we choose between the one sent by the model for doing an operation with a certain frequency defined in `field2D_send` tag.
 
 |  | Ocean | Atmosphere|
 |----------|----------|----------|
@@ -10,14 +10,18 @@ The parameters are the following: 5 days and 4 exchanges every day, with restart
 |Timestep| 6h | 6h
 | Send/recv frequency          | 4ts          | 4ts         |
 This translates to:
-| freq_op | 4ts| 4ts
-| freq_offset | 0ts | 5ts|
-| (Restart field) freq_op | 1y *| 1y*
-| (Restart field) freq_offset | 0ts | 1ts|
+| field2D_send.freq_op (sampling) | 2ts | |
+| field2D_send.freq_offset (sampling) | 1ts | |
+| field2D_oce_to_atm.freq_op | 4ts| 4ts
+| field2D_oce_to_atm.freq_offset | (3ts) | 5ts|
+| field2D_restart.freq_op | 1y *| 1y*
+| field2D_restart.freq_offset | (0ts) | 1ts|
+
+Values in parenthesis are set as default as discussed in in the example 0. 
 
 \* arbitrarily large, so to load one time during the run
 
-![Visualization](./3_singlefield_integrate.png)
+![Visualization](./3_integration.png)
 ## Algorithm explaination
 
 With this particular configuration, we set as before a field reference for `xios_send_field` named `field2D_send`. Here we are setting three attributes with the following purposes:
