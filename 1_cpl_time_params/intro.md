@@ -26,7 +26,7 @@ As with OASIS, we set the simulation duration to be a multiple of the coupling f
 
 
 ### xios_send_field & xios_recv_field
-`xios_send_field` logic is unchanged from example 1.\
+`xios_send_field` put logic is unchanged from OASIS.\
 As opposed to what happens with oasis GET, a restarting field with a different symbolic name should be set explicitly when calling the first `xios_recv_field`:
 
 ```fortran
