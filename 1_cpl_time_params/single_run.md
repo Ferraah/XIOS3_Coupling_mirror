@@ -1,10 +1,10 @@
-# Running April and May in two runs
+# Running April and May in one run
 
 Use:
 ```
 ./runSingle.sh
 ```
-to perfom a first run of a 61 days starting from `2025-04-01`, effectively running the months of April and May. The script will run the usual executable while setting `iodef.xml` and duplicating the old restart file. In fact, even if XIOS cannot append directly to the restart file our last field because it has already opened it, we can open another copy of it and append the new value. Then, we can use this new file as the restart file. 
+to perfom a first run of 61 days starting from `2025-04-01`, effectively running the months of April and May. The script will run the usual executable while setting the right `iodef.xml` for this example, and duplicating the old restart file. In fact, even if XIOS cannot append directly to the restart file our last field because it has already opened it, we can open another copy of it and append the new value. Then, we can use this new file as the restart file.
 
 iodef_3.xml:
 |  | Ocean | Atmosphere|
@@ -21,3 +21,6 @@ This translates to:
 | (Save field) output_freq | 61d | | 
 
 \* arbitrarily large, so to load one time during the run
+
+### Field values
+We have set the values of the field at a certain ts as the number of timesteps between the date at which the field has been sent and the date origin, so that we can make comparison after. 
