@@ -24,3 +24,6 @@ This translates to:
 
 ### Field values
 We have set the values of the field at a certain ts as the number of timesteps between the date at which the field has been sent and the date origin, so that we can make comparison after. 
+
+## Output 
+You should check that the target model will receive a field of value `600`, and that the restart file will contain the not yet received value `604` corresponding to the timestep at date interval `2025-05-31 18:00`-`2025-06-01 00:00`
