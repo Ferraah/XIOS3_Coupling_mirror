@@ -2,19 +2,19 @@
 
 Before exploring the coupling functionality, it is essential to first understand how XIOS operates for its original purpose. Refer to the XIOS documentation and hands on tutorials. 
 
-Explainations can be found in the toymodel source file and iodef.xml.
+Explainations for this example can be found in the toymodel source file and iodef.xml.
 
 The iodef.xml file contains the parameters and the definitions of the fields that we are going to manipulate with XIOS. In this example we will just send a field every timestep from a client to the server, which will then save it on a file. At the same time, fields for each timestep will be loaded from file and sent to the client.  
 
 # First timing notions
-XIOS handles the concept of time through the usage of the routine `xios_update_calendar(timestep)`, by which the user can set the current timestep before performing a `xios_send_field` `xios_recv_field`. It is strongly reccomended to start counting the timesteps from `@ts=1` due to a mismatch of loading/writing timing logic that we will cover later on, and that will affect the implementation of our coupling scheme. 
+XIOS handles the concept of time in the model through the routine `xios_update_calendar(timestep)`, by which the user can set the current timestep, before performing a `xios_send_field` `xios_recv_field`. It is strongly reccomended to start counting the timesteps from `@ts=1` due to a mismatch of loading/writing timing logic that we will cover later on, and that will affect the implementation of our coupling scheme. Indeed, this is the standard in XIOS, but in coupler softwares such as OASIS, we are usually used to index time from 0 instead. 
 
-**Time filters** are activated when a field is included into a `<file>` for writing or reading, or it is reused by another field after performing an operation on it.
+**Time filters** are activated when a field is included into a `<file>` for writing or reading, or it is reused by another field after performing an operation on it (for example the coupled one in the next examples).
 To access a field content at a specific timestep, we have to make that available in XIOS. 
 
- The timing parameters are defined with a set of attributes, which leads to different behaviours depending onto which functionalities are defined. These are:
+The timing parameters are defined with a set of attributes, which leads to different behaviours depending onto which functionalities are defined. These are:
 - output_freq: With this attribute we can define the frequency at which the reading or writing operation is performed when dealing with files, and it is defined only on `<file>` tags.
-- freq_op: It is the attribute to define the frequency of the so called "operations" that can be performed on fields using time filters, and it has been extended to coupling functionalities. We found this in `<field>` tags. 
+- freq_op: It is the attribute to define the frequency of the so called "operations" that can be performed on fields using time filters, and it has been extended to coupling functionalities. We found this in `<field>` tags. It can also be used as the "sampling frequency" for integration in a coupling period, but we will se that later. 
 - freq_offset: It is the number of timesteps to define a shift from the default starting timestep for the operation. We found this in `<field>` tags.
 
 Usage of these attributes can be found in XIOS tutorial.
@@ -34,7 +34,7 @@ The routine `xios_send_field` will send a field to xios and that will be stored 
 
 The routine `xios_recv_field` will retrieve a field that has been made available at a certain timestep, for example a field that has been read from file or one that is the result of an operation. Keep in mind that when calling `xios_recv_field` when no field has been made available will result in a deadlock. 
 **For this reason, `xios_recv_field` should be called only on the "right" timesteps that are coherent with the time attributes of the time filters.**
-Furthermore, it should be clear that values are retrieved in order without skipping them: when reading from a file with a frequency of 4ts starting from 1ts, we will get the the first value of the file when calling recv `@ts=1`, but we will receive the second value of the file (not the fourth) `@ts=5`. 
+Furthermore, it should be clear that values are retrieved in order without skipping them: when reading from a file with a frequency of 4ts starting from 1ts, we will get the the first value of the file when calling recv `@ts=1`, but we will receive the second value of the file (not the fourth) `@ts=5`. The elements are extracted in order of arrival (FIFO), as it was a queue/pipe, both from file and coupled exchanges.(@todo: check if true for coupling)  
 
 ```fortran
 ! Receive field starting from 1 with a certain frequency
@@ -45,7 +45,7 @@ END IF
 ```
 
 
-In the next examples we would like to enable client2client exchanges by exploiting XIOS recent experimental coupling routines together with some adaptations to match (some) of OASIS functionalities.
+In the next examples we would like to enable client2client exchanges by exploiting XIOS recent experimental coupling routines together with some adaptations to match (some) of OASIS functionalities. In the XIOS implementation, coupling is based on the same concepts (and source code classes) of the "filters" from client to server, modified for model to model communications. 
 
 ## Running
 ```bash
