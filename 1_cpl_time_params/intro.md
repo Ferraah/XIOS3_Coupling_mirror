@@ -1,4 +1,8 @@
 # Coupling schemes time parameters
+Run with:
+```
+./runIntro.sh
+```
 ## Monodirectional coupling of a single field with restart file
 
 This example demonstrates the coupling functionality between two model contexts: `ocn` (ocean) and `atm` (atmosphere). In this setup, the ocean model is responsible for sending a field to the atmosphere model, which receives it. The first field received by the atmosphere is loaded from a restart file, ensuring continuity from a previous run. Subsequently, the ocean model sends the field every 5 days; however, the final send is not received but instead saved to a file for use in the next simulation. While the time parameters used here are not realistic, they are chosen to clearly illustrate the coupling scheme involving a restart file. We begin with this example because using a restart file is a common approach, and it allows us to later discuss the limitations in coupling schemes that arise when a restart file is not included.
