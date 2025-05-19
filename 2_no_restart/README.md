@@ -1,6 +1,6 @@
 # Monodirectional coupling of a single field with no restart file
 
-The following example shows that it is possible to make a coupling scheme of suchh kind, without restarting file and without "lag", but it comes with many issues. There are implemented two toy models (`ocn` and `atm`). Ocean is the model in charge of sending the field to the Atmosphere model.  
+The following example shows that it is possible to make a coupling scheme of such kind, without restarting file and without "lag". It doesn't seem to be a realistic scheme temporally speaking; also it doesn't make sense to perform different operations that `operation="instant"`, due the fact that on the `@ts=1` we have only one element to consider. But most importantly, the *sampling frequency* is set equal to the *coupling frequency* and these are the only temporal parameters available to make such kind of scheme. There are implemented two toy models (`ocn` and `atm`). Ocean is the model in charge of sending the field to the Atmosphere model.  
 
 ![plot](2_no_restart.png)
 
@@ -10,8 +10,8 @@ Xios timesteps start by convention from 1. Model `atm`(on top), will start using
 |----------|----------|----------|
 |Start date|Jan 01, 2025|Jan 01, 2025 
 | Duration  |  31d       | 31d         |
-|Timestep| 6h | 6hd
-| Send/recv frequency          | 4ts          | 4ts         |
+|Timestep| 1d | 1d
+| Send/recv frequency | 4ts     | 4ts         |
 This translates to:
 | field2D_send.freq_op | 4ts| |
 | field2D_send.freq_offset | 0ts | |
@@ -20,26 +20,9 @@ This translates to:
 
 
 ## Algorithm explaination
-XIOS handles the concept of time through the usage of the routine `xios_update_calendar(timestep)`, by which the user can set the current timestep before performing a `xios_send_field` `xios_recv_field`.
-Furthermore, it is designed to start the coupling functionality from @ts=1, which effectively corresponds to the first time step (or @time = 0). Hence, we expect to run the coupling from @ts=1 (Jan 1) to @ts=31 (Jan 31) included.
+We are essentially sampling every 4 element starting from the one at `@ts=1`. So when xios performs the instant operation at `@ts=4`, we are sending the only element sampled to the "coupling values queue" @tofix. Then the receiver context will get the value and provide it for `@ts=1` of the receiving model.
 
-### freq_op & freq_offset
-These are two attributes used in xios for various tasks. In our coupling envirnonment:\
-`freq_op` determines how often the operation (send or receive) is performed after the initial offset.\
-`freq_offset` specifies the delay from `@ts=1` before performing the operation for the first time in XIOS, but: @TODO 
-> **_NOTE:_**  At the current version of XIOS, in our coupling environment, with `freq_offset=0`, the first operation for **get** operations will be expected `@ts=0` while for **put** at `@ts=freq_op`. It's clear that to match our example in the plot, we have to offset the first send done by default `@ts=4` by -3ts and the first receive expected by default`@ts=0` by +1ts.
-
-### xios_send_field & xios_recv_field
-The routine `xios_recv_field` will return whatever is stored in the buffer that was sent using `xios_send_field`, independently of whether the current timestep is a coupling one. **For this reason, `xios_recv_field` should be called only on the "right" timesteps.**
-```fortran
-! Receive field starting from 1 with a certain frequency
-IF (modulo(curr_timestep-1, freq_op) == 0) THEN
-    CALL xios_recv_field("field2D_recv", field_recv)
-    print *, "Model ", model_id, " received " , field_recv(1,1), " @ts = ", curr_timestep
-END IF
-```
-
-# Output
+## Output
 ```
  Model ocn x_start_date =         2025           1           1           0
            0           0
