@@ -13,8 +13,10 @@ Xios timesteps start by convention from 1. Model `atm`(on top), will start using
 |Timestep| 6h | 6hd
 | Send/recv frequency          | 4ts          | 4ts         |
 This translates to:
-| freq_op | 4ts| 4ts
-| freq_offset | -3ts | 1ts|
+| field2D_send.freq_op | 4ts| |
+| field2D_send.freq_offset | 0ts | |
+| field2D_oce_to_atm.freq_op | 4ts | 4ts |
+| field2D_oce_to_atm.freq_offset |  | 1ts |
 
 
 ## Algorithm explaination
