@@ -15,26 +15,91 @@ To access a field content at a specific timestep, we have to make that available
 The timing parameters are defined with a set of attributes, which leads to different behaviours depending onto which functionalities are defined. These are:
 - output_freq: With this attribute we can define the frequency at which the reading or writing operation is performed when dealing with files, and it is defined only on `<file>` tags.
 - freq_op: It is the attribute to define the frequency of the so called "operations" that can be performed on fields using time filters, and it has been extended to coupling functionalities. We found this in `<field>` tags. It can also be used as the "sampling frequency" for integration in a coupling period, but we will se that later. 
-- freq_offset: It is the number of timesteps to define a shift from the default starting timestep for the operation. We found this in `<field>` tags.
+- freq_offset: It is the number of timesteps to define a shift from the default starting timestep for the operation and sampling. We found this in `<field>` tags.
 
-Usage of these attributes can be found in XIOS tutorial.
-## Expected first timestep 
-When setting the timing attributes we have to pay attention to some details. The first timestep to be subject to any action depends on the type of it, "put" or "get" in a broader sense. More specifically:
-### Put actions (Write to file / Performing an operation on the field)
-$$ first\_ ts\_ expected = 1 + freq\_ offset$$
-if freq_offset is not defined:
-$$ freq\_ offset^{default} = freq\_ op-1 $$
-### Get actions (Read from file)
-$$ first\_ ts\_ expected = 0 + freq\_ offset$$
-if freq_offset is not defined:
-$$ freq\_ offset^{default} = 0 $$
-For these reason, in the iodef.xml the first reading from file is offsetted by one ts to be then read from the model `@ts=1`. There is no need to offset the writing to file because the first value sent will be already done at `@ts=1` by not specifying any freq_offset.
+Let's directly see how it works in a coupler, but the concepts are the same as if we were writing to file the result:
+```fortran
+xios_set_calendar(i) 
+xios_send_field("field2D_send", field) ! Send field to xios at i-th timestep
+```
+```xml
+<field_definition>
+    <!-- sampling frequency, sampling offset and operation to perform here-->
+    <field id="field2D_send" grid_ref="grid_2D" freq_op="xxx ts" freq_offset="xxx ts" operation="average"/>
+</field_definition>
+
+<coupler_out_definition>
+    <coupler_out context="atm::atm" >
+        <!-- Define the interface for the outgoing field to be received in atmosphere -->
+        <!-- sending frequency/operation applied frequency -->
+        <field id="field2D_oce_to_atm" field_ref="field2D_send" freq_op="xxx ts" expr="@this_ref" />
+    </coupler_out>
+</coupler_out_definition>
+```
+```xml
+<field_definition>
+    <field id="field2D_recv" field_ref="field2D_oce_to_atm" />
+</field_definition>
+
+<!-- Fields coming from ocean -->
+<coupler_in_definition>
+    <coupler_in context="ocn::ocn" >
+        <!-- Like this we make available the field from the second coupling period -->
+        <field id="field2D_oce_to_atm" grid_ref="grid_2D" freq_op="xxx ts" freq_offset="xxx ts" operation="instant" read_access="true"/>
+        <!-- Restart field for atm is provided by ocean - freq_op big so to execute it only one time, offset to run it @ts=1 instead of @ts=0-->
+        <field id="field2D_restart" grid_ref="grid_2D" freq_op="1y" freq_offset="1ts" operation="instant" read_access="true"/>
+    </coupler_in>
+</coupler_in_definition>
+```
+
+```fortran
+xios_set_calendar(i) 
+if (mod(i-1, cpl_freq) == 0) then
+    xios_recv_field("field2D_recv", field) ! Receive fieldfroo xios at i-th timestep. Has to be called at the "rigth" timestep
+end if
+```
+
+Legend for the following plots:
+- Blue arrows refer to the model sending a field at a certain timestep.
+- The larger light blue rectangles represent the "integration" periods, that in XIOS are also the coupling periods.
+- The small blue rectangles are the elements in the integration period onto which the operation will be applied. 
+
+# 
+![No offset](./0.png)
+
+sampling_offset = 0ts $\implies$  It means we will start sampling from 1 \
+sampling_freq = 2ts $\implies$ Sample element with this freq starting from $1 + sampling\_ offset$ \
+send_freq = 4ts $\implies$ The frequency at which the selected integration operation will be executed onto the sampled elements. The result is available to be coupled or saved to file. Here is done at 4 with the content sent @1 and @3, and so on.
+
+#
+![No offset](./1.png)
+
+sampling_offset = 2ts $\implies$  It means we will start sampling from 1+2=3 \
+sampling_freq = 2ts $\implies$ Sample element with this freq starting from $1 + sampling\_ offset$ \
+send_freq = 4ts $\implies$ The frequency at which the selected integration operation will be executed onto the sampled elements, starting from $1 + sampling\_ offset$. The result is available to be coupled or saved to file. Here is done at 6 with the content sent @1 and @3, and so on.
+#
+
+On receiving:
+
+![Receiving](./2.png)
+
+The red arrow represents the `xios_recv_field` at the relative timestep, and the yellow line the first field loaded from file.  \
+sampling_offset = 0ts \
+sampling_freq = 2ts \
+send_freq = 4ts 
+
+Parameters for the receiving context (red arrows) \
+recv_offset = 5ts  
+recv_freq = 4ts $\implies$ In order of field arrival from the source model, it makes them available for the receiving model every 4ts starting from $0 + recv\_ offset$ 
+
+### Note there is an asymmetry between offsetting the "puts" vs the "gets" (start from 1 vs 0)
+
 ### xios_send_field & xios_recv_field
-The routine `xios_send_field` will send a field to xios and that will be stored in a buffer. Periodically, and defined with the time attributes discussed before, XIOS will perform an opertation on these buffered values. How this operations are applied is described on later examples.
+The routine `xios_send_field` will send a field to xios and that will be stored in a buffer. Periodically, and defined with the time attributes discussed before, XIOS will perform an opertation on these buffered values. 
 
 The routine `xios_recv_field` will retrieve a field that has been made available at a certain timestep, for example a field that has been read from file or one that is the result of an operation. Keep in mind that when calling `xios_recv_field` when no field has been made available will result in a deadlock. 
 **For this reason, `xios_recv_field` should be called only on the "right" timesteps that are coherent with the time attributes of the time filters.**
-Furthermore, it should be clear that values are retrieved in order without skipping them: when reading from a file with a frequency of 4ts starting from 1ts, we will get the the first value of the file when calling recv `@ts=1`, but we will receive the second value of the file (not the fourth) `@ts=5`. The elements are extracted in order of arrival (FIFO), as it was a queue/pipe, both from file and coupled exchanges.(@todo: check if true for coupling)  
+The elements are extracted in order of arrival (FIFO) at the receiving context, and are made available for the model with the time parameters in the coupler in; xios assign a timestamp to these fields as they arrive. This is true both for file and coupled exchanges. 
 
 ```fortran
 ! Receive field starting from 1 with a certain frequency
@@ -44,8 +109,9 @@ IF (modulo(curr_timestep-1, freq_op) == 0) THEN
 END IF
 ```
 
-
+<!-->
 In the next examples we would like to enable client2client exchanges by exploiting XIOS recent experimental coupling routines together with some adaptations to match (some) of OASIS functionalities. In the XIOS implementation, coupling is based on the same concepts (and source code classes) of the "filters" from client to server, modified for model to model communications. 
+<-->
 
 ## Running
 ```bash

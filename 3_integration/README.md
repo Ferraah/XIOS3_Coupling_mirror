@@ -20,7 +20,6 @@ This translates to:
 \* arbitrarily large, so to load one time during the run
 
 ![Visualization](./3_integration.png)
-@todo: set freqpffset sampling in pic
 ## Algorithm explaination
 
 With this particular configuration, we set as before a field reference for `xios_send_field` named `field2D_send`. Here we are setting three attributes with the following purposes:
