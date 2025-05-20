@@ -25,13 +25,15 @@
         </variable_definition>
 
         <field_definition>
+            <!-- sampling frequency, sampling offset and operation to perform here-->
             <field id="field2D_send" grid_ref="grid_2D" freq_op="2ts" freq_offset="1ts" operation="average"/>
         </field_definition>
 
         <coupler_out_definition>
             <coupler_out context="atm::atm" >
                 <!-- Define the interface for the outgoing field to be received in atmosphere -->
-                <field id="field2D_oce_to_atm" field_ref="field2D_send" freq_op="4ts" freq_offset="3ts" expr="@this_ref" />
+                <!-- sending frequency/operation applied frequency -->
+                <field id="field2D_oce_to_atm" field_ref="field2D_send" freq_op="4ts" expr="@this_ref" />
                 <!-- Define the interface for the outgoing field loaded from file to be received in atmosphere -->
                 <field id="field2D_restart" field_ref="field2D_read"/>
             </coupler_out>
@@ -41,8 +43,9 @@
         <file_definition>
 
             <!-- Save field on file after 5d (The last send, corresponding to the run duration)-->
+            <!-- Remember to set operation="instant", otherwise it would inherit operation average and perform it over 5 days. Like this, we only pick the last sent value -->
             <file id="restart_next" name="restart_next" output_freq="5d" type="one_file" enabled="true" append="false">
-                <field field_ref="field2D_oce_to_atm"  operation= "instant"/>
+                <field field_ref="field2D_oce_to_atm" operation="instant" />
             </file>
 
             <!-- Restart file to READ (No output is done on this file). output_freq referes to the reading freq in this mode -->
@@ -83,6 +86,7 @@
         <!-- Fields coming from ocean -->
         <coupler_in_definition>
             <coupler_in context="ocn::ocn" >
+                <!-- Like this we make available the field from the second coupling period -->
                 <field id="field2D_oce_to_atm" grid_ref="grid_2D" freq_op="4ts" freq_offset="5ts" operation="instant" read_access="true"/>
                 <!-- Restart field for atm is provided by ocean - freq_op big so to execute it only one time, offset to run it @ts=1 instead of @ts=0-->
                 <field id="field2D_restart" grid_ref="grid_2D" freq_op="1y" freq_offset="1ts" operation="instant" read_access="true"/>

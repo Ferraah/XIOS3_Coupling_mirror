@@ -4,3 +4,4 @@
 *.o
 8_interpolate/point_files
 *.mod
+*.json

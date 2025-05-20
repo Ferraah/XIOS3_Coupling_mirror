@@ -1,7 +1,7 @@
 # Monodirectional coupling of a single field with restart file and integration
 
 This example showcases an coupling scheme that includes a time integration on sampled elements over the coupling period.  
-The simulation is done over 5 days with exchanges every day (4ts) of a field that is the result of an operation applied to the sampled element over a day. Sampled elements refer to the elements that we choose between the one sent by the model for doing an operation with a certain frequency defined in `field2D_send` tag.
+The simulation is done over 5 days with exchanges every day (1d = 4ts) of a field that is the result of an operation applied to the sampled element over a day. Sampled elements refer to the elements that we choose between the one sent by the model for doing an operation with a certain frequency defined in `field2D_send` tag.
 
 |  | Ocean | Atmosphere|
 |----------|----------|----------|
@@ -13,11 +13,9 @@ This translates to:
 | field2D_send.freq_op (sampling) | 2ts | |
 | field2D_send.freq_offset (sampling) | 1ts | |
 | field2D_oce_to_atm.freq_op | 4ts| 4ts
-| field2D_oce_to_atm.freq_offset | (3ts) | 5ts|
+| field2D_oce_to_atm.freq_offset |  | 5ts|
 | field2D_restart.freq_op | 1y *| 1y*
-| field2D_restart.freq_offset | (0ts) | 1ts|
 
-Values in parenthesis are set as default as discussed in in the example 0. 
 
 \* arbitrarily large, so to load one time during the run
 
@@ -39,13 +37,15 @@ A so called time filter is triggered when the new flux `field2D_oce_to_atm`, tha
 We should set this freq_op and freq_offset parameters as "put" operations described in `0_xios_intro`.   
 ```xml 
 <field_definition>
-    <field id="field2D_send" grid_ref="grid_2D" freq_op="2ts" freq_offset="1ts" operation="average" build_workflow_graph="true"/>
+    <!-- sampling frequency, sampling offset and operation to perform here-->
+    <field id="field2D_send" grid_ref="grid_2D" freq_op="2ts" freq_offset="1ts" operation="average"/>
 </field_definition>
 
 <coupler_out_definition>
     <coupler_out context="atm::atm" >
         <!-- Define the interface for the outgoing field to be received in atmosphere -->
-        <field id="field2D_oce_to_atm" field_ref="field2D_send" freq_op="4ts" freq_offset="3ts" expr="@this_ref" />
+        <!-- sending frequency/operation applied frequency -->
+        <field id="field2D_oce_to_atm" field_ref="field2D_send" freq_op="4ts" expr="@this_ref" />
         <!-- Define the interface for the outgoing field loaded from file to be received in atmosphere -->
         <field id="field2D_restart" field_ref="field2D_read"/>
     </coupler_out>
@@ -55,12 +55,46 @@ We should set this freq_op and freq_offset parameters as "put" operations descri
 ## Detail on saving the last field
 As we see in the file definitions:
 ```xml
+
 <!-- Save field on file after 5d (The last send, corresponding to the run duration)-->
+<!-- Remember to set operation="instant", otherwise it would inherit operation average and perform it over 5 days. Like this, we only pick the last sent value -->
 <file id="restart_next" name="restart_next" output_freq="5d" type="one_file" enabled="true" append="false">
-    <field field_ref="field2D_oce_to_atm" operation="instant"/>
+    <field field_ref="field2D_oce_to_atm" operation="instant" />
 </file>
 ```
-We refer to `field2D_oce_to_atm` to save the last field. `output_freq` behaves like the `freq_offset` attribute in the `coupler_out` by performing the instant operation after 5 days on our already integrated field  and save it to file. We could also move the `operator` tag in the coupling field because we would inherit it by reference. 
+We refer to `field2D_oce_to_atm` to save the last field. `output_freq` behaves like the `freq_offset` attribute in the `coupler_out` by performing the instant operation after 5 days on our already integrated field  and save it to file. 
 
 
 # Output
+```
+   ATM: receiving restart field @ts=           1  with value 
+  0.000000000000000E+000
+ OCN: sending field @ts=           1  with value    1.00000000000000     
+ OCN: sending field @ts=           2  with value    2.00000000000000     
+ OCN: sending field @ts=           3  with value    3.00000000000000     
+ OCN: sending field @ts=           4  with value    4.00000000000000     
+   ATM: receiving field @ts=           5  with value    3.00000000000000     
+ OCN: sending field @ts=           5  with value    5.00000000000000     
+ OCN: sending field @ts=           6  with value    6.00000000000000     
+ OCN: sending field @ts=           7  with value    7.00000000000000     
+ OCN: sending field @ts=           8  with value    8.00000000000000     
+   ATM: receiving field @ts=           9  with value    7.00000000000000     
+ OCN: sending field @ts=           9  with value    9.00000000000000     
+ OCN: sending field @ts=          10  with value    10.0000000000000     
+ OCN: sending field @ts=          11  with value    11.0000000000000     
+ OCN: sending field @ts=          12  with value    12.0000000000000     
+   ATM: receiving field @ts=          13  with value    11.0000000000000     
+ OCN: sending field @ts=          13  with value    13.0000000000000     
+ OCN: sending field @ts=          14  with value    14.0000000000000     
+ OCN: sending field @ts=          15  with value    15.0000000000000     
+ OCN: sending field @ts=          16  with value    16.0000000000000     
+   ATM: receiving field @ts=          17  with value    15.0000000000000     
+ OCN: sending field @ts=          17  with value    17.0000000000000     
+ OCN: sending field @ts=          18  with value    18.0000000000000     
+ OCN: sending field @ts=          19  with value    19.0000000000000     
+ OCN: sending field @ts=          20  with value    20.0000000000000     
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+```
