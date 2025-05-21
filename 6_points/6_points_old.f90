@@ -17,6 +17,7 @@ program basic_couple
         integer :: freq_op_in_ts
         integer :: ni_glo, nj_glo, ni, nj, ibegin, jbegin
         integer :: data_dim, data_ni, data_nj, data_ibegin, data_jbegin
+        integer, allocatable :: data_i_index(:)
         character(len=255) :: field_type
     end type toymodel_config
 
@@ -33,16 +34,19 @@ program basic_couple
 
     print *, "MPI initialized. Rank: ", rank, " Size: ", size
 
-    if (size /= 5) then
-        print *, "This program must be run with 5 processes. Currently, there are ", size, " processes."
+    if (size /= 4) then
+        print *, "This program must be run with 4 processes. Currently, there are ", size, " processes."
         call MPI_FINALIZE(ierr)
         stop
     end if 
     ! -------------------------------
 
-    if (rank==size-1) then
+    if(rank==(size-1)) then
+        print *, "Rank 0: Initializing XIOS server..."
+        call xios_init_server()
+    else if (rank== (size-2)) then
         model_id = "atm"
-        print *, "Rank ", rank, ": Running toy model with model_id = ", model_id
+        print *, "Rank 1: Running toy model with model_id = ", model_id
         call run_toymodel()
     else 
         model_id = "ocn"
@@ -69,9 +73,6 @@ contains
         ! Loading the configuration of the toy model
         call load_toymodel_data(config) 
 
-        ! Distribute the data in the source toymodel 
-        if(model_id == "ocn") call create_toymodel_distribution(config)
-
         ! Set the data coming from the model in XIOS
         call configure_xios_from_model(config)
 
@@ -89,6 +90,7 @@ contains
         type(toymodel_config), intent(out) :: config
         character(len=255) :: tmp = ""
         type(xios_duration) :: tmp2
+        integer :: i
 
         print *, "Loading toy model configuration..."
         ierr = xios_getvar("toymodel_duration", tmp)
@@ -113,7 +115,7 @@ contains
 
         ierr = xios_getvar("toymodel_type", tmp)
         config%field_type = TRIM(tmp)
-        print *, "Field type: ", TRIM(config%field_type)
+        print *, "Field type: ", config%field_type
         tmp = ""
 
         ! Getting the frequency of the operation
@@ -126,39 +128,33 @@ contains
         call xios_get_start_date(config%start_date)
         print *, "Start date: ", config%start_date
 
-        ! -----Distribution of the data in the model----------------
+        if(model_id == "ocn") then
 
-         
+            if(config%ni_glo /=4 .or. config%nj_glo /=4) THEN
+                print *, "This example is only for 4x4 grid"
+                STOP
+            end if
+
+            config%data_dim = 1 ! Source data is 1D
+            config%data_ni = 8 ! Length of data 
+            config%data_ibegin = 0 ! Offset of data wrt ibegin
+            config%ni = config%ni_glo ! Local partition size
+            config%nj = config%nj_glo ! Local partition size
+            config%ibegin = 0 ! Offset of the local partition wrt the global grid
+            config%jbegin = 0 ! Offset of the local partition wrt the global grid
+
+            allocate(config%data_i_index(config%data_ni))
+
+            ! Checkboard distribution on two processes, 1D data source
+            IF (rank==0) THEN
+                config%data_i_index = [0, 2, 5, 7, 8, 10, 11, 13]
+            ELSE
+                config%data_i_index = [1, 3, 4, 6, 9, 12, 14, 15]
+            END IF
+
+ 
+        end if 
     end subroutine load_toymodel_data
-
-    subroutine create_toymodel_distribution(config) 
-        implicit none
-        type(toymodel_config), intent(inout) :: config
-        integer :: nij(0:3, 2), begin_points(0:3, 2)
-        
-        ! Global size is 60x20
-
-        ! Upper left corner of the domain
-        begin_points(0, :) = [0, 0]    ! Rank 0 (ibegin, jbegin)
-        begin_points(1, :) = [24, 0]
-        begin_points(2, :) = [0, 10]
-        begin_points(3, :) = [36, 10] ! Rank 3 (ibegin, jbegin)
-
-        ! Local domain sizes
-        nij(0, :) = [24, 10]  ! Rank 0 (ni, nj)
-        nij(1, :) = [36, 10]
-        nij(2, :) = [36, 10]
-        nij(3, :) = [24, 10]
-
-        
-        ! The distribution of the data is done in the model.
-        config%ni = nij(rank, 1)
-        config%nj = nij(rank, 2)
-        config%ibegin = begin_points(rank, 1)
-        config%jbegin = begin_points(rank, 2)
-        ! -------------------------------------------------------------------------------
-
-    end subroutine create_toymodel_distribution
 
     subroutine configure_xios_from_model(config)
     implicit none
@@ -166,9 +162,8 @@ contains
 
         print *, "Configuring XIOS with model data..."
         call xios_set_timestep(config%timestep)
-        if (model_id == "ocn") then
-            call xios_set_domain_attr("domain", ni_glo=config%ni_glo, nj_glo=config%nj_glo, type=config%field_type, ni=config%ni, nj=config%nj, ibegin=config%ibegin, jbegin=config%jbegin)
-        end if
+        call xios_set_domain_attr("domain", ni_glo=config%ni_glo, nj_glo=config%nj_glo, type=config%field_type, ni=config%ni, nj=config%nj, ibegin=config%ibegin, jbegin=config%jbegin)
+        if (model_id=="ocn") call xios_set_domain_attr("domain", data_dim=config%data_dim, data_ni=config%data_ni, data_ibegin=config%data_ibegin, data_i_index=config%data_i_index)
         call xios_close_context_definition()
         print *, "XIOS configuration completed."
 
@@ -178,19 +173,24 @@ contains
     subroutine run_coupling(conf)
     implicit none 
         type(toymodel_config) :: conf 
-        double precision, pointer:: field_send(:, :), field_recv(:,:)
-        integer :: curr_timestep
+        double precision, allocatable :: field_send(:), field_recv(:,:)
+        integer :: curr_timestep, i 
 
-        
-        print *, "Allocating fields for coupling..."
-        if (model_id=="ocn") allocate(field_send(conf%ni, conf%nj))
+        if (model_id=="ocn") allocate(field_send(conf%data_ni))
         if (model_id=="atm") allocate(field_recv(conf%ni_glo, conf%nj_glo))
+
+        ! Checkboard distribution on two processes, 1D data source
+        IF (rank==0) THEN
+            field_send = 0
+        ELSE IF(rank==1) THEN
+            field_send = 1
+        END IF
 
         conf%end_date = conf%start_date + conf%duration
         conf%curr_date = conf%start_date
         curr_timestep = 1
 
-        print *, "Start date: ", conf%start_date
+        print *, "Start dete: ", conf%start_date
         print *, "End date: ", conf%end_date
 
         do while (conf%curr_date < conf%end_date)
@@ -198,9 +198,8 @@ contains
             call xios_update_calendar(curr_timestep)
 
             if (model_id=="ocn") then
-                field_send = curr_timestep + rank ! To visualize the partitioning at every ts
                 call xios_send_field("field2D_send", field_send)
-                print *, "OCN: sending field @ts=", curr_timestep, " with value ", field_send(1, 1)
+                print *, "OCN: sending field @ts=", curr_timestep, " with value ", field_send(1)
             else if (model_id=="atm") then
                 if (mod(curr_timestep-1, conf%freq_op_in_ts) == 0) then
                     call xios_recv_field("field2D_recv", field_recv)
@@ -214,7 +213,7 @@ contains
 
         print *, "Coupling loop completed."
 
-        if (model_id=="ocn") deallocate(field_send)
-        if (model_id=="atm") deallocate(field_recv)
+        if (allocated(field_send)) deallocate(field_send)
+        if (allocated(field_recv)) deallocate(field_recv)
     end subroutine  run_coupling 
 end program

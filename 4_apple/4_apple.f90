@@ -33,19 +33,16 @@ program basic_couple
 
     print *, "MPI initialized. Rank: ", rank, " Size: ", size
 
-    if (size < 3) then
-        print *, "This program must be run with at least 3 processes. Currently, there are ", size, " processes."
+    if (size < 2) then
+        print *, "This program must be run with at least 2 processes. Currently, there are ", size, " processes."
         call MPI_FINALIZE(ierr)
         stop
     end if 
     ! -------------------------------
 
-    if(rank==(size-1)) then
-        print *, "Rank 0: Initializing XIOS server..."
-        call xios_init_server()
-    else if (rank== (size-2)) then
+    if (rank==size-1) then
         model_id = "atm"
-        print *, "Rank 1: Running toy model with model_id = ", model_id
+        print *, "Rank ", rank, ": Running toy model with model_id = ", model_id
         call run_toymodel()
     else 
         model_id = "ocn"
@@ -71,6 +68,8 @@ contains
 
         ! Loading the configuration of the toy model
         call load_toymodel_data(config) 
+
+        if(model_id == "ocn") call create_toymodel_distribution(config)
 
         ! Set the data coming from the model in XIOS
         call configure_xios_from_model(config)
@@ -113,7 +112,7 @@ contains
 
         ierr = xios_getvar("toymodel_type", tmp)
         config%field_type = TRIM(tmp)
-        print *, "Field type: ", config%field_type
+        print *, "Field type: ", TRIM(config%field_type)
         tmp = ""
 
         ! Getting the frequency of the operation
@@ -126,17 +125,27 @@ contains
         call xios_get_start_date(config%start_date)
         print *, "Start date: ", config%start_date
 
-        if(model_id == "ocn") then
-            config%ni = config%ni_glo
-            config%nj = config%nj_glo
-            config%ibegin = 0
-            config%jbegin = 0
-
-            config%data_dim = 1
-            config%data_ni = (config%ni_glo / (size-2))*config%nj_glo ! For example, data splitted eavenly on ocn model processes
-            config%data_ibegin = (rank) * config%data_ni
-        end if 
     end subroutine load_toymodel_data
+
+    subroutine create_toymodel_distribution(config) 
+        implicit none
+        type(toymodel_config), intent(inout) :: config
+
+        ! We will use data_ attribute that are more flexible for non-box partitioning 
+        ! The local domains are overlapped ands equivalent to the global domain.
+        config%ni = config%ni_glo 
+        config%nj = config%nj_glo
+        config%ibegin = 0
+        config%jbegin = 0
+        ! -----------------------------------------------------------------------------
+        
+        ! The distribution of the data is done in the model.
+        config%data_dim = 1 ! How we want to pass the data to XIOS
+        config%data_ni = (config%ni_glo / (size-1))*config%nj_glo ! For example, split latitudes over the processes
+        config%data_ibegin = (rank) * config%data_ni 
+        ! -------------------------------------------------------------------------------
+ 
+   end subroutine create_toymodel_distribution
 
     subroutine configure_xios_from_model(config)
     implicit none
@@ -144,8 +153,10 @@ contains
 
         print *, "Configuring XIOS with model data..."
         call xios_set_timestep(config%timestep)
-        call xios_set_domain_attr("domain", ni_glo=config%ni_glo, nj_glo=config%nj_glo, type=config%field_type, ni=config%ni, nj=config%nj, ibegin=config%ibegin, jbegin=config%jbegin)
-        if (model_id=="ocn") call xios_set_domain_attr("domain", data_dim=config%data_dim, data_ni=config%data_ni, data_ibegin=config%data_ibegin)
+        if (model_id == "ocn") then
+            call xios_set_domain_attr("domain", ni_glo=config%ni_glo, nj_glo=config%nj_glo, type=config%field_type, ni=config%ni, nj=config%nj, ibegin=config%ibegin, jbegin=config%jbegin, &
+                  data_dim=config%data_dim, data_ni=config%data_ni, data_ibegin=config%data_ibegin)
+        end if
         call xios_close_context_definition()
         print *, "XIOS configuration completed."
 
@@ -175,7 +186,7 @@ contains
             call xios_update_calendar(curr_timestep)
 
             if (model_id=="ocn") then
-                field_send = curr_timestep
+                field_send = curr_timestep + rank ! To visualize the partitioning at every ts
                 call xios_send_field("field2D_send", field_send)
                 print *, "OCN: sending field @ts=", curr_timestep, " with value ", field_send(1)
             else if (model_id=="atm") then

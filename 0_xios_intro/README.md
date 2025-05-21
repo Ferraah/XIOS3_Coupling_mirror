@@ -55,7 +55,7 @@ xios_send_field("field2D_send", field) ! Send field to xios at i-th timestep
 ```fortran
 xios_set_calendar(i) 
 if (mod(i-1, cpl_freq) == 0) then
-    xios_recv_field("field2D_recv", field) ! Receive fieldfroo xios at i-th timestep. Has to be called at the "rigth" timestep
+    xios_recv_field("field2D_recv", field) ! Receive field from xios at i-th timestep. Has to be called at the "rigth" timestep
 end if
 ```
 
@@ -79,7 +79,7 @@ sampling_freq = 2ts $\implies$ Sample element with this freq starting from $1 + 
 send_freq = 4ts $\implies$ The frequency at which the selected integration operation will be executed onto the sampled elements, starting from $1 + sampling\_ offset$. The result is available to be coupled or saved to file. Here is done at 6 with the content sent @1 and @3, and so on.
 #
 
-On receiving:
+Together:
 
 ![Receiving](./2.png)
 
@@ -90,7 +90,7 @@ send_freq = 4ts
 
 Parameters for the receiving context (red arrows) \
 recv_offset = 5ts  
-recv_freq = 4ts $\implies$ In order of field arrival from the source model, it makes them available for the receiving model every 4ts starting from $0 + recv\_ offset$ 
+recv_freq = 4ts $\implies$ In order of field arrival from the source model, it makes them available for the receiving model every 4ts starting from $0 + recv\_ offset$. 
 
 ### Note there is an asymmetry between offsetting the "puts" vs the "gets" (start from 1 vs 0)
 
@@ -109,9 +109,9 @@ IF (modulo(curr_timestep-1, freq_op) == 0) THEN
 END IF
 ```
 
-<!-->
+<!--
 In the next examples we would like to enable client2client exchanges by exploiting XIOS recent experimental coupling routines together with some adaptations to match (some) of OASIS functionalities. In the XIOS implementation, coupling is based on the same concepts (and source code classes) of the "filters" from client to server, modified for model to model communications. 
-<-->
+-->
 
 ## Running
 ```bash
