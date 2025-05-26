@@ -81,13 +81,13 @@
 
 
         <field_definition>
-            <field id="field2D_recv" field_ref="field2D_oce_to_atm" />
+            <field id="field2D_recv" field_ref="field2D_oce_to_atm"    />
         </field_definition>
 
         <!-- Fields coming from ocean -->
         <coupler_in_definition>
             <coupler_in context="ocn::ocn" >
-                <field id="field2D_oce_to_atm" grid_ref="grid_2D" freq_op="5ts" freq_offset="6ts" operation="instant" read_access="true"/>
+                <field id="field2D_oce_to_atm" grid_ref="grid_2D" freq_op="5ts" freq_offset="6ts" read_access="true" operation="instant" />
                 <!-- Restart field for atm is provided by ocean - freq_op big so to execute it only one time, offset to run it @ts=1 instead of @ts=0-->
                 <field id="field2D_restart" grid_ref="grid_2D" freq_op="1y" freq_offset="1ts" operation="instant" read_access="true"/>
             </coupler_in>

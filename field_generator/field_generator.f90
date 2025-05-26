@@ -48,7 +48,7 @@ PROGRAM field_generator
   CALL xios_date_convert_to_string(dstart, dstart_str)
   if (rank .EQ. 0) print*, "calendar start_date = ", dstart_str
 
-  dtime%hour = 6
+  dtime%hour = 1
   CALL xios_set_timestep(dtime)
 
   CALL xios_get_domain_attr("domain", type = domain_type)
