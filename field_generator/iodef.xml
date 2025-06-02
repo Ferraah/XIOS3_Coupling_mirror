@@ -11,7 +11,7 @@
    </grid_definition>
 
     <variable_definition>
-      <variable id="duration_in_ts">8</variable>
+      <variable id="duration_in_ts">1</variable>
     </variable_definition>
 
    <field_definition>
@@ -19,8 +19,17 @@
    </field_definition>
 
    <file_definition>
-     <file id="restart" name="restart" output_freq="1ts" type="one_file">
-       <field field_ref="field_A" name="field2D_oce_to_atm" operation="instant" />
+     <file id="restart1" name="restart_zerofield_for_atm1" output_freq="1ts" type="one_file">
+       <field field_ref="field_A" name="ocn_to_atm1" operation="instant" />
+     </file>
+     <file id="restart2" name="restart_zerofield_for_atm2" output_freq="1ts" type="one_file">
+       <field field_ref="field_A" name="ocn_to_atm2" operation="instant" />
+     </file>
+     <file id="restart3" name="restart_zerofield_for_ocn1" output_freq="1ts" type="one_file">
+       <field field_ref="field_A" name="atm_to_ocn1" operation="instant" />
+     </file>
+     <file id="restart4" name="restart_zerofield_for_ocn2" output_freq="1ts" type="one_file">
+       <field field_ref="field_A" name="atm_to_ocn2" operation="instant" />
      </file>
    </file_definition>
 
