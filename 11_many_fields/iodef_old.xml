@@ -18,9 +18,9 @@
         </variable_definition>
         <field_definition>
             <field id="field2D_recv1" field_ref="ocn_to_atm1"/>
-            <field id="field2D_send1" grid_ref="grid_2D" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="field2D_send1" grid_ref="grid_2D" operation="average" freq_op="1ts" freq_offset="0ts"/>
             <field id="field2D_recv2" field_ref="ocn_to_atm2"/>
-            <field id="field2D_send2" grid_ref="grid_2D" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="field2D_send2" grid_ref="grid_2D" operation="average" freq_op="1ts" freq_offset="0ts"/>
         </field_definition>
         <coupler_out_definition>
             <coupler_out context="ocn::ocn">
@@ -74,9 +74,9 @@
             <variable id="toymodel_type">rectilinear</variable>
         </variable_definition>
         <field_definition>
-            <field id="field2D_send1" grid_ref="grid_2D" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="field2D_send1" grid_ref="grid_2D" operation="average" freq_op="1ts" freq_offset="0ts"/>
             <field id="field2D_recv1" field_ref="atm_to_ocn1"/>
-            <field id="field2D_send2" grid_ref="grid_2D" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="field2D_send2" grid_ref="grid_2D" operation="average" freq_op="1ts" freq_offset="0ts"/>
             <field id="field2D_recv2" field_ref="atm_to_ocn2"/>
         </field_definition>
         <coupler_out_definition>

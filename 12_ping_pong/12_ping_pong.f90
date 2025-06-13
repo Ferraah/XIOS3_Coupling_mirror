@@ -6,10 +6,7 @@ program basic_couple
     integer :: ierr, provided
     integer :: rank, size
     character(len=3) :: model_id
-    logical :: is_server = .false.
-    logical :: is_client_atm = .false.
-    logical :: is_client_ocn = .false.
-    
+    integer :: ocn_mpi_processes, atm_mpi_processes
 
     type :: toymodel_config
         type(xios_date) :: start_date, end_date, curr_date
@@ -33,19 +30,25 @@ program basic_couple
 
     print *, "MPI initialized. Rank: ", rank, " Size: ", size
 
-    if (size < 2) then
-        print *, "This program must be run with at least 2 processes. Currently, there are ", size, " processes."
+    if (modulo(size, 2) /= 0) then
+        ! @TODO 
+        print *, "This program must be run with an even size of processes. Currently, there are ", size, " processes."
         call MPI_FINALIZE(ierr)
         stop
     end if 
-    ! -------------------------------
+ 
+    atm_mpi_processes = size / 2
+    ocn_mpi_processes = size / 2
+    print *, "Number of processes for ATM: ", atm_mpi_processes
+    print *, "Number of processes for OCN: ", ocn_mpi_processes
+   ! -------------------------------
 
-    if (rank==size-1) then
-        model_id = "atm"
+    if (rank < ocn_mpi_processes) then
+        model_id = "ocn"
         print *, "Rank ", rank, ": Running toy model with model_id = ", model_id
         call run_toymodel()
     else 
-        model_id = "ocn"
+        model_id = "atm"
         print *, "Rank ", rank, ": Running toy model with model_id = ", model_id
         call run_toymodel()
     end if
@@ -68,7 +71,7 @@ contains
 
         ! Loading the configuration of the toy model
         call load_toymodel_data(config) 
-        
+
         call create_toymodel_distribution(config)
 
         ! Set the data coming from the model in XIOS
@@ -115,22 +118,28 @@ contains
         print *, "Field type: ", TRIM(config%field_type)
         tmp = ""
 
-        ! Getting the frequency of the operation
-        CALL xios_get_field_attr("field2D_oce_to_atm", freq_op=tmp2)
-        CALL xios_duration_convert_to_string(tmp2, tmp)
-        tmp = tmp(1:LEN_TRIM(tmp)-2)
-        READ(tmp, *) config%freq_op_in_ts
+        ! if(model_id=="atm") then
+        !     CALL xios_get_field_attr("ocn_to_atm", freq_op=tmp2)
+        ! else if (model_id=="ocn") then
+        !     CALL xios_get_field_attr("atm_to_ocn", freq_op=tmp2)
+        ! end if
+
+        ! CALL xios_duration_convert_to_string(tmp2, tmp)
+        ! tmp = tmp(1:LEN_TRIM(tmp)-2)
+        ! READ(tmp, *) config%freq_op_in_ts
+        config%freq_op_in_ts = 1 ! Ping-pong every ts, not used in this example
         print *, "Frequency of operation in timesteps: ", config%freq_op_in_ts
 
         call xios_get_start_date(config%start_date)
         print *, "Start date: ", config%start_date
 
     end subroutine load_toymodel_data
-
+ 
     subroutine create_toymodel_distribution(config) 
         implicit none
         type(toymodel_config), intent(inout) :: config
-
+        integer :: model_rank
+        
         ! We will use data_ attribute that are more flexible for non-box partitioning 
         ! The local domains are overlapped ands equivalent to the global domain.
         config%ni = config%ni_glo 
@@ -141,8 +150,22 @@ contains
         
         ! The distribution of the data is done in the model.
         config%data_dim = 1 ! How we want to pass the data to XIOS
-        config%data_ni = (config%ni_glo / (size-1))*config%nj_glo ! For example, split latitudes over the processes
-        config%data_ibegin = (rank) * config%data_ni 
+        if (model_id == "atm") then
+            config%data_ni = (config%ni_glo / (atm_mpi_processes))*config%nj_glo ! For example, split latitudes over the processes
+        else if (model_id == "ocn") then
+            config%data_ni = (config%ni_glo / (ocn_mpi_processes))*config%nj_glo ! For example, split latitudes over the processes
+        end if 
+
+        ! First processes are dedicated to the ocean model
+        if (model_id == "atm") then
+            model_rank = model_rank - ocn_mpi_processes
+        else if (model_id == "ocn") then
+            model_rank = rank
+        end if
+
+        config%data_ibegin = (model_rank) * config%data_ni 
+        
+
         ! -------------------------------------------------------------------------------
  
    end subroutine create_toymodel_distribution
@@ -150,20 +173,28 @@ contains
     subroutine configure_xios_from_model(config)
     implicit none
         type(toymodel_config), intent(in) :: config
+
         logical, allocatable :: mask(:)
+        character(len=255) :: domain_name
+
         allocate(mask(config%ni_glo*config%nj_glo))
         mask = .true. ! Initialize mask to true
 
         print *, "Configuring XIOS with model data..."
         call xios_set_timestep(config%timestep)
+
         if (model_id == "ocn") then
-            call xios_set_domain_attr("domain", ni_glo=config%ni_glo, nj_glo=config%nj_glo, type=config%field_type, ni=config%ni, nj=config%nj, ibegin=config%ibegin, jbegin=config%jbegin, &
-                  data_dim=config%data_dim, data_ni=config%data_ni, data_ibegin=config%data_ibegin)
+            domain_name = "domain_ocn"
         else if (model_id == "atm") then
-            call xios_set_domain_attr("domain_compressed", ni_glo=config%ni_glo, nj_glo=config%nj_glo, type=config%field_type, ni=config%ni, nj=config%nj, ibegin=config%ibegin, jbegin=config%jbegin, &
-                  data_dim=1, data_ni=config%ni_glo*config%nj_glo, data_ibegin=0, mask_1d=mask)
+            domain_name = "domain_atm"
         end if
 
+        ! Setting distribution (which is the same for both models) on own domains
+        ! Leaving the other's model original domain untouched
+        call xios_set_domain_attr(domain_name, ni_glo=config%ni_glo, nj_glo=config%nj_glo, type=config%field_type, ni=config%ni, nj=config%nj, ibegin=config%ibegin, &
+                jbegin=config%jbegin, data_dim=config%data_dim, data_ni=config%data_ni, data_ibegin=config%data_ibegin)
+        
+                
         call xios_close_context_definition()
         print *, "XIOS configuration completed."
 
@@ -171,49 +202,54 @@ contains
  
 
     subroutine run_coupling(conf)
-    implicit none 
-        type(toymodel_config) :: conf 
-        double precision, allocatable:: field_send(:), field_recv(:,:), field_compressed(:)
-        integer :: curr_timestep
+    implicit none
+    type(toymodel_config) :: conf
+    double precision, allocatable :: field_send(:), field_recv(:)
+    integer :: curr_timestep
+    real :: start_time, end_time
 
-        
-        print *, "Allocating fields for coupling..."
-        if (model_id=="ocn") allocate(field_send(conf%data_ni))
-        if (model_id=="atm") allocate(field_recv(conf%ni_glo, conf%nj_glo))
-        if (model_id=="atm") allocate(field_compressed(conf%ni_glo*conf%nj_glo))
+    allocate(field_send(conf%data_ni))
+    allocate(field_recv(conf%data_ni))
 
-        conf%end_date = conf%start_date + conf%duration
-        conf%curr_date = conf%start_date
-        curr_timestep = 1
+    conf%end_date = conf%start_date + conf%duration
+    conf%curr_date = conf%start_date
+    curr_timestep = 1
 
-        print *, "Start date: ", conf%start_date
-        print *, "End date: ", conf%end_date
+    print *, "Start date: ", conf%start_date
+    print *, "End date: ", conf%end_date
 
-        do while (conf%curr_date < conf%end_date)
+    do while (conf%curr_date < conf%end_date)
 
-            call xios_update_calendar(curr_timestep)
+        call xios_update_calendar(curr_timestep)
 
-            if (model_id=="ocn") then
-                field_send = curr_timestep + rank ! To visualize the partitioning at every ts
-                call xios_send_field("field2D_send", field_send)
-                print *, "OCN: sending field @ts=", curr_timestep, " with value ", field_send(1)
-            else if (model_id=="atm") then
-                if (mod(curr_timestep-1, conf%freq_op_in_ts) == 0) then
-                    call xios_recv_field("field2D_recv", field_recv)
-                    call xios_recv_field("field2D_recv_compressed", field_compressed)
-                    print *, "ATM: receiving field @ts=", curr_timestep, " with value ", field_recv(1,1)
-                end if
-            end if
+        ! Ocean send -> Atmos recv -> Atmos send -> Ocean recv in same timestep
 
-            conf%curr_date = conf%curr_date + conf%timestep
-            curr_timestep = curr_timestep + 1
-        end do
+        if (model_id=="ocn") then
+            
+            field_send = curr_timestep * rank
+            print *, "OCN: sending field @ts=", curr_timestep, " with value ", field_send(1)
+            call cpu_time(start_time)
+            call xios_send_field("field2D_send_ocn", field_send)
+            call xios_recv_field("field2D_recv_ocn", field_recv)
+            call cpu_time(end_time)
+            print *, "OCN: ping/pong time (s): ", end_time - start_time
+            print *, "OCN: receiving field @ts=", curr_timestep, " with value ", field_recv(1)
 
-        print *, "Coupling loop completed."
+        else if (model_id=="atm") then
 
-        if(allocated(field_send)) deallocate(field_send)
-        if(allocated(field_recv)) deallocate(field_recv)
-        if(allocated(field_compressed)) deallocate(field_compressed)
+            call xios_recv_field("field2D_recv_atm", field_recv)
+            print *, "  ATM: receiving field @ts=", curr_timestep, " with value ", field_recv(1)
+            ! Ping-pong mechanism
+            call xios_send_field("field2D_send_atm", field_recv)
+            print *, "ATM: sending field @ts=", curr_timestep, " with value ", field_recv(1)
 
-    end subroutine  run_coupling 
+        end if
+
+        conf%curr_date = conf%curr_date + conf%timestep
+        curr_timestep = curr_timestep + 1
+    end do
+
+    if (allocated(field_send)) deallocate(field_send)
+    if (allocated(field_recv)) deallocate(field_recv)
+end subroutine run_coupling 
 end program

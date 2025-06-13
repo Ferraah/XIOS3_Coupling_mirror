@@ -1,0 +1,1 @@
+mpirun -np 4 ./12_ping_pong.exe
