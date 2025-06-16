@@ -67,17 +67,6 @@ program atmos
   allocate(grid_srf_atmos(il_extentx, il_extenty), stat=ierror)
   allocate(grid_msk_atmos(il_extentx, il_extenty), stat=ierror)
 
-  call read_grid(nlon_atmos, nlat_atmos, nc_atmos, il_offsetx+1, il_offsety+1, il_extentx, il_extenty, &
-       'atmos_mesh.nc', w_unit, grid_lon_atmos, grid_lat_atmos, grid_clo_atmos, &
-       grid_cla_atmos, grid_srf_atmos, grid_msk_atmos)
-
-  call oasis_start_grids_writing(flag)
-  call oasis_write_grid('lmdz', nlon_atmos, nlat_atmos, grid_lon_atmos, grid_lat_atmos, il_part_id)
-  call oasis_write_corner('lmdz', nlon_atmos, nlat_atmos, nc_atmos, grid_clo_atmos, grid_cla_atmos, il_part_id)
-  call oasis_write_mask('lmdz', nlon_atmos, nlat_atmos, grid_msk_atmos, il_part_id)
-  call oasis_terminate_grids_writing()
-  print *, 'grid_lat max and min', maxval(grid_lat_atmos), minval(grid_lat_atmos)
-
   ! Local fields
   allocate(field_send_atmos(il_extentx, il_extenty), stat=ierror)
   allocate(field_recv_atmos(il_extentx, il_extenty), stat=ierror)

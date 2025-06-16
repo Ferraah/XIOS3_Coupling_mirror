@@ -23,13 +23,13 @@ OBJ_M2 =  read_grid.o def_parallel_decomposition_m2.o
 #
 default: all
 #
-all: oasis3_psmile ocean atmos oasis_ping_pong 
+all: oasis3_psmile.lib ocean.exe atmos.exe oasis_ping_pong.exe
 
 oasis_ping_pong: oasis_ping_pong
 
 #
 # Compile and link libaries
-oasis3_psmile:
+oasis3_psmile.lib:
 	(cd $(OASIS_COUPLE)/util/make_dir ; $(MAKE) oasis3_psmile -f TopMakefileOasis3)
 #
 #
@@ -51,8 +51,7 @@ oasis_ping_pong.exe: $(OBJ_M2) oasis_ping_pong.o $(LIBPSMILE) Makefile
 #
 read_grid.o :		read_grid.F90
 				$(F90) $(F90FLAGS) -c read_grid.F90
-read_all_data.o :		read_all_data.F90
-				$(F90) $(F90FLAGS) -c read_all_data.F90
+
 def_parallel_decomposition.o : 		def_parallel_decomposition.F90
 				$(F90) $(F90FLAGS) $(CPPLOCAL_M1) -c def_parallel_decomposition.F90
 def_parallel_decomposition_m2.o : 	def_parallel_decomposition.F90

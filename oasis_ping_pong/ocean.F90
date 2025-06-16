@@ -12,14 +12,6 @@ program ocean
   integer :: ierror, w_unit
   integer :: compid
 
-  ! character(len=128), parameter :: grid_file_name = 'grid_all.nc'
-  ! character(len=4) :: grid_name = 't12e' 
-  ! integer, parameter :: nlon_ocean = 4332, nlat_ocean = 3147
-  ! integer, parameter :: nc_ocean = 4
-
-
-  character(len=128), parameter :: grid_file_name = 'ocean_mesh.nc'
-  character(len=4) :: grid_name = 'torc' 
   integer, parameter :: nlon_ocean = 182, nlat_ocean = 149
   integer, parameter :: nc_ocean = 4
 
@@ -90,17 +82,6 @@ program ocean
   allocate(grid_cla_ocean(il_extentx, il_extenty, nc_ocean), stat=ierror )
   allocate(grid_srf_ocean(il_extentx, il_extenty), stat=ierror )
   allocate(grid_msk_ocean(il_extentx, il_extenty), stat=ierror )
-
-  call read_grid(nlon_ocean, nlat_ocean, nc_ocean, il_offsetx+1, il_offsety+1, il_extentx, il_extenty, &
-                grid_file_name, w_unit, grid_lon_ocean, grid_lat_ocean, grid_clo_ocean, &
-                grid_cla_ocean, grid_srf_ocean, grid_msk_ocean)
-
-  call oasis_start_grids_writing(flag)
-  call oasis_write_grid(grid_name,nlon_ocean,nlat_ocean,grid_lon_ocean,grid_lat_ocean,il_part_id)
-  call oasis_write_corner(grid_name,nlon_ocean, nlat_ocean,4, grid_clo_ocean,grid_cla_ocean,il_part_id)
-  call oasis_write_mask(grid_name,nlon_ocean,nlat_ocean,grid_msk_ocean(:,:),il_part_id)
-  call oasis_terminate_grids_writing()
-  print *, 'grid_lat ocean max and min',maxval(grid_lat_ocean),minval(grid_lat_ocean)
 
   allocate(field_send_ocean(il_extentx, il_extenty), stat=ierror )
   allocate(field_recv_ocean(il_extentx, il_extenty), stat=ierror )
