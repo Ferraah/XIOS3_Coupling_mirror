@@ -1,0 +1,295 @@
+ (oasis_namcouple_init) open namcouple file namcouple with unit number 
+        9998
+  
+ (mod_oasis_namcouple:inipar_alloc)
+   ROUTINE inipar_alloc - Level 0
+   ********************   *******
+  
+   Initialization of run parameters
+  
+   Reading input file namcouple
+  
+  
+   Executing valid keyword check 
+     Found valid keyword = $NFIELDS
+     Found valid keyword = $RUNTIME
+     Found valid keyword = $NLOGPRT
+     Found valid keyword = $STRINGS
+  
+* ===>>> : The maximum number of exchanged fields set in namcouple is nfield =                  2
+  ------   -------------------------------------------------------------------  
+
+ (mod_oasis_namcouple:inipar_alloc)1 Read line: #
+ (mod_oasis_namcouple:inipar_alloc)parsing 1 Read line, clvari in 5 position: 
+ OCE_TO_ATM_SEND OCE_TO_ATM_RECV 1 3600 1 fdocn.nc EXPOUT1
+ (mod_oasis_namcouple:inipar_alloc)field jf :            1  lg_state(jf) :  T
+ (mod_oasis_namcouple:inipar_alloc)field jf :            1  endflag :  F
+ (mod_oasis_namcouple:inipar_alloc)2 Read line: #
+ (mod_oasis_namcouple:inipar_alloc)3 Read line: #
+ (mod_oasis_namcouple:inipar_alloc)4 Read line_aux: #
+ (mod_oasis_namcouple:inipar_alloc)5 Read line: #
+ (mod_oasis_namcouple:inipar_alloc)1 Read line: #
+ (mod_oasis_namcouple:inipar_alloc)parsing 1 Read line, clvari in 5 position: 
+ ATM_TO_OCE_SEND ATM_TO_OCE_RECV 1 3600 1 fdatm.nc EXPOUT1
+ (mod_oasis_namcouple:inipar_alloc)field jf :            2  lg_state(jf) :  T
+ (mod_oasis_namcouple:inipar_alloc)field jf :            2  endflag :  F
+ (mod_oasis_namcouple:inipar_alloc)2 Read line: #
+ (mod_oasis_namcouple:inipar_alloc)3 Read line: #
+ (mod_oasis_namcouple:inipar_alloc)4 Read line_aux: #
+ (mod_oasis_namcouple:inipar_alloc)5 Read line: #
+ found namcouple couplings =      2
+ lncdfrst = F
+ CLVARI=182
+ LG_STATE cg_c=SCRIPR
+ CLVARI=96
+ LG_STATE cg_c=SCRIPR
+ Max number of neighbors for GAUSSIAN interp :            1
+  
+ Maximum number of different GAUSSIAN interpolations :            1
+  
+  
+ (mod_oasis_namcouple:inipar_alloc)-- End of ROUTINE --
+  
+ (mod_oasis_namcouple:inipar)
+    ROUTINE inipar  -  Level 0
+    **************     *******
+  
+    Initialization of run parameters
+    Reading input file namcouple
+  
+* ===>>> : The total time for this run is ntime =              14400
+  ------   --------------------------------------                               
+
+         ***WARNING*** Nothing on input for load balancing analysis for $NLOGPRT
+  Default value 0 will be used 
+  
+* ===>>> : The printing level is nlogprt =                  0
+  ------   -------------------------------                                      
+
+* ===>>> : The time statistics level is ntlogprt =                  0
+  ------   ---------------------------------------                              
+
+* ===>>> : The load balancing analysis level is nlblogprt =                  0
+  ------   ------------------------------------------------                     
+
+* ===>>> : The allow_no_restart flag is set to false                   0
+  ------   ------------------------------------------                           
+
+  The mapdec value is nmapdec = decomp_1d
+  The matxrd value is nmatxrd = ceg
+  The cdftyp value is ncdftyp = cdf1
+  The wgtopt value is nwgtopt = abort_on_bad_index
+* ===>>> : The min IO unit number is nuntmin =               1024
+  ------   -----------------------------------                                  
+
+* ===>>> : The max IO unit number is nuntmax =               9999
+  ------   -----------------------------------                                  
+
+
+     No lag in namcouple for the field  1
+      Default value LAG=0 will be used 
+ (mod_oasis_namcouple:inipar)9 Read line: #
+ (mod_oasis_namcouple:inipar)9 Read line :P  2  P  0  clvari in 1 position: P
+
+     No lag in namcouple for the field  2
+      Default value LAG=0 will be used 
+ (mod_oasis_namcouple:inipar)9 Read line: #
+ (mod_oasis_namcouple:inipar)9 Read line :P  0  P  2  clvari in 1 position: P
+
+
+                 FIELD NUMBER   1
+                 ************  
+
+            Field parameters 
+            ****************  
+
+
+            Input field symbolic name       = OCE_TO_ATM_SEND
+            Output field symbolic name      = OCE_TO_ATM_RECV
+            Field exchange frequency        =     3600
+            Model sequential index          =  1
+            Field Lag                       =        0
+            Field I/O status                = EXPOUT
+            Number of basic operations      =    1
+
+
+            Restart file name               = fdocn.nc
+
+
+            Source grid periodicity type is      = P
+            Number of overlapped grid points is  =  2
+            Target grid periodicity type is      = P
+            Number of overlapped grid points is  =  0
+
+
+            Source longitude file string    = torc.lon
+            Source latitude file string     = torc.lat
+            Source mask file string         = torc.msk
+            Source surface file string      = torc.srf
+            Source surf frac.s file string  = torc.frc
+            Target longitude file string    = lmdz.lon
+            Target latitude file string     = lmdz.lat
+            Target mask file string         = lmdz.msk
+            Target surface file string      = lmdz.srf
+            Target surf frac.s file string  = lmdz.frc
+
+
+            ANALYSIS PARAMETERS 
+            ******************* 
+
+
+       ANALYSIS number  1 is SCRIPR
+       ***************  
+
+      Remapping method is               = BILINEAR
+      Field type is                     = SCALAR
+      Normalization option is           = NONORM
+      Seach restriction type is         = LATLON
+      Number of search bins is          =    1
+
+
+                 FIELD NUMBER   2
+                 ************  
+
+            Field parameters 
+            ****************  
+
+
+            Input field symbolic name       = ATM_TO_OCE_SEND
+            Output field symbolic name      = ATM_TO_OCE_RECV
+            Field exchange frequency        =     3600
+            Model sequential index          =  1
+            Field Lag                       =        0
+            Field I/O status                = EXPOUT
+            Number of basic operations      =    1
+
+
+            Restart file name               = fdatm.nc
+
+
+            Source grid periodicity type is      = P
+            Number of overlapped grid points is  =  0
+            Target grid periodicity type is      = P
+            Number of overlapped grid points is  =  2
+
+
+            Source longitude file string    = lmdz.lon
+            Source latitude file string     = lmdz.lat
+            Source mask file string         = lmdz.msk
+            Source surface file string      = lmdz.srf
+            Source surf frac.s file string  = lmdz.frc
+            Target longitude file string    = torc.lon
+            Target latitude file string     = torc.lat
+            Target mask file string         = torc.msk
+            Target surface file string      = torc.srf
+            Target surf frac.s file string  = torc.frc
+
+
+            ANALYSIS PARAMETERS 
+            ******************* 
+
+
+       ANALYSIS number  1 is SCRIPR
+       ***************  
+
+      Remapping method is               = BILINEAR
+      Field type is                     = SCALAR
+      Normalization option is           = NONORM
+      Seach restriction type is         = LATLON
+      Number of search bins is          =    1
+  
+ (mod_oasis_namcouple:inipar)-- End of ROUTINE --
+ (oasis_namcouple_init) allocating ig_final_nfield           2
+  
+ (oasis_namcouple_init)namlogprt,t,lb           0           0           0
+ (oasis_namcouple_init)namcdftyp     cdf1
+ (oasis_namcouple_init)namuntmin,max         1024        9999
+ (oasis_namcouple_init)namnorest      F
+ (oasis_namcouple_init)nammapdec     decomp_1d
+ (oasis_namcouple_init)nammatxrd     ceg
+ (oasis_namcouple_init)namwgtopt     abort_on_bad_index
+  
+ (oasis_namcouple_init)           1 namsrcfld OCE_TO_ATM_SEND
+ (oasis_namcouple_init)           1 namdstfld OCE_TO_ATM_RECV
+ (oasis_namcouple_init)           1 namsrcgrd torc
+ (oasis_namcouple_init)           1 namsrc_nx          182
+ (oasis_namcouple_init)           1 namsrc_ny          149
+ (oasis_namcouple_init)           1 namdstgrd lmdz
+ (oasis_namcouple_init)           1 namdst_nx           96
+ (oasis_namcouple_init)           1 namdst_ny           72
+ (oasis_namcouple_init)           1 namfldseq            1
+ (oasis_namcouple_init)           1 namfldops            5
+ (oasis_namcouple_init)           1 namfldtrn            1
+ (oasis_namcouple_init)           1 namfldcon            0
+ (oasis_namcouple_init)           1 namfldcoo bfb
+ (oasis_namcouple_init)           1 namflddti         3600
+ (oasis_namcouple_init)           1 namfldlag            0
+ (oasis_namcouple_init)           1 nammapfil idmap
+ (oasis_namcouple_init)           1 nammaploc src
+ (oasis_namcouple_init)           1 nammapopt bfb
+ (oasis_namcouple_init)           1 namrstfil fdocn.nc
+ (oasis_namcouple_init)           1 naminpfil 
+ (oasis_namcouple_init)           1 namchecki  F
+ (oasis_namcouple_init)           1 namchecko  F
+ (oasis_namcouple_init)           1 namfldsmu    1.00000000000000     
+ (oasis_namcouple_init)           1 namfldsad   0.000000000000000E+000
+ (oasis_namcouple_init)           1 namflddno            1
+ (oasis_namcouple_init)           1 namflddna 
+ (oasis_namcouple_init)           1 namflddmu    1.00000000000000     
+ (oasis_namcouple_init)           1 namflddad   0.000000000000000E+000
+ (oasis_namcouple_init)           1 namscrmet BILINEAR
+ (oasis_namcouple_init)           1 namscrnor NONORM
+ (oasis_namcouple_init)           1 namscrtyp SCALAR
+ (oasis_namcouple_init)           1 namscrord 
+ (oasis_namcouple_init)           1 namscrres LATLON
+ (oasis_namcouple_init)           1 namscrvam    1.00000000000000     
+ (oasis_namcouple_init)           1 namscrnbr            0
+ (oasis_namcouple_init)           1 namscrnth    2.00000000000000     
+ (oasis_namcouple_init)           1 namscrsth   -2.00000000000000     
+ (oasis_namcouple_init)           1 namscrbin            1
+  
+ (oasis_namcouple_init)           2 namsrcfld ATM_TO_OCE_SEND
+ (oasis_namcouple_init)           2 namdstfld ATM_TO_OCE_RECV
+ (oasis_namcouple_init)           2 namsrcgrd lmdz
+ (oasis_namcouple_init)           2 namsrc_nx           96
+ (oasis_namcouple_init)           2 namsrc_ny           72
+ (oasis_namcouple_init)           2 namdstgrd torc
+ (oasis_namcouple_init)           2 namdst_nx          182
+ (oasis_namcouple_init)           2 namdst_ny          149
+ (oasis_namcouple_init)           2 namfldseq            1
+ (oasis_namcouple_init)           2 namfldops            5
+ (oasis_namcouple_init)           2 namfldtrn            1
+ (oasis_namcouple_init)           2 namfldcon            0
+ (oasis_namcouple_init)           2 namfldcoo bfb
+ (oasis_namcouple_init)           2 namflddti         3600
+ (oasis_namcouple_init)           2 namfldlag            0
+ (oasis_namcouple_init)           2 nammapfil idmap
+ (oasis_namcouple_init)           2 nammaploc src
+ (oasis_namcouple_init)           2 nammapopt bfb
+ (oasis_namcouple_init)           2 namrstfil fdatm.nc
+ (oasis_namcouple_init)           2 naminpfil 
+ (oasis_namcouple_init)           2 namchecki  F
+ (oasis_namcouple_init)           2 namchecko  F
+ (oasis_namcouple_init)           2 namfldsmu    1.00000000000000     
+ (oasis_namcouple_init)           2 namfldsad   0.000000000000000E+000
+ (oasis_namcouple_init)           2 namflddno            1
+ (oasis_namcouple_init)           2 namflddna 
+ (oasis_namcouple_init)           2 namflddmu    1.00000000000000     
+ (oasis_namcouple_init)           2 namflddad   0.000000000000000E+000
+ (oasis_namcouple_init)           2 namscrmet BILINEAR
+ (oasis_namcouple_init)           2 namscrnor NONORM
+ (oasis_namcouple_init)           2 namscrtyp SCALAR
+ (oasis_namcouple_init)           2 namscrord 
+ (oasis_namcouple_init)           2 namscrres LATLON
+ (oasis_namcouple_init)           2 namscrvam    1.00000000000000     
+ (oasis_namcouple_init)           2 namscrnbr            0
+ (oasis_namcouple_init)           2 namscrnth    2.00000000000000     
+ (oasis_namcouple_init)           2 namscrsth   -2.00000000000000     
+ (oasis_namcouple_init)           2 namscrbin            1
+  
+ (oasis_namcouple_init) sort            1           1           1           1
+ (oasis_namcouple_init) sort            2           2           2           1
+ Total number of coupling fields :           4
+ (oasis_init_comp)   COUPLED models            1 ocean_component T
+ (oasis_init_comp)   COUPLED models            2 atmos_component T
+ (oasis_init_comp)cdnam :ocean_component mynummod :           1

@@ -1,0 +1,10 @@
+(oasis_init_comp) OASIS RUNNING 
+(oasis_init_comp) OPEN debug file for pe, unit :       1    9999
+ (oasis_write2files) ERROR: 
+ grid with partition not defined on all partition tasks: torc
+ (oasis_abort) ABORT: file      = mod_oasis_grid.F90
+ (oasis_abort) ABORT: line      =         1081
+ (oasis_abort) ABORT: on model  = ocean_component
+ (oasis_abort) ABORT: on global rank =            1
+ (oasis_abort) ABORT: on local  rank =            1
+ (oasis_abort) ABORT: CALLING ABORT FROM OASIS LAYER NOW
