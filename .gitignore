@@ -5,3 +5,4 @@
 8_interpolate/point_files
 *.mod
 *.json
+oasis_ping_pong/*.nc
