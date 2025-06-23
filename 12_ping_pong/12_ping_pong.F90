@@ -145,8 +145,10 @@ contains
         integer :: curr_timestep
 
         allocate(field_send(field_desc%ni, field_desc%nj))
+        allocate(field_recv(field_desc%ni, field_desc%nj))
 
-        if(model_id == "oce") call init_field2d_gulfstream(field_desc%ni_glo, field_desc%nj_glo, field_desc%lon, field_desc%lat, field_desc%mask, field_send_original)
+        ! if(model_id == "oce") call init_field2d_gulfstream(field_desc%ni_glo, field_desc%nj_glo, field_desc%lon, field_desc%lat, field_desc%mask, field_send_original)
+        field_send = 1.0d0
 
         config%end_date = config%start_date + config%duration
         config%curr_date = config%start_date
