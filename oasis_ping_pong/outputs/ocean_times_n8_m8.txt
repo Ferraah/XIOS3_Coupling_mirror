@@ -1,0 +1,316 @@
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            8 processes
+ ----------------------------------------------------------
+ Grid name:
+ t12e                                                                           
+                                                  
+ Grid type:LR
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            8 processes
+ ----------------------------------------------------------
+ Grid name:
+ icoh                                                                           
+                                                  
+ Grid type:U 
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            8 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           2
+ in my local communicator gathering            8 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           3
+ in my local communicator gathering            8 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           4
+ in my local communicator gathering            8 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           5
+ in my local communicator gathering            8 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           6
+ in my local communicator gathering            8 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           7
+ in my local communicator gathering            8 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            8 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           2
+ in my local communicator gathering            8 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           3
+ in my local communicator gathering            8 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           4
+ in my local communicator gathering            8 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           5
+ in my local communicator gathering            8 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           6
+ in my local communicator gathering            8 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           7
+ in my local communicator gathering            8 processes
+ ----------------------------------------------------------
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+      252001           1      252001      252001           0      252001
+ ig_paral=           1      252001      252001
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+      252001           1      252001     1008004           0     1008004
+ ig_paral=           1     1008004      252001
+ local partition definition
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+      252001           1      252001      504002           0      504002
+ ig_paral=           1      504002      252001
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+      252001           1      252001     1512006           0     1512006
+ ig_paral=           1     1512006      252001
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+      252001           1      252001           0           0           0
+ ig_paral=           1           0      252001
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+      252001           1      252001     1260005           0     1260005
+ ig_paral=           1     1260005      252001
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+      252005           1      252005     1764007           0     1764007
+ ig_paral=           1     1764007      252005
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+      252001           1      252001      756003           0      756003
+ ig_paral=           1      756003      252001
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322         396     1711512           0        2751    11889822
+ ig_paral=           1    11889822     1711512
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322         393     1698546           0         786     3397092
+ ig_paral=           1     3397092     1698546
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322         393     1698546           0         393     1698546
+ ig_paral=           1     1698546     1698546
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322         393     1698546           0        2358    10191276
+ ig_paral=           1    10191276     1698546
+        4322         393     1698546           0        1179     5095638
+ ig_paral=           1     5095638     1698546
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322         393     1698546           0        1965     8492730
+ ig_paral=           1     8492730     1698546
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322         393     1698546           0           0           0
+ ig_paral=           1           0     1698546
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322         393     1698546           0        1572     6794184
+ ig_paral=           1     6794184     1698546
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ YAC mapping time =    258.699128139764     
+ YAC mapping time =    258.699024938047     
+ YAC mapping time =    258.699220933020     
+ YAC mapping time =    258.699503613636     
+ YAC mapping time =    258.698842192069     
+ YAC mapping time =    258.699476543814     
+ YAC mapping time =    258.699301376939     
+ YAC mapping time =    258.698117490858     
+ YAC mapping time =    186.237985126674     
+ YAC mapping time =    186.237982500345     
+ YAC mapping time =    186.238075193018     
+ YAC mapping time =    186.237959934399     
+ YAC mapping time =    186.238556662574     
+ YAC mapping time =    186.238394161686     
+ YAC mapping time =    186.238266050816     
+ YAC mapping time =    186.238339439034     
+ timestep, field min and max value
+ timestep, field min and max value
+ timestep, field min and max value
+ timestep, field min and max value
+ timestep, field min and max value
+ timestep, field min and max value
+ timestep, field min and max value
+ timestep, field min and max value
+ timestep, field min and max value
+ timestep, field min and max value
+ timestep, field min and max value
+ timestep, field min and max value
+ timestep, field min and max value
+ timestep, field min and max value
+ timestep, field min and max value
+ timestep, field min and max value
+ TIMING:   10.6689282432199     
+ TIMING:   1.40378307364881     
+ TIMING:   1.35275569185615     
+ TIMING:   1.39607060700655     
+ TIMING:   1.41607429645956     
+ TIMING:   1.44727710448205     
+ TIMING:   1.38592574931681     
+ TIMING:   1.37235963530838     
+ TIMING:   1.43017641082406     
+ TIMING:   1.38222575373948     
+ TIMING:   1.50650194659829     
+ TIMING:   1.38404135033488     
+ TIMING:   1.43575110286474     
+ TIMING:   1.44970678165555     
+ TIMING:   1.43612985499203     
+ TIMING:   1.43392368406057     
+ TIMING:   1.43254862353206     
+ TIMING:   1.47393547184765     
+ TIMING:   1.49226668849587     
+ TIMING:   1.43884322792292     
+ TIMING:   1.51871628500521     
+ TIMING:   1.43034362792969     
+ TIMING:   1.54518747888505     
+ TIMING:   1.50568187609315     
+ TIMING:   1.47814790718257     
+ TIMING:   1.56973105482757     
+ TIMING:   1.47571290656924     
+ TIMING:   1.52614018134773     
+ TIMING:   1.53972549922764     
+ TIMING:   1.47919256612659     
+ TIMING:   1.57361640594900     
+ TIMING:   1.49885443784297     
+ TIMING:   1.54624989256263     
+ TIMING:   1.48468658141792     
+ TIMING:   1.49407374300063     
+ TIMING:   1.51361234113574     
+ TIMING:   1.51432948186994     
+ TIMING:   1.55218879319727     
+ TIMING:   1.51726037263870     
+ TIMING:   1.58845506608486     
+ TIMING:   1.54198659956455     
+ TIMING:   1.62359093129635     
+ TIMING:   1.54162716120481     
+ TIMING:   1.62559403292835     
+ TIMING:   1.63514806516469     
+ TIMING:   1.64190227165818     
+ TIMING:   1.61906035430729     
+ TIMING:   1.65074923448265     
+ TIMING:   1.63919595815241     
+ TIMING:   1.69609700143337     
+ TIMING:   1.75303290411830     
+ TIMING:   1.64098611660302     
+ TIMING:   1.63698337040842     
+ TIMING:   1.64486837387085     
+ TIMING:   1.75816424004734     
+ TIMING:   1.65776326321065     
+ TIMING:   1.62628276273608     
+ TIMING:   1.75142478384078     
+ TIMING:   1.65088997595012     
+ TIMING:   1.88498925045133     
+ TIMING:   1.70688290521502     
+ TIMING:   2.31616068072617     
+ TIMING:   2.00006275624037     
+ TIMING:   2.55544230900705     
+ TIMING:   2.12472189404070     
+ TIMING:   2.35471704415977     
+ TIMING:   1.80200161226094     
+ TIMING:   3.06162272952497     
+ TIMING:   2.40304305031896     
+ TIMING:   2.63717080093920     
+ TIMING:   2.88151857443154     
+ TIMING:   2.65157292410731     
+ TIMING:   2.85922864452004     
+ TIMING:   2.71453792229295     
+ TIMING:   2.90136075578630     
+ TIMING:   2.98981283232570     
+ TIMING:   3.23048826307058     
+ TIMING:   2.85301980562508     
+ TIMING:   3.39512349851429     
+ TIMING:   2.92055068723857     
+ TIMING:   3.29954724758863     
+ TIMING:   3.13412017002702     
+ TIMING:   3.14154856838286     
+ TIMING:   3.34282467700541     
+ TIMING:   3.37880776822567     
+ TIMING:   3.06496631167829     
+ TIMING:   3.02303155139089     
+ TIMING:   3.26988920569420     
+ TIMING:   3.03774356842041     
+ TIMING:   3.31243257783353     
+ TIMING:   2.95666712336242     
+ TIMING:   3.51927968300879     
+ TIMING:   3.13537832349539     
+ TIMING:   3.35864707455039     
+ TIMING:   2.96135701797903     
+ TIMING:   3.47171290591359     
+ TIMING:   3.78583599999547     
+ TIMING:   4.18474235013127     
+ TIMING:   4.20960211381316     
+ end of the program
+ end of the program
+ end of the program
+ end of the program
+ end of the program
+ end of the program
+ end of the program
+ end of the program
+ TIMING:   4.22265153564513     
+ end of the program
+ end of the program
+ end of the program
+ end of the program
+ end of the program
+ end of the program
+ end of the program
+ end of the program

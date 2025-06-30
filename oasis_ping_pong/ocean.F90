@@ -12,8 +12,12 @@ program ocean
   integer :: ierror, w_unit
   integer :: compid
 
-  integer, parameter :: nlon_ocean = 182, nlat_ocean = 149
-  integer, parameter :: nc_ocean = 4
+  character(len=128) :: grid_file_name = 'grids.nc'
+  character(len=128) :: grid_name = 't12e'
+  character(len=2) :: grid_type = 'LR'
+  !character(len=128) :: grid_name = 'torc'
+
+  integer :: nlon_ocean, nlat_ocean, nc_ocean
 
   integer :: il_extentx, il_extenty, il_offsetx, il_offsety
   integer :: il_size, il_offset
@@ -26,8 +30,8 @@ program ocean
   integer, dimension(:,:),            pointer   :: grid_msk_ocean
 
   integer               ::  ib
-  integer, parameter    ::  il_nb_time_steps = 4
-  integer, parameter    ::  delta_t = 3600
+  integer, parameter    ::  il_nb_time_steps = 1
+  integer, parameter    ::  delta_t =1
   integer               ::  itap_sec
 
   double precision, pointer :: field_recv_ocean(:,:)
@@ -63,7 +67,9 @@ program ocean
   print *, 'in my local communicator gathering ', npes, 'processes'
   print *, '----------------------------------------------------------'
 
-  call def_local_partition(nlon_ocean, nlat_ocean, npes, mype, &
+  call read_xy_dimensions(grid_file_name, grid_name, nlon_ocean, nlat_ocean, nc_ocean)
+
+  call def_local_partition(nlon_ocean, nlat_ocean, npes, mype, grid_type, &
             il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset)
   print *, 'Local partition definition'
   print *, 'il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = ', &
@@ -95,25 +101,24 @@ program ocean
   call oasis_def_var(var_id(2), 'OCE_TO_ATM_SEND', il_part_id,var_nodims, oasis_out, var_actual_shape, var_type,ierror)
   print *, 'var_id FRECVOCN, var_id FSENDOCN', var_id(1), var_id(2)
 
-  print *, 'End of initialisation phase'
-
   call oasis_enddef(ierror)
 
-  print *, 'Timestep, field min and max value'
   do ib = 1,il_nb_time_steps
     itap_sec = delta_t * (ib-1)
     field_recv_ocean=-1.0
     field_send_ocean(:,:) =  100 
+    call MPI_Barrier(local_comm, ierror)
     start_time = mpi_wtime()
     call oasis_put(var_id(2),itap_sec,field_send_ocean,info)
     call oasis_get(var_id(1),itap_sec,field_recv_ocean,info)
+    call MPI_Barrier(local_comm, ierror)
     end_time = mpi_wtime()
-    print *, itap_sec, minval(field_recv_ocean), maxval(field_recv_ocean), &
-           'Time taken for put/get operation:', end_time - start_time
+    if(mype==0) print *, 'TIMING:', end_time - start_time
   enddo
 
   call oasis_terminate(ierror)
 
-  print *, 'End of the program'
+  call MPI_Barrier(local_comm, ierror)
+  if(mype==0) print *, 'End of the program'
   call mpi_finalize(ierror)
 end program ocean

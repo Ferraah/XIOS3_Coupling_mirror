@@ -5,4 +5,8 @@
 8_interpolate/point_files
 *.mod
 *.json
-oasis_ping_pong/*.nc
+interpolation_sandbox/*.nc
+oasis_ping_pong/**/*.nc
+12_ping_pong/**/*.nc
+grid_loader/**/*.nc
+field_generator/**/*.nc

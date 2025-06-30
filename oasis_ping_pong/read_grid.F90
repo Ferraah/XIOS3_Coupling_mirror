@@ -1,4 +1,48 @@
-  !****************************************************************************************
+ 
+
+!****************************************************************************************
+SUBROUTINE read_xy_dimensions(ncfile, varname, nx, ny, ncrn)
+!****************************************************************************************
+!
+  USE netcdf
+  IMPLICIT NONE
+  !
+  INCLUDE 'mpif.h'
+  !
+  CHARACTER(len=*), INTENT(in) :: ncfile, varname
+  INTEGER, INTENT(out)         :: nx, ny, ncrn
+  !
+  INTEGER                     :: ncid, x_dimid, y_dimid, crn_dimid, status
+  INTEGER                     :: ierr
+  CHARACTER(len=NF90_MAX_NAME):: x_dimname, y_dimname, crn_dimname
+
+  ! Compose dimension names
+  x_dimname = 'x_' // TRIM(varname)
+  y_dimname = 'y_' // TRIM(varname)
+  crn_dimname = 'crn_' // TRIM(varname)
+
+  ! Initialize outputs
+  nx = -1
+  ny = -1
+  ncrn = -1
+
+  CALL hdlerr(NF90_OPEN(ncfile, NF90_NOWRITE, ncid), __LINE__)
+
+  CALL hdlerr(NF90_INQ_DIMID(ncid, TRIM(x_dimname), x_dimid), __LINE__)
+  CALL hdlerr(NF90_INQ_DIMID(ncid, TRIM(y_dimname), y_dimid), __LINE__)
+  CALL hdlerr(NF90_INQ_DIMID(ncid, TRIM(crn_dimname), crn_dimid), __LINE__)
+
+    
+  CALL hdlerr(NF90_INQUIRE_DIMENSION(ncid, x_dimid, len=nx), __LINE__)
+  CALL hdlerr(NF90_INQUIRE_DIMENSION(ncid, y_dimid, len=ny), __LINE__)
+  CALL hdlerr(NF90_INQUIRE_DIMENSION(ncid, crn_dimid, len=ncrn), __LINE__)
+
+  CALL hdlerr(NF90_CLOSE(ncid), __LINE__)
+!
+END SUBROUTINE read_xy_dimensions
+
+
+ !****************************************************************************************
   SUBROUTINE read_grid (nlon, nlat, nc, id_begi, id_begj, id_lon, id_lat, &
                               data_filename, w_unit,                       &
                               dda_lon, dda_lat, dda_clo, dda_cla, dda_srf, ida_mask)
@@ -76,6 +120,7 @@
 #endif
   !
 END SUBROUTINE read_grid
+
 !
 !*********************************************************************************
 SUBROUTINE hdlerr(istatus, line)

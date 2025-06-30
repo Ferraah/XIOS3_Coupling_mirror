@@ -20,12 +20,13 @@ program atmos
   double precision, pointer :: field_recv_atmos(:,:), field_send_atmos(:,:)
   integer :: var_id(2), var_nodims(2), var_actual_shape(1), var_type, info
 
-  ! Parameters
-  nlon_atmos = 96
-  nlat_atmos = 72
-  nc_atmos = 4
-  il_nb_time_steps = 8
-  delta_t = 1800
+  character(len=128) :: grid_file_name = 'grids.nc'
+  !character(len=128) :: grid_name = 'lmdz'
+  character(len=128) :: grid_name = 'icoh'
+  character(len=2) :: grid_type = 'U'  
+
+  il_nb_time_steps = 1
+  delta_t = 1
 
   call mpi_init(ierror)
   local_comm = mpi_comm_world
@@ -35,18 +36,20 @@ program atmos
   call mpi_comm_size(local_comm, npes, ierror)
   call mpi_comm_rank(local_comm, mype, ierror)
 
-  w_unit = 100 + mype
-  write(chout, '(i3)') w_unit
-  comp_out_atmos = 'atmos.out_' // chout
-  open(w_unit, file=trim(comp_out_atmos), form='formatted')
+  ! w_unit = 100 + mype
+  ! write(chout, '(i3)') w_unit
+  ! comp_out_atmos = 'atmos.out_' // chout
+  ! open(w_unit, file=trim(comp_out_atmos), form='formatted')
 
   print *, '-----------------------------------------------------------'
   print *, 'i am atmos process with rank :', mype
   print *, 'in my local communicator gathering ', npes, 'processes'
   print *, '----------------------------------------------------------'
 
+  call read_xy_dimensions(grid_file_name, grid_name, nlon_atmos, nlat_atmos, nc_atmos)
+
   ! Partition definition
-  call def_local_partition(nlon_atmos, nlat_atmos, npes, mype, &
+  call def_local_partition(nlon_atmos, nlat_atmos, npes, mype, grid_type, &
        il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset)
   print *, 'local partition definition'
   print *, 'il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = ', &

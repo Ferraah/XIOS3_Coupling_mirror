@@ -1,0 +1,11 @@
+make: Nothing to be done for 'all'.
+Using iodef with interpolation
+Running the ping-pong test with N=128 and M=128
+|------------------------------------------------------------------------------------------|
+|                 Job Energy and emissions summary                                         |
+|------------------------------------------------------------------------------------------|
+Job Energy (J) :                    64025                            
+Job Energy (kWh) :                  0.018                            
+Job emissions (gCO₂eq) :               0                                
+Job emissions are computed with the average carbon intensity value during timespan of the job (26.00 gCO₂eq/kWh)
+|------------------------------------------------------------------------------------------|

@@ -21,28 +21,26 @@
 
  (mod_oasis_namcouple:inipar_alloc)1 Read line: #
  (mod_oasis_namcouple:inipar_alloc)parsing 1 Read line, clvari in 5 position: 
- OCE_TO_ATM_SEND OCE_TO_ATM_RECV 1 3600 1 fdocn.nc EXPOUT1
+ OCE_TO_ATM_SEND OCE_TO_ATM_RECV 1 1 1 fdocn.nc EXPORTED1
  (mod_oasis_namcouple:inipar_alloc)field jf :            1  lg_state(jf) :  T
  (mod_oasis_namcouple:inipar_alloc)field jf :            1  endflag :  F
  (mod_oasis_namcouple:inipar_alloc)2 Read line: #
  (mod_oasis_namcouple:inipar_alloc)3 Read line: #
  (mod_oasis_namcouple:inipar_alloc)4 Read line_aux: #
- (mod_oasis_namcouple:inipar_alloc)5 Read line: #
  (mod_oasis_namcouple:inipar_alloc)1 Read line: #
  (mod_oasis_namcouple:inipar_alloc)parsing 1 Read line, clvari in 5 position: 
- ATM_TO_OCE_SEND ATM_TO_OCE_RECV 1 3600 1 fdatm.nc EXPOUT1
+ ATM_TO_OCE_SEND ATM_TO_OCE_RECV 1 1 1 fdatm.nc EXPORTED1
  (mod_oasis_namcouple:inipar_alloc)field jf :            2  lg_state(jf) :  T
  (mod_oasis_namcouple:inipar_alloc)field jf :            2  endflag :  F
  (mod_oasis_namcouple:inipar_alloc)2 Read line: #
  (mod_oasis_namcouple:inipar_alloc)3 Read line: #
  (mod_oasis_namcouple:inipar_alloc)4 Read line_aux: #
- (mod_oasis_namcouple:inipar_alloc)5 Read line: #
  found namcouple couplings =      2
  lncdfrst = F
  CLVARI=182
- LG_STATE cg_c=SCRIPR
+ LG_STATE cg_c=YAC
  CLVARI=96
- LG_STATE cg_c=SCRIPR
+ LG_STATE cg_c=YAC
  Max number of neighbors for GAUSSIAN interp :            1
   
  Maximum number of different GAUSSIAN interpolations :            1
@@ -57,7 +55,7 @@
     Initialization of run parameters
     Reading input file namcouple
   
-* ===>>> : The total time for this run is ntime =              14400
+* ===>>> : The total time for this run is ntime =                100
   ------   --------------------------------------                               
 
          ***WARNING*** Nothing on input for load balancing analysis for $NLOGPRT
@@ -89,12 +87,12 @@
      No lag in namcouple for the field  1
       Default value LAG=0 will be used 
  (mod_oasis_namcouple:inipar)9 Read line: #
- (mod_oasis_namcouple:inipar)9 Read line :P  2  P  0  clvari in 1 position: P
+ (mod_oasis_namcouple:inipar)9 Read line :P  0  P  0  clvari in 1 position: P
 
      No lag in namcouple for the field  2
       Default value LAG=0 will be used 
  (mod_oasis_namcouple:inipar)9 Read line: #
- (mod_oasis_namcouple:inipar)9 Read line :P  0  P  2  clvari in 1 position: P
+ (mod_oasis_namcouple:inipar)9 Read line :P  0  P  0  clvari in 1 position: P
 
 
                  FIELD NUMBER   1
@@ -106,10 +104,10 @@
 
             Input field symbolic name       = OCE_TO_ATM_SEND
             Output field symbolic name      = OCE_TO_ATM_RECV
-            Field exchange frequency        =     3600
+            Field exchange frequency        =        1
             Model sequential index          =  1
             Field Lag                       =        0
-            Field I/O status                = EXPOUT
+            Field I/O status                = EXPORTED
             Number of basic operations      =    1
 
 
@@ -117,7 +115,7 @@
 
 
             Source grid periodicity type is      = P
-            Number of overlapped grid points is  =  2
+            Number of overlapped grid points is  =  0
             Target grid periodicity type is      = P
             Number of overlapped grid points is  =  0
 
@@ -138,14 +136,17 @@
             ******************* 
 
 
-       ANALYSIS number  1 is SCRIPR
+       ANALYSIS number  1 is YAC
        ***************  
 
-      Remapping method is               = BILINEAR
-      Field type is                     = SCALAR
-      Normalization option is           = NONORM
-      Seach restriction type is         = LATLON
-      Number of search bins is          =    1
+ src grid type GC
+dst grid type GC
+output file suffix oce_to_atm
+max io ranks per node 1
+stack line 1 CONSERV
+ conservative order SECOND
+ conservative norm. FRACAREA
+
 
 
                  FIELD NUMBER   2
@@ -157,10 +158,10 @@
 
             Input field symbolic name       = ATM_TO_OCE_SEND
             Output field symbolic name      = ATM_TO_OCE_RECV
-            Field exchange frequency        =     3600
+            Field exchange frequency        =        1
             Model sequential index          =  1
             Field Lag                       =        0
-            Field I/O status                = EXPOUT
+            Field I/O status                = EXPORTED
             Number of basic operations      =    1
 
 
@@ -170,7 +171,7 @@
             Source grid periodicity type is      = P
             Number of overlapped grid points is  =  0
             Target grid periodicity type is      = P
-            Number of overlapped grid points is  =  2
+            Number of overlapped grid points is  =  0
 
 
             Source longitude file string    = lmdz.lon
@@ -189,14 +190,17 @@
             ******************* 
 
 
-       ANALYSIS number  1 is SCRIPR
+       ANALYSIS number  1 is YAC
        ***************  
 
-      Remapping method is               = BILINEAR
-      Field type is                     = SCALAR
-      Normalization option is           = NONORM
-      Seach restriction type is         = LATLON
-      Number of search bins is          =    1
+ src grid type GC
+dst grid type GC
+output file suffix atm_to_oce
+max io ranks per node 1
+stack line 1 CONSERV
+ conservative order SECOND
+ conservative norm. FRACAREA
+
   
  (mod_oasis_namcouple:inipar)-- End of ROUTINE --
  (oasis_namcouple_init) allocating ig_final_nfield           2
@@ -218,11 +222,11 @@
  (oasis_namcouple_init)           1 namdst_nx           96
  (oasis_namcouple_init)           1 namdst_ny           72
  (oasis_namcouple_init)           1 namfldseq            1
- (oasis_namcouple_init)           1 namfldops            5
+ (oasis_namcouple_init)           1 namfldops            1
  (oasis_namcouple_init)           1 namfldtrn            1
  (oasis_namcouple_init)           1 namfldcon            0
  (oasis_namcouple_init)           1 namfldcoo bfb
- (oasis_namcouple_init)           1 namflddti         3600
+ (oasis_namcouple_init)           1 namflddti            1
  (oasis_namcouple_init)           1 namfldlag            0
  (oasis_namcouple_init)           1 nammapfil idmap
  (oasis_namcouple_init)           1 nammaploc src
@@ -237,16 +241,24 @@
  (oasis_namcouple_init)           1 namflddna 
  (oasis_namcouple_init)           1 namflddmu    1.00000000000000     
  (oasis_namcouple_init)           1 namflddad   0.000000000000000E+000
- (oasis_namcouple_init)           1 namscrmet BILINEAR
- (oasis_namcouple_init)           1 namscrnor NONORM
- (oasis_namcouple_init)           1 namscrtyp SCALAR
- (oasis_namcouple_init)           1 namscrord 
- (oasis_namcouple_init)           1 namscrres LATLON
+ (oasis_namcouple_init)           1 namscrmet spval_undef
+ (oasis_namcouple_init)           1 namscrnor spval_undef
+ (oasis_namcouple_init)           1 namscrtyp spval_undef
+ (oasis_namcouple_init)           1 namscrord spval_undef
+ (oasis_namcouple_init)           1 namscrres spval_undef
  (oasis_namcouple_init)           1 namscrvam    1.00000000000000     
- (oasis_namcouple_init)           1 namscrnbr            0
+ (oasis_namcouple_init)           1 namscrnbr           -1
  (oasis_namcouple_init)           1 namscrnth    2.00000000000000     
  (oasis_namcouple_init)           1 namscrsth   -2.00000000000000     
- (oasis_namcouple_init)           1 namscrbin            1
+ (oasis_namcouple_init)           1 namscrbin           -1
+ (oasis_namcouple_init)           1 namyacmet src grid type GC
+dst grid type GC
+output file suffix oce_to_atm
+max io ranks per node 1
+stack line 1 CONSERV
+ conservative order SECOND
+ conservative norm. FRACAREA
+
   
  (oasis_namcouple_init)           2 namsrcfld ATM_TO_OCE_SEND
  (oasis_namcouple_init)           2 namdstfld ATM_TO_OCE_RECV
@@ -257,11 +269,11 @@
  (oasis_namcouple_init)           2 namdst_nx          182
  (oasis_namcouple_init)           2 namdst_ny          149
  (oasis_namcouple_init)           2 namfldseq            1
- (oasis_namcouple_init)           2 namfldops            5
+ (oasis_namcouple_init)           2 namfldops            1
  (oasis_namcouple_init)           2 namfldtrn            1
  (oasis_namcouple_init)           2 namfldcon            0
  (oasis_namcouple_init)           2 namfldcoo bfb
- (oasis_namcouple_init)           2 namflddti         3600
+ (oasis_namcouple_init)           2 namflddti            1
  (oasis_namcouple_init)           2 namfldlag            0
  (oasis_namcouple_init)           2 nammapfil idmap
  (oasis_namcouple_init)           2 nammaploc src
@@ -276,16 +288,24 @@
  (oasis_namcouple_init)           2 namflddna 
  (oasis_namcouple_init)           2 namflddmu    1.00000000000000     
  (oasis_namcouple_init)           2 namflddad   0.000000000000000E+000
- (oasis_namcouple_init)           2 namscrmet BILINEAR
- (oasis_namcouple_init)           2 namscrnor NONORM
- (oasis_namcouple_init)           2 namscrtyp SCALAR
- (oasis_namcouple_init)           2 namscrord 
- (oasis_namcouple_init)           2 namscrres LATLON
+ (oasis_namcouple_init)           2 namscrmet spval_undef
+ (oasis_namcouple_init)           2 namscrnor spval_undef
+ (oasis_namcouple_init)           2 namscrtyp spval_undef
+ (oasis_namcouple_init)           2 namscrord spval_undef
+ (oasis_namcouple_init)           2 namscrres spval_undef
  (oasis_namcouple_init)           2 namscrvam    1.00000000000000     
- (oasis_namcouple_init)           2 namscrnbr            0
+ (oasis_namcouple_init)           2 namscrnbr           -1
  (oasis_namcouple_init)           2 namscrnth    2.00000000000000     
  (oasis_namcouple_init)           2 namscrsth   -2.00000000000000     
- (oasis_namcouple_init)           2 namscrbin            1
+ (oasis_namcouple_init)           2 namscrbin           -1
+ (oasis_namcouple_init)           2 namyacmet src grid type GC
+dst grid type GC
+output file suffix atm_to_oce
+max io ranks per node 1
+stack line 1 CONSERV
+ conservative order SECOND
+ conservative norm. FRACAREA
+
   
  (oasis_namcouple_init) sort            1           1           1           1
  (oasis_namcouple_init) sort            2           2           2           1

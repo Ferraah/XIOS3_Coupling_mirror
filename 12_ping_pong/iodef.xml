@@ -7,50 +7,61 @@
         <!-- Starting simulation on January 1 -->
         <calendar type="Gregorian" time_origin="2025-01-01" start_date="2025-01-01"/>
 
-        <!-- Domain definition for the source model -->
         <grid_definition>
+            <grid id="grid_2D_oce">
+                <domain id="domain_oce"/>
+            </grid>
+
             <grid id="grid_2D_atm">
                 <domain id="domain_atm"/>
             </grid>
-            <!-- Grid onto which the field will be interpolated -->
-            <grid id="grid_2D_oce">
-                <domain id="domain_oce">
-                    <!-- Interpolation attributes -->
-                    <interpolate_domain order="2" renormalize="false" use_area="false" weight_filename="grids_files/t12e_ico.nc"  mode="read_or_compute" write_weight="true"/>
+
+            <grid id="grid_2D_atm_interp">
+                <domain id="domain_atm_interp">
+                    <interpolate_domain order="1" renormalize="false" use_area="false" weight_filename="original_data/atm_oce2.nc"  mode="compute" write_weight="true"/>
                 </domain>
             </grid>
         </grid_definition>
 
-        
         <!-- Toymodels attributes, not in real model coupling -->
         <variable_definition>
             <variable id="toymodel_timestep_duration">1d</variable>
-            <variable id="toymodel_duration">30d</variable>
-            <variable id="toymodel_grids_filename">grids_files/grids.nc</variable>
-            <variable id="toymodel_masks_filename">grids_files/masks.nc</variable>
-            <variable id="toymodel_areas_filename">grids_files/areas.nc</variable>
-            <variable id="toymodel_domain_name">t12e</variable>
+            <variable id="toymodel_duration">100d</variable>
+            <variable id="toymodel_areas_filename">original_data/areas.nc</variable>
+
+            <!-- <variable id="toymodel_grids_filename">original_data/grids_high.nc</variable>
+            <variable id="toymodel_masks_filename">original_data/masks_high.nc</variable>
+            <variable id="toymodel_domain_name">t12e</variable> 
+ -->
+            <variable id="toymodel_grids_filename">original_data/grids_low.nc</variable>
+            <variable id="toymodel_masks_filename">original_data/masks_low.nc</variable>
+            <variable id="toymodel_domain_name">torc</variable> 
         </variable_definition>
 
 
-        <!-- Field definition for the source model -->
-        <field_definition>
-            <!-- Endpoint to send field to destination in toymodel -->
-            <field id="field2D_send_oce" grid_ref="grid_2D_oce"  operation="instant" freq_op="1ts" freq_offset="0ts"/>
-            <field id="field2D_recv_oce" field_ref="atm_to_oce" grid_ref="grid_2D_oce"/>
+        <field_definition default_value="0">
+            <field id="field2D_send" grid_ref="grid_2D_oce"  operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="field2D_recv" field_ref="atm_to_oce" grid_ref="grid_2D_atm_interp" />
         </field_definition>
 
         <coupler_out_definition>
             <coupler_out context="atm::atm" >
-                <!-- Define the interface for the outgoing field to be received in atmosphere -->
-                <field id="oce_to_atm" field_ref="field2D_send_oce" freq_op="1ts" expr="@this_ref"/>
+                <field id="oce_to_atm" field_ref="field2D_send" freq_op="1ts" expr="@this_ref"/>
             </coupler_out>
         </coupler_out_definition>
+
         <coupler_in_definition>
-            <coupler_in context="atm::atm">
+            <coupler_in context="atm::atm" >
                 <field id="atm_to_oce" grid_ref="grid_2D_atm" freq_op="1ts" freq_offset="1ts" read_access="true"/>
             </coupler_in>
         </coupler_in_definition>
+
+        <file_definition>
+            <file id="ocean_snapshots" name="ocean_snapshots" output_freq="1ts" type="one_file">
+                <!-- <field field_ref="field2D_send" operation="instant"/> -->
+                <!-- <field field_ref="field2D_recv" operation="instant"/> -->
+            </file>
+        </file_definition>
     </context>
 
 
@@ -59,16 +70,21 @@
         <calendar type="Gregorian" time_origin="2025-01-01" start_date="2025-01-01"/>
 
         <grid_definition>
-            <!-- Intermediate grid inferred by incoming field -->
-            <grid id="grid_2D_oce">
-                <domain id="domain_oce"/>
+
+            <grid id="grid_2D_atm">
+                <domain id="domain_atm"> 
+                </domain>
             </grid>
 
-            <!-- Grid onto which the field will be interpolated -->
-            <grid id="grid_2D_atm">
-                <domain id="domain_atm">
-                    <!-- Interpolation attributes -->
-                    <interpolate_domain order="2" renormalize="false" use_area="false" weight_filename="grids_files/icoh_t12e.nc"  mode="read_or_compute" write_weight="true"/>
+
+            <grid id="grid_2D_oce">
+                <domain id="domain_oce"> 
+                </domain>
+            </grid>
+
+            <grid id="grid_2D_oce_interp">
+                <domain id="domain_oce_interp">
+                    <interpolate_domain order="1" renormalize="false" use_area="false" weight_filename="original_data/oce_atm2.nc"  mode="compute" write_weight="true"/>
                 </domain>
             </grid>
 
@@ -77,33 +93,43 @@
         <!-- Toymodels attributes, not in real model coupling -->
         <variable_definition>
             <variable id="toymodel_timestep_duration">1d</variable>
-            <variable id="toymodel_duration">30d</variable>
-            <variable id="toymodel_grids_filename">grids_files/grids.nc</variable>
-            <variable id="toymodel_masks_filename">grids_files/masks.nc</variable>
-            <variable id="toymodel_areas_filename">grids_files/areas.nc</variable>
-            <variable id="toymodel_domain_name">icoh</variable>
+            <variable id="toymodel_duration">100d</variable>
+            <variable id="toymodel_areas_filename">original_data/areas.nc</variable>
+
+            <!-- <variable id="toymodel_grids_filename">original_data/grids_high.nc</variable>
+            <variable id="toymodel_masks_filename">original_data/masks_high.nc</variable>
+            <variable id="toymodel_domain_name">icoh</variable> -->
+            
+            <variable id="toymodel_grids_filename">original_data/grids_low.nc</variable>
+            <variable id="toymodel_masks_filename">original_data/masks_low.nc</variable>
+            <variable id="toymodel_domain_name">lmdz</variable>
+
         </variable_definition>
 
 
-        <field_definition default_value="0" grid_ref="grid_2D_interp" >
-            <!-- Endpoint to retrieve interpolated field on toymodel -->
-            <field id="field2D_recv_atm" field_ref="oce_to_atm" grid_ref="grid_2D_atm" />
-            <field id="field2D_send_atm" grid_ref="grid_2D_atm" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+        <field_definition default_value="0">
+            <field id="field2D_recv" field_ref="oce_to_atm" grid_ref="grid_2D_oce_interp"/>
+            <field id="field2D_send" grid_ref="grid_2D_atm"  operation="instant" freq_op="1ts" freq_offset="0ts"/>
         </field_definition>
 
-        <coupler_out_definition>
-            <coupler_out context="oce::oce">
-                <field id="atm_to_oce" field_ref="field2D_send_atm" freq_op="1ts" expr="@this_ref"/>
-            </coupler_out>
-        </coupler_out_definition>
-        <!-- Incoming coupling definition -->
         <coupler_in_definition>
             <coupler_in context="oce::oce" >
-                <!-- Interface for the incoming field to be received in destination (same field id)-->
-                <field id="oce_to_atm" grid_ref="grid_2D_oce" freq_op="1ts" freq_offset="1ts" read_access="true"/>
+                <field id="oce_to_atm" grid_ref="grid_2D_oce" freq_op="1ts" freq_offset="1ts" read_access="true" />
             </coupler_in>
         </coupler_in_definition>
-        
+
+        <coupler_out_definition>
+            <coupler_out context="oce::oce" >
+                <field id="atm_to_oce" field_ref="field2D_send" freq_op="1ts" expr="@this_ref"/>
+            </coupler_out>
+        </coupler_out_definition>
+
+        <file_definition>
+            <file id="atmosphere_snapshots" name="atmosphere_snapshots" output_freq="1ts" type="one_file">
+                <!-- <field field_ref="oce_to_atm" name="interp" operation="instant" grid_ref="grid_2D_oce_interp"/> -->
+                <!-- <field field_ref="oce_to_atm" name="original" operation="instant"/>  -->
+            </file>
+        </file_definition>
 
     </context>
 
@@ -113,8 +139,16 @@
      <variable_definition>
         <variable_group id="parameters" >
           <variable id="print_file" type="bool">true</variable>
-          <!-- <variable id="info_level" type="int">100</variable> -->
+          <variable id="info_level" type="int">100</variable>
           <variable id="transport_protocol" type="string">p2p</variable>
+            <variable id="using_server" type="bool">false</variable>
+            <variable id="print_file" type="bool">true</variable>
+            <variable id="using_server2" type="bool">false</variable>
+            <variable id="ratio_server2" type="int">50</variable>
+            <variable id="number_pools_server2" type="int">1</variable>
+            <variable id="pure_one_sided" type="bool">false</variable>
+            <variable id="check_event_sync" type="bool">true</variable>
+            <variable id="log_type"  type="string">log_timers</variable>
         </variable_group>
      </variable_definition>
   </context>
