@@ -1,0 +1,13 @@
+Loading mpi/openmpi/4.1.7_ucx_gcc112
+  ERROR: Conflicting 'mpi' is loaded
+make: 'oasis_ping_pong' is up to date.
+Interpolation is enabled, removing remapping files.
+Running the ping-pong test with N=8 and M=8
+|------------------------------------------------------------------------------------------|
+|                 Job Energy and emissions summary                                         |
+|------------------------------------------------------------------------------------------|
+Job Energy (J) :                    12190                            
+Job Energy (kWh) :                  0.003                            
+Job emissions (gCO₂eq) :               0                                
+Job emissions are computed with the average carbon intensity value during timespan of the job (23.00 gCO₂eq/kWh)
+|------------------------------------------------------------------------------------------|

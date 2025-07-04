@@ -1,0 +1,400 @@
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> -> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
+info : CPoolRessource::CPoolRessource  : creating new pool : oce
+ Duration: 100d
+ Timestep duration: 1d
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: icoh
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: icoh
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: icoh
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: icoh
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: t12e
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: t12e
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: t12e
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: t12e
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ ICOS type set in XIOS: domain_atm
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       504003
+ nj:            1
+ ibegin:       504003
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_atm
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       504003
+ nj:            1
+ ibegin:      1512009
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_atm
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       504003
+ nj:            1
+ ibegin:      1008006
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_atm
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       504003
+ nj:            1
+ ibegin:            0
+ jbegin:            0
+ ncrn:            6
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ ICOS type set in XIOS: domain_oce_interp
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       504003
+ nj:            1
+ ibegin:       504003
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_oce_interp
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       504003
+ nj:            1
+ ibegin:      1008006
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_oce_interp
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       504003
+ nj:            1
+ ibegin:      1512009
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_oce_interp
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       504003
+ nj:            1
+ ibegin:            0
+ jbegin:            0
+ ncrn:            6
+ Number of .true. in mask:      2379512
+ Number of .true. in mask:      1725091
+ Number of .true. in mask:      1492848
+ Number of .true. in mask:      2600429
+ Number of .false. in mask:      1021902
+ Number of .false. in mask:      1674162
+ Number of .false. in mask:      1906405
+ Number of .false. in mask:       800985
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         2161
+ nj:         1574
+ ibegin:         2161
+ jbegin:            0
+ ncrn:            4
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         2161
+ nj:         1573
+ ibegin:            0
+ jbegin:         1574
+ ncrn:            4
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         2161
+ nj:         1573
+ ibegin:         2161
+ jbegin:         1574
+ ncrn:            4
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         2161
+ nj:         1574
+ ibegin:            0
+ jbegin:            0
+ ncrn:            4
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ Number of .true. in mask:      2379512
+ Number of .true. in mask:      1725091
+ Number of .true. in mask:      1492848
+ Number of .false. in mask:      1021902
+ Number of .false. in mask:      1674162
+ Number of .false. in mask:      1906405
+ Number of .true. in mask:      2600429
+ Number of .false. in mask:       800985
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         2161
+ nj:         1574
+ ibegin:         2161
+ jbegin:            0
+ ncrn:            4
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         2161
+ nj:         1573
+ ibegin:            0
+ jbegin:         1574
+ ncrn:            4
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         2161
+ nj:         1573
+ ibegin:         2161
+ jbegin:         1574
+ ncrn:            4
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         2161
+ nj:         1574
+ ibegin:            0
+ jbegin:            0
+ ncrn:            4
+Computing intersections ...
+Remapping...
+Computing intersections ...
+Remapping...
+ TIMING:  0.518636597320437     
+ TIMING:  0.338443003594875     
+ TIMING:  0.327311486005783     
+ TIMING:  0.292044794186950     
+ TIMING:  0.215279083698988     
+ TIMING:  0.197427647188306     
+ TIMING:  0.170135678723454     
+ TIMING:  0.168209532275796     
+ TIMING:  0.169991677626967     
+ TIMING:  0.168957954272628     
+ TIMING:  0.169996924698353     
+ TIMING:  0.168565645813942     
+ TIMING:  0.168961973860860     
+ TIMING:  0.168274171650410     
+ TIMING:  0.168770970776677     
+ TIMING:  0.168343450874090     
+ TIMING:  0.168613454326987     
+ TIMING:  0.168169982731342     
+ TIMING:  0.167880633845925     
+ TIMING:  0.168230760842562     
+ TIMING:  0.168426532298326     
+ TIMING:  0.168632172048092     
+ TIMING:  0.169427258893847     
+ TIMING:  0.168508909642696     
+ TIMING:  0.167230026796460     
+ TIMING:  0.169061459600925     
+ TIMING:  0.168493626639247     
+ TIMING:  0.167495572939515     
+ TIMING:  0.168966518715024     
+ TIMING:  0.173289900645614     
+ TIMING:  0.168000675737858     
+ TIMING:  0.171501526609063     
+ TIMING:  0.168584575876594     
+ TIMING:  0.168331513181329     
+ TIMING:  0.167986437678337     
+ TIMING:  0.168054010719061     
+ TIMING:  0.169785253703594     
+ TIMING:  0.168895708397031     
+ TIMING:  0.168530756607652     
+ TIMING:  0.167894095182419     
+ TIMING:  0.170669106766582     
+ TIMING:  0.167969804257154     
+ TIMING:  0.168249707669020     
+ TIMING:  0.168570687994361     
+ TIMING:  0.170936033129692     
+ TIMING:  0.168649507686496     
+ TIMING:  0.168198814615607     
+ TIMING:  0.168330004438758     
+ TIMING:  0.171860253438354     
+ TIMING:  0.168768396601081     
+ TIMING:  0.168680286034942     
+ TIMING:  0.167765542864799     
+ TIMING:  0.171941662207246     
+ TIMING:  0.169194469228387     
+ TIMING:  0.168807065114379     
+ TIMING:  0.168464103713632     
+ TIMING:  0.168090406805277     
+ TIMING:  0.181351443752646     
+ TIMING:  0.169117080047727     
+ TIMING:  0.168709734454751     
+ TIMING:  0.168613934889436     
+ TIMING:  0.167709266766906     
+ TIMING:  0.170564992353320     
+ TIMING:  0.168032877147198     
+ TIMING:  0.169278167188168     
+ TIMING:  0.168444683775306     
+ TIMING:  0.168573915958405     
+ TIMING:  0.170706581324339     
+ TIMING:  0.168029159307480     
+ TIMING:  0.168461680412292     
+ TIMING:  0.176275622099638     
+ TIMING:  0.174397978931665     
+ TIMING:  0.167936546728015     
+ TIMING:  0.167414862662554     
+ TIMING:  0.170457672327757     
+ TIMING:  0.169285250827670     
+ TIMING:  0.168493635952473     
+ TIMING:  0.168681796640158     
+ TIMING:  0.168048737570643     
+ TIMING:  0.170894768089056     
+ TIMING:  0.167594907805324     
+ TIMING:  0.168474141508341     
+ TIMING:  0.168305411934853     
+ TIMING:  0.168602786958218     
+ TIMING:  0.167788203805685     
+ TIMING:  0.168364385142922     
+ TIMING:  0.167970106005669     
+ TIMING:  0.169873502105474     
+ TIMING:  0.168411849066615     
+ TIMING:  0.168306360021234     
+ TIMING:  0.169293152168393     
+ TIMING:  0.168716724961996     
+ TIMING:  0.168342165648937     
+ TIMING:  0.170967645943165     
+ TIMING:  0.167784409597516     
+ TIMING:  0.167741121724248     
+ TIMING:  0.170119725167751     
+ TIMING:  0.168778650462627     
+ TIMING:  0.168868511915207     
+ TIMING:  0.169124919921160     
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor

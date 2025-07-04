@@ -1,0 +1,1 @@
+make: *** No rule to make target '../common/grids_utils.o', needed by '12_ping_pong.exe'.  Stop.

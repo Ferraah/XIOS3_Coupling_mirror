@@ -1,0 +1,27 @@
+terminate called after throwing an instance of 'xios::CException'
+forrtl: error (76): Abort trap signal
+Image              PC                Routine            Line        Source             
+libpthread-2.28.s  0000151676810D20  Unknown               Unknown  Unknown
+libc-2.28.so       00001516760F452F  gsignal               Unknown  Unknown
+libc-2.28.so       00001516760C7E65  abort                 Unknown  Unknown
+libstdc++.so.6.0.  0000151678D491AE  Unknown               Unknown  Unknown
+libstdc++.so.6.0.  0000151678D54516  Unknown               Unknown  Unknown
+libstdc++.so.6.0.  0000151678D54581  Unknown               Unknown  Unknown
+libstdc++.so.6.0.  0000151678D54805  Unknown               Unknown  Unknown
+12_ping_pong.exe   00000000010FE061  Unknown               Unknown  Unknown
+libstdc++.so.6.0.  0000151678D54C9F  _Znwm                 Unknown  Unknown
+12_ping_pong.exe   000000000131BDD9  Unknown               Unknown  Unknown
+12_ping_pong.exe   0000000001316499  Unknown               Unknown  Unknown
+12_ping_pong.exe   00000000012D28A8  Unknown               Unknown  Unknown
+12_ping_pong.exe   00000000012CF7B6  Unknown               Unknown  Unknown
+12_ping_pong.exe   00000000012DA7B3  Unknown               Unknown  Unknown
+12_ping_pong.exe   0000000000E7B174  Unknown               Unknown  Unknown
+12_ping_pong.exe   0000000000DFA7D8  Unknown               Unknown  Unknown
+12_ping_pong.exe   00000000008EF7EB  Unknown               Unknown  Unknown
+12_ping_pong.exe   0000000001073B59  Unknown               Unknown  Unknown
+12_ping_pong.exe   000000000043801A  Unknown               Unknown  Unknown
+12_ping_pong.exe   0000000000437146  Unknown               Unknown  Unknown
+12_ping_pong.exe   0000000000436E87  Unknown               Unknown  Unknown
+12_ping_pong.exe   000000000041BE4D  Unknown               Unknown  Unknown
+libc-2.28.so       00001516760E07E5  __libc_start_main     Unknown  Unknown
+12_ping_pong.exe   000000000041BD6E  Unknown               Unknown  Unknown
