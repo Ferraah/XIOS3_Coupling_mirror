@@ -1,11 +1,5 @@
-make: Nothing to be done for 'all'.
-Using iodef with interpolation
+Loading mpi/openmpi/4.1.7_ucx_gcc112
+  ERROR: Conflicting 'mpi' is loaded
+make: Nothing to be done for 'default'.
+Interpolation is enabled, removing remapping files.
 Running the ping-pong test with N=32 and M=32
-|------------------------------------------------------------------------------------------|
-|                 Job Energy and emissions summary                                         |
-|------------------------------------------------------------------------------------------|
-Job Energy (J) :                    32335                            
-Job Energy (kWh) :                  0.009                            
-Job emissions (gCO₂eq) :               0                                
-Job emissions are computed with the average carbon intensity value during timespan of the job (26.00 gCO₂eq/kWh)
-|------------------------------------------------------------------------------------------|

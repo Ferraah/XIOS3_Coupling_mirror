@@ -13,7 +13,8 @@ class SlurmSbatcher:
         res,
         partition,
         time_limit,
-        template_path,
+        software_path,
+        template_file,
         results_dir,
         output_dir):
 
@@ -32,17 +33,22 @@ class SlurmSbatcher:
 
         self.PARTITION = partition
         self.TIME_LIMIT = time_limit
-        self.TEMPLATE_PATH = template_path
-        self.RESULTS_DIR = results_dir
-        self.OUTPUT_DIR = output_dir
+        self.SOFTWARE_PATH = software_path
+        self.TEMPLATE_PATH = software_path+template_file
+        self.RESULTS_DIR_PATH = software_path+results_dir
+        self.OUTPUT_DIR_PATH = software_path+output_dir
 
-        os.makedirs(self.RESULTS_DIR, exist_ok=True)
-        os.makedirs(self.OUTPUT_DIR, exist_ok=True)
+        os.makedirs(self.RESULTS_DIR_PATH, exist_ok=True)
+        os.makedirs(self.OUTPUT_DIR_PATH, exist_ok=True)
 
     def submit_job(self, n, m):
 
+        # Create folder named run_n_m
+        run_dir = f"{self.SOFTWARE_PATH}/run_{n}_{m}"
+        os.makedirs(run_dir, exist_ok=True)
+
         # Create job script name based on n and m in 
-        job_script = f"{self.RESULTS_DIR}/job_n{n}_m{m}.sh"
+        job_script = f"{run_dir}/job_n{n}_m{m}.sh"
 
 
         # Customize the job script content using the template
@@ -83,7 +89,7 @@ class SlurmSbatcher:
             print(out)
             time.sleep(1)
 
-    # Create and submit all jobs with the given N and M values
+    # Create and submit all jobs with different process counts
     def submit_all_jobs(self):
         job_ids = []
         for n, m in self.NM_LIST:

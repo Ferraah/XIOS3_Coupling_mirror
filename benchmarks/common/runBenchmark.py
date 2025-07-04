@@ -1,14 +1,25 @@
 import slurm_sbatcher as sb
 
-software_path = "../xios/"
+# Get XIOS or OASIS from argv
+import sys
+if len(sys.argv) < 2:
+    print("Usage: python runBenchmark.py <xios|oasis>")
+    sys.exit(1)
+software = sys.argv[1].lower()
+if software not in ["xios", "oasis"]:
+    print("Invalid software. Choose 'xios' or 'oasis'.")
+    sys.exit(1)
+
+
 sbatcher = sb.SlurmSbatcher(
     nm_list=[(n, n) for n in [32]],
     do_interpolation=True,
     res="high",
     partition="bench",
     time_limit="01:00:00",
-    template_path=software_path+"job_template.sh",
-    results_dir=software_path+"results",
-    output_dir=software_path+"outputs")
+    software_path=f"../{software}/",
+    template_file="job_template.sh",
+    results_dir="results",
+    output_dir="outputs")
 
 sbatcher.run()

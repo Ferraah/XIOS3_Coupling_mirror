@@ -18,10 +18,8 @@ cd /scratch/globc/ferrario/xios_experiments/benchmarks/xios
 
 make
 
-# Create a unique run directory for this N/M combination
+# Folder already created
 RUN_DIR="run_{{N}}_{{M}}"
-mkdir -p "$RUN_DIR"
-
 cd "$RUN_DIR"
 
 if [[ "$1" == "true" ]]; then

@@ -1,8 +1,0 @@
-|------------------------------------------------------------------------------------------|
-|                 Job Energy and emissions summary                                         |
-|------------------------------------------------------------------------------------------|
-Job Energy (J) :                    0                                
-Job Energy (kWh) :                  0.000                            
-Job emissions (gCO₂eq) :               0                                
-Job emissions are computed with the average carbon intensity value during timespan of the job (23.00 gCO₂eq/kWh)
-|------------------------------------------------------------------------------------------|

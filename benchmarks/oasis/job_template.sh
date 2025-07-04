@@ -17,9 +17,9 @@ cd /scratch/globc/ferrario/xios_experiments/benchmarks/oasis
 
 make 
 
-# Create a unique run directory for this N/M combination
+# Folder already created
 RUN_DIR="run_{{N}}_{{M}}"
-mkdir -p "$RUN_DIR"
+
 cp original_data/grids_{{RES}}.nc "$RUN_DIR/grids.nc"
 cp original_data/masks_{{RES}}.nc "$RUN_DIR/masks.nc"
 cp original_data/namcouple_{{RES}} "$RUN_DIR/namcouple"

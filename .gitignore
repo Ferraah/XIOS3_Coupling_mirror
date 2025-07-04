@@ -6,7 +6,6 @@
 *.mod
 *.json
 interpolation_sandbox/*.nc
-oasis_ping_pong/**/*.nc
-12_ping_pong/**/*.nc
+benchmarks/**/*.nc
 grid_loader/**/*.nc
 field_generator/**/*.nc

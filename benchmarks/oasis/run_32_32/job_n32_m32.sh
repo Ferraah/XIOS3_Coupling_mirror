@@ -1,8 +1,8 @@
 #!/bin/bash
-#SBATCH --job-name=bench_n512_m512
-#SBATCH --output=results/out_n512_m512.txt
-#SBATCH --error=results/err_n512_m512.txt
-#SBATCH --ntasks=1024
+#SBATCH --job-name=bench_n32_m32
+#SBATCH --output=results/out_n32_m32.txt
+#SBATCH --error=results/err_n32_m32.txt
+#SBATCH --ntasks=64
 #SBATCH --time=01:00:00
 #SBATCH --partition=bench
 
@@ -13,13 +13,13 @@ module load compiler/intel/23.2.1
 module load mpi/intelmpi/2021.10.0
 module load lib/netcdf-fortran/4.4.4_phdf5_1.10.4
 
-cd /scratch/globc/ferrario/xios_experiments/oasis_ping_pong
+cd /scratch/globc/ferrario/xios_experiments/benchmarks/oasis
 
-make oasis_ping_pong
+make 
 
-# Create a unique run directory for this N/M combination
-RUN_DIR="run_512_512"
-mkdir -p "$RUN_DIR"
+# Folder already created
+RUN_DIR="run_32_32"
+
 cp original_data/grids_high.nc "$RUN_DIR/grids.nc"
 cp original_data/masks_high.nc "$RUN_DIR/masks.nc"
 cp original_data/namcouple_high "$RUN_DIR/namcouple"
@@ -37,5 +37,5 @@ else
     [[ -f rmp_icoh_to_t12e_atm_to_oce.nc ]] || cp ../original_data/rmp_icoh_to_t12e_atm_to_oce.nc .
 fi
 
-echo "Running the ping-pong test with N=512 and M=512"
-mpirun -np 512 ../oasis_ping_pong ocean_component t12e LR : -np 512 ../oasis_ping_pong atmos_component icoh U > ../outputs/ocean_times_n512_m512.txt
+echo "Running the ping-pong test with N=32 and M=32"
+mpirun -np 32 ../oasis_ping_pong.exe ocean_component t12e LR : -np 32 ../oasis_ping_pong.exe atmos_component icoh U > ../outputs/ocean_times_n32_m32.txt
