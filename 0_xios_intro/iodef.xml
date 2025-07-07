@@ -12,20 +12,20 @@
    </grid_definition>
 
     <variable_definition>
-      <!-- If >8, provide more than 8 fields timesteps in the loaded_file -->
+      <!-- If >8, provide more than 8 fields timesteps to read in the loaded_file -->
       <variable id="duration_in_ts">8</variable>
     </variable_definition>
 
    <field_definition>
-     <field id="field_2d_send" grid_ref="grid_2D"  />
+     <field id="field_2d_send" grid_ref="grid_2D" operation="average"/>
    </field_definition>
 
    <file_definition>
-     <file  name="saved_file" output_freq="2ts" type="one_file">
-       <field field_ref="field_2d_send" name="field2D_oce_to_atm" operation="average"/>
+     <file  name="saved_file" output_freq="4ts" type="one_file">
+       <field field_ref="field_2d_send" name="field2D_oce_to_atm" operation="accumulate" freq_op="2ts" expr="@this_ref"/>
      </file>
 
-      <file name="loaded_file" output_freq="2ts" mode="read">
+      <file id="loaded_file" name="loaded_file" output_freq="2ts" mode="read">
         <field id="field_2d_recv" name="field2D_oce_to_atm" freq_offset="1ts" grid_ref="grid_2D"  operation="instant" read_access="true"/>
       </file>
    </file_definition>

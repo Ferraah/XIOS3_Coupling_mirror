@@ -1,23 +1,26 @@
 # Compiler and flags
-FC = mpiifort
-FFLAGS = -g -O0
-INCLUDES = -I/scratch/globc/ferrario/trunk/build_ifort_CERFACS_debug/inc \
+FC = mpiifort -fpp 
+FFLAGS = 
+INCLUDES = -I/scratch/globc/ferrario/trunk/build_ifort_CERFACS_prod_timer/inc \
 		   -I/softs/local_intel/netcdf/4.4.4_phdf5_1.10.4/include \
 		   -I/scratch/globc/ferrario/trunk/extern/boost_extraction/include \
 		   -I/scratch/globc/ferrario/trunk/extern/blitz
+DEFINES = -D__NONE__
 
 # Libraries and paths
-LIBS = -L/scratch/globc/ferrario/trunk/build_ifort_CERFACS_debug/lib \
+LIBS = -L/scratch/globc/ferrario/trunk/build_ifort_CERFACS_prod_timer/lib \
 	   -L/softs/local_intel/netcdf/4.4.4_phdf5_1.10.4/lib \
 	   -L/softs/local_intel/phdf5/1.10.4_impi/lib \
 	   -lnetcdff -lnetcdf -lhdf5_hl -lhdf5 -lxios -lstdc++
 
+COMMON_DIR = ../../common
+
 # Source files and objects
-SRC = 0_xios_intro.f90
+SRC = ${COMMON_DIR}/grids_utils.f90 field_initializer.f90 12_ping_pong.f90 
 OBJ = $(SRC:.f90=.o)
 
 # Executable name
-EXEC = 0_xios_intro.exe
+EXEC = 12_ping_pong.exe
 
 # Rules
 all: $(EXEC)
@@ -29,6 +32,8 @@ $(EXEC): $(OBJ)
 	$(FC) $(FFLAGS) $(INCLUDES) $(DEFINES) -c $< -o $@
 
 clean:
-	rm -f $(OBJ) $(EXEC) *.mod
+	rm -f *.o *.mod
+	rm -f ${COMMON_DIR}/*.o
+	rm -f ${COMMON_DIR}/*.mod
 
 .PHONY: all clean

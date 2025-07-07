@@ -18,7 +18,9 @@ program intro
   double precision, allocatable :: field_2d_send(:,:) ! model sending field
   double precision, allocatable :: field_2d_recv(:,:) ! model receiving field
  
-  integer :: curr_ts, duration_ts ! current time step and duration in time steps
+  integer :: curr_ts, duration_ts, read_freq_ts ! current time step and duration in time steps
+  type(xios_duration) :: read_freq ! xios duration object for the read frequency
+  character(len=20) :: tmp 
 
   ! Classic xios initialization
 
@@ -57,6 +59,11 @@ program intro
   print*, "domain type = ", domain_type
   print*, "domain size = ", ni_glo, "*", nj_glo
 
+  ! We can retrieve attributes from the xml tags with tha appositte xios_get_*_attr routines.
+  call xios_get_file_attr("loaded_file", output_freq = read_freq)
+  read_freq_ts = read_freq%timestep ! get the output frequency in time steps  
+  print*, "read_freq_ts = ", read_freq_ts
+
   ! We can also get user defined variables in the xml file. 
   ! with xios_getvar("var_name", var) we can retrieve these values.
   ierr =  xios_getvar("duration_in_ts", duration_ts)
@@ -70,21 +77,24 @@ program intro
   allocate(field_2d_send(ni_glo, nj_glo))
   allocate(field_2d_recv(ni_glo, nj_glo))
 
-
+  ! RUn the simulation for the duration defined in the xml file
   do curr_ts=1,duration_ts
+
     field_2d_send = curr_ts ! for example, we can set the field to the current time step
     call xios_update_calendar(curr_ts) ! We set the current time step in the xios calendar 
+
     call xios_send_field("field_2d_send", field_2d_send) ! We send the field to the server every time step
     print *, "Field sent to server at time step ", curr_ts
 
-    ! Receive the field from the server every n timestep
-    if (mod(curr_ts-1, 2) == 0) then
+    ! Receive the field from the server every read_freq_ts timestep
+    if (mod(curr_ts, read_freq_ts) == 1) then
       call xios_recv_field("field_2d_recv", field_2d_recv) ! We send the field to the server
       print *, "Field recv to server at time step ", curr_ts, field_2d_recv(1,1)
     end if
-  enddo
 
+  enddo
   
+  ! Close the context and finalize the xios library
   call xios_context_finalize()
   call xios_finalize()
   call mpi_finalize(ierr)
