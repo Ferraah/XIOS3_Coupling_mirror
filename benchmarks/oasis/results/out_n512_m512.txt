@@ -1,0 +1,13 @@
+Loading mpi/openmpi/4.1.7_ucx_gcc112
+  ERROR: Conflicting 'mpi' is loaded
+make: Nothing to be done for 'default'.
+Interpolation is disabled, copying remapping files.
+Running the ping-pong test with N=512 and M=512
+|------------------------------------------------------------------------------------------|
+|                 Job Energy and emissions summary                                         |
+|------------------------------------------------------------------------------------------|
+Job Energy (J) :                    513890                           
+Job Energy (kWh) :                  0.143                            
+Job emissions (gCO₂eq) :               4                                
+Job emissions are computed with the average carbon intensity value during timespan of the job (30.00 gCO₂eq/kWh)
+|------------------------------------------------------------------------------------------|

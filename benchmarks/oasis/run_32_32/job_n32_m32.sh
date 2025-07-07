@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=bench_n32_m32
-#SBATCH --output=results/out_n32_m32.txt
-#SBATCH --error=results/err_n32_m32.txt
+#SBATCH --output=../oasis/results/out_n32_m32.txt
+#SBATCH --error=../oasis/results/err_n32_m32.txt
 #SBATCH --ntasks=64
 #SBATCH --time=01:00:00
 #SBATCH --partition=bench
@@ -23,8 +23,6 @@ RUN_DIR="run_32_32"
 cp original_data/grids_high.nc "$RUN_DIR/grids.nc"
 cp original_data/masks_high.nc "$RUN_DIR/masks.nc"
 cp original_data/namcouple_high "$RUN_DIR/namcouple"
-#cp oasis_ping_pong "$RUN_DIR/"
-#cp -r outputs "$RUN_DIR/" 2>/dev/null || mkdir "$RUN_DIR/outputs"
 
 cd "$RUN_DIR"
 
@@ -38,4 +36,4 @@ else
 fi
 
 echo "Running the ping-pong test with N=32 and M=32"
-mpirun -np 32 ../oasis_ping_pong.exe ocean_component t12e LR : -np 32 ../oasis_ping_pong.exe atmos_component icoh U > ../outputs/ocean_times_n32_m32.txt
+mpirun -np 32 ../oasis_ping_pong.exe ocean_component t12e LR false : -np 32 ../oasis_ping_pong.exe atmos_component icoh U false > ../outputs/ocean_times_n32_m32.txt

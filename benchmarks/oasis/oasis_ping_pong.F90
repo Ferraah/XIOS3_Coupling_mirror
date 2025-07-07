@@ -29,42 +29,42 @@ program oasis_ping_pong
     integer :: argc
     character(len=128) :: arg
 
+    logical :: only_interpolation
+
     il_nb_time_steps = 100
     delta_t = 1
 
     ! Get model_id, grid_name, and grid_type from command line arguments if provided
     argc = command_argument_count()
-    if (argc >= 1) then
+    if (argc == 4) then
         call get_command_argument(1, arg)
         model_id = trim(arg)
         if (model_id /= "ocean_component" .and. model_id /= "atmos_component") then
             print *, "Error: model_id must be either 'ocean_component' or 'atmos_component'."
-            call MPI_FINALIZE(ierror)
             stop
         end if
-    end if
 
-
-    if (model_id == 'ocean_component') then
-        grid_name = 't12e'
-        grid_type = 'LR'
-    else if (model_id == 'atmos_component') then
-        grid_name = 'icoh'
-        grid_type = 'U'
-    end if
-
-    ! Overwrite defaults high res grids with argv
-    if (argc >= 2) then
         call get_command_argument(2, arg)
         grid_name = trim(arg)
-    end if
 
-    if (argc >= 3) then
         call get_command_argument(3, arg)
         grid_type = trim(arg)
+
+
+        call get_command_argument(4, arg)
+
+        if (trim(arg) == "true") then
+            only_interpolation = .true.
+        else if (trim(arg) == "false") then
+            only_interpolation = .false.
+        else
+            print *, "Error: second argument must be 'true' or 'false'."
+            stop
+        end if
+    else 
+        print *, "Wrong number of arguments: expected 4, got ", argc
+        stop
     end if
-
-
 
 
     call mpi_init(ierror)
@@ -100,7 +100,7 @@ program oasis_ping_pong
     print *, 'ig_paral=', ig_paral(:)
     call oasis_def_partition(il_part_id, ig_paral, ierror)
     deallocate(ig_paral)
-
+    
     ! Grid definition
     allocate(grid_lon(il_extentx, il_extenty), stat=ierror)
     allocate(grid_lat(il_extentx, il_extenty), stat=ierror)
@@ -129,6 +129,14 @@ program oasis_ping_pong
 
     print *, 'end of initialisation phase'
     call oasis_enddef(ierror)
+
+    ! Stop if we want to test just the interpolation
+    if (only_interpolation) then
+        print *, 'Only interpolation test, exiting...'
+        call oasis_terminate(ierror)
+        call mpi_finalize(ierror)
+        stop
+    end if
 
     print *, 'timestep, field min and max value'
     do ib = 1, il_nb_time_steps

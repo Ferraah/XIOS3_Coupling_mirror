@@ -12,7 +12,7 @@ program basic_couple
     integer :: ierr, provided
     integer :: rank, size
     character(len=255) :: model_id
-
+    logical :: only_interpolation
     integer :: local_comm
 
     ! Mpi initialization
@@ -27,7 +27,7 @@ program basic_couple
 
     ! Get model_id from command line argument if provided
     argc = command_argument_count()
-    if (argc >= 1) then
+        if (argc == 2) then
         call get_command_argument(1, arg)
         model_id = trim(arg)
         if (model_id /= "oce" .and. model_id /= "atm") then
@@ -35,6 +35,21 @@ program basic_couple
             call MPI_FINALIZE(ierr)
             stop
         end if
+        call get_command_argument(2, arg)
+        if (trim(arg) == "true") then
+            only_interpolation = .true.
+        else if (trim(arg) == "false") then
+            only_interpolation = .false.
+        else
+            print *, "Error: second argument must be 'true' or 'false'."
+            call MPI_FINALIZE(ierr)
+            stop
+        end if
+    else 
+        ! Abort
+        print *, "Usage: ./executable <oce|atm> <true|false>"
+        call MPI_FINALIZE(ierr)
+        stop
     end if
 
     call run_toymodel()
@@ -63,8 +78,9 @@ contains
         ! Set the data coming from the model in XIOS
         call configure_xios_from_model(local_comm, conf, field_desc)
 
+        
         ! Run the coupling
-        call run_coupling(conf, field_desc)
+        if(.not. only_interpolation) call run_coupling(conf, field_desc)
 
         ! --------------------------------------------
         call xios_context_finalize()
@@ -108,14 +124,6 @@ contains
         call handle_xioserr(ierr, "Error in xios_getvar for areas_filename")
         !print *, "Areas filename: ", TRIM(config%areas_filename)
 
-        ! ! Getting the frequency of the operation
-        ! CALL xios_get_field_attr("field2D_cpl", freq_op=tmp2)
-        ! CALL xios_duration_convert_to_string(tmp2, tmp)
-        ! ! Remove the last two characters from the string to retrieve the pure number "(xx)ts"
-        ! tmp = tmp(1:LEN_TRIM(tmp)-2)
-        ! ! Convert to integer
-        ! READ(tmp, *) config%freq_op_in_ts
-        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         call xios_get_start_date(config%start_date)
     end subroutine load_coupling_conf

@@ -1,0 +1,29 @@
+make: Nothing to be done for 'default'.
+Running interpolation iteration 1
+Running interpolation iteration 2
+Running interpolation iteration 3
+Running interpolation iteration 4
+Running interpolation iteration 5
+Running interpolation iteration 6
+Running interpolation iteration 7
+Running interpolation iteration 8
+Running interpolation iteration 9
+Running interpolation iteration 10
+Running interpolation iteration 11
+Running interpolation iteration 12
+Running interpolation iteration 13
+Running interpolation iteration 14
+Running interpolation iteration 15
+Running interpolation iteration 16
+Running interpolation iteration 17
+Running interpolation iteration 18
+Running interpolation iteration 19
+Running interpolation iteration 20
+|------------------------------------------------------------------------------------------|
+|                 Job Energy and emissions summary                                         |
+|------------------------------------------------------------------------------------------|
+Job Energy (J) :                    6837755                          
+Job Energy (kWh) :                  1.899                            
+Job emissions (gCO₂eq) :               57                               
+Job emissions are computed with the average carbon intensity value during timespan of the job (30.00 gCO₂eq/kWh)
+|------------------------------------------------------------------------------------------|

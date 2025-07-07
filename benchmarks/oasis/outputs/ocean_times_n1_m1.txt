@@ -1,0 +1,132 @@
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            1 processes
+ ----------------------------------------------------------
+ Grid name:
+ t12e                                                                           
+                                                  
+ Grid type:LR
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            1 processes
+ ----------------------------------------------------------
+ Grid name:
+ icoh                                                                           
+                                                  
+ Grid type:U 
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     2016012           1     2016012           0           0           0
+ ig_paral=           1           0     2016012
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        3147    13601334           0           0           0
+ ig_paral=           1           0    13601334
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ timestep, field min and max value
+ timestep, field min and max value
+ TIMING:   1.08901079744101     
+ TIMING:   1.06277378275990     
+ TIMING:   1.02442307397723     
+ TIMING:   1.02555390447378     
+ TIMING:   1.02399091236293     
+ TIMING:   1.02306369505823     
+ TIMING:   1.02167257852852     
+ TIMING:   1.02307819947600     
+ TIMING:   1.02348345890641     
+ TIMING:   1.02211834304035     
+ TIMING:   1.02046927623451     
+ TIMING:   1.02333953604102     
+ TIMING:   1.02205430343747     
+ TIMING:   1.02067457139492     
+ TIMING:   1.02098736912012     
+ TIMING:   1.02389384061098     
+ TIMING:   1.02083620801568     
+ TIMING:   1.01927343197167     
+ TIMING:   1.01860222406685     
+ TIMING:   1.01804229989648     
+ TIMING:   1.02452100627124     
+ TIMING:   1.02360936440527     
+ TIMING:   1.02508596517146     
+ TIMING:   1.02472729980946     
+ TIMING:   1.01992781832814     
+ TIMING:   1.01687711104751     
+ TIMING:   1.02360211126506     
+ TIMING:   1.02873258292675     
+ TIMING:   1.02120801992714     
+ TIMING:   1.02289144136012     
+ TIMING:   1.02434060163796     
+ TIMING:   1.02563469298184     
+ TIMING:   1.02512275613844     
+ TIMING:   1.02041408978403     
+ TIMING:   1.02145217917860     
+ TIMING:   1.02146945148706     
+ TIMING:   1.02739477716386     
+ TIMING:   1.02066164463758     
+ TIMING:   1.02367429994047     
+ TIMING:   1.02042733319104     
+ TIMING:   1.02493873797357     
+ TIMING:   1.02273415401578     
+ TIMING:   1.02159245684743     
+ TIMING:   1.01974285580218     
+ TIMING:   1.02092421241105     
+ TIMING:   1.02191358804703     
+ TIMING:   1.02381905913353     
+ TIMING:   1.02198414131999     
+ TIMING:   1.01896453462541     
+ TIMING:   1.02109149470925     
+ TIMING:   1.02493453212082     
+ TIMING:   1.02215690538287     
+ TIMING:   1.01945370994508     
+ TIMING:   1.01892361417413     
+ TIMING:   1.01864747144282     
+ TIMING:   1.02434082701802     
+ TIMING:   1.02113876864314     
+ TIMING:   1.02827374823391     
+ TIMING:   1.02243319340050     
+ TIMING:   1.02380523085594     
+ TIMING:   1.01955635659397     
+ TIMING:   1.02006840519607     
+ TIMING:   1.02743447199464     
+ TIMING:   1.02368394285440     
+ TIMING:   1.02263709343970     
+ TIMING:   1.01754710823298     
+ TIMING:   1.02469783276320     
+ TIMING:   1.01534746214747     
+ TIMING:   1.01914150826633     
+ TIMING:   1.02444192580879     
+ TIMING:   1.02524960599840     
+ TIMING:   1.02103971689939     
+ TIMING:   1.02110238000751     
+ TIMING:   1.02411391399801     
+ TIMING:   1.02170113846660     
+ TIMING:   1.02194915339351     
+ TIMING:   1.01893744803965     
+ TIMING:   1.02033497765660     
+ TIMING:   1.01960029080510     
+ TIMING:   1.02599632926285     
+ TIMING:   1.01920971274376     
+ TIMING:   1.01979838311672     
+ TIMING:   1.02033603563905     
+ TIMING:   1.02418660931289     
+ TIMING:   1.01755214668810     
+ TIMING:   1.02498455718160     
+ TIMING:   1.02224859781563     
+ TIMING:   1.02298915199935     
+ TIMING:   1.02069769054651     
+ TIMING:   1.02320439182222     
+ TIMING:   1.02431983500719     
+ TIMING:   1.01906225457788     
+ TIMING:   1.02070411853492     
+ TIMING:   1.02567516267300     
+ TIMING:   1.02568933181465     
+ TIMING:   1.02001306228340     
+ TIMING:   1.02085185050964     
+ TIMING:   1.02083366177976     
+ TIMING:   1.02363866567612     
+ end of the program
+ TIMING:   1.02003356069326     
+ end of the program

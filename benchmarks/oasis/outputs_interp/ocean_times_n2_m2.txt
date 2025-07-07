@@ -1,0 +1,1120 @@
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ t12e                                                                           
+                                                  
+ Grid type:LR
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ icoh                                                                           
+                                                  
+ Grid type:U 
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006     1008006           0     1008006
+ ig_paral=           1     1008006     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1574     6802828           0        1573     6798506
+ ig_paral=           1     6798506     6802828
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006           0           0           0
+ ig_paral=           1           0     1008006
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1573     6798506           0           0           0
+ ig_paral=           1           0     6798506
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ YAC mapping time =    233.819654962048     
+ YAC mapping time =    233.820627665147     
+ YAC mapping time =    253.314059894532     
+ YAC mapping time =    253.314195897430     
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ t12e                                                                           
+                                                  
+ Grid type:LR
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ icoh                                                                           
+                                                  
+ Grid type:U 
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1574     6802828           0        1573     6798506
+ ig_paral=           1     6798506     6802828
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1573     6798506           0           0           0
+ ig_paral=           1           0     6798506
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006     1008006           0     1008006
+ ig_paral=           1     1008006     1008006
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006           0           0           0
+ ig_paral=           1           0     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ YAC mapping time =    232.660061569884     
+ YAC mapping time =    232.658750291914     
+ YAC mapping time =    253.506886364892     
+ YAC mapping time =    253.506786776707     
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ t12e                                                                           
+                                                  
+ Grid type:LR
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ icoh                                                                           
+                                                  
+ Grid type:U 
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1573     6798506           0           0           0
+ ig_paral=           1           0     6798506
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1574     6802828           0        1573     6798506
+ ig_paral=           1     6798506     6802828
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006     1008006           0     1008006
+ ig_paral=           1     1008006     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006           0           0           0
+ ig_paral=           1           0     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ YAC mapping time =    232.640122652054     
+ YAC mapping time =    232.640235347673     
+ YAC mapping time =    253.158301798627     
+ YAC mapping time =    253.158863352612     
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ t12e                                                                           
+                                                  
+ Grid type:LR
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ icoh                                                                           
+                                                  
+ Grid type:U 
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1573     6798506           0           0           0
+ ig_paral=           1           0     6798506
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1574     6802828           0        1573     6798506
+ ig_paral=           1     6798506     6802828
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006     1008006           0     1008006
+ ig_paral=           1     1008006     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006           0           0           0
+ ig_paral=           1           0     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ YAC mapping time =    234.106590317562     
+ YAC mapping time =    234.106527561322     
+ YAC mapping time =    253.274746637791     
+ YAC mapping time =    253.274129409343     
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ t12e                                                                           
+                                                  
+ Grid type:LR
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ icoh                                                                           
+                                                  
+ Grid type:U 
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1573     6798506           0           0           0
+ ig_paral=           1           0     6798506
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1574     6802828           0        1573     6798506
+ ig_paral=           1     6798506     6802828
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006           0           0           0
+ ig_paral=           1           0     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006     1008006           0     1008006
+ ig_paral=           1     1008006     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ YAC mapping time =    233.099537113681     
+ YAC mapping time =    233.099646870047     
+ YAC mapping time =    253.629717085510     
+ YAC mapping time =    253.629675136879     
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ t12e                                                                           
+                                                  
+ Grid type:LR
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ icoh                                                                           
+                                                  
+ Grid type:U 
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1573     6798506           0           0           0
+ ig_paral=           1           0     6798506
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1574     6802828           0        1573     6798506
+ ig_paral=           1     6798506     6802828
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006     1008006           0     1008006
+ ig_paral=           1     1008006     1008006
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006           0           0           0
+ ig_paral=           1           0     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ YAC mapping time =    233.705010844395     
+ YAC mapping time =    233.704589206725     
+ YAC mapping time =    253.077863808721     
+ YAC mapping time =    253.077179143205     
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ t12e                                                                           
+                                                  
+ Grid type:LR
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ icoh                                                                           
+                                                  
+ Grid type:U 
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1574     6802828           0        1573     6798506
+ ig_paral=           1     6798506     6802828
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1573     6798506           0           0           0
+ ig_paral=           1           0     6798506
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006     1008006           0     1008006
+ ig_paral=           1     1008006     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006           0           0           0
+ ig_paral=           1           0     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ YAC mapping time =    233.140294160694     
+ YAC mapping time =    233.140598099679     
+ YAC mapping time =    253.535495830700     
+ YAC mapping time =    253.536624982953     
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ t12e                                                                           
+                                                  
+ Grid type:LR
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ icoh                                                                           
+                                                  
+ Grid type:U 
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1573     6798506           0           0           0
+ ig_paral=           1           0     6798506
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1574     6802828           0        1573     6798506
+ ig_paral=           1     6798506     6802828
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006     1008006           0     1008006
+ ig_paral=           1     1008006     1008006
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006           0           0           0
+ ig_paral=           1           0     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ YAC mapping time =    233.818693030626     
+ YAC mapping time =    233.817812275141     
+ YAC mapping time =    253.387724244967     
+ YAC mapping time =    253.387344900519     
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ t12e                                                                           
+                                                  
+ Grid type:LR
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ icoh                                                                           
+                                                  
+ Grid type:U 
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1573     6798506           0           0           0
+ ig_paral=           1           0     6798506
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1574     6802828           0        1573     6798506
+ ig_paral=           1     6798506     6802828
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006     1008006           0     1008006
+ ig_paral=           1     1008006     1008006
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006           0           0           0
+ ig_paral=           1           0     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ YAC mapping time =    234.067045439035     
+ YAC mapping time =    234.067297605798     
+ YAC mapping time =    253.544657444581     
+ YAC mapping time =    253.544042952359     
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ t12e                                                                           
+                                                  
+ Grid type:LR
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ icoh                                                                           
+                                                  
+ Grid type:U 
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1574     6802828           0        1573     6798506
+ ig_paral=           1     6798506     6802828
+        4322        1573     6798506           0           0           0
+ ig_paral=           1           0     6798506
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006     1008006           0     1008006
+ ig_paral=           1     1008006     1008006
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006           0           0           0
+ ig_paral=           1           0     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ YAC mapping time =    232.911380354315     
+ YAC mapping time =    232.911122161895     
+ YAC mapping time =    253.293224433437     
+ YAC mapping time =    253.292579596862     
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ t12e                                                                           
+                                                  
+ Grid type:LR
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ icoh                                                                           
+                                                  
+ Grid type:U 
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1573     6798506           0           0           0
+ ig_paral=           1           0     6798506
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1574     6802828           0        1573     6798506
+ ig_paral=           1     6798506     6802828
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006           0           0           0
+ ig_paral=           1           0     1008006
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+     1008006           1     1008006     1008006           0     1008006
+ ig_paral=           1     1008006     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ YAC mapping time =    234.148005191237     
+ YAC mapping time =    234.147774919868     
+ YAC mapping time =    253.327802781016     
+ YAC mapping time =    253.327550278977     
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ t12e                                                                           
+                                                  
+ Grid type:LR
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ icoh                                                                           
+                                                  
+ Grid type:U 
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1574     6802828           0        1573     6798506
+ ig_paral=           1     6798506     6802828
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1573     6798506           0           0           0
+ ig_paral=           1           0     6798506
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006     1008006           0     1008006
+ ig_paral=           1     1008006     1008006
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006           0           0           0
+ ig_paral=           1           0     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ YAC mapping time =    233.020831752568     
+ YAC mapping time =    233.021412385628     
+ YAC mapping time =    253.185178935528     
+ YAC mapping time =    253.185587631539     
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ t12e                                                                           
+                                                  
+ Grid type:LR
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ icoh                                                                           
+                                                  
+ Grid type:U 
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1573     6798506           0           0           0
+ ig_paral=           1           0     6798506
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1574     6802828           0        1573     6798506
+ ig_paral=           1     6798506     6802828
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006     1008006           0     1008006
+ ig_paral=           1     1008006     1008006
+     1008006           1     1008006           0           0           0
+ ig_paral=           1           0     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ YAC mapping time =    234.200538555160     
+ YAC mapping time =    234.199870521203     
+ YAC mapping time =    253.287827985361     
+ YAC mapping time =    253.287775781006     
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ t12e                                                                           
+                                                  
+ Grid type:LR
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ icoh                                                                           
+                                                  
+ Grid type:U 
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1573     6798506           0           0           0
+ ig_paral=           1           0     6798506
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1574     6802828           0        1573     6798506
+ ig_paral=           1     6798506     6802828
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006     1008006           0     1008006
+ ig_paral=           1     1008006     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006           0           0           0
+ ig_paral=           1           0     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ YAC mapping time =    232.954013574868     
+ YAC mapping time =    232.954397534952     
+ YAC mapping time =    254.482486424968     
+ YAC mapping time =    254.482373597100     
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ t12e                                                                           
+                                                  
+ Grid type:LR
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ icoh                                                                           
+                                                  
+ Grid type:U 
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1573     6798506           0           0           0
+ ig_paral=           1           0     6798506
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1574     6802828           0        1573     6798506
+ ig_paral=           1     6798506     6802828
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006           0           0           0
+ ig_paral=           1           0     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006     1008006           0     1008006
+ ig_paral=           1     1008006     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ YAC mapping time =    234.163349151611     
+ YAC mapping time =    234.163605164737     
+ YAC mapping time =    253.183833910152     
+ YAC mapping time =    253.184522096068     
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ t12e                                                                           
+                                                  
+ Grid type:LR
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ icoh                                                                           
+                                                  
+ Grid type:U 
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1574     6802828           0        1573     6798506
+ ig_paral=           1     6798506     6802828
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1573     6798506           0           0           0
+ ig_paral=           1           0     6798506
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006     1008006           0     1008006
+ ig_paral=           1     1008006     1008006
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006           0           0           0
+ ig_paral=           1           0     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ YAC mapping time =    233.997894756496     
+ YAC mapping time =    233.999025298283     
+ YAC mapping time =    253.256773438305     
+ YAC mapping time =    253.257045287639     
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ t12e                                                                           
+                                                  
+ Grid type:LR
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ icoh                                                                           
+                                                  
+ Grid type:U 
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1573     6798506           0           0           0
+ ig_paral=           1           0     6798506
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1574     6802828           0        1573     6798506
+ ig_paral=           1     6798506     6802828
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006           0           0           0
+ ig_paral=           1           0     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006     1008006           0     1008006
+ ig_paral=           1     1008006     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ YAC mapping time =    232.821825668216     
+ YAC mapping time =    232.821897145361     
+ YAC mapping time =    252.970587700605     
+ YAC mapping time =    252.970303045586     
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ t12e                                                                           
+                                                  
+ Grid type:LR
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ icoh                                                                           
+                                                  
+ Grid type:U 
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1573     6798506           0           0           0
+ ig_paral=           1           0     6798506
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1574     6802828           0        1573     6798506
+ ig_paral=           1     6798506     6802828
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006     1008006           0     1008006
+ ig_paral=           1     1008006     1008006
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006           0           0           0
+ ig_paral=           1           0     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ YAC mapping time =    233.658738449216     
+ YAC mapping time =    233.658340727910     
+ YAC mapping time =    253.559570297599     
+ YAC mapping time =    253.559258718044     
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ t12e                                                                           
+                                                  
+ Grid type:LR
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ icoh                                                                           
+                                                  
+ Grid type:U 
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1573     6798506           0           0           0
+ ig_paral=           1           0     6798506
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1574     6802828           0        1573     6798506
+ ig_paral=           1     6798506     6802828
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006           0           0           0
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006     1008006           0     1008006
+ ig_paral=           1     1008006     1008006
+ ig_paral=           1           0     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ YAC mapping time =    234.098095314577     
+ YAC mapping time =    234.098575394601     
+ YAC mapping time =    253.870310902596     
+ YAC mapping time =    253.870823554695     
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ t12e                                                                           
+                                                  
+ Grid type:LR
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ icoh                                                                           
+                                                  
+ Grid type:U 
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1574     6802828           0        1573     6798506
+ ig_paral=           1     6798506     6802828
+        4322        1573     6798506           0           0           0
+ ig_paral=           1           0     6798506
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006           0           0           0
+ ig_paral=           1           0     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006     1008006           0     1008006
+ ig_paral=           1     1008006     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ YAC mapping time =    233.571265481412     
+ YAC mapping time =    233.571654560044     
+ YAC mapping time =    253.168280370533     
+ YAC mapping time =    253.168339835480     
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...
+ Only interpolation test, exiting...

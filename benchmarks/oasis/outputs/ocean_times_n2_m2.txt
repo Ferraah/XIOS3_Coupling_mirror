@@ -1,0 +1,156 @@
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ t12e                                                                           
+                                                  
+ Grid type:LR
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ Grid name:
+ icoh                                                                           
+                                                  
+ Grid type:U 
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            2 processes
+ ----------------------------------------------------------
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006           0           0           0
+ ig_paral=           1           0     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+     1008006           1     1008006     1008006           0     1008006
+ ig_paral=           1     1008006     1008006
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1573     6798506           0           0           0
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322        1574     6802828           0        1573     6798506
+ ig_paral=           1     6798506     6802828
+ ig_paral=           1           0     6798506
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ timestep, field min and max value
+ timestep, field min and max value
+ timestep, field min and max value
+ timestep, field min and max value
+ TIMING:  0.673290640115738     
+ TIMING:  0.649423845112324     
+ TIMING:  0.625256700441241     
+ TIMING:  0.626170288771391     
+ TIMING:  0.627656666561961     
+ TIMING:  0.623340459540486     
+ TIMING:  0.625843640416861     
+ TIMING:  0.623692959547043     
+ TIMING:  0.622990239411592     
+ TIMING:  0.623564982786775     
+ TIMING:  0.625641088932753     
+ TIMING:  0.623293872922659     
+ TIMING:  0.621642205864191     
+ TIMING:  0.622705865651369     
+ TIMING:  0.622703514993191     
+ TIMING:  0.620550511404872     
+ TIMING:  0.626006312668324     
+ TIMING:  0.621798239648342     
+ TIMING:  0.621760381385684     
+ TIMING:  0.621030757203698     
+ TIMING:  0.623776668682694     
+ TIMING:  0.626161925494671     
+ TIMING:  0.621735516935587     
+ TIMING:  0.625905059278011     
+ TIMING:  0.625541463494301     
+ TIMING:  0.622846063226461     
+ TIMING:  0.625322865322232     
+ TIMING:  0.622165875509381     
+ TIMING:  0.621755825355649     
+ TIMING:  0.622280210256577     
+ TIMING:  0.624051857739687     
+ TIMING:  0.625164970755577     
+ TIMING:  0.624802630394697     
+ TIMING:  0.623325005173683     
+ TIMING:  0.624453039839864     
+ TIMING:  0.624140273779631     
+ TIMING:  0.627303082495928     
+ TIMING:  0.624442420899868     
+ TIMING:  0.622138241305947     
+ TIMING:  0.621028784662485     
+ TIMING:  0.622324803844094     
+ TIMING:  0.624411130324006     
+ TIMING:  0.626638205721974     
+ TIMING:  0.621265886351466     
+ TIMING:  0.623428924009204     
+ TIMING:  0.623612198978662     
+ TIMING:  0.622385926544666     
+ TIMING:  0.620351903140545     
+ TIMING:  0.622245643287897     
+ TIMING:  0.627039534971118     
+ TIMING:  0.625456811860204     
+ TIMING:  0.620936175808311     
+ TIMING:  0.623345386236906     
+ TIMING:  0.623650535941124     
+ TIMING:  0.622619105502963     
+ TIMING:  0.623117508366704     
+ TIMING:  0.626640792936087     
+ TIMING:  0.626276714727283     
+ TIMING:  0.624047534540296     
+ TIMING:  0.622708022594452     
+ TIMING:  0.627196697518229     
+ TIMING:  0.624690197408199     
+ TIMING:  0.623075926676393     
+ TIMING:  0.625893851742148     
+ TIMING:  0.622756140306592     
+ TIMING:  0.621872471645474     
+ TIMING:  0.624161001294851     
+ TIMING:  0.626446152105927     
+ TIMING:  0.622014051303267     
+ TIMING:  0.621548740193248     
+ TIMING:  0.624820189550519     
+ TIMING:  0.624044431373477     
+ TIMING:  0.620980618521571     
+ TIMING:  0.623866166919470     
+ TIMING:  0.621497701853514     
+ TIMING:  0.623170293867588     
+ TIMING:  0.621542671695352     
+ TIMING:  0.623971737921238     
+ TIMING:  0.625215550884604     
+ TIMING:  0.621012045070529     
+ TIMING:  0.626650447025895     
+ TIMING:  0.624684594571590     
+ TIMING:  0.620900521054864     
+ TIMING:  0.624509241431952     
+ TIMING:  0.624891916289926     
+ TIMING:  0.622998878359795     
+ TIMING:  0.621744763106108     
+ TIMING:  0.622933154925704     
+ TIMING:  0.623625610023737     
+ TIMING:  0.622981773689389     
+ TIMING:  0.625650148838758     
+ TIMING:  0.625662188977003     
+ TIMING:  0.624324381351471     
+ TIMING:  0.622925210744143     
+ TIMING:  0.624891670420766     
+ TIMING:  0.625306049361825     
+ TIMING:  0.622583806514740     
+ TIMING:  0.627138918265700     
+ TIMING:  0.624704824760556     
+ end of the program
+ end of the program
+ TIMING:  0.623721949756145     
+ end of the program
+ end of the program

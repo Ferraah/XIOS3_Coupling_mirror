@@ -1,0 +1,204 @@
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            4 processes
+ ----------------------------------------------------------
+ Grid name:
+ t12e                                                                           
+                                                  
+ Grid type:LR
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            4 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           0
+ in my local communicator gathering            4 processes
+ ----------------------------------------------------------
+ Grid name:
+ icoh                                                                           
+                                                  
+ Grid type:U 
+ -----------------------------------------------------------
+ i am atmos process with rank :           1
+ in my local communicator gathering            4 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           2
+ in my local communicator gathering            4 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           3
+ in my local communicator gathering            4 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           2
+ in my local communicator gathering            4 processes
+ ----------------------------------------------------------
+ -----------------------------------------------------------
+ i am atmos process with rank :           3
+ in my local communicator gathering            4 processes
+ ----------------------------------------------------------
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322         786     3397092           0           0           0
+ ig_paral=           1           0     3397092
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322         786     3397092           0        1572     6794184
+ ig_paral=           1     6794184     3397092
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322         789     3410058           0        2358    10191276
+ ig_paral=           1    10191276     3410058
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+        4322         786     3397092           0         786     3397092
+ ig_paral=           1     3397092     3397092
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+      504003           1      504003      504003           0      504003
+ ig_paral=           1      504003      504003
+      504003           1      504003           0           0           0
+ ig_paral=           1           0      504003
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+      504003           1      504003     1008006           0     1008006
+ ig_paral=           1     1008006      504003
+ local partition definition
+ il_extentx, il_extenty, il_size, il_offsetx, il_offsety, il_offset = 
+      504003           1      504003     1512009           0     1512009
+ ig_paral=           1     1512009      504003
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ var_id frecvatm, var_id fsendatm           1           2
+ end of initialisation phase
+ timestep, field min and max value
+ timestep, field min and max value
+ timestep, field min and max value
+ timestep, field min and max value
+ timestep, field min and max value
+ timestep, field min and max value
+ timestep, field min and max value
+ timestep, field min and max value
+ TIMING:  0.394818879663944     
+ TIMING:  0.375409148633480     
+ TIMING:  0.371682653203607     
+ TIMING:  0.367696825414896     
+ TIMING:  0.362825434654951     
+ TIMING:  0.363179601728916     
+ TIMING:  0.366633534431458     
+ TIMING:  0.364093013107777     
+ TIMING:  0.364736674353480     
+ TIMING:  0.363781696185470     
+ TIMING:  0.365042390301824     
+ TIMING:  0.364323081448674     
+ TIMING:  0.365995712578297     
+ TIMING:  0.370619643479586     
+ TIMING:  0.365145256742835     
+ TIMING:  0.362473834306002     
+ TIMING:  0.367072366178036     
+ TIMING:  0.365366514772177     
+ TIMING:  0.364776009693742     
+ TIMING:  0.363092018291354     
+ TIMING:  0.367626782506704     
+ TIMING:  0.365178866311908     
+ TIMING:  0.363566277548671     
+ TIMING:  0.364843904972076     
+ TIMING:  0.367845367640257     
+ TIMING:  0.364502079784870     
+ TIMING:  0.365263015031815     
+ TIMING:  0.363128386437893     
+ TIMING:  0.363685768097639     
+ TIMING:  0.365038901567459     
+ TIMING:  0.365348231047392     
+ TIMING:  0.364756150171161     
+ TIMING:  0.365903774276376     
+ TIMING:  0.364252397790551     
+ TIMING:  0.362692212685943     
+ TIMING:  0.363944200798869     
+ TIMING:  0.362909821793437     
+ TIMING:  0.363998694345355     
+ TIMING:  0.362198371440172     
+ TIMING:  0.368544261902571     
+ TIMING:  0.365922866389155     
+ TIMING:  0.364387122914195     
+ TIMING:  0.364318652078509     
+ TIMING:  0.365172138437629     
+ TIMING:  0.363365480676293     
+ TIMING:  0.364073907956481     
+ TIMING:  0.365773621946573     
+ TIMING:  0.363642703741789     
+ TIMING:  0.366103043779731     
+ TIMING:  0.365020785480738     
+ TIMING:  0.365490060299635     
+ TIMING:  0.368072859942913     
+ TIMING:  0.364918928593397     
+ TIMING:  0.364575011655688     
+ TIMING:  0.365795357152820     
+ TIMING:  0.364566130563617     
+ TIMING:  0.365738464519382     
+ TIMING:  0.363214118406177     
+ TIMING:  0.364031637087464     
+ TIMING:  0.364746760576963     
+ TIMING:  0.363571640104055     
+ TIMING:  0.364606462419033     
+ TIMING:  0.363667627796531     
+ TIMING:  0.364466693252325     
+ TIMING:  0.363813308998942     
+ TIMING:  0.365784935653210     
+ TIMING:  0.366150759160519     
+ TIMING:  0.365382974967360     
+ TIMING:  0.367020541802049     
+ TIMING:  0.366123827174306     
+ TIMING:  0.367397725582123     
+ TIMING:  0.364962482824922     
+ TIMING:  0.362321740016341     
+ TIMING:  0.366434771567583     
+ TIMING:  0.363970285281539     
+ TIMING:  0.364726496860385     
+ TIMING:  0.365474019199610     
+ TIMING:  0.363442258909345     
+ TIMING:  0.362597553059459     
+ TIMING:  0.365261252969503     
+ TIMING:  0.364239666610956     
+ TIMING:  0.362698439508677     
+ TIMING:  0.364455305039883     
+ TIMING:  0.364037793129683     
+ TIMING:  0.365111662074924     
+ TIMING:  0.365240994840860     
+ TIMING:  0.365294840186834     
+ TIMING:  0.362284347414970     
+ TIMING:  0.367214770987630     
+ TIMING:  0.362222805619240     
+ TIMING:  0.362702187150717     
+ TIMING:  0.362098515033722     
+ TIMING:  0.365561630576849     
+ TIMING:  0.363924253731966     
+ TIMING:  0.365708820521832     
+ TIMING:  0.362224753946066     
+ TIMING:  0.365915568545461     
+ TIMING:  0.364708596840501     
+ TIMING:  0.364293674007058     
+ end of the program
+ end of the program
+ end of the program
+ end of the program
+ TIMING:  0.366092650219798     
+ end of the program
+ end of the program
+ end of the program
+ end of the program

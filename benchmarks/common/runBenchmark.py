@@ -12,8 +12,8 @@ if software not in ["xios", "oasis"]:
 
 
 sbatcher = sb.SlurmSbatcher(
-    nm_list=[(n, n) for n in [32]],
-    do_interpolation=True,
+    nm_list=[(n, n) for n in [1, 2, 4, 8, 16, 32, 64, 128, 256, 512]],  
+    do_interpolation=False,
     res="high",
     partition="bench",
     time_limit="01:00:00",

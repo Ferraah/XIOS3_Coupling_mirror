@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=bench_n{{N}}_m{{M}}
-#SBATCH --output=results/out_n{{N}}_m{{M}}.txt
-#SBATCH --error=results/err_n{{N}}_m{{M}}.txt
+#SBATCH --output={{SLURM_OUTPUT}}/out_n{{N}}_m{{M}}.txt
+#SBATCH --error={{SLURM_OUTPUT}}/err_n{{N}}_m{{M}}.txt
 #SBATCH --ntasks={{NTOT}}
 #SBATCH --time={{TIME}}
 #SBATCH --partition={{PARTITION}}
@@ -23,8 +23,6 @@ RUN_DIR="run_{{N}}_{{M}}"
 cp original_data/grids_{{RES}}.nc "$RUN_DIR/grids.nc"
 cp original_data/masks_{{RES}}.nc "$RUN_DIR/masks.nc"
 cp original_data/namcouple_{{RES}} "$RUN_DIR/namcouple"
-#cp oasis_ping_pong "$RUN_DIR/"
-#cp -r outputs "$RUN_DIR/" 2>/dev/null || mkdir "$RUN_DIR/outputs"
 
 cd "$RUN_DIR"
 
@@ -38,4 +36,4 @@ else
 fi
 
 echo "Running the ping-pong test with N={{N}} and M={{M}}"
-mpirun -np {{N}} ../oasis_ping_pong.exe ocean_component {{GRID_NAME_SRC}} {{GRID_TYPE_SRC}} : -np {{M}} ../oasis_ping_pong.exe atmos_component {{GRID_NAME_DST}} {{GRID_TYPE_DST}} > ../outputs/ocean_times_n{{N}}_m{{M}}.txt
+mpirun -np {{N}} ../oasis_ping_pong.exe ocean_component {{GRID_NAME_SRC}} {{GRID_TYPE_SRC}} false : -np {{M}} ../oasis_ping_pong.exe atmos_component {{GRID_NAME_DST}} {{GRID_TYPE_DST}} false > ../outputs/ocean_times_n{{N}}_m{{M}}.txt

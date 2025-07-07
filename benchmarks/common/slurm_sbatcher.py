@@ -63,6 +63,7 @@ class SlurmSbatcher:
         content = content.replace("{{GRID_TYPE_SRC}}", self.GRIDS[0][1])
         content = content.replace("{{GRID_NAME_DST}}", self.GRIDS[1][0])
         content = content.replace("{{GRID_TYPE_DST}}", self.GRIDS[1][1])
+        content = content.replace("{{SLURM_OUTPUT}}", self.RESULTS_DIR_PATH)
 
         # Apply modifications
         with open(job_script, "w") as f:

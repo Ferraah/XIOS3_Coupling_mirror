@@ -1,5 +1,0 @@
-Loading mpi/openmpi/4.1.7_ucx_gcc112
-  ERROR: Conflicting 'mpi' is loaded
-make: Nothing to be done for 'default'.
-Interpolation is enabled, removing remapping files.
-Running the ping-pong test with N=32 and M=32
