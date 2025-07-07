@@ -36,7 +36,7 @@ def parse_ping_pongs(LOGS_FILE_PATH, LINE_PREFIX, trim_outliers=0):
     return avg, median, var, ci, min, max
 
 # Parse interpolation times from an output log file.
-def parse_interpolations(LOGS_FILE_PATH, LINE_PREFIX):
+def parse_interpolations(n, LOGS_FILE_PATH, LINE_PREFIX):
     interp_times = []
     with open(LOGS_FILE_PATH) as f:
         for line in f:
@@ -48,9 +48,58 @@ def parse_interpolations(LOGS_FILE_PATH, LINE_PREFIX):
     if not interp_times:
         return None
 
-    # Average all processes interpolation times, both from src->dst and dst->src
-    avg = pd.Series(interp_times).mean()
-    return avg
+
+    
+    n_iters = len(interp_times) // (2*n)
+
+    # Average every n processes 
+    interp_times = [np.mean(interp_times[i:i + n]) for i in range(0, len(interp_times), n)]
+
+    # Average of time of two interpolations (src->dst and dst->src) in one iteration
+    avg = pd.Series(interp_times).sum() / (n_iters)
+
+    # Sum every two element of interp_times to get the total time for each iteration
+    interp_times = [interp_times[i] + interp_times[i + 1] for i in range(0, len(interp_times), 2)]
+    min_times = pd.Series(interp_times).min()
+    max_times = pd.Series(interp_times).max()
+
+    return avg, min_times, max_times
+
+def collect_interpolations_results(IS_XIOS, 
+                                   NM_LIST, 
+                                   RAW_TIMES_DIR, 
+                                   RESULTS_CSV, 
+                                   INTERPOLATION_LINE_PREFIX=""):
+    records = []
+    for proc in NM_LIST:
+        n = proc[0]
+        m = proc[1]
+
+        # Path to the log file for this process count
+        if IS_XIOS:
+            interp_file_path = os.path.join(RAW_TIMES_DIR, f"interpolations_times_n{n}_m{m}.txt")
+        else:
+            interp_file_path = os.path.join(RAW_TIMES_DIR, f"ocean_times_n{n}_m{m}.txt")
+
+        interp_processes = n  #@TODO: Handle case m != n if necessary
+        avg_interp, min_interp, max_interp = parse_interpolations(interp_processes, interp_file_path, INTERPOLATION_LINE_PREFIX)
+
+
+        # Append parsed data for this process count to the records
+        records.append({
+            "n": n,
+            "m": m,
+            "avg_interp": avg_interp,
+            "min_interp": min_interp,
+            "max_interp": max_interp
+            })
+
+    # Create a DataFrame from the records and save it to a CSV file
+    df = pd.DataFrame(records)
+    os.makedirs(os.path.dirname(RESULTS_CSV), exist_ok=True)
+    df.to_csv(RESULTS_CSV, index=False)
+
+    return df
 
 # Collecrt results from multiple runs of the ping pong benchmark and interpolation tests.
 # @param IS_XIOS: Whether the benchmark is for XIOS (True) or not (False)
@@ -163,8 +212,17 @@ def make_interpolation_plot(df, title, save_path):
         label=r'Perfect strong scaling $1/\log_2(n)$'
     )
 
+    plt.fill_between(
+        df['n'],
+        df['min_interp'],
+        df['max_interp'],
+        color='lightgray',
+        alpha=0.5,
+        label='Range (min-max)'
+    )
+
     # Y-limit
-    plt.ylim(0, 350)
+    # plt.ylim(0, 350)
 
     # Log scale on x-axis (optional, since you mention it's based on powers of 2)
     plt.xscale('log', base=2)
