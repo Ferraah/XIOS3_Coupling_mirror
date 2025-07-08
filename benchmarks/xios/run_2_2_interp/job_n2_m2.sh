@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=bench_n16_m16
-#SBATCH --output=../xios/results_interp/out_n16_m16.txt
-#SBATCH --error=../xios/results_interp/err_n16_m16.txt
+#SBATCH --job-name=bench_n2_m2
+#SBATCH --output=../xios/results_interp/out_n2_m2.txt
+#SBATCH --error=../xios/results_interp/err_n2_m2.txt
 #SBATCH --ntasks=64
 #SBATCH --time=12:00:00
 #SBATCH --partition=prod
@@ -19,19 +19,19 @@ cd /scratch/globc/ferrario/xios_experiments/benchmarks/xios
 make
 
 # Folder already created
-RUN_DIR="run_16_16_interp"
+RUN_DIR="run_2_2_interp"
 cd "$RUN_DIR"
 
 echo "Using iodef with interpolation"
 # Copy the iodef of corresponding resolution and with interpolation
 cp ../original_data/iodef_high_interp.xml iodef.xml
 
-rm -rf ../outputs_interp/interpolations_times_n16_m16.txt
+rm -rf ../outputs_interp/interpolations_times_n2_m2.txt
 
 for i in $(seq 1 10); do
     echo "Running interpolation iteration $i"
-    srun -n 16 --distribution=cyclic:cyclic ../12_ping_pong.exe oce true : -n 16 ../12_ping_pong.exe atm true > ../outputs_interp/ocean_times_n16_m16.txt
+    srun -n 2 --distribution=cyclic:cyclic ../12_ping_pong.exe oce true : -n 2 ../12_ping_pong.exe atm true > ../outputs_interp/ocean_times_n2_m2.txt
 
     # Add the time taken for interpolation from xios log file
-    grep "compute" xios_client_*.out | awk -F " " '{print $8}'  >> ../outputs_interp/interpolations_times_n16_m16.txt
+    grep "compute" xios_client_*.out | awk -F " " '{print $8}'  >> ../outputs_interp/interpolations_times_n2_m2.txt
 done

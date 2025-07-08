@@ -11,11 +11,11 @@ if software not in ["xios", "oasis"]:
 
 
 sbatcher = sb.SlurmSbatcherInterpolations(
-    nm_list=[(n, n) for n in [64]],  # List of (n, m) pairs for the benchmark
-    interpolation_iterations=20,  # Number of iterations for the interpolation benchmark
+    nm_list=[(n, n) for n in [1, 2, 4, 8, 16, 64]],  # List of (n, m) pairs for the benchmark
+    interpolation_iterations=10,  # Number of iterations for the interpolation benchmark
     res="high",
-    partition="bench",
-    time_limit="06:00:00",
+    partition="prod",
+    time_limit="12:00:00",
     software_path=f"../{software}/",
     template_file="job_template_interp.sh",
     results_dir="results_interp",

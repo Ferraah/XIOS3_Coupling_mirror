@@ -30,7 +30,7 @@ rm -rf ../outputs_interp/interpolations_times_n{{N}}_m{{M}}.txt
 
 for i in $(seq 1 {{INTERP_ITERATIONS}}); do
     echo "Running interpolation iteration $i"
-    mpirun -np {{N}} ../12_ping_pong.exe oce true : -np {{M}} ../12_ping_pong.exe atm true > ../outputs_interp/ocean_times_n{{N}}_m{{M}}.txt
+    srun -n {{N}} --distribution=cyclic:cyclic ../12_ping_pong.exe oce true : -n {{M}} ../12_ping_pong.exe atm true > ../outputs_interp/ocean_times_n{{N}}_m{{M}}.txt
 
     # Add the time taken for interpolation from xios log file
     grep "compute" xios_client_*.out | awk -F " " '{print $8}'  >> ../outputs_interp/interpolations_times_n{{N}}_m{{M}}.txt

@@ -25,19 +25,17 @@ program basic_couple
     call MPI_COMM_SIZE(MPI_COMM_WORLD, size, ierr)
     call MPI_COMM_RANK(MPI_COMM_WORLD, rank, ierr)
 
-    if (size /= 3) then
+    if (size /= 2) then
         print *, "This program must be run with 3 processes. Currently, there are ", size, " processes."
         call MPI_FINALIZE(ierr)
         stop
     end if 
     ! -------------------------------
 
-    if(rank==0) then
-        call xios_init_server()
-    else if (rank==1) then
+    if (rank==0) then
         model_id = "atm"
         call run_toymodel()
-    else if (rank==2) then
+    else if (rank==1) then
         model_id = "ocn"
         call run_toymodel()
     end if
@@ -60,7 +58,8 @@ contains
 
         ! --------------------------------------------
 
-        ! Loading the configuration of the toy model
+        ! Loading the configuration of the toy model.
+        ! Here it comes from custom variables in iodef, because is a toy model.
         call load_toymodel_data(config) 
 
         ! Set the data coming from the model in XIOS
@@ -108,13 +107,8 @@ contains
 
         ! Getting the frequency of the operation
         CALL xios_get_field_attr("field2D_oce_to_atm", freq_op=tmp2)
-        CALL xios_duration_convert_to_string(tmp2, tmp)
-        ! Remove the last two characters from the string to retrieve the pure number "(xx)ts"
-        tmp = tmp(1:LEN_TRIM(tmp)-2)
-        ! Convert to integer
-        READ(tmp, *) config%freq_op_in_ts
+        config%freq_op_in_ts = tmp2%timestep
         print *, "Frequency of operation: ", config%freq_op_in_ts
-        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         call xios_get_start_date(config%start_date)
 
@@ -125,6 +119,7 @@ contains
     implicit none
         type(toymodel_config), intent(in) :: config
 
+        ! Model calls to configure XIOS timestep and domain 
         call xios_set_timestep(config%timestep)
         call xios_set_domain_attr("domain", ni_glo=config%ni_glo, nj_glo=config%nj_glo, type=config%field_type)
         call xios_close_context_definition()
@@ -132,25 +127,31 @@ contains
     end subroutine configure_xios_from_model
  
     ! This subroutine calculates the elapsed timesteps between the time origin and the current date
-    ! Used by the sender toymodel
-    subroutine calulate_absolute_curr_timestep(curr_date, timestep, elapsed_timesteps) 
+    ! to showcase 
+    subroutine calulate_absolute_curr_timestep(curr_date, timestep_duration, elapsed_timesteps) 
         implicit none
         type(xios_date), intent(in) :: curr_date
-        type(xios_date) :: tmp_date, start_date 
-        type(xios_duration), intent(in) :: timestep
+        type(xios_duration), intent(in) :: timestep_duration
         integer, intent(out):: elapsed_timesteps
+        type(xios_date) :: tmp_date, start_date 
         integer :: start_date_sec, curr_date_sec, tmp_date_sec, elapsed_duration_sec
         type(xios_duration) :: elapsed_duration
         
         CALL xios_get_time_origin(start_date)
-        ! Some bad code because there is no xios_duration_convert_to_seconds
+
+        ! A little tricky, because we cannot convert curr_date - start_date in timesteps straightaway
+
+        ! Get seconds from the start date to current date
         start_date_sec = xios_date_convert_to_seconds(start_date)
         curr_date_sec = xios_date_convert_to_seconds(curr_date)
-        elapsed_duration_sec = curr_date_sec - start_date_sec
-        tmp_date = start_date + timestep
+        elapsed_duration_sec = curr_date_sec - start_date_sec ! Elapsed time in seconds
+        
+        ! Trick to calculate seconds in a timestep... 
+        tmp_date = start_date + timestep_duration 
         tmp_date_sec = xios_date_convert_to_seconds(tmp_date)
         tmp_date_sec = tmp_date_sec - start_date_sec
         
+        ! Calculate the elapsed timesteps
         elapsed_timesteps = elapsed_duration_sec / tmp_date_sec + 1 !t=0 is ts=1
 
     end subroutine calulate_absolute_curr_timestep
@@ -158,7 +159,7 @@ contains
     subroutine run_coupling(conf)
     implicit none 
         type(toymodel_config) :: conf 
-        double precision, pointer:: field_send(:,:), field_recv(:,:)
+        double precision, allocatable :: field_send(:,:), field_recv(:,:)
         integer :: curr_timestep, absolute_timestep
         allocate(field_send(conf%ni_glo, conf%nj_glo))
         allocate(field_recv(conf%ni_glo, conf%nj_glo))
@@ -175,8 +176,10 @@ contains
             call xios_update_calendar(curr_timestep)
 
             if (model_id=="ocn") then
+                ! For showcasing purposes, we calculate the value of the field based on the absoute date with respect to the time origin
+                ! (So bot just to this run). The absolute timestep refers to the number of timesteps elapsed since the time origin.
                 call calulate_absolute_curr_timestep(conf%curr_date, conf%timestep, absolute_timestep)     
-                
+
                 field_send = absolute_timestep
                 print *, "OCN: sending field @ts=", curr_timestep, " with value ", field_send(1,1)
                 call xios_send_field("field2D_send", field_send)
@@ -197,9 +200,9 @@ contains
             curr_timestep = curr_timestep + 1
         end do
 
-        if(model_id=="ocn") deallocate(field_send)
-        deallocate(field_recv)
-        
+        if(allocated(field_send)) deallocate(field_send)
+        if(allocated(field_recv)) deallocate(field_recv)
+
     end subroutine  run_coupling 
 
 

@@ -1,24 +1,18 @@
-mv iodef.xml iodef_original.xml
 
-cp restart_zerofield.nc restart.nc
-cp restart_zerofield.nc restart_next.nc
+cp original_data/iodef_1.xml iodef.xml
+cp original_data/restart_zerofield.nc restart.nc
+cp original_data/restart_zerofield.nc restart_next.nc
 
-# Set the iodef file 
-mv iodef_1.xml iodef.xml 
 # Runs
-mpirun -np 3 ./1_cpl_time_params.exe
-# Set back to the original iodef file
-mv iodef.xml iodef_1.xml 
+mpirun -np 2 ./1_cpl_time_params.exe
+
 # The next run will use the restart file
 cp restart_next.nc restart.nc
+cp original_data/iodef_2.xml iodef.xml
 
-mv iodef_2.xml iodef.xml 
-mpirun -np 3 ./1_cpl_time_params.exe
-mv iodef.xml iodef_2.xml 
+mpirun -np 2 ./1_cpl_time_params.exe
 cp restart_next.nc restart.nc
 
-mv iodef_original.xml iodef.xml
-
-ncdump restart_next.nc
+ncdump restart.nc
 echo "Completed runDouble.sh"
 

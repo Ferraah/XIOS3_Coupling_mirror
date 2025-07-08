@@ -3,8 +3,8 @@
 #SBATCH --output=../xios/results_interp/out_n64_m64.txt
 #SBATCH --error=../xios/results_interp/err_n64_m64.txt
 #SBATCH --ntasks=128
-#SBATCH --time=06:00:00
-#SBATCH --partition=bench
+#SBATCH --time=12:00:00
+#SBATCH --partition=prod
 #SBATCH --exclusive
 #SBATCH --mem=90G 
 
@@ -28,9 +28,9 @@ cp ../original_data/iodef_high_interp.xml iodef.xml
 
 rm -rf ../outputs_interp/interpolations_times_n64_m64.txt
 
-for i in $(seq 1 20); do
+for i in $(seq 1 10); do
     echo "Running interpolation iteration $i"
-    mpirun -np 64 ../12_ping_pong.exe oce true : -np 64 ../12_ping_pong.exe atm true > ../outputs_interp/ocean_times_n64_m64.txt
+    srun -n 64 --distribution=cyclic:cyclic ../12_ping_pong.exe oce true : -n 64 ../12_ping_pong.exe atm true > ../outputs_interp/ocean_times_n64_m64.txt
 
     # Add the time taken for interpolation from xios log file
     grep "compute" xios_client_*.out | awk -F " " '{print $8}'  >> ../outputs_interp/interpolations_times_n64_m64.txt

@@ -4,37 +4,26 @@ Use:
 ```
 ./runDouble.sh
 ```
-to perfom a first run of a 30 days for the month of April, generate a restart file, and use it for running 31 days of May. The script will run the usual executable while setting `iodef.xml` and duplicating the old restart file. In fact, even if XIOS cannot append directly to the restart file our last field because it has already opened it, we can open another copy of it and append the new value. Then, we can use this new file as the restart file. 
+to perfom a first run of a 30 days for the month of April, generate a restart file, and use it for running 31 days of May. The script will run the usual executable while setting the `iodef.xml` for each run. 
 
-iodef_1.xml:
+In iodef_1.xml:
 |  | Ocean | Atmosphere|
 |----------|----------|----------|
 |Start date|Apr 01, 2025|Apr 01, 2025 
 | Duration  |  30d       | 30d         |
 |Timestep| 6h | 6h
 | Coupling freq          | 4ts          | 4ts         |
-This translates to:
-| freq_op | 4ts| 4ts
-| freq_offset | 0ts | 5ts|
-| (Restart field) freq_op |  | 1y*
-| (Restart field) freq_offset |  | 1ts|
-| (Save field) output_freq | 30d | | 
 
-\* arbitrarily large, so to load one time during the run
-
-iodef_2.xml:
+In iodef_2.xml:
 |  | Ocean | Atmosphere|
 |----------|----------|----------|
 |Start date|May 01, 2025|May 01, 2025 
 | Duration  |  31d       | 31d         |
 |Timestep| 6h | 6h
 | Coupling freq          | 4ts          | 4ts         |
-This translates to:
-| freq_op | 4ts| 4ts
-| freq_offset | 0ts | 5ts|
-| (Restart field) freq_op |  | 1y*
-| (Restart field) freq_offset |  | 1ts|
-| (Save field) output_freq | 31d | | 
+
+
+
 
 ## Comparison
 Through `ncdump` we can see that in the updated restart file, the field has been saved and loaded by the `atm` model at the expected timesteps. 
@@ -42,11 +31,7 @@ Through `ncdump` we can see that in the updated restart file, the field has been
 - The second field, valued `480`, corresponds to the last send done `@ts=120` during the first run, and loaded `@ts=1` during the second run. 
 - The third field, valued `604` corresponds to the last field sent `@ts=124` during the second run.
 
-
-@TODO: The timestep between a run and another one should be the same for a restarting file?\
-@TODO: On restart XIOS will load the field from the last timestep in the restart file, without performing any "checks" on dates or time informations? 
-
-After `61 days` `./runSingle.sh`, our final restart file will contain the original restaring field and the new one.
+After `61 days` with `./runSingle.sh`, our final restart file will contain the original restaring field and the new one after 61 days.
 ```
  field2D_oce_to_atm =
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

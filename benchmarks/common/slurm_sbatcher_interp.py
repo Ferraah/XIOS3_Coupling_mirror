@@ -55,8 +55,13 @@ class SlurmSbatcherInterpolations:
         with open(self.TEMPLATE_PATH) as f:
             template = f.read()
 
+
+        ntask = n + m
+        if ntask >=2 and ntask <= 32:
+            ntask = 64
+
         content = template.replace("{{N}}", str(n)).replace("{{M}}", str(m))
-        content = content.replace("{{NTOT}}", str(n + m)).replace("{{PARTITION}}", self.PARTITION)
+        content = content.replace("{{NTOT}}", str(ntask)).replace("{{PARTITION}}", self.PARTITION)
         content = content.replace("{{TIME}}", self.TIME_LIMIT)
         content = content.replace("{{RES}}", self.RES)
         content = content.replace("{{GRID_NAME_SRC}}", self.GRIDS[0][0])

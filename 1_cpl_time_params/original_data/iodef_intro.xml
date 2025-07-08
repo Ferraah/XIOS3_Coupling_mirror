@@ -4,7 +4,8 @@
 
     <context id="ocn">
 
-        <calendar type="Gregorian" time_origin="2025-01-01" start_date="2025-05-01"/>
+        <!-- Starting on January 1 -->
+        <calendar type="Gregorian" time_origin="2025-01-01" start_date="2025-04-01"/>
 
         <!-- Ocean field grid definition -->
         <grid_definition>
@@ -15,26 +16,24 @@
             </grid>
         </grid_definition>
 
-
         <variable_definition>
-            <variable id="toymodel_timestep_duration">6h</variable>
-            <variable id="toymodel_duration">31d</variable>
+            <variable id="toymodel_timestep_duration">1d</variable>
+            <variable id="toymodel_duration">30d</variable>
             <variable id="toymodel_ni_glo">10</variable>
             <variable id="toymodel_nj_glo">10</variable>
             <variable id="toymodel_type">rectilinear</variable>
         </variable_definition>
 
-
         <!-- Field reference for xios_send_field -->
         <field_definition>
             <!-- It will average on this field -->
-            <field id="field2D_send" grid_ref="grid_2D"  operation="instant" />
+            <field id="field2D_send" grid_ref="grid_2D"  operation="instant" freq_op="1ts" freq_offset="0ts"/>
         </field_definition>
 
         <coupler_out_definition>
             <coupler_out context="atm::atm" >
                 <!-- Define the interface for the outgoing field to be received in atmosphere -->
-                <field id="field2D_oce_to_atm" field_ref="field2D_send" freq_op="4ts" expr="@this_ref"/>
+                <field id="field2D_oce_to_atm" field_ref="field2D_send" freq_op="5ts" expr="@this_ref"/>
                 <!-- Define the interface for the outgoing field loaded from file to be received in atmosphere -->
                 <field id="field2D_restart" field_ref="field2D_read" freq_op="1y" />
             </coupler_out>
@@ -43,14 +42,14 @@
         <!-- Save the outgoing field to file -->
         <file_definition>
 
-            <!-- Save field on file after 31d (The last send, corresponding to the run duration)-->
-            <file id="restart_next" name="restart_next" append="true" output_freq="31d" type="one_file" enabled="true">
-                <field field_ref="field2D_oce_to_atm"  read_access="true" />
+            <!-- Save field on file after 30d (The last send, corresponding to the run duration)-->
+            <file id="restart_next" name="restart_next" output_freq="30d" type="one_file" enabled="true" append="true">
+                <field field_ref="field2D_oce_to_atm" operation="instant"/>
             </file>
 
             <!-- Restart file to READ (No output is done on this file). output_freq referes to the reading freq in this mode -->
-            <file id="restart" name="restart" enabled="true" type="one_file" output_freq="1y" mode="read">
-                <field id="field2D_read" name="field2D_oce_to_atm" grid_ref="grid_2D" operation="instant" read_access="true"  />
+            <file id="restart" name="restart" enabled="true" type="one_file" output_freq="1y" record_offset="-1" mode="read">
+                <field id="field2D_read" name="field2D_oce_to_atm" grid_ref="grid_2D" operation="instant" read_access="true" />
             </file> 
 
         </file_definition>
@@ -60,7 +59,7 @@
 
     <context id="atm">
 
-        <calendar type="Gregorian" time_origin="2025-01-01" start_date="2025-05-01"/>
+        <calendar type="Gregorian" time_origin="2025-01-01" start_date="2025-04-01"/>
 
         <!-- Grid of the incoming ocean field (Same as the one in ocn context) -->
         <grid_definition>
@@ -71,9 +70,10 @@
             </grid>
         </grid_definition>
 
+
         <variable_definition>
-            <variable id="toymodel_timestep_duration">6h</variable>
-            <variable id="toymodel_duration">31d</variable>
+            <variable id="toymodel_timestep_duration">1d</variable>
+            <variable id="toymodel_duration">30d</variable>
             <variable id="toymodel_ni_glo">10</variable>
             <variable id="toymodel_nj_glo">10</variable>
             <variable id="toymodel_type">rectilinear</variable>
@@ -81,13 +81,13 @@
 
 
         <field_definition>
-            <field id="field2D_recv" field_ref="field2D_oce_to_atm" />
+            <field id="field2D_recv" field_ref="field2D_oce_to_atm"    />
         </field_definition>
 
         <!-- Fields coming from ocean -->
         <coupler_in_definition>
             <coupler_in context="ocn::ocn" >
-                <field id="field2D_oce_to_atm" grid_ref="grid_2D" freq_op="4ts" freq_offset="5ts" operation="instant" read_access="true"/>
+                <field id="field2D_oce_to_atm" grid_ref="grid_2D" freq_op="5ts" freq_offset="6ts" read_access="true" operation="instant" />
                 <!-- Restart field for atm is provided by ocean - freq_op big so to execute it only one time, offset to run it @ts=1 instead of @ts=0-->
                 <field id="field2D_restart" grid_ref="grid_2D" freq_op="1y" freq_offset="1ts" operation="instant" read_access="true"/>
             </coupler_in>
