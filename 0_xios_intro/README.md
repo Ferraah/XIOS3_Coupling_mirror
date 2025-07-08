@@ -111,7 +111,7 @@ end if
 
 ## Time schemes attributes in detail
 
-Here we provide some visual example to illustrate the time attributes and how they affect the behaviour of the coupling. 
+Here we provide some visual example to illustrate the time attributes and how they affect the behaviour of the coupling. For a concrete example refer to the example program for integration and sampling.
 
 The sampling frequency and offset refer to freq_op and the freq_offset in the tag of the field referred to the sender model.  
 

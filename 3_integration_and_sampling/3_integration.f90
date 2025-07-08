@@ -25,20 +25,18 @@ program basic_couple
     call MPI_COMM_SIZE(MPI_COMM_WORLD, size, ierr)
     call MPI_COMM_RANK(MPI_COMM_WORLD, rank, ierr)
 
-    if (size /= 3) then
-        print *, "This program must be run with 3 processes. Currently, there are ", size, " processes."
+    if (size /= 2) then
+        print *, "This program must be run with 2 processes. Currently, there are ", size, " processes."
         call MPI_FINALIZE(ierr)
         stop
     end if 
     ! -------------------------------
 
-    if(rank==0) then
-        call xios_init_server()
+    if (rank==0) then
+        model_id = "ocn"
+        call run_toymodel()
     else if (rank==1) then
         model_id = "atm"
-        call run_toymodel()
-    else if (rank==2) then
-        model_id = "ocn"
         call run_toymodel()
     end if
 
@@ -108,11 +106,7 @@ contains
 
         ! Getting the frequency of the operation
         CALL xios_get_field_attr("field2D_oce_to_atm", freq_op=tmp2)
-        CALL xios_duration_convert_to_string(tmp2, tmp)
-        ! Remove the last two characters from the string to retrieve the pure number "(xx)ts"
-        tmp = tmp(1:LEN_TRIM(tmp)-2)
-        ! Convert to integer
-        READ(tmp, *) config%freq_op_in_ts
+        config%freq_op_in_ts = tmp2%timestep
         print *, "Frequency of operation: ", config%freq_op_in_ts
         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -134,7 +128,7 @@ contains
     subroutine run_coupling(conf)
     implicit none 
         type(toymodel_config) :: conf 
-        double precision, pointer:: field_send(:,:), field_recv(:,:)
+        double precision, allocatable:: field_send(:,:), field_recv(:,:)
         integer :: curr_timestep
         allocate(field_send(conf%ni_glo, conf%nj_glo))
         allocate(field_recv(conf%ni_glo, conf%nj_glo))
@@ -161,7 +155,7 @@ contains
                 if(curr_timestep==1) then
                     call xios_recv_field("field2D_restart", field_recv)
                     print *, "  ATM: receiving restart field @ts=", curr_timestep, " with value ", field_recv(1,1)
-                else if (mod(curr_timestep-1, conf%freq_op_in_ts) == 0) then
+                else if (mod(curr_timestep, conf%freq_op_in_ts) == 1) then
                     call xios_recv_field("field2D_recv", field_recv)
                     print *, "  ATM: receiving field @ts=", curr_timestep, " with value ", field_recv(1,1)
                 end if
@@ -172,8 +166,8 @@ contains
             curr_timestep = curr_timestep + 1
         end do
 
-        if(model_id=="ocn") deallocate(field_send)
-        deallocate(field_recv)
+        if(allocated(field_send)) deallocate(field_send)
+        if(allocated(field_recv)) deallocate(field_recv)
         
     end subroutine  run_coupling 
 

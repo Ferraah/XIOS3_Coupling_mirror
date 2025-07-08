@@ -33,7 +33,7 @@
             <coupler_out context="atm::atm" >
                 <!-- Define the interface for the outgoing field to be received in atmosphere -->
                 <!-- sending frequency/operation applied frequency -->
-                <field id="field2D_oce_to_atm" field_ref="field2D_send" freq_op="4ts" expr="@this_ref" />
+                <field id="field2D_oce_to_atm" field_ref="field2D_send" freq_op="4ts" freq_offset="2ts" expr="@this_ref" />
                 <!-- Define the interface for the outgoing field loaded from file to be received in atmosphere -->
                 <field id="field2D_restart" field_ref="field2D_read"/>
             </coupler_out>

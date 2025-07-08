@@ -55,6 +55,7 @@ program basic_couple
     call run_toymodel()
 
     call MPI_FINALIZE(ierr)
+    print *, "End of the program."
 
 contains
 
@@ -80,12 +81,14 @@ contains
 
         
         ! Run the coupling
-        if(.not. only_interpolation) call run_coupling(conf, field_desc)
-
+        if(.not. only_interpolation) then
+            call run_coupling(conf, field_desc)
+        else
+            print *, "Only interpolation run. Exiting."
+        end if 
         ! --------------------------------------------
         call xios_context_finalize()
         call xios_finalize()
-
 
     end subroutine run_toymodel
 

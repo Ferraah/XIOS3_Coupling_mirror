@@ -1528,3 +1528,5 @@ libc-2.28.so       0000147FF374C7E5  __libc_start_main     Unknown  Unknown
 12_ping_pong.exe   000000000041C62E  Unknown               Unknown  Unknown
 srun: error: node165: tasks 32-63: Exited with exit code 1
 srun: error: node164: tasks 0-31: Exited with exit code 1
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** JOB 1624259 ON node162 CANCELLED AT 2025-07-08T13:40:04 ***

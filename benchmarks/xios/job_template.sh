@@ -33,7 +33,7 @@ else
 fi
 
 echo "Running the ping-pong test with N={{N}} and M={{M}}"
-mpirun -np {{N}} ../12_ping_pong.exe oce {{GRID_NAME_SRC}} {{GRID_TYPE_SRC}} : -np {{M}} ../12_ping_pong.exe atm {{GRID_NAME_DST}} {{GRID_TYPE_DST}} > ../outputs/ocean_times_n{{N}}_m{{M}}.txt
+mpirun -np {{N}} ../12_ping_pong.exe oce false : -np {{M}} ../12_ping_pong.exe atm false > ../outputs/ocean_times_n{{N}}_m{{M}}.txt
 
 
 # If interpolation is enabled, extract timing

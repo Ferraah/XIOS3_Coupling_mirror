@@ -1,25 +1,49 @@
 # Monodirectional coupling of a single field with restart file and integration
 
 This example showcases an coupling scheme that includes a time integration on sampled elements over the coupling period.  
-The simulation is done over 5 days with exchanges every day (1d = 4ts) of a field that is the result of an operation applied to the sampled element over a day. Sampled elements refer to the elements that we choose between the one sent by the model for doing an operation with a certain frequency defined in `field2D_send` tag.
+The simulation is done over 5 days with exchanges every day (1d = 4ts) of a field that is the result of an operation applied to the sampled elements over a day. Sampled elements refer to the elements that we choose between the one sent by the model for doing an operation with a certain frequency defined in `field2D_send` tag.
 
-|  | Ocean | Atmosphere|
-|----------|----------|----------|
-|Start date|Jan 01, 2025|Jan 01, 2025 
-| Duration  |  5d       | 5d         |
-|Timestep| 6h | 6h
-| Send/recv frequency          | 4ts          | 4ts         |
-This translates to:
-| field2D_send.freq_op (sampling) | 2ts | |
-| field2D_send.freq_offset (sampling) | 1ts | |
-| field2D_oce_to_atm.freq_op | 4ts| 4ts
-| field2D_oce_to_atm.freq_offset |  | 5ts|
-| field2D_restart.freq_op | 1y *| 1y*
+|  | Ocean | Atmosphere |
+|----------|----------|-------------|
+| Start date | Jan 01, 2025 | Jan 01, 2025 |
+| Duration   | 5d          | 5d          |
+| Timestep   | 6h          | 6h           |
+| Coupling frequency | 2ts  | 2ts          |
+
+This translates into the following time parameters for the coupler in and out (no sampling):
+
+### Non-restarting field attributes
+
+| Ocean field attribute      | Value      |
+|---------------------------|------------|
+| Sampling freq_op          | 2ts |
+| Sampling freq_offset      | 1ts          |
+| Coupler_out freq_op       | 4ts           |
+
+| Atmosphere field attribute | Value      |
+|---------------------------|------------|
+| Coupler_in freq_op        | 4ts        |
+| Coupler_in freq_offset    | 5ts        |
+
+### Restarting field attributes
+
+| Ocean field attribute      | Value      |
+|---------------------------|------------|
+| file read output_freq     | (arbitrarily large, so only one output during the run) |
+| freq_offset               | 0ts (default in read mode from file) |
+| Coupler_out freq_op       | 1y (arbitrarily large, so only one send during the run)   |
+
+| Atmosphere field attribute | Value      |
+|---------------------------|------------|
+| Coupler_in freq_op        | 1y         |
+| Coupler_in freq_offset    | 1ts (to make it available at @ts=1 instead of @ts=0) |
 
 
-\* arbitrarily large, so to load one time during the run
 
-![Visualization](./3_integration.png)
+![Visualization](./3_integration_and_sampling.png)
+### Note on the plot
+Even if the "integration period" isn't exactly aligned to the OASIS one (covering @ts=1,2,3,4), the resulting value sent and received is the coherent with our needs. The operation, indeed, is applied over the those elements in the buffer at the time the operation is applied, which is at @ts=5, and is received at @ts=5 in the atmosphere. The value is coherent with the average of the values sent by the ocean at @ts=2,4, which is 3.0. 
+
 ## Algorithm explaination
 
 With this particular configuration, we set as before a field reference for `xios_send_field` named `field2D_send`. Here we are setting three attributes with the following purposes:
@@ -33,7 +57,6 @@ A so called time filter is triggered when the new flux `field2D_oce_to_atm`, tha
 - `field2D_oce_to_atm`.`freq_op`: It is the frequency at which the operation is applied and at which the result is made available. In the copuler_out, it means that the value is calculated and made available for the coupler in in the receiving context.
 - `field2D_oce_to_atm`.`freq_offset`: As discussed before, it refers to offsetting the first timestep at which the operation is applied.
 
-We should set this freq_op and freq_offset parameters as "put" operations described in `0_xios_intro`.   
 ```xml 
 <field_definition>
     <!-- sampling frequency, sampling offset and operation to perform here-->
@@ -61,7 +84,7 @@ As we see in the file definitions:
     <field field_ref="field2D_oce_to_atm" operation="instant" />
 </file>
 ```
-We refer to `field2D_oce_to_atm` to save the last field. `output_freq` behaves like the `freq_offset` attribute in the `coupler_out` by performing the instant operation after 5 days on our already integrated field  and save it to file. 
+We refer to `field2D_oce_to_atm` to save the last field. `output_freq` behaves like the `freq_offset` attribute in the `coupler_out` by performing the instant operation after 5 days on our already integrated field and saving it to file. No need to set `expr` here. Also `operation="instant"` is set (Otherwise it would perform an average over the 5 days following XIOS time mechanics).  
 
 
 # Output
@@ -97,3 +120,4 @@ Server Context destructor
 Server Context destructor
 Server Context destructor
 ```
+The output file will contain "19".

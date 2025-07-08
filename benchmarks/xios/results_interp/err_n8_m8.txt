@@ -1,0 +1,5 @@
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 1624257.0+1 ON node066 CANCELLED AT 2025-07-08T13:40:04 ***
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 1624257.0+0 ON node065 CANCELLED AT 2025-07-08T13:40:04 ***
+slurmstepd: error: *** JOB 1624257 ON node065 CANCELLED AT 2025-07-08T13:40:04 ***

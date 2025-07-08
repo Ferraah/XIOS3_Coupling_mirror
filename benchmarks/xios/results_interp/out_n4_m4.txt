@@ -1,3 +1,11 @@
 make: Nothing to be done for 'all'.
 Using iodef with interpolation
 Running interpolation iteration 1
+|------------------------------------------------------------------------------------------|
+|                 Job Energy and emissions summary                                         |
+|------------------------------------------------------------------------------------------|
+Job Energy (J) :                    3422685                          
+Job Energy (kWh) :                  0.951                            
+Job emissions (gCO₂eq) :               0                                
+Job emissions are computed with the average carbon intensity value during timespan of the job (0.00 gCO₂eq/kWh)
+|------------------------------------------------------------------------------------------|
