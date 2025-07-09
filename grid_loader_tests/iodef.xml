@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<simulation>
+ <context id="grid_loader_tests">
+   <calendar type="Gregorian" time_origin="2025-01-01" start_date="2025-01-01" />
+
+   <grid_definition>
+        <grid id="grid_orig">
+            <domain id="domain_orig">
+            </domain>
+        </grid>
+
+        <grid id="grid_interp">
+            <domain id="domain_interp">
+                <interpolate_domain order="1" renormalize="false" use_area="false" weight_filename="points_files/oce_atm_low.nc" mode="compute" write_weight="true"/>
+            </domain>
+        </grid>
+
+   </grid_definition>
+
+    <variable_definition>
+      <variable id="grids_filename">/scratch/globc/valcke/oasis3-mct_other/compare_interpolations/grids_compare/grids.nc_orig</variable>
+      <!-- <variable id="masks_filename">/scratch/globc/valcke/oasis3-mct_other/compare_interpolations/grids_compare/XIOS_masks/masks_torc_xios.nc</variable> -->
+      <!-- <variable id="masks_filename">/scratch/globc/valcke/oasis3-mct_other/compare_interpolations/grids_compare/XIOS_masks/masks_t12e_xios.nc</variable> -->
+      <!-- <variable id="masks_filename">/scratch/globc/valcke/oasis3-mct_other/compare_interpolations/grids_compare/SCRIP_masks/masks_t12e_nogticoh_scrip.nc</variable> -->
+      <variable id="domain_orig">torc</variable>
+      <variable id="domain_interp">lmdz</variable>
+    </variable_definition>
+
+   <field_definition>
+     <field id="field_send" grid_ref="grid_orig"  />
+   </field_definition>
+
+   <file_definition>
+        <file  name="saved_file" output_freq="1ts" type="one_file">
+            <field name="orig" field_ref="field_send" grid_ref="grid_orig" operation="instant"/>
+            <field name="interp" field_ref="field_send" grid_ref="grid_interp" operation="instant"/>
+        </file>
+   </file_definition>
+
+  </context>
+
+  <context id="xios">
+     <variable_definition>
+        <variable_group id="parameters" >
+          <variable id="print_file" type="bool">true</variable>
+        </variable_group>
+     </variable_definition>
+  </context>
+
+</simulation>

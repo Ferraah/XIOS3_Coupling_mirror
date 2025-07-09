@@ -32,6 +32,8 @@ program basic_couple
     end if 
     ! -------------------------------
 
+    ! Some problems if not running server with multiple contexts...
+    ! Can be removed with the corrected XIOS version
     if(rank==0) then
         call xios_init_server()
     else if (rank==1) then

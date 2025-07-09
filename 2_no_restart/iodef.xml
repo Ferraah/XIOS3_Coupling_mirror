@@ -16,7 +16,7 @@
 
         <variable_definition>
             <variable id="toymodel_timestep_duration">1d</variable>
-            <variable id="toymodel_duration">40d</variable>
+            <variable id="toymodel_duration">28d</variable>
             <variable id="toymodel_ni_glo">10</variable>
             <variable id="toymodel_nj_glo">10</variable>
             <variable id="toymodel_type">rectilinear</variable>
@@ -58,7 +58,7 @@
 
         <variable_definition>
             <variable id="toymodel_timestep_duration">1d</variable>
-            <variable id="toymodel_duration">40d</variable>
+            <variable id="toymodel_duration">28d</variable>
             <variable id="toymodel_ni_glo">10</variable>
             <variable id="toymodel_nj_glo">10</variable>
             <variable id="toymodel_type">rectilinear</variable>

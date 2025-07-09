@@ -1,24 +1,8 @@
 # Monodirectional exchange with interpolation 
 The following example shows how we can enable interpolation on XIOS, also in the contex of coupling.
-The coupling scheme adopted is the same, temporally speaking. 
-
-|  | Ocean | Atmosphere|
-|----------|----------|----------|
-|Start date|Apr 01, 2025|Apr 01, 2025 
-| Duration  |  30d       | 30d         |
-|Timestep| 1d | 1d
-| Coupling freq          | 5ts          | 5ts         |
-This translates to:
-| freq_op | 5ts| 5ts
-| freq_offset | 0ts | 6ts|
-| (Restart field) freq_op |  | 1y*
-| (Restart field) freq_offset |  | 1ts|
-| (Save field) output_freq | 30d | | 
+The coupling scheme adopted is the same as usual, temporally speaking. 
 
 ![plot](8_interpolate.png)
-@TODO: change ocn atm labels
-
-\* arbitrarily large, so to load one time during the run
 
 ## Interpolation 
 In XIOS, only **conservative remappings** of order 1 & 2 are currently supported. 
@@ -37,8 +21,8 @@ In XIOS, we would trigger a spatial interpolation when trying to access a field 
         <domain id="domain_interp" ...attributes of target domain... >
             <interpolate_domain 
                 order="1" 
-                renormalize="true" 
-                use_area="true" 
+                renormalize="false" 
+                use_area="false" 
                 weight_filename="points_files/nogt_bggd.nc"  
                 mode="read_or_compute" 
                 write_weight="true"/>
@@ -67,9 +51,9 @@ We additionally added a default_value to handle the missing spots caused by the 
 
 # About the toymodels
 The toymodels used in this example are more complex because we have to handle the loading of grids and the initializations of the field to send. Particularly:
-- `8_inteprolate.f90` contains the usual routines to couple the models. Additionally, we call `init_domain` from `grid_utils.f90` to load the source and target grid from file and then set them in xios at runtime. Then we initialize the fields with some functions defined in`field_initializer.f90`, for example `init_field2d_gulfstream`
+- `8_interpolate.f90` contains the usual routines to couple the models. Additionally, we call `init_domain` from `../common/grid_utils.f90` to load the source and target grid from file and then set them in xios at runtime. Then we initialize the fields with some functions defined in`field_initializer.f90`, for example `init_field2d_gulfstream`
 
-- `grid_utils.f90` contains the routines to read grids, masks and area data from nc files, and then calculate the local partitions dimensions to communicate to xios during the context definition.
+- `../common/grid_utils.f90` contains the routines to read grids, masks and area data from nc files, and then calculate the local partitions dimensions to communicate to xios during the context definition (to emulate the behaviour of a real model).
 
 - `field_initializer.f90` contains some functions to define the field with interesting paterns. 
 

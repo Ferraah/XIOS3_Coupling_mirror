@@ -187,35 +187,41 @@ contains
             
             if (model_id=="ocn") then
                 
-                print *, "OCN: sending field @interval_start_time", time, " with value ", field_send(1,1)
+                print *, "OCN: sending field1 @interval_start_time", time, " with value ", field_send(1,1)
+                print *, "OCN: sending field2 @interval_start_time", time, " with value ", field_send(1,1)
                 call xios_send_field("field2D_send1", field_send)
                 call xios_send_field("field2D_send2", field_send)
 
                 if(curr_timestep==1) then
                     call xios_recv_field("field2D_restart_for_ocn1", field_recv)
                     call xios_recv_field("field2D_restart_for_ocn2", field_recv)
-                    print *, "  OCN: receiving restart field @interval_start_time", time, " with value ", field_recv(1,1)
+                    print *, "  OCN: receiving restart field1 @interval_start_time", time, " with value ", field_recv(1,1)
+                    print *, "  OCN: receiving restart field2 @interval_start_time", time, " with value ", field_recv(1,1)
                 else if (mod(curr_timestep-1, conf%recv_freq_ts) == 0) then
                     call xios_recv_field("field2D_recv1", field_recv)
                     call xios_recv_field("field2D_recv2", field_recv)
-                    print *, "  OCN: receiving field @interval_start_time", time , " with value ", field_recv(1,1)
+                    print *, "  OCN: receiving field1 @interval_start_time", time , " with value ", field_recv(1,1)
+                    print *, "  OCN: receiving field2 @interval_start_time", time , " with value ", field_recv(1,1)
                 end if
 
 
             else if (model_id=="atm") then
 
-                print *, "ATM: sending field @interval_start_time", time, " with value ", field_send(1,1)
+                print *, "ATM: sending field1 @interval_start_time", time, " with value ", field_send(1,1)
+                print *, "ATM: sending field2 @interval_start_time", time, " with value ", field_send(1,1)
                 call xios_send_field("field2D_send1", field_send)
                 call xios_send_field("field2D_send2", field_send)
 
                 if(curr_timestep==1) then
                     call xios_recv_field("field2D_restart_for_atm1", field_recv)
                     call xios_recv_field("field2D_restart_for_atm2", field_recv)
-                    print *, "  ATM: receiving restart field @interval_start_time", time, " with value ", field_recv(1,1)
+                    print *, "  ATM: receiving restart field1 @interval_start_time", time, " with value ", field_recv(1,1)
+                    print *, "  ATM: receiving restart field2 @interval_start_time", time, " with value ", field_recv(1,1)
                 else if (mod(curr_timestep-1, conf%recv_freq_ts) == 0) then
                     call xios_recv_field("field2D_recv1", field_recv)
                     call xios_recv_field("field2D_recv2", field_recv)
-                    print *, "  ATM: receiving field @interval_start_time", time , " with value ", field_recv(1,1)
+                    print *, "  ATM: receiving field1 @interval_start_time", time , " with value ", field_recv(1,1)
+                    print *, "  ATM: receiving field2 @interval_start_time", time , " with value ", field_recv(1,1)
                 end if
 
             end if

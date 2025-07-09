@@ -158,6 +158,8 @@ contains
         config%jbegin = begin_points(rank, 2)
         ! -------------------------------------------------------------------------------
 
+        call xios_set_domain_attr("domain", ni_glo=config%ni_glo, nj_glo=config%nj_glo, type=config%field_type, &
+            ni=config%ni, nj=config%nj, ibegin=config%ibegin, jbegin=config%jbegin)
     end subroutine create_toymodel_distribution
 
     subroutine configure_xios_from_model(config)

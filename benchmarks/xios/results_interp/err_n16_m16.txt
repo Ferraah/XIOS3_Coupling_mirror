@@ -1,5 +1,5 @@
-slurmstepd: error: *** STEP 1624258.0+1 ON node068 CANCELLED AT 2025-07-08T13:40:04 ***
 srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
-slurmstepd: error: *** STEP 1624258.0+0 ON node067 CANCELLED AT 2025-07-08T13:40:04 ***
+slurmstepd: error: *** JOB 1624604 ON node145 CANCELLED AT 2025-07-09T02:25:56 DUE TO TIME LIMIT ***
 srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
-slurmstepd: error: *** JOB 1624258 ON node067 CANCELLED AT 2025-07-08T13:40:04 ***
+slurmstepd: error: *** STEP 1624604.0+0 ON node145 CANCELLED AT 2025-07-09T02:25:56 DUE TO TIME LIMIT ***
+slurmstepd: error: *** STEP 1624604.0+1 ON node146 CANCELLED AT 2025-07-09T02:25:56 DUE TO TIME LIMIT ***

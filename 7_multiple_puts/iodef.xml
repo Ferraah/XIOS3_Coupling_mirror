@@ -25,7 +25,7 @@
         </variable_definition>
 
         <field_definition>
-            <field id="field2D_send" grid_ref="grid_2D" operation="instant" build_workflow_graph="true"/>
+            <field id="field2D_send" grid_ref="grid_2D" operation="instant" />
         </field_definition>
 
         <coupler_out_definition>

@@ -12,7 +12,7 @@ if software not in ["xios", "oasis"]:
 
 sbatcher = sb.SlurmSbatcherInterpolations(
     # nm_list=[(n, n) for n in [1, 2, 4, 8, 16, 64]],  # List of (n, m) pairs for the benchmark
-    nm_list=[(n, n) for n in [64]],  # List of (n, m) pairs for the benchmark
+    nm_list=[(n, n) for n in [16]],  # List of (n, m) pairs for the benchmark
     interpolation_iterations=10,  # Number of iterations for the interpolation benchmark
     res="high",
     partition="prod",

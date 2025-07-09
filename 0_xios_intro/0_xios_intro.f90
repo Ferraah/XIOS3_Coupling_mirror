@@ -84,12 +84,12 @@ program intro
     call xios_update_calendar(curr_ts) ! We set the current time step in the xios calendar 
 
     call xios_send_field("field_2d_send", field_2d_send) ! We send the field to the server every time step
-    print *, "Field sent to server at time step ", curr_ts
+    print *, "Send to XIOS at time step ", curr_ts
 
     ! Receive the field from the server every read_freq_ts timestep
     if (mod(curr_ts, read_freq_ts) == 1) then
       call xios_recv_field("field_2d_recv", field_2d_recv) ! We send the field to the server
-      print *, "Field recv to server at time step ", curr_ts, field_2d_recv(1,1)
+      print *, "Recv from XIOS (from file) at time step ", curr_ts, field_2d_recv(1,1)
     end if
 
   enddo

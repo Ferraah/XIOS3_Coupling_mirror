@@ -7,12 +7,47 @@ We now try to enable the exchange of a field from one model to multiple ones rec
 |Start date|Jan 01, 2025|Jan 01, 2025 
 | Duration  |  5d       | 5d         |
 |Timestep| 6h | 6h
-| Send/recv frequency          | 4ts          | 4ts         |
-This translates to:
-| freq_op | 4ts| 4ts
-| freq_offset | 0ts | 5ts|
-| (Restart field) freq_op | 1y *| 1y*
-| (Restart field) freq_offset | 0ts | 1ts|
+| Coupling freq          | 4ts          | 4ts         |
+
+
+In iodef:
+## Non restarting field attributes
+
+| Ocean field attribute | Value |
+|----------|----------|
+| Sampling freq_op | 1ts (default)| 
+| Sampling freq_offset | 0ts| 
+| Coupler_out  freq_op | 4ts |
+
+| Atmosphere field attribute | Value |
+|----------|----------|
+| Coupler_in  freq_op | 4ts |
+| Coupler_in  freq_offset | 5ts |
+
+| Ice field attribute | Value |
+|----------|----------|
+| Coupler_in  freq_op | 4ts |
+| Coupler_in  freq_offset | 5ts |
+
+
+## Restarting field attributes
+
+| Ocean field attribute | Value |
+|----------|----------|
+| file output_freq | 1y (arbitrarily large, so to load one time during the run)|
+| freq_offset | 0ts (default in read mode from file)|
+| Coupler_out freq_op | 1y (arbitrarily large, so to send one time during the run)|
+
+| Atmosphere field attribute | Value |
+|----------|----------|
+| Coupler_in freq_op | 1y |
+| Coupler_in freq_offset | 1ts (to make it it available at @ts=1 instead of @ts=0)|
+
+| Ice field attribute | Value |
+|----------|----------|
+| Coupler_in freq_op | 1y |
+| Coupler_in freq_offset | 1ts (to make it it available at @ts=1 instead of @ts=0)|
+
 
 \* arbitrarily large, so to load one time during the run
 

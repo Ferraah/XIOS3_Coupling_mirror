@@ -1,8 +1,8 @@
 program basic_couple
     use xios
     use netcdf
-    use grids_utils
     use field_initializer    
+    use grids_utils
 
     implicit none
 
@@ -21,12 +21,6 @@ program basic_couple
     call MPI_COMM_SIZE(MPI_COMM_WORLD, size, ierr)
     call MPI_COMM_RANK(MPI_COMM_WORLD, rank, ierr)
 
-    ! if (size < 3) then
-    !     print *, "This program must be run with at least 3 processes. Currently, there are ", size, " processes."
-    !     call MPI_FINALIZE(ierr)
-    !     stop
-    ! end if 
-    ! -------------------------------
 
     if (rank==0) then
         model_id = "model_source"
@@ -34,8 +28,6 @@ program basic_couple
     else if (rank==1) then
         model_id = "model_destination"
         call run_toymodel()
-    else if (rank==2) then  
-        call xios_init_server()
     end if
 
     call MPI_FINALIZE(ierr)
@@ -47,7 +39,7 @@ contains
         integer :: local_comm
         type(xios_context) :: ctx
         type(coupling_config) :: conf
-        type(field_description) :: src_fd, dst_fd
+        type(field_description) :: fd
         integer :: size2, ierr2
 
         ! Standard XIOS initialization
@@ -61,10 +53,10 @@ contains
         call load_coupling_conf(conf) 
 
         ! Set the data coming from the model in XIOS
-        call configure_xios_from_model(local_comm, conf, src_fd, dst_fd)
+        call configure_xios_from_model(local_comm, conf, fd)
 
         ! Run the coupling
-        call run_coupling(conf, src_fd, dst_fd)
+        call run_coupling(conf, fd)
 
         ! --------------------------------------------
         call xios_context_finalize()
@@ -95,13 +87,9 @@ contains
         call handle_xioserr(ierr, "Error in xios_getvar for grids_filename")
         print *, "Grids filename: ", TRIM(config%grids_filename)
 
-        ierr = xios_getvar("toymodel_src_domain_name", config%src_domain)
+        ierr = xios_getvar("toymodel_domain_name", config%domain)
         call handle_xioserr(ierr, "Error in xios_getvar for domain_name")
-        print *, "Domain name: ", TRIM(config%src_domain)
-
-        ierr = xios_getvar("toymodel_dst_domain_name", config%dst_domain)
-        call handle_xioserr(ierr, "Error in xios_getvar for domain_name")
-        print *, "Domain name: ", TRIM(config%dst_domain)
+        print *, "Domain name: ", TRIM(config%domain)
 
         ierr = xios_getvar("toymodel_masks_filename", config%masks_filename)
         call handle_xioserr(ierr, "Error in xios_getvar for masks_filename")
@@ -123,35 +111,36 @@ contains
         call xios_get_start_date(config%start_date)
     end subroutine load_coupling_conf
 
-    subroutine configure_xios_from_model(local_comm, config, src_fd, dst_fd)
-    implicit none
+    subroutine configure_xios_from_model(local_comm, config, field_desc)
+        implicit none
         integer, intent(in) :: local_comm
         type(coupling_config), intent(in) :: config
-        type(field_description), intent(out) :: src_fd
-        type(field_description), intent(out) :: dst_fd
+        type(field_description), intent(out) :: field_desc
+
         call xios_set_timestep(config%timestep)
 
         if (model_id=="model_source") then
-            call init_domain(local_comm, "domain_model_src", config, config%src_domain, src_fd)
+            call init_domain(local_comm, "domain_model_src", config, config%domain, field_desc)
         else if ( model_id=="model_destination")then
-            call init_domain(local_comm, "domain_interp", config, config%dst_domain, dst_fd)
+            call init_domain(local_comm, "domain_interp", config, config%domain, field_desc)
         end if
         
         call xios_close_context_definition()
 
     end subroutine configure_xios_from_model
 
-    subroutine run_coupling(config, src_fd, dst_fd)
-    implicit none 
+    subroutine run_coupling(config, fd)
+        implicit none 
         type(coupling_config), intent(inout):: config 
-        type(field_description), intent(in) :: src_fd, dst_fd 
+        type(field_description), intent(in) ::  fd
         double precision, allocatable:: field_send_original(:,:), field_send(:,:), field_recv(:,:)
         integer :: curr_timestep
 
-        if(model_id=="model_source") allocate(field_send(src_fd%ni, src_fd%nj))
-        if(model_id=="model_destination") allocate(field_recv(dst_fd%ni_glo, dst_fd%nj_glo))
-
-        if(model_id == "model_source") call init_field2d_gulfstream(src_fd%ni_glo, src_fd%nj_glo, src_fd%lon, src_fd%lat, src_fd%mask, field_send_original)
+        if(model_id=="model_source") allocate(field_send(fd%ni, fd%nj))
+        if(model_id=="model_destination") allocate(field_recv(fd%ni, fd%nj))
+        
+        ! Initialize the field to a gulfstream-like field on a map
+        if(model_id == "model_source") call init_field2d_gulfstream(fd%ni_glo, fd%nj_glo, fd%lon, fd%lat, fd%mask, field_send_original)
 
         config%end_date = config%start_date + config%duration
         config%curr_date = config%start_date
@@ -164,25 +153,31 @@ contains
 
             call xios_update_calendar(curr_timestep)
 
+
             if (model_id=="model_source") then
+                
                 field_send = curr_timestep * field_send_original
+
                 call xios_send_field("field2D_send", field_send)
-                print *, "SRC: sending field @ts=", curr_timestep, " with value ", field_send(1,1)
+                print *, "SRC: sending Gulfstream field @ts=", curr_timestep
+
             else if (model_id=="model_destination") then
-                if (mod(curr_timestep-1, config%freq_op_in_ts) == 0) then
-                    if(curr_timestep == 1) then
-                        call xios_recv_field("field2D_recv_restart", field_recv)
-                    else
-                        call xios_recv_field("field2D_recv", field_recv)
-                    end if
-                    print *, "  DST: receiving field @ts=", curr_timestep, " with value ", field_recv(1,1)
+
+                if(curr_timestep == 1) then
+                    call xios_recv_field("field2D_recv_restart", field_recv)
+                else if (mod(curr_timestep, config%freq_op_in_ts) == 1) then
+                    call xios_recv_field("field2D_recv", field_recv)
+                    print *, "  DST: receiving interpolated field @ts=", curr_timestep
                 end if
+
             end if
 
             config%curr_date = config%curr_date + config%timestep
             curr_timestep = curr_timestep + 1
         end do
 
-        
+        if (allocated(field_send_original)) deallocate(field_send_original)
+        if (allocated(field_send)) deallocate(field_send)
+        if (allocated(field_recv)) deallocate(field_recv)
     end subroutine  run_coupling 
 end program

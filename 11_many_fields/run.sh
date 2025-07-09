@@ -1,2 +1,2 @@
 make -j
-mpirun -np 2 ./10_double_exchange.exe
+mpirun -np 2 ./11_many_fields.exe

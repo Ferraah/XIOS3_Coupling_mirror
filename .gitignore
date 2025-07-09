@@ -2,9 +2,10 @@
 *.out
 *.err
 *.o
-8_interpolate/point_files
 *.mod
 *.json
+8_interpolate/point_files
+grid_loader_tests/**/*.nc
 interpolation_sandbox/*.nc
 benchmarks/**/*.nc
 grid_loader/**/*.nc

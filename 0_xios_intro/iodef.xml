@@ -17,7 +17,8 @@
     </variable_definition>
 
    <field_definition>
-     <field id="field_2d_send" grid_ref="grid_2D" operation="average"/>
+     <!-- Mode data is sent every timestep starting from @ts=1 (Time attributes are superfluous in this case) --> 
+     <field id="field_2d_send" grid_ref="grid_2D" freq_op="1ts" freq_offset="0ts" operation="average"/>
    </field_definition>
 
    <file_definition>

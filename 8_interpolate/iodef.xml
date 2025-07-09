@@ -21,10 +21,7 @@
             <variable id="toymodel_grids_filename">points_files/grids.nc</variable>
             <variable id="toymodel_masks_filename">points_files/masks.nc</variable>
             <variable id="toymodel_areas_filename">points_files/areas.nc</variable>
-            <!-- <variable id="toymodel_src_domain_name">bggd</variable>
-            <variable id="toymodel_dst_domain_name">nogt</variable> -->
-            <variable id="toymodel_src_domain_name">nogt</variable>
-            <variable id="toymodel_dst_domain_name">bggd</variable>
+            <variable id="toymodel_domain_name">nogt</variable>
         </variable_definition>
 
 
@@ -84,10 +81,7 @@
             <variable id="toymodel_grids_filename">points_files/grids.nc</variable>
             <variable id="toymodel_masks_filename">points_files/masks.nc</variable>
             <variable id="toymodel_areas_filename">points_files/areas.nc</variable>
-            <!-- <variable id="toymodel_src_domain_name">bggd</variable>
-            <variable id="toymodel_dst_domain_name">nogt</variable> -->
-            <variable id="toymodel_src_domain_name">nogt</variable>
-            <variable id="toymodel_dst_domain_name">bggd</variable>
+            <variable id="toymodel_domain_name">bggd</variable>
         </variable_definition>
 
 

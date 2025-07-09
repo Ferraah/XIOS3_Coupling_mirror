@@ -1,6 +1,6 @@
 # Compiler and flags
 FC = mpiifort
-FFLAGS = -g -O0
+FFLAGS = -g -O0 -fpp
 INCLUDES = -I/scratch/globc/ferrario/trunk/build_ifort_CERFACS_debug/inc \
 		   -I/softs/local_intel/netcdf/4.4.4_phdf5_1.10.4/include \
 		   -I/scratch/globc/ferrario/trunk/extern/boost_extraction/include \
@@ -14,8 +14,8 @@ LIBS = -L/scratch/globc/ferrario/trunk/build_ifort_CERFACS_debug/lib \
 	   -lnetcdff -lnetcdf -lhdf5_hl -lhdf5 -lxios -lstdc++
 
 # Source files and objects
-SRC = grids_utils.f90 field_initializer.f90 8_interpolate.f90 
-OBJ = $(SRC:.f90=.o)
+SRC = ../common/grids_utils.f90 field_initializer.f90 8_interpolate.f90 
+OBJ = ../common/grids_utils.o field_initializer.o 8_interpolate.o
 
 # Executable name
 EXEC = 8_interpolate.exe

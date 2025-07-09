@@ -1,6 +1,6 @@
 # APPLE partitioning
 
-This is a simple example temporally speaking, where we do an exchange every timestep. We want to focus on the OASIS "Apple" distribution of the field on the source model `ocn` 
+This is a simple example temporally speaking, where we do an exchange every timestep. We want to focus on the OASIS "Apple" distribution of the field on the source model `ocn`.
 
 ![Apple](./apple.png)
 
@@ -8,7 +8,7 @@ This is a simple example temporally speaking, where we do an exchange every time
 During the initialization phase we retrieve the dimensions of the domain from the iodef file, because it's a toymodel environment.
 The global size is going to be partitioned by the source toymodel as an Apple partition. 
 
-Note that we are using the `data_` attributes. It results to be more intuitive to work with these attributes in the case of generic non-box partitions in which 
+Note that we are using the `data_` attributes. Actually, for an APPLE and BOX partitions, we can just use the normal `ni`, `nj`, `ibegin` and `jbegin`, without passing the data attributes.  It results to be more intuitive to work with these attributes in the case of generic non-box partitions in which 
 we specify an 1-dimensional array of data given a global starting point and the lenght of it. Refer to XIOS tutorial for a clear understanding of these parameters in general.
 
 We will use this information to calculate the local size of the field to send by each process. 
