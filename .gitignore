@@ -5,8 +5,7 @@
 *.mod
 *.json
 8_interpolate/point_files
-grid_loader_tests/**/*.nc
 interpolation_sandbox/*.nc
 benchmarks/**/*.nc
-grid_loader/**/*.nc
-field_generator/**/*.nc
+misc/grid_loader_tests/**/*.nc
+misc/field_generator/**/*.nc
