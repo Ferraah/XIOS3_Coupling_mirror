@@ -1,13 +1,13 @@
 # Compiler and flags
 FC = mpiifort
 FFLAGS = -g -O0
-INCLUDES = -I/scratch/globc/ferrario/trunk/build_ifort_CERFACS_debug/inc \
+INCLUDES = -I/scratch/globc/ferrario/trunk_logs/build_ifort_CERFACS_prod/inc \
 		   -I/softs/local_intel/netcdf/4.4.4_phdf5_1.10.4/include \
-		   -I/scratch/globc/ferrario/trunk/extern/boost_extraction/include \
-		   -I/scratch/globc/ferrario/trunk/extern/blitz
+		   -I/scratch/globc/ferrario/trunk_logs/extern/boost_extraction/include \
+		   -I/scratch/globc/ferrario/trunk_logs/extern/blitz
 
 # Libraries and paths
-LIBS = -L/scratch/globc/ferrario/trunk/build_ifort_CERFACS_debug/lib \
+LIBS = -L/scratch/globc/ferrario/trunk_logs/build_ifort_CERFACS_prod/lib \
 	   -L/softs/local_intel/netcdf/4.4.4_phdf5_1.10.4/lib \
 	   -L/softs/local_intel/phdf5/1.10.4_impi/lib \
 	   -lnetcdff -lnetcdf -lhdf5_hl -lhdf5 -lxios -lstdc++

@@ -25,19 +25,20 @@ program basic_couple
     call MPI_COMM_SIZE(MPI_COMM_WORLD, size, ierr)
     call MPI_COMM_RANK(MPI_COMM_WORLD, rank, ierr)
 
-    if (size /= 2) then
-        print *, "This program must be run with 2 procnsses. Currently, there are ", size, " procnsses."
-        call MPI_FINALIZE(ierr)
-        stop
-    end if 
-    ! -------------------------------
-
     if (rank==0) then
-        model_id = "atm"
+        model_id = "arpege-surfex"
         call run_toymodel()
     else if (rank==1) then
-        model_id = "ocn"
+        model_id = "nemo-gelato"
         call run_toymodel()
+    else if (rank == 2) then
+        model_id = "trip"
+        call run_toymodel()
+    else if (rank == 3) then
+        model_id = "gelato"
+        call run_toymodel()
+    else
+        call xios_init_server()
     end if
 
     call MPI_FINALIZE(ierr)
@@ -63,7 +64,7 @@ contains
 
         ! Set the data coming from the model in XIOS
         call configure_xios_from_model(config)
-
+        
         ! Run the coupling
         call run_coupling(config)
 
@@ -104,20 +105,22 @@ contains
         tmp = ""
         print *, "Field type: ", config%field_type
 
-        ! Getting the frequency of the operation
-        if (model_id == "atm") then 
-            CALL xios_get_field_attr("ocn_to_atm1", freq_op=tmp2)
-        else if(model_id == "ocn") then
-            CALL xios_get_field_attr("atm_to_ocn1", freq_op=tmp2)
-        end if
+        ! ! Getting the frequency of the operation
+        ! if (model_id == "atm") then 
+        !     CALL xios_get_field_attr("ocn_to_atm1", freq_op=tmp2)
+        ! else if(model_id == "ocn") then
+        !     CALL xios_get_field_attr("atm_to_ocn1", freq_op=tmp2)
+        ! end if
 
-        CALL xios_duration_convert_to_string(tmp2, tmp)
-        ! Remove the last two characters from the string to retrieve the pure number "(xx)ts"
-        tmp = tmp(1:LEN_TRIM(tmp)-2)
-        ! Convert to integer
-        READ(tmp, *) config%recv_freq_ts
-        print *, "Frequency of operation: ", config%recv_freq_ts
-        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        ! CALL xios_duration_convert_to_string(tmp2, tmp)
+        ! ! Remove the last two characters from the string to retrieve the pure number "(xx)ts"
+        ! tmp = tmp(1:LEN_TRIM(tmp)-2)
+        ! ! Convert to integer
+        ! READ(tmp, *) config%recv_freq_ts
+        ! print *, "Frequency of operation: ", config%recv_freq_ts
+        ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        config%recv_freq_ts = 1 ! Get from the XML file @todo
 
         call xios_get_start_date(config%start_date)
 
@@ -129,7 +132,7 @@ contains
         type(toymodel_config), intent(in) :: config
 
         call xios_set_timestep(config%timestep)
-        call xios_set_domain_attr("domain", ni_glo=config%ni_glo, nj_glo=config%nj_glo, type=config%field_type)
+        call xios_set_domain_attr("domain_"//trim(model_id), ni_glo=config%ni_glo, nj_glo=config%nj_glo, type=config%field_type)
         call xios_close_context_definition()
 
     end subroutine configure_xios_from_model
@@ -161,11 +164,40 @@ contains
     subroutine run_coupling(conf)
     implicit none 
         type(toymodel_config) :: conf 
-        double precision, allocatable:: field_send(:,:), field_recv(:,:)
+        double precision, allocatable :: field_send(:,:), field_recv(:,:)
         integer :: curr_timestep, time
+        integer :: nfields_send, nfields_recv
+        character(len=32), allocatable :: send_labels(:)
+        character(len=32), allocatable :: recv_labels(:)
+        integer :: i
 
         allocate(field_send(conf%ni_glo, conf%nj_glo))
         allocate(field_recv(conf%ni_glo, conf%nj_glo))
+
+        if (model_id == "nemo-gelato") then
+            nfields_send = 3
+            nfields_recv = 12
+            send_labels = ['O_SSTSST', 'O_OCurx1', 'O_OCury1']
+            recv_labels = ['O_OTaux1', 'O_OTauy1', 'O_TauMod', 'O_Wind10', 'OTotSnow', 'OTotRain', 'OTotEvap', 'O_QnsMIx', 'O_QsrMix', 'O_Runoff', 'Ocalvigr', 'Ocalvian']
+
+        else if (model_id == "arpege-surfex") then
+            nfields_send = 17
+            nfields_recv = 11
+            send_labels = ['COZOTAUX', 'COMETAUY', 'COTAUMOD', 'COWINMOD', 'COSUBLIM', 'CONSFICE', 'COSHFICE', 'COTOSOPR', 'COTOLIPR', 'COTHSHSU', 'CONSFTOT', 'COSHFTOT', 'SXRUNOFF', 'SXDRAIN', 'SXCALV', 'SXSRCFLD', 'LKWATBUD']
+            recv_labels =  ['SISUTESU', 'SIICECOV', 'SIALBEDO', 'SIICETEM', 'SIUOCEAN', 'SIVOCEAN', 'SXTWS', 'SXWTD', 'SXFWTD', 'SXFFLD', 'SXPIFLD']
+
+        else if (model_id == "trip") then 
+            nfields_send = 8
+            nfields_recv = 5
+            send_labels = ['TRTWS', 'TRWTD', 'TRFWTD', 'TRFFLD', 'TRPIFLD', 'TRRIVDIS', 'TRCALVGR', 'TRCALVAN']
+            recv_labels = ['TRRUNOFF', 'TRDRAIN', 'TRCALV', 'TRSRCFLD', 'OLakeWat']
+            
+        else if (model_id == "gelato") then
+            nfields_send = 3
+            nfields_recv = 3
+            send_labels = ['OIceFrc', 'O_AlbIce', 'O_TepIce']
+            recv_labels = ['OlceEvap', 'O_QnsIce', 'O_QsrIce']
+        end if
 
         conf%end_date = conf%start_date + conf%duration
         conf%curr_date = conf%start_date
@@ -178,50 +210,78 @@ contains
 
             call xios_update_calendar(curr_timestep)
             time = xios_date_convert_to_seconds(conf%curr_date) - xios_date_convert_to_seconds(conf%start_date)
-            ! Dummy value to identify the time at which we send the field.
-            ! We use the timestep end time to identify the field
-            field_send = time ! Equivalent
-            
-            
-                 
-            
-            if (model_id=="ocn") then
-                
-                print *, "OCN: sending field1 @interval_start_time", time, " with value ", field_send(1,1)
-                print *, "OCN: sending field2 @interval_start_time", time, " with value ", field_send(1,1)
-                call xios_send_field("field2D_send1", field_send)
-                call xios_send_field("field2D_send2", field_send)
+            field_send = time
 
-                if(curr_timestep==1) then
-                    call xios_recv_field("field2D_restart_for_ocn1", field_recv)
-                    call xios_recv_field("field2D_restart_for_ocn2", field_recv)
-                    print *, "  OCN: receiving restart field1 @interval_start_time", time, " with value ", field_recv(1,1)
-                    print *, "  OCN: receiving restart field2 @interval_start_time", time, " with value ", field_recv(1,1)
+            if (model_id == "nemo-gelato") then
+                print *, "OCN: sending fields @interval_start_time", time, " with value ", field_send(1,1)
+                do i = 1, nfields_send
+                    call xios_send_field(trim(send_labels(i)), field_send)
+                end do
+
+                if (curr_timestep == 1) then
+                    do i = 1, nfields_recv
+                        call xios_recv_field(trim(recv_labels(i)) // "_restart", field_recv)
+                        print *, "  OCN: receiving restart field ", trim(recv_labels(i)), " @interval_start_time", time, " with value ", field_recv(1,1)
+                    end do
                 else if (mod(curr_timestep-1, conf%recv_freq_ts) == 0) then
-                    call xios_recv_field("field2D_recv1", field_recv)
-                    call xios_recv_field("field2D_recv2", field_recv)
-                    print *, "  OCN: receiving field1 @interval_start_time", time , " with value ", field_recv(1,1)
-                    print *, "  OCN: receiving field2 @interval_start_time", time , " with value ", field_recv(1,1)
+                    do i = 1, nfields_recv
+                        call xios_recv_field(trim(recv_labels(i)), field_recv)
+                        print *, "  OCN: receiving field ", trim(recv_labels(i)), " @interval_start_time", time , " with value ", field_recv(1,1)
+                    end do
                 end if
 
+            else if (model_id == "arpege-surfex") then
+                print *, "ATM: sending fields @interval_start_time", time, " with value ", field_send(1,1)
+                do i = 1, nfields_send
+                    call xios_send_field(trim(send_labels(i)), field_send)
+                end do
 
-            else if (model_id=="atm") then
-
-                print *, "ATM: sending field1 @interval_start_time", time, " with value ", field_send(1,1)
-                print *, "ATM: sending field2 @interval_start_time", time, " with value ", field_send(1,1)
-                call xios_send_field("field2D_send1", field_send)
-                call xios_send_field("field2D_send2", field_send)
-
-                if(curr_timestep==1) then
-                    call xios_recv_field("field2D_restart_for_atm1", field_recv)
-                    call xios_recv_field("field2D_restart_for_atm2", field_recv)
-                    print *, "  ATM: receiving restart field1 @interval_start_time", time, " with value ", field_recv(1,1)
-                    print *, "  ATM: receiving restart field2 @interval_start_time", time, " with value ", field_recv(1,1)
+                if (curr_timestep == 1) then
+                    do i = 1, nfields_recv
+                        call xios_recv_field(trim(recv_labels(i)) // "_restart", field_recv)
+                        print *, "  ATM: receiving restart field ", trim(recv_labels(i)), " @interval_start_time", time, " with value ", field_recv(1,1)
+                    end do
                 else if (mod(curr_timestep-1, conf%recv_freq_ts) == 0) then
-                    call xios_recv_field("field2D_recv1", field_recv)
-                    call xios_recv_field("field2D_recv2", field_recv)
-                    print *, "  ATM: receiving field1 @interval_start_time", time , " with value ", field_recv(1,1)
-                    print *, "  ATM: receiving field2 @interval_start_time", time , " with value ", field_recv(1,1)
+                    do i = 1, nfields_recv
+                        call xios_recv_field(trim(recv_labels(i)), field_recv)
+                        print *, "  ATM: receiving field ", trim(recv_labels(i)), " @interval_start_time", time , " with value ", field_recv(1,1)
+                    end do
+                end if
+
+            else if (model_id == "trip") then
+                print *, "LND: sending fields @interval_start_time", time, " with value ", field_send(1,1)
+                do i = 1, nfields_send
+                    call xios_send_field(trim(send_labels(i)), field_send)
+                end do
+
+                if (curr_timestep == 1) then
+                    do i = 1, nfields_recv
+                        call xios_recv_field(trim(recv_labels(i)) // "_restart", field_recv)
+                        print *, "  LND: receiving restart field ", trim(recv_labels(i)), " @interval_start_time", time, " with value ", field_recv(1,1)
+                    end do
+                else if (mod(curr_timestep-1, conf%recv_freq_ts) == 0) then
+                    do i = 1, nfields_recv
+                        call xios_recv_field(trim(recv_labels(i)), field_recv)
+                        print *, "  LND: receiving field ", trim(recv_labels(i)), " @interval_start_time", time , " with value ", field_recv(1,1)
+                    end do
+                end if
+
+            else if (model_id == "gelato") then
+                print *, "ICE: sending fields @interval_start_time", time, " with value ", field_send(1,1)
+                do i = 1, nfields_send
+                    call xios_send_field(trim(send_labels(i)), field_send)
+                end do
+
+                if (curr_timestep == 1) then
+                    do i = 1, nfields_recv
+                        call xios_recv_field(trim(recv_labels(i)) // "_restart", field_recv)
+                        print *, "  ICE: receiving restart field ", trim(recv_labels(i)), " @interval_start_time", time, " with value ", field_recv(1,1)
+                    end do
+                else if (mod(curr_timestep-1, conf%recv_freq_ts) == 0) then
+                    do i = 1, nfields_recv
+                        call xios_recv_field(trim(recv_labels(i)), field_recv)
+                        print *, "  ICE: receiving field ", trim(recv_labels(i)), " @interval_start_time", time , " with value ", field_recv(1,1)
+                    end do
                 end if
 
             end if

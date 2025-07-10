@@ -1,19 +1,12 @@
-MPI startup(): PMI server not found. Please set I_MPI_PMI_LIBRARY variable if it is not a singleton case.
-MPI startup(): PMI server not found. Please set I_MPI_PMI_LIBRARY variable if it is not a singleton case.
-MPI startup(): PMI server not found. Please set I_MPI_PMI_LIBRARY variable if it is not a singleton case.
-MPI startup(): PMI server not found. Please set I_MPI_PMI_LIBRARY variable if it is not a singleton case.
-MPI startup(): PMI server not found. Please set I_MPI_PMI_LIBRARY variable if it is not a singleton case.
-MPI startup(): PMI server not found. Please set I_MPI_PMI_LIBRARY variable if it is not a singleton case.
-MPI startup(): PMI server not found. Please set I_MPI_PMI_LIBRARY variable if it is not a singleton case.
-MPI startup(): PMI server not found. Please set I_MPI_PMI_LIBRARY variable if it is not a singleton case.
-MPI startup(): PMI server not found. Please set I_MPI_PMI_LIBRARY variable if it is not a singleton case.
-MPI startup(): PMI server not found. Please set I_MPI_PMI_LIBRARY variable if it is not a singleton case.
-MPI startup(): PMI server not found. Please set I_MPI_PMI_LIBRARY variable if it is not a singleton case.
-MPI startup(): PMI server not found. Please set I_MPI_PMI_LIBRARY variable if it is not a singleton case.
-MPI startup(): PMI server not found. Please set I_MPI_PMI_LIBRARY variable if it is not a singleton case.
-MPI startup(): PMI server not found. Please set I_MPI_PMI_LIBRARY variable if it is not a singleton case.
-MPI startup(): PMI server not found. Please set I_MPI_PMI_LIBRARY variable if it is not a singleton case.
-MPI startup(): PMI server not found. Please set I_MPI_PMI_LIBRARY variable if it is not a singleton case.
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
 -> info : CWindowBase constructor : CRessourcesManager::winNotify_
 -> info : CWindowBase constructor : CRessourcesManager::winNotify_
 -> info : CWindowBase constructor : CRessourcesManager::winNotify_
@@ -22,7 +15,14 @@ MPI startup(): PMI server not found. Please set I_MPI_PMI_LIBRARY variable if it
 -> info : CWindowBase constructor : CRessourcesManager::winNotify_
 -> info : CWindowBase constructor : CRessourcesManager::winNotify_
 -> info : CWindowBase constructor : CRessourcesManager::winRessources_
--> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
 -> info : CWindowBase constructor : CRessourcesManager::winRessources_
 -> info : CWindowBase constructor : CRessourcesManager::winRessources_
 -> info : CWindowBase constructor : CRessourcesManager::winRessources_
@@ -37,7 +37,14 @@ MPI startup(): PMI server not found. Please set I_MPI_PMI_LIBRARY variable if it
 -> info : CWindowBase constructor : CServicesManager::winNotify_
 -> info : CWindowBase constructor : CServicesManager::winNotify_
 -> info : CWindowBase constructor : CServicesManager::winNotify_
--> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
 -> info : CWindowBase constructor : CServicesManager::winNotify_
 -> info : CWindowBase constructor : CServicesManager::winServices_
 -> info : CWindowBase constructor : CServicesManager::winServices_
@@ -46,6 +53,24 @@ MPI startup(): PMI server not found. Please set I_MPI_PMI_LIBRARY variable if it
 -> info : CWindowBase constructor : CServicesManager::winServices_
 -> info : CWindowBase constructor : CServicesManager::winServices_
 -> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
 -> info : CWindowBase constructor : CContextsManager::winNotify_
 -> info : CWindowBase constructor : CContextsManager::winNotify_
 -> info : CWindowBase constructor : CContextsManager::winNotify_
@@ -54,7 +79,6 @@ MPI startup(): PMI server not found. Please set I_MPI_PMI_LIBRARY variable if it
 -> info : CWindowBase constructor : CContextsManager::winNotify_
 -> info : CWindowBase constructor : CContextsManager::winNotify_
 -> info : CWindowBase constructor : CContextsManager::winContexts_
--> info : CWindowBase constructor : CContextsManager::winNotify_
 -> info : CWindowBase constructor : CContextsManager::winContexts_
 -> info : CWindowBase constructor : CContextsManager::winContexts_
 -> info : CWindowBase constructor : CContextsManager::winContexts_
@@ -62,6 +86,26 @@ MPI startup(): PMI server not found. Please set I_MPI_PMI_LIBRARY variable if it
 -> info : CWindowBase constructor : CContextsManager::winContexts_
 -> info : CWindowBase constructor : CContextsManager::winContexts_
 -> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
 -> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
 -> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
 -> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
@@ -70,11 +114,15 @@ MPI startup(): PMI server not found. Please set I_MPI_PMI_LIBRARY variable if it
 -> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
 -> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
 -> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
--> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
 -> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
--> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
--> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
--> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
 -> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
 -> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
 -> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
@@ -83,173 +131,109 @@ MPI startup(): PMI server not found. Please set I_MPI_PMI_LIBRARY variable if it
 -> info : CWindowBase constructor : CPoolRessource::winNotify_
 -> info : CPoolRessource::CPoolRessource  : creating new pool : oce
 -> info : CWindowBase constructor : CPoolRessource::winNotify_
--> info : CWindowBase constructor : CPoolRessource::winNotify_
--> info : CWindowBase constructor : CPoolRessource::winNotify_
--> info : CWindowBase constructor : CPoolRessource::winNotify_
--> info : CWindowBase constructor : CPoolRessource::winNotify_
--> info : CPoolRessource::CPoolRessource  : creating new pool : oce
--> info : CPoolRessource::CPoolRessource  : creating new pool : oce
--> info : CPoolRessource::CPoolRessource  : creating new pool : oce
--> info : CPoolRessource::CPoolRessource  : creating new pool : oce
 -> info : CPoolRessource::CPoolRessource  : creating new pool : oce
 -> info : CWindowBase constructor : CPoolRessource::winNotify_
 -> info : CPoolRessource::CPoolRessource  : creating new pool : oce
--> info : CWindowBase constructor : CRessourcesManager::winNotify_
--> info : CWindowBase constructor : CRessourcesManager::winNotify_
--> info : CWindowBase constructor : CRessourcesManager::winNotify_
--> info : CWindowBase constructor : CRessourcesManager::winNotify_
--> info : CWindowBase constructor : CRessourcesManager::winNotify_
--> info : CWindowBase constructor : CRessourcesManager::winNotify_
--> info : CWindowBase constructor : CRessourcesManager::winNotify_
--> info : CWindowBase constructor : CRessourcesManager::winNotify_
--> info : CWindowBase constructor : CRessourcesManager::winRessources_
--> info : CWindowBase constructor : CRessourcesManager::winRessources_
--> info : CWindowBase constructor : CRessourcesManager::winRessources_
--> info : CWindowBase constructor : CRessourcesManager::winRessources_
--> info : CWindowBase constructor : CRessourcesManager::winRessources_
--> info : CWindowBase constructor : CRessourcesManager::winRessources_
--> info : CWindowBase constructor : CRessourcesManager::winRessources_
--> info : CWindowBase constructor : CRessourcesManager::winRessources_
--> info : CWindowBase constructor : CServicesManager::winNotify_
--> info : CWindowBase constructor : CServicesManager::winNotify_
--> info : CWindowBase constructor : CServicesManager::winNotify_
--> info : CWindowBase constructor : CServicesManager::winNotify_
--> info : CWindowBase constructor : CServicesManager::winNotify_
--> info : CWindowBase constructor : CServicesManager::winNotify_
--> info : CWindowBase constructor : CServicesManager::winNotify_
--> info : CWindowBase constructor : CServicesManager::winNotify_
--> info : CWindowBase constructor : CServicesManager::winServices_
--> info : CWindowBase constructor : CServicesManager::winServices_
--> info : CWindowBase constructor : CServicesManager::winServices_
--> info : CWindowBase constructor : CServicesManager::winServices_
--> info : CWindowBase constructor : CServicesManager::winServices_
--> info : CWindowBase constructor : CServicesManager::winServices_
--> info : CWindowBase constructor : CServicesManager::winServices_
--> info : CWindowBase constructor : CServicesManager::winServices_
--> info : CWindowBase constructor : CContextsManager::winNotify_
--> info : CWindowBase constructor : CContextsManager::winNotify_
--> info : CWindowBase constructor : CContextsManager::winNotify_
--> info : CWindowBase constructor : CContextsManager::winNotify_
--> info : CWindowBase constructor : CContextsManager::winNotify_
--> info : CWindowBase constructor : CContextsManager::winNotify_
--> info : CWindowBase constructor : CContextsManager::winNotify_
--> info : CWindowBase constructor : CContextsManager::winContexts_
--> info : CWindowBase constructor : CContextsManager::winContexts_
--> info : CWindowBase constructor : CContextsManager::winContexts_
--> info : CWindowBase constructor : CContextsManager::winContexts_
--> info : CWindowBase constructor : CContextsManager::winContexts_
--> info : CWindowBase constructor : CContextsManager::winContexts_
--> info : CWindowBase constructor : CContextsManager::winNotify_
--> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
--> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
--> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
--> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
--> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
--> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
--> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
--> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
--> info : CWindowBase constructor : CContextsManager::winContexts_
--> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
--> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
--> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
--> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
--> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
--> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
--> info : CWindowBase constructor : CContextsManager::winContexts_
--> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
--> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
 -> info : CWindowBase constructor : CPoolRessource::winNotify_
--> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
 -> info : CWindowBase constructor : CPoolRessource::winNotify_
 -> info : CWindowBase constructor : CPoolRessource::winNotify_
 -> info : CPoolRessource::CPoolRessource  : creating new pool : atm
 -> info : CWindowBase constructor : CPoolRessource::winNotify_
 -> info : CPoolRessource::CPoolRessource  : creating new pool : atm
--> info : CPoolRessource::CPoolRessource  : creating new pool : atm
 -> info : CWindowBase constructor : CPoolRessource::winNotify_
--> info : CWindowBase constructor : CPoolRessource::winNotify_
--> info : CWindowBase constructor : CPoolRessource::winNotify_
--> info : CPoolRessource::CPoolRessource  : creating new pool : atm
--> info : CPoolRessource::CPoolRessource  : creating new pool : atm
 -> info : CPoolRessource::CPoolRessource  : creating new pool : atm
 -> info : CWindowBase constructor : CPoolRessource::winNotify_
 -> info : CPoolRessource::CPoolRessource  : creating new pool : atm
- cl_nam: t12e.lon
- cl_nam: t12e.lon
- cl_nam: t12e.lon
- cl_nam: t12e.lon
- cl_nam: t12e.lon
- cl_nam: t12e.lon
- cl_nam: t12e.lon
- cl_nam: t12e.lon
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+-> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+-> info : CPoolRessource::CPoolRessource  : creating new pool : atm
  cl_nam: icoh.lon
  cl_nam: icoh.lon
  cl_nam: icoh.lon
  cl_nam: icoh.lon
  cl_nam: icoh.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
  cl_nam: icoh.lon
  cl_nam: icoh.lon
  cl_nam: icoh.lon
  ICOS type set in XIOS: domain_atm
  ni_glo:      2016012
  nj_glo:            1
- ni:      2016012
+ ni:       252001
  nj:            1
- ibegin:            0
+ ibegin:      1008008
  jbegin:            0
  ncrn:            6
  ICOS type set in XIOS: domain_atm
  ni_glo:      2016012
  nj_glo:            1
- ni:      2016012
+ ni:       252002
  nj:            1
- ibegin:            0
+ ibegin:       756006
  jbegin:            0
  ncrn:            6
  ICOS type set in XIOS: domain_atm
  ni_glo:      2016012
  nj_glo:            1
- ni:      2016012
+ ni:       252001
  nj:            1
- ibegin:            0
+ ibegin:      1764011
  jbegin:            0
  ncrn:            6
  ICOS type set in XIOS: domain_atm
  ni_glo:      2016012
  nj_glo:            1
- ni:      2016012
+ ni:       252001
  nj:            1
- ibegin:            0
+ ibegin:      1512010
  jbegin:            0
  ncrn:            6
  ICOS type set in XIOS: domain_atm
  ni_glo:      2016012
  nj_glo:            1
- ni:      2016012
+ ni:       252002
  nj:            1
- ibegin:            0
+ ibegin:       504004
  jbegin:            0
  ncrn:            6
  ICOS type set in XIOS: domain_atm
  ni_glo:      2016012
  nj_glo:            1
- ni:      2016012
+ ni:       252001
  nj:            1
- ibegin:            0
+ ibegin:      1260009
  jbegin:            0
  ncrn:            6
  ICOS type set in XIOS: domain_atm
  ni_glo:      2016012
  nj_glo:            1
- ni:      2016012
+ ni:       252002
  nj:            1
- ibegin:            0
+ ibegin:       252002
  jbegin:            0
  ncrn:            6
  ICOS type set in XIOS: domain_atm
  ni_glo:      2016012
  nj_glo:            1
- ni:      2016012
+ ni:       252002
  nj:            1
  ibegin:            0
  jbegin:            0
@@ -265,144 +249,144 @@ MPI startup(): PMI server not found. Please set I_MPI_PMI_LIBRARY variable if it
  ICOS type set in XIOS: domain_oce_interp
  ni_glo:      2016012
  nj_glo:            1
- ni:      2016012
+ ni:       252001
  nj:            1
- ibegin:            0
+ ibegin:      1764011
  jbegin:            0
  ncrn:            6
  ICOS type set in XIOS: domain_oce_interp
  ni_glo:      2016012
  nj_glo:            1
- ni:      2016012
+ ni:       252002
  nj:            1
- ibegin:            0
+ ibegin:       756006
  jbegin:            0
  ncrn:            6
  ICOS type set in XIOS: domain_oce_interp
  ni_glo:      2016012
  nj_glo:            1
- ni:      2016012
+ ni:       252002
  nj:            1
- ibegin:            0
+ ibegin:       504004
  jbegin:            0
  ncrn:            6
  ICOS type set in XIOS: domain_oce_interp
  ni_glo:      2016012
  nj_glo:            1
- ni:      2016012
+ ni:       252001
  nj:            1
- ibegin:            0
+ ibegin:      1008008
  jbegin:            0
  ncrn:            6
  ICOS type set in XIOS: domain_oce_interp
  ni_glo:      2016012
  nj_glo:            1
- ni:      2016012
+ ni:       252001
  nj:            1
- ibegin:            0
+ ibegin:      1512010
  jbegin:            0
  ncrn:            6
  ICOS type set in XIOS: domain_oce_interp
  ni_glo:      2016012
  nj_glo:            1
- ni:      2016012
+ ni:       252002
  nj:            1
- ibegin:            0
+ ibegin:       252002
  jbegin:            0
  ncrn:            6
  ICOS type set in XIOS: domain_oce_interp
  ni_glo:      2016012
  nj_glo:            1
- ni:      2016012
+ ni:       252001
  nj:            1
- ibegin:            0
+ ibegin:      1260009
  jbegin:            0
  ncrn:            6
  ICOS type set in XIOS: domain_oce_interp
  ni_glo:      2016012
  nj_glo:            1
- ni:      2016012
+ ni:       252002
  nj:            1
  ibegin:            0
  jbegin:            0
  ncrn:            6
- Number of .true. in mask:      8197880
- Number of .true. in mask:      8197880
- Number of .true. in mask:      8197880
- Number of .true. in mask:      8197880
- Number of .false. in mask:      5403454
- Number of .false. in mask:      5403454
- Number of .false. in mask:      5403454
- Number of .false. in mask:      5403454
- Number of .true. in mask:      8197880
- Number of .false. in mask:      5403454
- Number of .true. in mask:      8197880
- Number of .false. in mask:      5403454
- Number of .true. in mask:      8197880
- Number of .false. in mask:      5403454
- Number of .true. in mask:      8197880
- Number of .false. in mask:      5403454
+ Number of .true. in mask:      1251040
+ Number of .true. in mask:      1142681
+ Number of .true. in mask:       531644
+ Number of .true. in mask:       960899
+ Number of .true. in mask:       582715
+ Number of .true. in mask:      1127082
+ Number of .true. in mask:      1554445
+ Number of .false. in mask:       448880
+ Number of .false. in mask:      1167196
+ Number of .false. in mask:       557732
+ Number of .false. in mask:      1117698
+ Number of .false. in mask:       737941
+ Number of .false. in mask:       572838
+ Number of .false. in mask:       147049
+ Number of .true. in mask:      1047374
+ Number of .false. in mask:       654120
  ORCA type set in XIOS: domain_oce
  ni_glo:         4322
  nj_glo:         3147
- ni:         4322
- nj:         3147
- ibegin:            0
+ ni:         1080
+ nj:         1574
+ ibegin:         2162
  jbegin:            0
  ncrn:            4
  ORCA type set in XIOS: domain_oce
  ni_glo:         4322
  nj_glo:         3147
- ni:         4322
- nj:         3147
+ ni:         1081
+ nj:         1573
+ ibegin:         1081
+ jbegin:         1574
+ ncrn:            4
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:         1573
+ ibegin:         3242
+ jbegin:         1574
+ ncrn:            4
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:         1573
  ibegin:            0
+ jbegin:         1574
+ ncrn:            4
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:         1573
+ ibegin:         2162
+ jbegin:         1574
+ ncrn:            4
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:         1574
+ ibegin:         3242
  jbegin:            0
  ncrn:            4
  ORCA type set in XIOS: domain_oce
  ni_glo:         4322
  nj_glo:         3147
- ni:         4322
- nj:         3147
- ibegin:            0
+ ni:         1081
+ nj:         1574
+ ibegin:         1081
  jbegin:            0
  ncrn:            4
  ORCA type set in XIOS: domain_oce
  ni_glo:         4322
  nj_glo:         3147
- ni:         4322
- nj:         3147
- ibegin:            0
- jbegin:            0
- ncrn:            4
- ORCA type set in XIOS: domain_oce
- ni_glo:         4322
- nj_glo:         3147
- ni:         4322
- nj:         3147
- ibegin:            0
- jbegin:            0
- ncrn:            4
- ORCA type set in XIOS: domain_oce
- ni_glo:         4322
- nj_glo:         3147
- ni:         4322
- nj:         3147
- ibegin:            0
- jbegin:            0
- ncrn:            4
- ORCA type set in XIOS: domain_oce
- ni_glo:         4322
- nj_glo:         3147
- ni:         4322
- nj:         3147
- ibegin:            0
- jbegin:            0
- ncrn:            4
- ORCA type set in XIOS: domain_oce
- ni_glo:         4322
- nj_glo:         3147
- ni:         4322
- nj:         3147
+ ni:         1081
+ nj:         1574
  ibegin:            0
  jbegin:            0
  ncrn:            4
@@ -414,83 +398,135 @@ MPI startup(): PMI server not found. Please set I_MPI_PMI_LIBRARY variable if it
  cl_nam: t12e.lon
  cl_nam: t12e.lon
  cl_nam: t12e.lon
- Number of .true. in mask:      8197880
- Number of .true. in mask:      8197880
- Number of .true. in mask:      8197880
- Number of .true. in mask:      8197880
- Number of .false. in mask:      5403454
- Number of .false. in mask:      5403454
- Number of .false. in mask:      5403454
- Number of .false. in mask:      5403454
- Number of .true. in mask:      8197880
- Number of .false. in mask:      5403454
- Number of .true. in mask:      8197880
- Number of .false. in mask:      5403454
- Number of .true. in mask:      8197880
- Number of .false. in mask:      5403454
- Number of .true. in mask:      8197880
- Number of .false. in mask:      5403454
+ Number of .true. in mask:      1251040
+ Number of .true. in mask:       960899
+ Number of .true. in mask:       531644
+ Number of .true. in mask:      1127082
+ Number of .true. in mask:       582715
+ Number of .true. in mask:      1142681
+ Number of .false. in mask:       448880
+ Number of .false. in mask:       737941
+ Number of .false. in mask:      1167196
+ Number of .false. in mask:       572838
+ Number of .false. in mask:      1117698
+ Number of .false. in mask:       557732
+ Number of .true. in mask:      1554445
+ Number of .false. in mask:       147049
  ORCA type set in XIOS: domain_atm_interp
  ni_glo:         4322
  nj_glo:         3147
- ni:         4322
- nj:         3147
- ibegin:            0
+ ni:         1080
+ nj:         1573
+ ibegin:         2162
+ jbegin:         1574
+ ncrn:            4
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:         1573
+ ibegin:         3242
+ jbegin:         1574
+ ncrn:            4
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:         1574
+ ibegin:         2162
  jbegin:            0
  ncrn:            4
  ORCA type set in XIOS: domain_atm_interp
  ni_glo:         4322
  nj_glo:         3147
- ni:         4322
- nj:         3147
+ ni:         1081
+ nj:         1573
  ibegin:            0
+ jbegin:         1574
+ ncrn:            4
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:         1573
+ ibegin:         1081
+ jbegin:         1574
+ ncrn:            4
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:         1574
+ ibegin:         3242
+ jbegin:            0
+ ncrn:            4
+ Number of .true. in mask:      1047374
+ Number of .false. in mask:       654120
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:         1574
+ ibegin:         1081
  jbegin:            0
  ncrn:            4
  ORCA type set in XIOS: domain_atm_interp
  ni_glo:         4322
  nj_glo:         3147
- ni:         4322
- nj:         3147
+ ni:         1081
+ nj:         1574
  ibegin:            0
  jbegin:            0
  ncrn:            4
- ORCA type set in XIOS: domain_atm_interp
- ni_glo:         4322
- nj_glo:         3147
- ni:         4322
- nj:         3147
- ibegin:            0
- jbegin:            0
- ncrn:            4
- ORCA type set in XIOS: domain_atm_interp
- ni_glo:         4322
- nj_glo:         3147
- ni:         4322
- nj:         3147
- ibegin:            0
- jbegin:            0
- ncrn:            4
- ORCA type set in XIOS: domain_atm_interp
- ni_glo:         4322
- nj_glo:         3147
- ni:         4322
- nj:         3147
- ibegin:            0
- jbegin:            0
- ncrn:            4
- ORCA type set in XIOS: domain_atm_interp
- ni_glo:         4322
- nj_glo:         3147
- ni:         4322
- nj:         3147
- ibegin:            0
- jbegin:            0
- ncrn:            4
- ORCA type set in XIOS: domain_atm_interp
- ni_glo:         4322
- nj_glo:         3147
- ni:         4322
- nj:         3147
- ibegin:            0
- jbegin:            0
- ncrn:            4
+Computing intersections ...
+Computing intersections ...
+Remapping...
+Remapping...
+ Only interpolation run. Exiting.
+ Only interpolation run. Exiting.
+ Only interpolation run. Exiting.
+ Only interpolation run. Exiting.
+ Only interpolation run. Exiting.
+ Only interpolation run. Exiting.
+ Only interpolation run. Exiting.
+ Only interpolation run. Exiting.
+ Only interpolation run. Exiting.
+ Only interpolation run. Exiting.
+ Only interpolation run. Exiting.
+ Only interpolation run. Exiting.
+ Only interpolation run. Exiting.
+ Only interpolation run. Exiting.
+ Only interpolation run. Exiting.
+ Only interpolation run. Exiting.
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+ End of the program.
+ End of the program.
+ End of the program.
+ End of the program.
+ End of the program.
+ End of the program.
+ End of the program.
+ End of the program.
+ End of the program.
+ End of the program.
+ End of the program.
+ End of the program.
+ End of the program.
+ End of the program.
+ End of the program.
+ End of the program.

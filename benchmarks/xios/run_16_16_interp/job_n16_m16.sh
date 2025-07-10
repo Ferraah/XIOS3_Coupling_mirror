@@ -1,12 +1,12 @@
-#!/bin/bash
-#SBATCH --job-name=bench_n16_m16
-#SBATCH --output=../xios/results_interp/out_n16_m16.txt
-#SBATCH --error=../xios/results_interp/err_n16_m16.txt
-#SBATCH --ntasks=64
-#SBATCH --time=12:00:00
-#SBATCH --partition=prod
-#SBATCH --exclusive
-#SBATCH --mem=90G 
+# #!/bin/bash
+# #SBATCH --job-name=bench_n16_m16
+# #SBATCH --output=../xios/results_interp/out_n16_m16.txt
+# #SBATCH --error=../xios/results_interp/err_n16_m16.txt
+# #SBATCH --ntasks=64
+# #SBATCH --time=12:00:00
+# #SBATCH --partition=prod
+# #SBATCH --exclusive
+# #SBATCH --mem=90G 
 
 module load tools/nco/4.7.6
 module load compiler/gcc/11.2.0
@@ -30,7 +30,7 @@ rm -rf ../outputs_interp/interpolations_times_n16_m16.txt
 
 for i in $(seq 1 10); do
     echo "Running interpolation iteration $i"
-    srun -n 16 --distribution=cyclic:cyclic ../12_ping_pong.exe oce true : -n 16 ../12_ping_pong.exe atm true > ../outputs_interp/ocean_times_n16_m16.txt
+    mpirun -n 16 ../12_ping_pong.exe oce true : -n 16 ../12_ping_pong.exe atm true > ../outputs_interp/ocean_times_n16_m16.txt
 
     # Add the time taken for interpolation from xios log file
     grep "compute" xios_client_*.out | awk -F " " '{print $8}'  >> ../outputs_interp/interpolations_times_n16_m16.txt

@@ -19,17 +19,20 @@
    </field_definition>
 
    <file_definition>
-     <file id="restart1" name="restart_zerofield_for_atm1" output_freq="1ts" type="one_file">
-       <field field_ref="field_A" name="ocn_to_atm1" operation="instant" />
+     <file id="restart1" name="SISUTESU_restart_file" output_freq="1ts" type="one_file">
+       <field field_ref="field_A" name="SISUTESU_restart" operation="instant" />
      </file>
-     <file id="restart2" name="restart_zerofield_for_atm2" output_freq="1ts" type="one_file">
-       <field field_ref="field_A" name="ocn_to_atm2" operation="instant" />
+     <file id="restart2" name="SIUOCEAN_restart_file" output_freq="1ts" type="one_file">
+       <field field_ref="field_A" name="SIUOCEAN_restart" operation="instant" />
      </file>
-     <file id="restart3" name="restart_zerofield_for_ocn1" output_freq="1ts" type="one_file">
-       <field field_ref="field_A" name="atm_to_ocn1" operation="instant" />
+     <file id="restart3" name="O_OTaux1_restart_file" output_freq="1ts" type="one_file">
+       <field field_ref="field_A" name="O_OTaux1_restart" operation="instant" />
      </file>
-     <file id="restart4" name="restart_zerofield_for_ocn2" output_freq="1ts" type="one_file">
-       <field field_ref="field_A" name="atm_to_ocn2" operation="instant" />
+     <file id="restart4" name="O_OTauy1_restart_file" output_freq="1ts" type="one_file">
+       <field field_ref="field_A" name="O_OTauy1_restart" operation="instant" />
+     </file>
+    <file id="restart4" name="zero_restart_file" output_freq="1ts" type="one_file">
+       <field field_ref="field_A" name="zero_restart" operation="instant" />
      </file>
    </file_definition>
 
