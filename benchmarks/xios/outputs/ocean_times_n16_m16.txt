@@ -1,0 +1,1288 @@
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winNotify_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CRessourcesManager::winRessources_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CServicesManager::winServices_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winNotify_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: t12e
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: t12e
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: t12e
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: t12e
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: t12e
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: t12e
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: t12e
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: t12e
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: t12e
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: t12e
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: t12e
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: t12e
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: t12e
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: t12e
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: t12e
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: t12e
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: icoh
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: icoh
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: icoh
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: icoh
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: icoh
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: icoh
+ Masks filename: ../original_data/masks_high.nc
+ Domain name: icoh
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: icoh
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: icoh
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: icoh
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: icoh
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Duration: 100d
+ Timestep duration: 1d
+ Duration: 100d
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: icoh
+ Masks filename: ../original_data/masks_high.nc
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: icoh
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Duration: 100d
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: icoh
+ Timestep duration: 1d
+ Grids filename: ../original_data/grids_high.nc
+ Domain name: icoh
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Domain name: icoh
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ Areas filename: ../original_data/areas.nc
+ Masks filename: ../original_data/masks_high.nc
+ Areas filename: ../original_data/areas.nc
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ ICOS type set in XIOS: domain_atm
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126001
+ nj:            1
+ ibegin:       504004
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_atm
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126001
+ nj:            1
+ ibegin:       756006
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_atm
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126001
+ nj:            1
+ ibegin:       882007
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_atm
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126000
+ nj:            1
+ ibegin:      1764012
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_atm
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126001
+ nj:            1
+ ibegin:       126001
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_atm
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126001
+ nj:            1
+ ibegin:      1386011
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_atm
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126000
+ nj:            1
+ ibegin:      1638012
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_atm
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126000
+ nj:            1
+ ibegin:      1890012
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_atm
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126001
+ nj:            1
+ ibegin:       378003
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_atm
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126001
+ nj:            1
+ ibegin:      1134009
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_atm
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126000
+ nj:            1
+ ibegin:      1512012
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_atm
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126001
+ nj:            1
+ ibegin:            0
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_atm
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126001
+ nj:            1
+ ibegin:       630005
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_atm
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126001
+ nj:            1
+ ibegin:      1008008
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_atm
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126001
+ nj:            1
+ ibegin:      1260010
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_atm
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126001
+ nj:            1
+ ibegin:       252002
+ jbegin:            0
+ ncrn:            6
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ ICOS type set in XIOS: domain_oce_interp
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126001
+ nj:            1
+ ibegin:       378003
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_oce_interp
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126000
+ nj:            1
+ ibegin:      1512012
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_oce_interp
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126001
+ nj:            1
+ ibegin:       504004
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_oce_interp
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126001
+ nj:            1
+ ibegin:      1134009
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_oce_interp
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126001
+ nj:            1
+ ibegin:      1386011
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_oce_interp
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126000
+ nj:            1
+ ibegin:      1638012
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_oce_interp
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126001
+ nj:            1
+ ibegin:       756006
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_oce_interp
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126001
+ nj:            1
+ ibegin:       126001
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_oce_interp
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126001
+ nj:            1
+ ibegin:       252002
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_oce_interp
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126001
+ nj:            1
+ ibegin:       882007
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_oce_interp
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126001
+ nj:            1
+ ibegin:            0
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_oce_interp
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126001
+ nj:            1
+ ibegin:       630005
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_oce_interp
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126001
+ nj:            1
+ ibegin:      1008008
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_oce_interp
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126001
+ nj:            1
+ ibegin:      1260010
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_oce_interp
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126000
+ nj:            1
+ ibegin:      1764012
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_oce_interp
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       126000
+ nj:            1
+ ibegin:      1890012
+ jbegin:            0
+ ncrn:            6
+ Number of .true. in mask:       768312
+ Number of .true. in mask:       844431
+ Number of .true. in mask:       399694
+ Number of .true. in mask:       647690
+ Number of .true. in mask:       718709
+ Number of .true. in mask:       727388
+ Number of .true. in mask:       443995
+ Number of .false. in mask:        82435
+ Number of .true. in mask:       374369
+ Number of .false. in mask:         6316
+ Number of .false. in mask:       450266
+ Number of .false. in mask:       202270
+ Number of .false. in mask:       132038
+ Number of .false. in mask:       122572
+ Number of .false. in mask:       406752
+ Number of .false. in mask:       475297
+ Number of .true. in mask:       710014
+ Number of .true. in mask:       603350
+ Number of .false. in mask:       140733
+ Number of .false. in mask:       246610
+ Number of .true. in mask:       138720
+ Number of .true. in mask:       273747
+ Number of .true. in mask:       328665
+ Number of .true. in mask:       359964
+ Number of .true. in mask:       257897
+ Number of .false. in mask:       710946
+ Number of .false. in mask:       575133
+ Number of .false. in mask:       522082
+ Number of .false. in mask:       488916
+ Number of .false. in mask:       592063
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:          787
+ ibegin:         1081
+ jbegin:         1574
+ ncrn:            4
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:          787
+ ibegin:         3242
+ jbegin:            0
+ ncrn:            4
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:          787
+ ibegin:         1081
+ jbegin:          787
+ ncrn:            4
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:          787
+ ibegin:            0
+ jbegin:          787
+ ncrn:            4
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:          787
+ ibegin:         2162
+ jbegin:          787
+ ncrn:            4
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:          787
+ ibegin:         3242
+ jbegin:          787
+ ncrn:            4
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:          787
+ ibegin:            0
+ jbegin:         1574
+ ncrn:            4
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:          786
+ ibegin:         1081
+ jbegin:         2361
+ ncrn:            4
+ Number of .true. in mask:       600935
+ Number of .false. in mask:       249025
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:          787
+ ibegin:         1081
+ jbegin:            0
+ ncrn:            4
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:          787
+ ibegin:         2162
+ jbegin:            0
+ ncrn:            4
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:          786
+ ibegin:            0
+ jbegin:         2361
+ ncrn:            4
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:          787
+ ibegin:            0
+ jbegin:            0
+ ncrn:            4
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:          786
+ ibegin:         3242
+ jbegin:         2361
+ ncrn:            4
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:          786
+ ibegin:         2162
+ jbegin:         2361
+ ncrn:            4
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:          787
+ ibegin:         3242
+ jbegin:         1574
+ ncrn:            4
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:          787
+ ibegin:         2162
+ jbegin:         1574
+ ncrn:            4
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ Number of .true. in mask:       768312
+ Number of .true. in mask:       647690
+ Number of .true. in mask:       844431
+ Number of .true. in mask:       718709
+ Number of .true. in mask:       374369
+ Number of .true. in mask:       399694
+ Number of .false. in mask:        82435
+ Number of .false. in mask:       202270
+ Number of .false. in mask:         6316
+ Number of .false. in mask:       132038
+ Number of .false. in mask:       475297
+ Number of .false. in mask:       450266
+ Number of .true. in mask:       727388
+ Number of .true. in mask:       443995
+ Number of .false. in mask:       122572
+ Number of .false. in mask:       406752
+ Number of .true. in mask:       138720
+ Number of .true. in mask:       273747
+ Number of .true. in mask:       710014
+ Number of .true. in mask:       359964
+ Number of .true. in mask:       328665
+ Number of .true. in mask:       603350
+ Number of .true. in mask:       257897
+ Number of .false. in mask:       710946
+ Number of .false. in mask:       575133
+ Number of .false. in mask:       140733
+ Number of .false. in mask:       488916
+ Number of .false. in mask:       522082
+ Number of .false. in mask:       246610
+ Number of .false. in mask:       592063
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:          787
+ ibegin:         1081
+ jbegin:         1574
+ ncrn:            4
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:          787
+ ibegin:         1081
+ jbegin:          787
+ ncrn:            4
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:          787
+ ibegin:         2162
+ jbegin:          787
+ ncrn:            4
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:          786
+ ibegin:         1081
+ jbegin:         2361
+ ncrn:            4
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:          787
+ ibegin:            0
+ jbegin:          787
+ ncrn:            4
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:          787
+ ibegin:         3242
+ jbegin:            0
+ ncrn:            4
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:          787
+ ibegin:         3242
+ jbegin:          787
+ ncrn:            4
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:          787
+ ibegin:            0
+ jbegin:         1574
+ ncrn:            4
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:          786
+ ibegin:            0
+ jbegin:         2361
+ ncrn:            4
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:          786
+ ibegin:         2162
+ jbegin:         2361
+ ncrn:            4
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:          787
+ ibegin:         1081
+ jbegin:            0
+ ncrn:            4
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:          787
+ ibegin:            0
+ jbegin:            0
+ ncrn:            4
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:          786
+ ibegin:         3242
+ jbegin:         2361
+ ncrn:            4
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:          787
+ ibegin:         2162
+ jbegin:            0
+ ncrn:            4
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:          787
+ ibegin:         3242
+ jbegin:         1574
+ ncrn:            4
+ Number of .true. in mask:       600935
+ Number of .false. in mask:       249025
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:          787
+ ibegin:         2162
+ jbegin:         1574
+ ncrn:            4
+Computing intersections ...
+Remapping...
+Computing intersections ...
+Remapping...
+ TIMING:  0.198873803019524     
+ TIMING:  6.691006384789944E-002
+ TIMING:  6.606306321918964E-002
+ TIMING:  6.600566394627094E-002
+ TIMING:  6.461173668503761E-002
+ TIMING:  6.353541091084480E-002
+ TIMING:  6.400381401181221E-002
+ TIMING:  6.415965408086777E-002
+ TIMING:  6.418541818857193E-002
+ TIMING:  6.424015201628208E-002
+ TIMING:  6.390487216413021E-002
+ TIMING:  6.350167840719223E-002
+ TIMING:  6.366319768130779E-002
+ TIMING:  6.547347456216812E-002
+ TIMING:  6.370763853192329E-002
+ TIMING:  6.373489648103714E-002
+ TIMING:  6.445999443531036E-002
+ TIMING:  6.346779316663742E-002
+ TIMING:  6.370428763329983E-002
+ TIMING:  6.350447237491608E-002
+ TIMING:  6.363946013152599E-002
+ TIMING:  6.352906860411167E-002
+ TIMING:  6.379325687885284E-002
+ TIMING:  6.382798589766026E-002
+ TIMING:  6.327772699296474E-002
+ TIMING:  6.340550445020199E-002
+ TIMING:  6.341374851763248E-002
+ TIMING:  6.363633275032043E-002
+ TIMING:  6.346615590155125E-002
+ TIMING:  6.343413703143597E-002
+ TIMING:  6.351160258054733E-002
+ TIMING:  6.350422650575638E-002
+ TIMING:  6.347638368606567E-002
+ TIMING:  6.369726732373238E-002
+ TIMING:  6.333897262811661E-002
+ TIMING:  6.346273235976696E-002
+ TIMING:  6.385558843612671E-002
+ TIMING:  6.344010494649410E-002
+ TIMING:  6.462864205241203E-002
+ TIMING:  6.487857736647129E-002
+ TIMING:  6.393893994390965E-002
+ TIMING:  6.353772431612015E-002
+ TIMING:  6.405092403292656E-002
+ TIMING:  6.372288055717945E-002
+ TIMING:  6.366589479148388E-002
+ TIMING:  6.377004459500313E-002
+ TIMING:  6.321508809924126E-002
+ TIMING:  6.371337734162807E-002
+ TIMING:  6.352060288190842E-002
+ TIMING:  6.352395564317703E-002
+ TIMING:  6.344310566782951E-002
+ TIMING:  6.351912207901478E-002
+ TIMING:  6.354071572422981E-002
+ TIMING:  6.372508034110069E-002
+ TIMING:  6.387959793210030E-002
+ TIMING:  6.379431672394276E-002
+ TIMING:  6.331980787217617E-002
+ TIMING:  6.474134512245655E-002
+ TIMING:  6.333781033754349E-002
+ TIMING:  6.358179636299610E-002
+ TIMING:  6.336815655231476E-002
+ TIMING:  6.387703679502010E-002
+ TIMING:  6.347194500267506E-002
+ TIMING:  6.338385678827763E-002
+ TIMING:  6.354536488652229E-002
+ TIMING:  6.410376355051994E-002
+ TIMING:  6.355138123035431E-002
+ TIMING:  6.460293568670750E-002
+ TIMING:  6.333284266293049E-002
+ TIMING:  6.586941145360470E-002
+ TIMING:  6.372622959315777E-002
+ TIMING:  6.477736495435238E-002
+ TIMING:  6.355219706892967E-002
+ TIMING:  6.371086835861206E-002
+ TIMING:  6.353967636823654E-002
+ TIMING:  6.352472491562366E-002
+ TIMING:  6.387868896126747E-002
+ TIMING:  6.364862248301506E-002
+ TIMING:  6.426447071135044E-002
+ TIMING:  6.406652182340622E-002
+ TIMING:  6.355058215558529E-002
+ TIMING:  6.361855566501617E-002
+ TIMING:  6.408989429473877E-002
+ TIMING:  6.452591903507710E-002
+ TIMING:  6.389667838811874E-002
+ TIMING:  6.363942474126816E-002
+ TIMING:  6.343365274369717E-002
+ TIMING:  6.327149271965027E-002
+ TIMING:  6.355146504938602E-002
+ TIMING:  6.366392783820629E-002
+ TIMING:  6.371363997459412E-002
+ TIMING:  6.396147795021534E-002
+ TIMING:  6.333982199430466E-002
+ TIMING:  6.389564462006092E-002
+ TIMING:  6.369148939847946E-002
+ TIMING:  6.334833241999149E-002
+ TIMING:  6.369194015860558E-002
+ TIMING:  7.821264490485191E-002
+ TIMING:  6.357573159039021E-002
+ TIMING:  6.353770382702351E-002
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor

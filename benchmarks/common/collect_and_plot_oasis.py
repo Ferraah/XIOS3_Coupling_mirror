@@ -27,7 +27,7 @@ dfi = collect_interpolations_results(
 
 print(dfi)
 title_pp = "OASIS 100 Ping Pongs Scaling Results (trimmed outliers: {}%)".format(trim_outliers)
-title_interp = "OASIS-YAC Two first order interpolations weight generation time"
+title_interp = "Two OASIS (with YAC) 1° order conservative weights generation time"
 
-make_ping_pong_plot(df, title_pp, save_path="benchmark_oasis_ping_pong.png")
-make_interpolation_plot(dfi, title_interp, save_path="benchmark_oasis_interpolation.png")
+make_ping_pong_plot(df, title_pp, save_path="benchmark_oasis_ping_pong.svg")
+make_interpolation_plot(dfi, title_interp, save_path="benchmark_oasis_interpolation.svg")

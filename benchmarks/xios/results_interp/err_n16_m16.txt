@@ -1,5 +1,8 @@
-srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
-slurmstepd: error: *** JOB 1624604 ON node145 CANCELLED AT 2025-07-09T02:25:56 DUE TO TIME LIMIT ***
-srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
-slurmstepd: error: *** STEP 1624604.0+0 ON node145 CANCELLED AT 2025-07-09T02:25:56 DUE TO TIME LIMIT ***
-slurmstepd: error: *** STEP 1624604.0+1 ON node146 CANCELLED AT 2025-07-09T02:25:56 DUE TO TIME LIMIT ***
+slurmstepd: error: *** JOB 1626942 ON node117 CANCELLED AT 2025-07-11T07:01:56 DUE TO TIME LIMIT ***
+slurmstepd: error: *** STEP 1626942.5 ON node117 CANCELLED AT 2025-07-11T07:01:56 DUE TO TIME LIMIT ***
+forrtl: error (78): process killed (SIGTERM)
+
+Stack trace terminated abnormally.
+forrtl: error (78): process killed (SIGTERM)
+
+Stack trace terminated abnormally.

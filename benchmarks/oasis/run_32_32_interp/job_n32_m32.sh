@@ -2,9 +2,9 @@
 #SBATCH --job-name=bench_n32_m32
 #SBATCH --output=../oasis/results_interp/out_n32_m32.txt
 #SBATCH --error=../oasis/results_interp/err_n32_m32.txt
-#SBATCH --ntasks=64
+#SBATCH --nodes=2
 #SBATCH --time=06:00:00
-#SBATCH --partition=bench
+#SBATCH --partition=prod
 #SBATCH --exclusive
 #SBATCH --mem=90G 
 
@@ -36,7 +36,9 @@ for i in $(seq 1 20); do
 
     rm -f rmp_*
     echo "Running interpolation iteration $i"
-    mpirun -np 32 ../oasis_ping_pong.exe ocean_component t12e LR true : -np 32 ../oasis_ping_pong.exe atmos_component icoh U true >> ../outputs_interp/ocean_times_n32_m32.txt
+    mpirun -genv I_MPI_PIN_DOMAIN=auto -genv I_MPI_JOB_RESPECT_PROCESS_PLACEMENT=0 \
+       -ppn 32 \
+    -np 32 ../oasis_ping_pong.exe ocean_component t12e LR true : -np 32 ../oasis_ping_pong.exe atmos_component icoh U true >> ../outputs_interp/ocean_times_n32_m32.txt
 
 done
 

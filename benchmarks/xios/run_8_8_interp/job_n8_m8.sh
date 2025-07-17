@@ -2,7 +2,7 @@
 #SBATCH --job-name=bench_n8_m8
 #SBATCH --output=../xios/results_interp/out_n8_m8.txt
 #SBATCH --error=../xios/results_interp/err_n8_m8.txt
-#SBATCH --ntasks=64
+#SBATCH --nodes=2
 #SBATCH --time=12:00:00
 #SBATCH --partition=prod
 #SBATCH --exclusive
@@ -28,9 +28,13 @@ cp ../original_data/iodef_high_interp.xml iodef.xml
 
 rm -rf ../outputs_interp/interpolations_times_n8_m8.txt
 
-for i in $(seq 1 10); do
+for i in $(seq 1 20); do
     echo "Running interpolation iteration $i"
-    mpirun -np 8  ../12_ping_pong.exe oce true : -np 8 ../12_ping_pong.exe atm true > ../outputs_interp/ocean_times_n8_m8.txt
+    echo "ppn: $((SLURM_NTASKS / SLURM_JOB_NUM_NODES))"
+
+    mpirun -genv I_MPI_PIN_DOMAIN=auto -genv I_MPI_JOB_RESPECT_PROCESS_PLACEMENT=0 \
+       -ppn 8 \
+       -np 8 ../12_ping_pong.exe oce true : -np 8 ../12_ping_pong.exe atm true > ../outputs_interp/ocean_times_n8_m8.txt
 
     # Add the time taken for interpolation from xios log file
     grep "compute" xios_client_*.out | awk -F " " '{print $8}'  >> ../outputs_interp/interpolations_times_n8_m8.txt

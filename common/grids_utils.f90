@@ -245,6 +245,7 @@ contains
         ! Deallocate global pointers
         deallocate(lon_glo2d, lat_glo2d, clo_glo2d, cla_glo2d, msk_glo2d, srf_glo2d)
         deallocate(lon2d, lat2d, bounds_lon, bounds_lat, srf_loc2d)
+        deallocate(mask)
     end subroutine init_domain_orca
 
 

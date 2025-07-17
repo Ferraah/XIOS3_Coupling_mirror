@@ -1,11 +1,50 @@
 make: Nothing to be done for 'all'.
 Using iodef with interpolation
 Running interpolation iteration 1
+ppn: 0
+Running interpolation iteration 2
+ppn: 0
+Running interpolation iteration 3
+ppn: 0
+Running interpolation iteration 4
+ppn: 0
+Running interpolation iteration 5
+ppn: 0
+Running interpolation iteration 6
+ppn: 0
+Running interpolation iteration 7
+ppn: 0
+Running interpolation iteration 8
+ppn: 0
+Running interpolation iteration 9
+ppn: 0
+Running interpolation iteration 10
+ppn: 0
+Running interpolation iteration 11
+ppn: 0
+Running interpolation iteration 12
+ppn: 0
+Running interpolation iteration 13
+ppn: 0
+Running interpolation iteration 14
+ppn: 0
+Running interpolation iteration 15
+ppn: 0
+Running interpolation iteration 16
+ppn: 0
+Running interpolation iteration 17
+ppn: 0
+Running interpolation iteration 18
+ppn: 0
+Running interpolation iteration 19
+ppn: 0
+Running interpolation iteration 20
+ppn: 0
 |------------------------------------------------------------------------------------------|
 |                 Job Energy and emissions summary                                         |
 |------------------------------------------------------------------------------------------|
-Job Energy (J) :                    3422685                          
-Job Energy (kWh) :                  0.951                            
+Job Energy (J) :                    1948975                          
+Job Energy (kWh) :                  0.541                            
 Job emissions (gCO₂eq) :               0                                
 Job emissions are computed with the average carbon intensity value during timespan of the job (0.00 gCO₂eq/kWh)
 |------------------------------------------------------------------------------------------|

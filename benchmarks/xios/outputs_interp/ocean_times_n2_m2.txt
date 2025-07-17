@@ -10,9 +10,9 @@
 -> info : CWindowBase constructor : CServicesManager::winNotify_
 -> info : CWindowBase constructor : CServicesManager::winNotify_
 -> info : CWindowBase constructor : CServicesManager::winNotify_
+-> info : CWindowBase constructor : CServicesManager::winServices_-> info : CWindowBase constructor : CServicesManager::winServices_
 -> info : CWindowBase constructor : CServicesManager::winServices_
--> info : CWindowBase constructor : CServicesManager::winServices_
--> info : CWindowBase constructor : CServicesManager::winServices_
+
 -> info : CWindowBase constructor : CServicesManager::winServices_
 -> info : CWindowBase constructor : CContextsManager::winNotify_
 -> info : CWindowBase constructor : CContextsManager::winNotify_
@@ -22,32 +22,74 @@
 -> info : CWindowBase constructor : CContextsManager::winContexts_
 -> info : CWindowBase constructor : CContextsManager::winContexts_
 -> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
 -> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
--> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
--> info : CWindowBase constructor : -> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+
+
+-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_-> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
 -> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
--> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+
 -> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
--> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
-CCouplerManager::winNextCoupling_
 -> info : CWindowBase constructor : CPoolRessource::winNotify_
--> info : CPoolRessource::CPoolRessource  : creating new pool : oce
 -> info : CWindowBase constructor : CPoolRessource::winNotify_
--> info : CPoolRessource::CPoolRessource  : creating new pool : oce
--> info : CWindowBase constructor : CPoolRessource::winNotify_
--> info : CPoolRessource::CPoolRessource  : creating new pool : atm
--> info : CWindowBase constructor : CPoolRessource::winNotify_
--> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+-> info : CPoolRessource::CPoolRessource  : creating new pool : atm-> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+
+-> info : CWindowBase constructor : CPoolRessource::winNotify_-> info : CWindowBase constructor : CPoolRessource::winNotify_
+
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
+
  cl_nam: t12e.lon
- cl_nam: icoh.lon
  cl_nam: t12e.lon
+ Number of .true. in mask:      4325520
+ Number of .false. in mask:      2475147
+ Number of .true. in mask:      3872360
+ Number of .false. in mask:      2928307
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         2161
+ nj:         3147
+ ibegin:            0
+ jbegin:            0
+ ncrn:            4
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         2161
+ nj:         3147
+ ibegin:         2161
+ jbegin:            0
+ ncrn:            4
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ Number of .true. in mask:      4325520
+ Number of .false. in mask:      2475147
+ Number of .true. in mask:      3872360
+ Number of .false. in mask:      2928307
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         2161
+ nj:         3147
+ ibegin:            0
+ jbegin:            0
+ ncrn:            4
  cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         2161
+ nj:         3147
+ ibegin:         2161
+ jbegin:            0
+ ncrn:            4
  ICOS type set in XIOS: domain_atm
  ni_glo:      2016012
  nj_glo:            1
  ni:      1008006
  nj:            1
- ibegin:      1008006
+ ibegin:            0
  jbegin:            0
  ncrn:            6
  ICOS type set in XIOS: domain_atm
@@ -55,7 +97,7 @@ CCouplerManager::winNextCoupling_
  nj_glo:            1
  ni:      1008006
  nj:            1
- ibegin:            0
+ ibegin:      1008006
  jbegin:            0
  ncrn:            6
  cl_nam: icoh.lon
@@ -65,7 +107,7 @@ CCouplerManager::winNextCoupling_
  nj_glo:            1
  ni:      1008006
  nj:            1
- ibegin:      1008006
+ ibegin:            0
  jbegin:            0
  ncrn:            6
  ICOS type set in XIOS: domain_oce_interp
@@ -73,49 +115,118 @@ CCouplerManager::winNextCoupling_
  nj_glo:            1
  ni:      1008006
  nj:            1
- ibegin:            0
+ ibegin:      1008006
  jbegin:            0
  ncrn:            6
- Number of .true. in mask:      3872360
- Number of .true. in mask:      4325520
- Number of .false. in mask:      2928307
- Number of .false. in mask:      2475147
- ORCA type set in XIOS: domain_oce
- ni_glo:         4322
- nj_glo:         3147
- ni:         2161
- nj:         3147
- ibegin:         2161
- jbegin:            0
- ncrn:            4
- ORCA type set in XIOS: domain_oce
- ni_glo:         4322
- nj_glo:         3147
- ni:         2161
- nj:         3147
- ibegin:            0
- jbegin:            0
- ncrn:            4
- cl_nam: t12e.lon
- cl_nam: t12e.lon
- Number of .true. in mask:      3872360
- Number of .true. in mask:      4325520
- Number of .false. in mask:      2928307
- Number of .false. in mask:      2475147
- ORCA type set in XIOS: domain_atm_interp
- ni_glo:         4322
- nj_glo:         3147
- ni:         2161
- nj:         3147
- ibegin:         2161
- jbegin:            0
- ncrn:            4
- ORCA type set in XIOS: domain_atm_interp
- ni_glo:         4322
- nj_glo:         3147
- ni:         2161
- nj:         3147
- ibegin:            0
- jbegin:            0
- ncrn:            4
 Computing intersections ...
+Remapping...
+Computing intersections ...
+Remapping...
+ TIMING:   1.26289133355021     
+ TIMING:  0.692410686984658     
+ TIMING:  0.621949123218656     
+ TIMING:  0.591557689011097     
+ TIMING:  0.565753178671002     
+ TIMING:  0.512896785512567     
+ TIMING:  0.493875525891781     
+ TIMING:  0.495719721540809     
+ TIMING:  0.485779050737619     
+ TIMING:  0.454528369009495     
+ TIMING:  0.458233669400215     
+ TIMING:  0.448478274047375     
+ TIMING:  0.451914872974157     
+ TIMING:  0.474649151787162     
+ TIMING:  0.461905021220446     
+ TIMING:  0.433323981240392     
+ TIMING:  0.401540689170361     
+ TIMING:  0.356017222627997     
+ TIMING:  0.345014285296202     
+ TIMING:  0.347992736846209     
+ TIMING:  0.332026939839125     
+ TIMING:  0.331273203715682     
+ TIMING:  0.334442840889096     
+ TIMING:  0.336325876414776     
+ TIMING:  0.357834452763200     
+ TIMING:  0.334939222782850     
+ TIMING:  0.336135525256395     
+ TIMING:  0.341214621439576     
+ TIMING:  0.334833433851600     
+ TIMING:  0.366919653490186     
+ TIMING:  0.338998951017857     
+ TIMING:  0.341359417885542     
+ TIMING:  0.368166694417596     
+ TIMING:  0.334859274327755     
+ TIMING:  0.342194588854909     
+ TIMING:  0.334500158205628     
+ TIMING:  0.330759253352880     
+ TIMING:  0.336682094261050     
+ TIMING:  0.337045215070248     
+ TIMING:  0.335398912429810     
+ TIMING:  0.335798598825932     
+ TIMING:  0.330260593444109     
+ TIMING:  0.331004537642002     
+ TIMING:  0.334016783162951     
+ TIMING:  0.333709213882685     
+ TIMING:  0.334035959094763     
+ TIMING:  0.334195079281926     
+ TIMING:  0.331578496843576     
+ TIMING:  0.330444946885109     
+ TIMING:  0.334614234045148     
+ TIMING:  0.333340866491199     
+ TIMING:  0.334141744300723     
+ TIMING:  0.330901244655252     
+ TIMING:  0.339531261473894     
+ TIMING:  0.335752218961716     
+ TIMING:  0.339939692988992     
+ TIMING:  0.336245309561491     
+ TIMING:  0.349182261154056     
+ TIMING:  0.330292206257582     
+ TIMING:  0.331359805539250     
+ TIMING:  0.338361637666821     
+ TIMING:  0.333610633388162     
+ TIMING:  0.333816397935152     
+ TIMING:  0.336551940068603     
+ TIMING:  0.330074239522219     
+ TIMING:  0.334570946171880     
+ TIMING:  0.351930027827621     
+ TIMING:  0.333454199135303     
+ TIMING:  0.333951331675053     
+ TIMING:  0.333729775622487     
+ TIMING:  0.336767302826047     
+ TIMING:  0.347106028348207     
+ TIMING:  0.333274358883500     
+ TIMING:  0.335045626387000     
+ TIMING:  0.354139123111963     
+ TIMING:  0.334143258631229     
+ TIMING:  0.333678066730499     
+ TIMING:  0.333375584334135     
+ TIMING:  0.346572235226631     
+ TIMING:  0.332801679149270     
+ TIMING:  0.334094911813736     
+ TIMING:  0.336593348532915     
+ TIMING:  0.337464099749923     
+ TIMING:  0.334384059533477     
+ TIMING:  0.334072886034846     
+ TIMING:  0.330342769622803     
+ TIMING:  0.334498615935445     
+ TIMING:  0.333872208371758     
+ TIMING:  0.332156198099256     
+ TIMING:  0.347114566713572     
+ TIMING:  0.354543268680573     
+ TIMING:  0.330170804634690     
+ TIMING:  0.330064831301570     
+ TIMING:  0.333715224638581     
+ TIMING:  0.333950603380799     
+ TIMING:  0.334712583571672     
+ TIMING:  0.333188809454441     
+ TIMING:  0.331068975850940     
+ TIMING:  0.330994488671422     
+ TIMING:  0.334520302712917     
+Server Context destructor
+Server Context destructor
+Server Context destructor
+Server Context destructor
+ End of the program.
+ End of the program.
+ End of the program.
+ End of the program.

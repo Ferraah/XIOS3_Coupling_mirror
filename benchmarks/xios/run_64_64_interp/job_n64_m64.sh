@@ -28,9 +28,9 @@ cp ../original_data/iodef_high_interp.xml iodef.xml
 
 rm -rf ../outputs_interp/interpolations_times_n64_m64.txt
 
-for i in $(seq 1 10); do
+for i in $(seq 1 20); do
     echo "Running interpolation iteration $i"
-    srun -n 64 --distribution=cyclic:cyclic ../12_ping_pong.exe oce true : -n 64 ../12_ping_pong.exe atm true > ../outputs_interp/ocean_times_n64_m64.txt
+    mpirun -np 64 ../12_ping_pong.exe oce true : -np 64 ../12_ping_pong.exe atm true > ../outputs_interp/ocean_times_n64_m64.txt
 
     # Add the time taken for interpolation from xios log file
     grep "compute" xios_client_*.out | awk -F " " '{print $8}'  >> ../outputs_interp/interpolations_times_n64_m64.txt

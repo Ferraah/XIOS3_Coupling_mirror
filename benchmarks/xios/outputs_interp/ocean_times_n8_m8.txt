@@ -94,6 +94,7 @@
 -> info : CWindowBase constructor : CContextsManager::winContexts_
 -> info : CWindowBase constructor : CContextsManager::winContexts_
 -> info : CWindowBase constructor : CContextsManager::winContexts_
+-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_-> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
 -> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
 -> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
 -> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
@@ -108,8 +109,7 @@
 -> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
 -> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
 -> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
--> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
--> info : CWindowBase constructor : CCouplerManager::winRegistredCoupling_
+
 -> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
 -> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
 -> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
@@ -127,42 +127,37 @@
 -> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
 -> info : CWindowBase constructor : CCouplerManager::winNextCoupling_
 -> info : CWindowBase constructor : CPoolRessource::winNotify_
--> info : CPoolRessource::CPoolRessource  : creating new pool : oce
 -> info : CWindowBase constructor : CPoolRessource::winNotify_
--> info : CPoolRessource::CPoolRessource  : creating new pool : oce
 -> info : CWindowBase constructor : CPoolRessource::winNotify_
--> info : CPoolRessource::CPoolRessource  : creating new pool : oce
 -> info : CWindowBase constructor : CPoolRessource::winNotify_
--> info : CPoolRessource::CPoolRessource  : creating new pool : oce
 -> info : CWindowBase constructor : CPoolRessource::winNotify_
--> info : CPoolRessource::CPoolRessource  : creating new pool : oce
 -> info : CWindowBase constructor : CPoolRessource::winNotify_
--> info : CPoolRessource::CPoolRessource  : creating new pool : oce
 -> info : CWindowBase constructor : CPoolRessource::winNotify_
--> info : CPoolRessource::CPoolRessource  : creating new pool : oce
 -> info : CWindowBase constructor : CPoolRessource::winNotify_
--> info : CPoolRessource::CPoolRessource  : creating new pool : oce
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CWindowBase constructor : CPoolRessource::winNotify_
 -> info : CWindowBase constructor : CPoolRessource::winNotify_
 -> info : CWindowBase constructor : CPoolRessource::winNotify_
 -> info : CWindowBase constructor : CPoolRessource::winNotify_
 -> info : CPoolRessource::CPoolRessource  : creating new pool : atm
--> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
 -> info : CPoolRessource::CPoolRessource  : creating new pool : atm
--> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
 -> info : CPoolRessource::CPoolRessource  : creating new pool : atm
--> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
 -> info : CPoolRessource::CPoolRessource  : creating new pool : atm
--> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
 -> info : CPoolRessource::CPoolRessource  : creating new pool : atm
--> info : CWindowBase constructor : CPoolRessource::winNotify_
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
 -> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
 -> info : CPoolRessource::CPoolRessource  : creating new pool : atm
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
 -> info : CPoolRessource::CPoolRessource  : creating new pool : atm
- cl_nam: icoh.lon
- cl_nam: icoh.lon
- cl_nam: icoh.lon
- cl_nam: icoh.lon
- cl_nam: icoh.lon
+-> info : CPoolRessource::CPoolRessource  : creating new pool : oce
  cl_nam: t12e.lon
  cl_nam: t12e.lon
  cl_nam: t12e.lon
@@ -171,55 +166,188 @@
  cl_nam: t12e.lon
  cl_nam: t12e.lon
  cl_nam: t12e.lon
- cl_nam: icoh.lon
- cl_nam: icoh.lon
- cl_nam: icoh.lon
- ICOS type set in XIOS: domain_atm
- ni_glo:      2016012
- nj_glo:            1
- ni:       252001
- nj:            1
- ibegin:      1008008
+ Number of .true. in mask:      1127082
+ Number of .true. in mask:      1251040
+ Number of .false. in mask:       572838
+ Number of .false. in mask:       448880
+ Number of .true. in mask:      1554445
+ Number of .false. in mask:       147049
+ Number of .true. in mask:      1047374
+ Number of .false. in mask:       654120
+ Number of .true. in mask:       960899
+ Number of .true. in mask:       531644
+ Number of .false. in mask:       737941
+ Number of .false. in mask:      1167196
+ Number of .true. in mask:       582715
+ Number of .true. in mask:      1142681
+ Number of .false. in mask:      1117698
+ Number of .false. in mask:       557732
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:         1574
+ ibegin:         3242
  jbegin:            0
- ncrn:            6
+ ncrn:            4
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:         1574
+ ibegin:         2162
+ jbegin:            0
+ ncrn:            4
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:         1574
+ ibegin:         1081
+ jbegin:            0
+ ncrn:            4
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:         1574
+ ibegin:            0
+ jbegin:            0
+ ncrn:            4
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:         1573
+ ibegin:         2162
+ jbegin:         1574
+ ncrn:            4
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:         1573
+ ibegin:         3242
+ jbegin:         1574
+ ncrn:            4
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:         1573
+ ibegin:            0
+ jbegin:         1574
+ ncrn:            4
+ ORCA type set in XIOS: domain_oce
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:         1573
+ ibegin:         1081
+ jbegin:         1574
+ ncrn:            4
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ cl_nam: t12e.lon
+ Number of .true. in mask:      1127082
+ Number of .true. in mask:      1251040
+ Number of .false. in mask:       572838
+ Number of .false. in mask:       448880
+ Number of .true. in mask:      1554445
+ Number of .false. in mask:       147049
+ Number of .true. in mask:      1047374
+ Number of .false. in mask:       654120
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:         1574
+ ibegin:         2162
+ jbegin:            0
+ ncrn:            4
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:         1574
+ ibegin:         3242
+ jbegin:            0
+ ncrn:            4
+ Number of .true. in mask:       960899
+ Number of .false. in mask:       737941
+ Number of .true. in mask:       531644
+ Number of .false. in mask:      1167196
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:         1574
+ ibegin:         1081
+ jbegin:            0
+ ncrn:            4
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:         1574
+ ibegin:            0
+ jbegin:            0
+ ncrn:            4
+ Number of .true. in mask:       582715
+ Number of .true. in mask:      1142681
+ Number of .false. in mask:      1117698
+ Number of .false. in mask:       557732
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:         1573
+ ibegin:         2162
+ jbegin:         1574
+ ncrn:            4
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1080
+ nj:         1573
+ ibegin:         3242
+ jbegin:         1574
+ ncrn:            4
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:         1573
+ ibegin:         1081
+ jbegin:         1574
+ ncrn:            4
+ ORCA type set in XIOS: domain_atm_interp
+ ni_glo:         4322
+ nj_glo:         3147
+ ni:         1081
+ nj:         1573
+ ibegin:            0
+ jbegin:         1574
+ ncrn:            4
  ICOS type set in XIOS: domain_atm
  ni_glo:      2016012
  nj_glo:            1
  ni:       252002
  nj:            1
  ibegin:       756006
- jbegin:            0
- ncrn:            6
- ICOS type set in XIOS: domain_atm
- ni_glo:      2016012
- nj_glo:            1
- ni:       252001
- nj:            1
- ibegin:      1764011
- jbegin:            0
- ncrn:            6
- ICOS type set in XIOS: domain_atm
- ni_glo:      2016012
- nj_glo:            1
- ni:       252001
- nj:            1
- ibegin:      1512010
- jbegin:            0
- ncrn:            6
- ICOS type set in XIOS: domain_atm
- ni_glo:      2016012
- nj_glo:            1
- ni:       252002
- nj:            1
- ibegin:       504004
- jbegin:            0
- ncrn:            6
- ICOS type set in XIOS: domain_atm
- ni_glo:      2016012
- nj_glo:            1
- ni:       252001
- nj:            1
- ibegin:      1260009
  jbegin:            0
  ncrn:            6
  ICOS type set in XIOS: domain_atm
@@ -235,18 +363,18 @@
  nj_glo:            1
  ni:       252002
  nj:            1
+ ibegin:       504004
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_atm
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       252002
+ nj:            1
  ibegin:            0
  jbegin:            0
  ncrn:            6
- cl_nam: icoh.lon
- cl_nam: icoh.lon
- cl_nam: icoh.lon
- cl_nam: icoh.lon
- cl_nam: icoh.lon
- cl_nam: icoh.lon
- cl_nam: icoh.lon
- cl_nam: icoh.lon
- ICOS type set in XIOS: domain_oce_interp
+ ICOS type set in XIOS: domain_atm
  ni_glo:      2016012
  nj_glo:            1
  ni:       252001
@@ -254,12 +382,44 @@
  ibegin:      1764011
  jbegin:            0
  ncrn:            6
+ ICOS type set in XIOS: domain_atm
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       252001
+ nj:            1
+ ibegin:      1260009
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_atm
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       252001
+ nj:            1
+ ibegin:      1512010
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_atm
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       252001
+ nj:            1
+ ibegin:      1008008
+ jbegin:            0
+ ncrn:            6
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
+ cl_nam: icoh.lon
  ICOS type set in XIOS: domain_oce_interp
  ni_glo:      2016012
  nj_glo:            1
  ni:       252002
  nj:            1
- ibegin:       756006
+ ibegin:            0
  jbegin:            0
  ncrn:            6
  ICOS type set in XIOS: domain_oce_interp
@@ -273,9 +433,25 @@
  ICOS type set in XIOS: domain_oce_interp
  ni_glo:      2016012
  nj_glo:            1
+ ni:       252002
+ nj:            1
+ ibegin:       252002
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_oce_interp
+ ni_glo:      2016012
+ nj_glo:            1
+ ni:       252002
+ nj:            1
+ ibegin:       756006
+ jbegin:            0
+ ncrn:            6
+ ICOS type set in XIOS: domain_oce_interp
+ ni_glo:      2016012
+ nj_glo:            1
  ni:       252001
  nj:            1
- ibegin:      1008008
+ ibegin:      1764011
  jbegin:            0
  ncrn:            6
  ICOS type set in XIOS: domain_oce_interp
@@ -289,14 +465,6 @@
  ICOS type set in XIOS: domain_oce_interp
  ni_glo:      2016012
  nj_glo:            1
- ni:       252002
- nj:            1
- ibegin:       252002
- jbegin:            0
- ncrn:            6
- ICOS type set in XIOS: domain_oce_interp
- ni_glo:      2016012
- nj_glo:            1
  ni:       252001
  nj:            1
  ibegin:      1260009
@@ -305,199 +473,115 @@
  ICOS type set in XIOS: domain_oce_interp
  ni_glo:      2016012
  nj_glo:            1
- ni:       252002
+ ni:       252001
  nj:            1
- ibegin:            0
+ ibegin:      1008008
  jbegin:            0
  ncrn:            6
- Number of .true. in mask:      1251040
- Number of .true. in mask:      1142681
- Number of .true. in mask:       531644
- Number of .true. in mask:       960899
- Number of .true. in mask:       582715
- Number of .true. in mask:      1127082
- Number of .true. in mask:      1554445
- Number of .false. in mask:       448880
- Number of .false. in mask:      1167196
- Number of .false. in mask:       557732
- Number of .false. in mask:      1117698
- Number of .false. in mask:       737941
- Number of .false. in mask:       572838
- Number of .false. in mask:       147049
- Number of .true. in mask:      1047374
- Number of .false. in mask:       654120
- ORCA type set in XIOS: domain_oce
- ni_glo:         4322
- nj_glo:         3147
- ni:         1080
- nj:         1574
- ibegin:         2162
- jbegin:            0
- ncrn:            4
- ORCA type set in XIOS: domain_oce
- ni_glo:         4322
- nj_glo:         3147
- ni:         1081
- nj:         1573
- ibegin:         1081
- jbegin:         1574
- ncrn:            4
- ORCA type set in XIOS: domain_oce
- ni_glo:         4322
- nj_glo:         3147
- ni:         1080
- nj:         1573
- ibegin:         3242
- jbegin:         1574
- ncrn:            4
- ORCA type set in XIOS: domain_oce
- ni_glo:         4322
- nj_glo:         3147
- ni:         1081
- nj:         1573
- ibegin:            0
- jbegin:         1574
- ncrn:            4
- ORCA type set in XIOS: domain_oce
- ni_glo:         4322
- nj_glo:         3147
- ni:         1080
- nj:         1573
- ibegin:         2162
- jbegin:         1574
- ncrn:            4
- ORCA type set in XIOS: domain_oce
- ni_glo:         4322
- nj_glo:         3147
- ni:         1080
- nj:         1574
- ibegin:         3242
- jbegin:            0
- ncrn:            4
- ORCA type set in XIOS: domain_oce
- ni_glo:         4322
- nj_glo:         3147
- ni:         1081
- nj:         1574
- ibegin:         1081
- jbegin:            0
- ncrn:            4
- ORCA type set in XIOS: domain_oce
- ni_glo:         4322
- nj_glo:         3147
- ni:         1081
- nj:         1574
- ibegin:            0
- jbegin:            0
- ncrn:            4
- cl_nam: t12e.lon
- cl_nam: t12e.lon
- cl_nam: t12e.lon
- cl_nam: t12e.lon
- cl_nam: t12e.lon
- cl_nam: t12e.lon
- cl_nam: t12e.lon
- cl_nam: t12e.lon
- Number of .true. in mask:      1251040
- Number of .true. in mask:       960899
- Number of .true. in mask:       531644
- Number of .true. in mask:      1127082
- Number of .true. in mask:       582715
- Number of .true. in mask:      1142681
- Number of .false. in mask:       448880
- Number of .false. in mask:       737941
- Number of .false. in mask:      1167196
- Number of .false. in mask:       572838
- Number of .false. in mask:      1117698
- Number of .false. in mask:       557732
- Number of .true. in mask:      1554445
- Number of .false. in mask:       147049
- ORCA type set in XIOS: domain_atm_interp
- ni_glo:         4322
- nj_glo:         3147
- ni:         1080
- nj:         1573
- ibegin:         2162
- jbegin:         1574
- ncrn:            4
- ORCA type set in XIOS: domain_atm_interp
- ni_glo:         4322
- nj_glo:         3147
- ni:         1080
- nj:         1573
- ibegin:         3242
- jbegin:         1574
- ncrn:            4
- ORCA type set in XIOS: domain_atm_interp
- ni_glo:         4322
- nj_glo:         3147
- ni:         1080
- nj:         1574
- ibegin:         2162
- jbegin:            0
- ncrn:            4
- ORCA type set in XIOS: domain_atm_interp
- ni_glo:         4322
- nj_glo:         3147
- ni:         1081
- nj:         1573
- ibegin:            0
- jbegin:         1574
- ncrn:            4
- ORCA type set in XIOS: domain_atm_interp
- ni_glo:         4322
- nj_glo:         3147
- ni:         1081
- nj:         1573
- ibegin:         1081
- jbegin:         1574
- ncrn:            4
- ORCA type set in XIOS: domain_atm_interp
- ni_glo:         4322
- nj_glo:         3147
- ni:         1080
- nj:         1574
- ibegin:         3242
- jbegin:            0
- ncrn:            4
- Number of .true. in mask:      1047374
- Number of .false. in mask:       654120
- ORCA type set in XIOS: domain_atm_interp
- ni_glo:         4322
- nj_glo:         3147
- ni:         1081
- nj:         1574
- ibegin:         1081
- jbegin:            0
- ncrn:            4
- ORCA type set in XIOS: domain_atm_interp
- ni_glo:         4322
- nj_glo:         3147
- ni:         1081
- nj:         1574
- ibegin:            0
- jbegin:            0
- ncrn:            4
 Computing intersections ...
 Computing intersections ...
 Remapping...
 Remapping...
- Only interpolation run. Exiting.
- Only interpolation run. Exiting.
- Only interpolation run. Exiting.
- Only interpolation run. Exiting.
- Only interpolation run. Exiting.
- Only interpolation run. Exiting.
- Only interpolation run. Exiting.
- Only interpolation run. Exiting.
- Only interpolation run. Exiting.
- Only interpolation run. Exiting.
- Only interpolation run. Exiting.
- Only interpolation run. Exiting.
- Only interpolation run. Exiting.
- Only interpolation run. Exiting.
- Only interpolation run. Exiting.
- Only interpolation run. Exiting.
+ TIMING:  0.353150662034750     
+ TIMING:  0.175576103851199     
+ TIMING:  0.146894363686442     
+ TIMING:  0.111196586862206     
+ TIMING:  0.110138060525060     
+ TIMING:  0.109958654269576     
+ TIMING:  0.110073957592249     
+ TIMING:  0.110250445082784     
+ TIMING:  0.110464058816433     
+ TIMING:  0.110342342406511     
+ TIMING:  0.110194090753794     
+ TIMING:  0.110220348462462     
+ TIMING:  0.110434859991074     
+ TIMING:  0.113609388470650     
+ TIMING:  0.117634091526270     
+ TIMING:  0.110226107761264     
+ TIMING:  0.110485689714551     
+ TIMING:  0.110157558694482     
+ TIMING:  0.110882824286819     
+ TIMING:  0.110302330926061     
+ TIMING:  0.110362501814961     
+ TIMING:  0.126840276643634     
+ TIMING:  0.110376412048936     
+ TIMING:  0.110448561608791     
+ TIMING:  0.110348092392087     
+ TIMING:  0.111008591949940     
+ TIMING:  0.111827775835991     
+ TIMING:  0.110614867880940     
+ TIMING:  0.110127110034227     
+ TIMING:  0.110160043463111     
+ TIMING:  0.110334772616625     
+ TIMING:  0.110319171100855     
+ TIMING:  0.110067516565323     
+ TIMING:  0.109976716339588     
+ TIMING:  0.109992682933807     
+ TIMING:  0.150623282417655     
+ TIMING:  0.121933924034238     
+ TIMING:  0.110137134790421     
+ TIMING:  0.109659666195512     
+ TIMING:  0.110642841085792     
+ TIMING:  0.110207494348288     
+ TIMING:  0.110057758167386     
+ TIMING:  0.110145989805460     
+ TIMING:  0.109934261068702     
+ TIMING:  0.157961018383503     
+ TIMING:  0.110291132703424     
+ TIMING:  0.110551698133349     
+ TIMING:  0.110770173370838     
+ TIMING:  0.110235294327140     
+ TIMING:  0.110649013891816     
+ TIMING:  0.112805470824242     
+ TIMING:  0.110156904906034     
+ TIMING:  0.157174929976463     
+ TIMING:  0.110089579597116     
+ TIMING:  0.110377578064799     
+ TIMING:  0.110481537878513     
+ TIMING:  0.110358517616987     
+ TIMING:  0.110088050365448     
+ TIMING:  0.110090283676982     
+ TIMING:  0.109974225983024     
+ TIMING:  0.110218644142151     
+ TIMING:  0.110432863235474     
+ TIMING:  0.109976420179009     
+ TIMING:  0.110064303502440     
+ TIMING:  0.110333651304245     
+ TIMING:  0.111297937110066     
+ TIMING:  0.110203735530376     
+ TIMING:  0.110019354149699     
+ TIMING:  0.111472513526678     
+ TIMING:  0.110096486285329     
+ TIMING:  0.110049132257700     
+ TIMING:  0.111114306375384     
+ TIMING:  0.110143698751926     
+ TIMING:  0.110336106270552     
+ TIMING:  0.110110498964787     
+ TIMING:  0.111408870667219     
+ TIMING:  0.110035600140691     
+ TIMING:  0.110359314829111     
+ TIMING:  0.110152339562774     
+ TIMING:  0.109800543636084     
+ TIMING:  0.109541276469827     
+ TIMING:  0.110036829486489     
+ TIMING:  0.110162397846580     
+ TIMING:  0.110385764390230     
+ TIMING:  0.112880922853947     
+ TIMING:  0.109149403870106     
+ TIMING:  0.110359797254205     
+ TIMING:  0.110179865732789     
+ TIMING:  0.110608775168657     
+ TIMING:  0.110132915899158     
+ TIMING:  0.109835235401988     
+ TIMING:  0.110029714182019     
+ TIMING:  0.110654719173908     
+ TIMING:  0.111346192657948     
+ TIMING:  0.109916185960174     
+ TIMING:  0.109758848324418     
+ TIMING:  0.110767327249050     
+ TIMING:  0.112780641764402     
+ TIMING:  0.110190063714981     
+ TIMING:  0.110048409551382     
 Server Context destructor
 Server Context destructor
 Server Context destructor

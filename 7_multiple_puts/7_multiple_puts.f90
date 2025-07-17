@@ -174,8 +174,8 @@ contains
 
                 if(curr_timestep==1) then
 
-                    call xios_recv_field("field2D_restart", field_recv)
                     if (model_id=="ocn") then 
+                        call xios_recv_field("field2D_restart_oce", field_recv)
                         print *, "  OCN: receiving restart field @ts=", curr_timestep, " with value ", field_recv(1,1)
                     else
                         call xios_recv_field("field2D_restart_ice", field_recv)

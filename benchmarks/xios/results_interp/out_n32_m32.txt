@@ -16,11 +16,15 @@ Running interpolation iteration 13
 Running interpolation iteration 14
 Running interpolation iteration 15
 Running interpolation iteration 16
+Running interpolation iteration 17
+Running interpolation iteration 18
+Running interpolation iteration 19
+Running interpolation iteration 20
 |------------------------------------------------------------------------------------------|
 |                 Job Energy and emissions summary                                         |
 |------------------------------------------------------------------------------------------|
-Job Energy (J) :                    11420890                         
-Job Energy (kWh) :                  3.172                            
-Job emissions (gCO₂eq) :               131                              
-Job emissions are computed with the average carbon intensity value during timespan of the job (41.25 gCO₂eq/kWh)
+Job Energy (J) :                    743670                           
+Job Energy (kWh) :                  0.207                            
+Job emissions (gCO₂eq) :               0                                
+Job emissions are computed with the average carbon intensity value during timespan of the job (0.00 gCO₂eq/kWh)
 |------------------------------------------------------------------------------------------|

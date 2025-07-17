@@ -3,8 +3,8 @@
 #SBATCH --output=../xios/results_interp/out_n32_m32.txt
 #SBATCH --error=../xios/results_interp/err_n32_m32.txt
 #SBATCH --ntasks=64
-#SBATCH --time=06:00:00
-#SBATCH --partition=bench
+#SBATCH --time=12:00:00
+#SBATCH --partition=prod
 #SBATCH --exclusive
 #SBATCH --mem=90G 
 

@@ -81,15 +81,15 @@ contains
 
         
         ! Run the coupling
-        if(.not. only_interpolation) then
-            call run_coupling(conf, field_desc)
-        else
-            print *, "Only interpolation run. Exiting."
-        end if 
+        call run_coupling(conf, field_desc)
+
         ! --------------------------------------------
         call xios_context_finalize()
         call xios_finalize()
 
+        if (allocated(field_desc%lon)) deallocate(field_desc%lon)
+        if (allocated(field_desc%lat)) deallocate(field_desc%lat)
+        if (allocated(field_desc%mask)) deallocate(field_desc%mask)
     end subroutine run_toymodel
 
     
@@ -191,6 +191,6 @@ contains
 
         if (allocated(field_send)) deallocate(field_send)
         if (allocated(field_recv)) deallocate(field_recv)
-        
+
     end subroutine  run_coupling 
 end program

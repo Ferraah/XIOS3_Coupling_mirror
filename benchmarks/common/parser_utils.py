@@ -177,7 +177,7 @@ def make_ping_pong_plot(df, title, save_path):
         label='Range (min-max)'
     )
 
-    plt.xlabel('N (Number of Processes)')
+    plt.xlabel('p (Processes per model)')
     plt.ylabel('Time (seconds)')
     plt.title(title)
     plt.xscale('log', base=2)
@@ -196,12 +196,12 @@ def make_interpolation_plot(df, title, save_path):
         label='Average'
     )
 
-    # Reference curve: scaled 1 / log2(n) that intersects the first point
+    # Reference curve: perfect scaling 1/n that intersects the first point
     x0 = df['n'].iloc[0]
     y0 = df['avg_interp'].iloc[0]
 
     def reference_curve(n):
-        return y0 * np.log2(x0) / np.log2(n)
+        return y0 * x0 / n
 
     # Add the reference curve
     n_vals = df['n']
@@ -209,7 +209,7 @@ def make_interpolation_plot(df, title, save_path):
         n_vals,
         reference_curve(n_vals),
         '--r',
-        label=r'Perfect strong scaling $1/\log_2(n)$'
+        label=r'Perfect strong scaling $1/p$'
     )
 
     plt.fill_between(
@@ -228,7 +228,7 @@ def make_interpolation_plot(df, title, save_path):
     plt.xscale('log', base=2)
 
     # Labels, title, etc.
-    plt.xlabel('N (Number of Processes)')
+    plt.xlabel('p (Processes per model)')
     plt.ylabel('Time (seconds)')
     plt.title(title)
     plt.legend()
@@ -238,74 +238,3 @@ def make_interpolation_plot(df, title, save_path):
     # Save to file
     plt.savefig(save_path)
 
-# def make_plots(csv_path="results/scaling_results.csv", trim_outliers=0):
-#     if not os.path.exists(csv_path):
-#         print(f"CSV file {csv_path} not found.")
-#         return
-    
-#     df = pd.read_csv(csv_path)
-
-#     # --- Ping Pong Results Plot ---
-#     plt.figure(figsize=(10, 6))
-
-#     # Log-log linear fit
-#     coeffs = np.polyfit(np.log2(df['n']), np.log2(df['avg_pp']), 1)
-#     print(f"Linear fit coefficients for avg_pp: {coeffs}")
-
-#     #Plot only averages 
-#     plt.plot(
-#         df['n'], df['avg_pp'],
-#         'o',
-#         label='Average Ping Pong Time', color='blue'
-#     )
-#     # Plot range as light gray
-#     plt.fill_between(
-#         df['n'],
-#         df['min_pp'],
-#         df['max_pp'],
-#         color='lightgray',
-#         alpha=0.5,
-#         label='Range (min-max)'
-#     )
-
-#     plt.xlabel('N (Number of Processes)')
-#     plt.ylabel('Time (seconds)')
-#     plt.title('XIOS 100 Ping Pongs Benchmark Results (Trimmed Outliers: {}%)'.format(trim_outliers))
-#     plt.xscale('log', base=2)
-#     plt.legend()
-#     plt.grid(True)
-#     plt.tight_layout()
-#     plt.savefig("benchmark_xios_ping_pong_results.png")
-#     plt.close()
-
-#     # --- XIOS Interpolation Results Plot ---
-#     plt.figure(figsize=(10, 6))
-#     plt.plot(
-#         df['n'], df['avg_interp'],
-#         '-bo',
-#         label='Average'
-#     )
-
-
-
-#     #Set max height value shown 
-#     plt.ylim(0, 350)
-#     plt.xscale('log', base=2) 
-
-#     # Log-log linear fit
-#     coeffs_interp = np.polyfit(np.log2(df['n']), np.log2(df['avg_interp']), 1)
-#     print(f"Linear fit coefficients for avg_interp: {coeffs_interp}")
-
-#     # Plot perfect scaling (slope -1)
-#     n_fit = np.linspace(df['n'].min(), df['n'].max(), 100)
-#     y_fit = np.polyval(coeffs_interp, np.log2(n_fit))
-#     plt.plot(n_fit, 2**y_fit, '--', color='red', label='Perfect Scaling')
-
-#     plt.xlabel('N (Number of Processes)')
-#     plt.ylabel('Time (seconds)')
-#     plt.title('XIOS 1 order conservative interpolation (2 remappings)')
-#     plt.legend()
-#     plt.grid(True)
-#     plt.tight_layout()
-#     plt.savefig("benchmark_xios_interp_results.png")
-#     plt.close()

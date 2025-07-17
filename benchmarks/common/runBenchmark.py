@@ -12,10 +12,10 @@ if software not in ["xios", "oasis"]:
 
 
 sbatcher = sb.SlurmSbatcher(
-    nm_list=[(n, n) for n in [1, 2, 4, 8, 16, 32, 64, 128, 256, 512]],  
-    do_interpolation=False,
+    nm_list=[(n, n) for n in [64]],  
+    do_interpolation=True,
     res="high",
-    partition="bench",
+    partition="prod",
     time_limit="01:00:00",
     software_path=f"../{software}/",
     template_file="job_template.sh",
