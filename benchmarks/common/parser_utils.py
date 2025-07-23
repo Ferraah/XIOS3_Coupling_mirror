@@ -157,9 +157,21 @@ def collect_results(IS_XIOS,
 def make_ping_pong_plot(df, title, save_path):
     plt.figure(figsize=(10, 6))
 
-    # Log-log linear fit
-    coeffs = np.polyfit(np.log2(df['n']), np.log2(df['avg_pp']), 1)
-    print(f"Linear fit coefficients for avg_pp: {coeffs}")
+    # Reference curve: perfect scaling 1/n that intersects the first point
+    x0 = df['n'].iloc[0]
+    y0 = df['avg_pp'].iloc[0]
+
+    def reference_curve(n):
+        return y0 * x0 / n
+
+    # Add the reference curve
+    n_vals = df['n']
+    plt.plot(
+        n_vals,
+        reference_curve(n_vals),
+        '--r',
+        label=r'Perfect strong scaling $1/p$'
+    )
 
     # Plot only averages 
     plt.plot(
@@ -167,6 +179,7 @@ def make_ping_pong_plot(df, title, save_path):
         'o',
         label='Average Ping Pong Time', color='blue'
     )
+
     # Plot range as light gray
     plt.fill_between(
         df['n'],
@@ -185,6 +198,21 @@ def make_ping_pong_plot(df, title, save_path):
     plt.grid(True)
     plt.tight_layout()
     plt.savefig(save_path)
+
+    # Save as tex the dataframe with n, avg_pp, min_pp, max_pp, speedup, efficiency
+    speedup = df['avg_pp'].iloc[0] / df['avg_pp']
+    efficiency = speedup / (df['n'] / df['n'].iloc[0])  
+    speedup_df = pd.DataFrame({
+        'n': df['n'],
+        'avg_pp': df['avg_pp'],
+        'min_pp': df['min_pp'],
+        'max_pp': df['max_pp'],
+        'speedup': speedup,
+        'efficiency': efficiency
+    })
+    speedup_df.to_latex(save_path.replace('.svg', '.tex'), index=False)
+
+
 
 def make_interpolation_plot(df, title, save_path):
     plt.figure(figsize=(10, 6))
@@ -237,4 +265,38 @@ def make_interpolation_plot(df, title, save_path):
 
     # Save to file
     plt.savefig(save_path)
+
+
+    # Plot speedup and efficiency
+    # Note: baseline is n=2, which is first element in df['n']
+    plt.figure(figsize=(10, 6))
+    n_ref = df['n'].iloc[0]
+    speedup = df['avg_interp'].iloc[0] / df['avg_interp']
+    efficiency = speedup / (df['n']/n_ref)
+
+    # Ideal curves
+    ideal_speedup = df['n'] / n_ref
+
+    # Speedup plot
+    plt.figure(figsize=(10, 6))
+    plt.plot(df['n'], speedup, 'o-', label='Speedup', color='green')
+    plt.plot(df['n'], ideal_speedup, '--', label='Ideal Speedup', color='gray')
+    plt.xlabel('p (Processes per model)')
+    plt.ylabel('Speedup')
+    plt.title('Speedup')
+    plt.xscale('log', base=2)
+    plt.legend()
+    plt.grid(True)
+    plt.tight_layout()
+    plt.savefig(save_path.replace('.svg', '_speedup.svg'))
+
+    # Print table of n, avg_interp, speedup, efficiency
+    speedup_df = pd.DataFrame({
+        'n': df['n'],
+        'avg_interp': df['avg_interp'],
+        'speedup': speedup,
+        'efficiency': efficiency
+    })
+    print(speedup_df)
+
 

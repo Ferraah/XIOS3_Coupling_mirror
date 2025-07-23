@@ -10,7 +10,7 @@ There are implemented two toy models (`ocn` and `atm`). Ocean is the model in ch
 |  | Ocean | Atmosphere|
 |----------|----------|----------|
 |Start date|Jan 01, 2025|Jan 01, 2025 
-| Duration  |  40d       | 40d         |
+| Duration  |  24d       | 24d         |
 |Timestep| 1d | 1d
 | Send/recv frequency | 4ts     | 4ts         |
 This translates to:
@@ -62,27 +62,7 @@ We save the last field to file as a bonus.
  OCN: sending field @ts=          21  with value    21.0000000000000     
  OCN: sending field @ts=          22  with value    22.0000000000000     
  OCN: sending field @ts=          23  with value    23.0000000000000     
- OCN: sending field @ts=          24  with value    24.0000000000000     
-   ATM: receiving field @ts=          25  with value    25.0000000000000     
- OCN: sending field @ts=          25  with value    25.0000000000000     
- OCN: sending field @ts=          26  with value    26.0000000000000     
- OCN: sending field @ts=          27  with value    27.0000000000000     
- OCN: sending field @ts=          28  with value    28.0000000000000     
-   ATM: receiving field @ts=          29  with value    29.0000000000000     
- OCN: sending field @ts=          29  with value    29.0000000000000     
- OCN: sending field @ts=          30  with value    30.0000000000000     
- OCN: sending field @ts=          31  with value    31.0000000000000     
- OCN: sending field @ts=          32  with value    32.0000000000000     
-   ATM: receiving field @ts=          33  with value    33.0000000000000     
- OCN: sending field @ts=          33  with value    33.0000000000000     
- OCN: sending field @ts=          34  with value    34.0000000000000     
- OCN: sending field @ts=          35  with value    35.0000000000000     
- OCN: sending field @ts=          36  with value    36.0000000000000     
-   ATM: receiving field @ts=          37  with value    37.0000000000000     
- OCN: sending field @ts=          37  with value    37.0000000000000     
- OCN: sending field @ts=          38  with value    38.0000000000000     
- OCN: sending field @ts=          39  with value    39.0000000000000     
- OCN: sending field @ts=          40  with value    40.0000000000000     
+ OCN: sending field @ts=          24  with value    24.0000000000000  
 Server Context destructor
 Server Context destructor
 ```

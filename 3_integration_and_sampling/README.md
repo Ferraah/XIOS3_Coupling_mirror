@@ -40,7 +40,7 @@ This translates into the following time parameters for the coupler in and out (n
 
 
 
-![Visualization](./3_integration_and_sampling.png)
+![Visualization](./3_integration_and_sampling.svg)
 ### Note on the plot
 Even if the "integration period" isn't exactly aligned to the OASIS one (covering @ts=1,2,3,4), the resulting value sent and received is the coherent with our needs. The operation, indeed, is applied over the those elements in the buffer at the time the operation is applied, which is at @ts=5, and is received at @ts=5 in the atmosphere. The value is coherent with the average of the values sent by the ocean at @ts=2,4, which is 3.0. 
 

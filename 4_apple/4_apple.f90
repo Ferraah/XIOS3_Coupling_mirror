@@ -144,6 +144,11 @@ contains
         config%data_ni = (config%ni_glo / (size-1))*config%nj_glo ! For example, split latitudes over the processes
         config%data_ibegin = (rank) * config%data_ni 
         ! -------------------------------------------------------------------------------
+
+        config%field_type = "rectilinear"
+
+        call xios_set_domain_attr("domain", ni_glo=config%ni_glo, nj_glo=config%nj_glo, type=config%field_type, &
+            ni=config%ni, nj=config%nj, ibegin=config%ibegin, jbegin=config%jbegin)
  
    end subroutine create_toymodel_distribution
 

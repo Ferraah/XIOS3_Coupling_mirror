@@ -11,6 +11,7 @@
         <grid_definition>
             <grid id="grid_2D">
                 <domain id="domain">
+                    <generate_rectilinear_domain/>
                 </domain>
             </grid>
         </grid_definition>

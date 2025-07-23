@@ -16,7 +16,7 @@
 
         <variable_definition>
             <variable id="toymodel_timestep_duration">1d</variable>
-            <variable id="toymodel_duration">28d</variable>
+            <variable id="toymodel_duration">24d</variable>
             <variable id="toymodel_ni_glo">10</variable>
             <variable id="toymodel_nj_glo">10</variable>
             <variable id="toymodel_type">rectilinear</variable>
@@ -26,7 +26,7 @@
         <!-- Field reference for xios_send_field -->
         <field_definition>
             <!-- Operation instant will consider the field at the current timestep -->
-            <field id="field2D_send" grid_ref="grid_2D"  operation="instant" freq_op="4ts" freq_offset="0ts" build_workflow_graph="true"/>
+            <field id="field2D_send" grid_ref="grid_2D"  operation="instant" freq_op="4ts" freq_offset="0ts"/>
         </field_definition>
 
         <coupler_out_definition>
@@ -36,9 +36,10 @@
             </coupler_out>
         </coupler_out_definition>
 
+        <!-- In theory we can save the field, even if doesn't make sense for this scheme -->
         <file_definition>
-            <file id="output_out" name="output_out" output_freq="40d"  type="one_file" enabled="true">
-                <field field_ref="field2D_send" freq_offset="0ts"/>
+            <file id="output_out" name="output_out" output_freq="24d"  type="one_file" enabled="true">
+                <field field_ref="field2D_send"  freq_offset="0ts"/>
             </file>
         </file_definition>
 
@@ -58,7 +59,7 @@
 
         <variable_definition>
             <variable id="toymodel_timestep_duration">1d</variable>
-            <variable id="toymodel_duration">28d</variable>
+            <variable id="toymodel_duration">24d</variable>
             <variable id="toymodel_ni_glo">10</variable>
             <variable id="toymodel_nj_glo">10</variable>
             <variable id="toymodel_type">rectilinear</variable>
