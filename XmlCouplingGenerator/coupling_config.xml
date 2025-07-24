@@ -1,0 +1,613 @@
+<?xml version="1.0" ?>
+<simulation>
+    <context id="gelato">
+        <calendar type="Gregorian" time_origin="2025-01-01" start_date="2025-01-01"/>
+        <grid_definition>
+            <grid id="grid_2D_gelato">
+                <domain id="domain_gelato">
+                    <generate_rectilinear_domain/>
+                </domain>
+            </grid>
+            <grid id="grid_2D_nemo-gelato">
+                <domain id="domain_nemo-gelato">
+                    <generate_rectilinear_domain/>
+                </domain>
+            </grid>
+            <grid id="grid_2D_trip">
+                <domain id="domain_trip">
+                    <generate_rectilinear_domain/>
+                </domain>
+            </grid>
+            <grid id="grid_2D_arpege-surfex">
+                <domain id="domain_arpege-surfex">
+                    <generate_rectilinear_domain/>
+                </domain>
+            </grid>
+        </grid_definition>
+        <variable_definition>
+            <variable id="toymodel_timestep_duration">3600s</variable>
+            <variable id="toymodel_duration">1d</variable>
+            <variable id="toymodel_ni_glo">10</variable>
+            <variable id="toymodel_nj_glo">10</variable>
+            <variable id="toymodel_type">rectilinear</variable>
+        </variable_definition>
+        <field_definition>
+            <field id="OIceFrc" grid_ref="grid_2D_gelato" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="O_AlbIce" grid_ref="grid_2D_gelato" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="O_TepIce" grid_ref="grid_2D_gelato" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="OlceEvap" field_ref="COSUBLIM_to_OlceEvap"/>
+            <field id="O_QnsIce" field_ref="CONSFICE_to_O_QnsIce"/>
+            <field id="O_QsrIce" field_ref="COSHFICE_to_O_QsrIce"/>
+        </field_definition>
+        <coupler_out_definition>
+            <coupler_out context="arpege-surfex::arpege-surfex">
+                <field id="OIceFrc_to_SIICECOV" field_ref="OIceFrc" freq_op="1ts" expr="@this_ref"/>
+                <field id="SIICECOV_restart" field_ref="SIICECOV_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="arpege-surfex::arpege-surfex">
+                <field id="O_AlbIce_to_SIALBEDO" field_ref="O_AlbIce" freq_op="1ts" expr="@this_ref"/>
+                <field id="SIALBEDO_restart" field_ref="SIALBEDO_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="arpege-surfex::arpege-surfex">
+                <field id="O_TepIce_to_SIICETEM" field_ref="O_TepIce" freq_op="1ts" expr="@this_ref"/>
+                <field id="SIICETEM_restart" field_ref="SIICETEM_restart_read" freq_op="1y"/>
+            </coupler_out>
+        </coupler_out_definition>
+        <coupler_in_definition>
+            <coupler_in context="arpege-surfex::arpege-surfex">
+                <field id="COSUBLIM_to_OlceEvap" grid_ref="grid_2D_arpege-surfex" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="OlceEvap_restart" grid_ref="grid_2D_arpege-surfex" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="arpege-surfex::arpege-surfex">
+                <field id="CONSFICE_to_O_QnsIce" grid_ref="grid_2D_arpege-surfex" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="O_QnsIce_restart" grid_ref="grid_2D_arpege-surfex" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="arpege-surfex::arpege-surfex">
+                <field id="COSHFICE_to_O_QsrIce" grid_ref="grid_2D_arpege-surfex" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="O_QsrIce_restart" grid_ref="grid_2D_arpege-surfex" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+        </coupler_in_definition>
+        <file_definition>
+            <file id="zero_restart_file" name="zero_restart_file" enabled="true" type="one_file" output_freq="100000y" record_offset="0" mode="read">
+                <field id="SIICECOV_restart_read" name="zero_restart" grid_ref="grid_2D_gelato" operation="instant" read_access="true"/>
+                <field id="SIALBEDO_restart_read" name="zero_restart" grid_ref="grid_2D_gelato" operation="instant" read_access="true"/>
+                <field id="SIICETEM_restart_read" name="zero_restart" grid_ref="grid_2D_gelato" operation="instant" read_access="true"/>
+            </file>
+            <file id="OIceFrc_next" name="OIceFrc_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="OIceFrc_to_SIICECOV" name="OIceFrc_to_SIICECOV"/>
+            </file>
+            <file id="O_AlbIce_next" name="O_AlbIce_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="O_AlbIce_to_SIALBEDO" name="O_AlbIce_to_SIALBEDO"/>
+            </file>
+            <file id="O_TepIce_next" name="O_TepIce_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="O_TepIce_to_SIICETEM" name="O_TepIce_to_SIICETEM"/>
+            </file>
+        </file_definition>
+    </context>
+    <context id="nemo-gelato">
+        <calendar type="Gregorian" time_origin="2025-01-01" start_date="2025-01-01"/>
+        <grid_definition>
+            <grid id="grid_2D_gelato">
+                <domain id="domain_gelato">
+                    <generate_rectilinear_domain/>
+                </domain>
+            </grid>
+            <grid id="grid_2D_nemo-gelato">
+                <domain id="domain_nemo-gelato">
+                    <generate_rectilinear_domain/>
+                </domain>
+            </grid>
+            <grid id="grid_2D_trip">
+                <domain id="domain_trip">
+                    <generate_rectilinear_domain/>
+                </domain>
+            </grid>
+            <grid id="grid_2D_arpege-surfex">
+                <domain id="domain_arpege-surfex">
+                    <generate_rectilinear_domain/>
+                </domain>
+            </grid>
+        </grid_definition>
+        <variable_definition>
+            <variable id="toymodel_timestep_duration">3600s</variable>
+            <variable id="toymodel_duration">1d</variable>
+            <variable id="toymodel_ni_glo">10</variable>
+            <variable id="toymodel_nj_glo">10</variable>
+            <variable id="toymodel_type">rectilinear</variable>
+        </variable_definition>
+        <field_definition>
+            <field id="O_SSTSST" grid_ref="grid_2D_nemo-gelato" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="O_OCurx1" grid_ref="grid_2D_nemo-gelato" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="O_OCury1" grid_ref="grid_2D_nemo-gelato" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="O_OTaux1" field_ref="COZOTAUX_to_O_OTaux1"/>
+            <field id="O_OTauy1" field_ref="COMETAUY_to_O_OTauy1"/>
+            <field id="O_TauMod" field_ref="COTAUMOD_to_O_TauMod"/>
+            <field id="O_Wind10" field_ref="COWINMOD_to_O_Wind10"/>
+            <field id="OTotSnow" field_ref="COTOSOPR_to_OTotSnow"/>
+            <field id="OTotRain" field_ref="COTOLIPR_to_OTotRain"/>
+            <field id="OTotEvap" field_ref="COTHSHSU_to_OTotEvap"/>
+            <field id="O_QnsMIx" field_ref="CONSFTOT_to_O_QnsMIx"/>
+            <field id="O_QsrMix" field_ref="COSHFTOT_to_O_QsrMix"/>
+            <field id="O_Runoff" field_ref="TRRIVDIS_to_O_Runoff"/>
+            <field id="Ocalvigr" field_ref="TRCALVGR_to_Ocalvigr"/>
+            <field id="Ocalvian" field_ref="TRCALVAN_to_Ocalvian"/>
+        </field_definition>
+        <coupler_out_definition>
+            <coupler_out context="arpege-surfex::arpege-surfex">
+                <field id="O_SSTSST_to_SISUTESU" field_ref="O_SSTSST" freq_op="1ts" expr="@this_ref"/>
+                <field id="SISUTESU_restart" field_ref="SISUTESU_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="arpege-surfex::arpege-surfex">
+                <field id="O_OCurx1_to_SIUOCEAN" field_ref="O_OCurx1" freq_op="1ts" expr="@this_ref"/>
+                <field id="SIUOCEAN_restart" field_ref="SIUOCEAN_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="arpege-surfex::arpege-surfex">
+                <field id="O_OCury1_to_SIVOCEAN" field_ref="O_OCury1" freq_op="1ts" expr="@this_ref"/>
+                <field id="SIVOCEAN_restart" field_ref="SIVOCEAN_restart_read" freq_op="1y"/>
+            </coupler_out>
+        </coupler_out_definition>
+        <coupler_in_definition>
+            <coupler_in context="arpege-surfex::arpege-surfex">
+                <field id="COZOTAUX_to_O_OTaux1" grid_ref="grid_2D_arpege-surfex" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="O_OTaux1_restart" grid_ref="grid_2D_arpege-surfex" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="arpege-surfex::arpege-surfex">
+                <field id="COMETAUY_to_O_OTauy1" grid_ref="grid_2D_arpege-surfex" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="O_OTauy1_restart" grid_ref="grid_2D_arpege-surfex" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="arpege-surfex::arpege-surfex">
+                <field id="COTAUMOD_to_O_TauMod" grid_ref="grid_2D_arpege-surfex" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="O_TauMod_restart" grid_ref="grid_2D_arpege-surfex" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="arpege-surfex::arpege-surfex">
+                <field id="COWINMOD_to_O_Wind10" grid_ref="grid_2D_arpege-surfex" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="O_Wind10_restart" grid_ref="grid_2D_arpege-surfex" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="arpege-surfex::arpege-surfex">
+                <field id="COTOSOPR_to_OTotSnow" grid_ref="grid_2D_arpege-surfex" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="OTotSnow_restart" grid_ref="grid_2D_arpege-surfex" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="arpege-surfex::arpege-surfex">
+                <field id="COTOLIPR_to_OTotRain" grid_ref="grid_2D_arpege-surfex" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="OTotRain_restart" grid_ref="grid_2D_arpege-surfex" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="arpege-surfex::arpege-surfex">
+                <field id="COTHSHSU_to_OTotEvap" grid_ref="grid_2D_arpege-surfex" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="OTotEvap_restart" grid_ref="grid_2D_arpege-surfex" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="arpege-surfex::arpege-surfex">
+                <field id="CONSFTOT_to_O_QnsMIx" grid_ref="grid_2D_arpege-surfex" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="O_QnsMIx_restart" grid_ref="grid_2D_arpege-surfex" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="arpege-surfex::arpege-surfex">
+                <field id="COSHFTOT_to_O_QsrMix" grid_ref="grid_2D_arpege-surfex" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="O_QsrMix_restart" grid_ref="grid_2D_arpege-surfex" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="trip::trip">
+                <field id="TRRIVDIS_to_O_Runoff" grid_ref="grid_2D_trip" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="O_Runoff_restart" grid_ref="grid_2D_trip" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="trip::trip">
+                <field id="TRCALVGR_to_Ocalvigr" grid_ref="grid_2D_trip" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="Ocalvigr_restart" grid_ref="grid_2D_trip" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="trip::trip">
+                <field id="TRCALVAN_to_Ocalvian" grid_ref="grid_2D_trip" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="Ocalvian_restart" grid_ref="grid_2D_trip" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+        </coupler_in_definition>
+        <file_definition>
+            <file id="zero_restart_file" name="zero_restart_file" enabled="true" type="one_file" output_freq="100000y" record_offset="0" mode="read">
+                <field id="SISUTESU_restart_read" name="zero_restart" grid_ref="grid_2D_nemo-gelato" operation="instant" read_access="true"/>
+                <field id="SIUOCEAN_restart_read" name="zero_restart" grid_ref="grid_2D_nemo-gelato" operation="instant" read_access="true"/>
+                <field id="SIVOCEAN_restart_read" name="zero_restart" grid_ref="grid_2D_nemo-gelato" operation="instant" read_access="true"/>
+            </file>
+            <file id="O_SSTSST_next" name="O_SSTSST_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="O_SSTSST_to_SISUTESU" name="O_SSTSST_to_SISUTESU"/>
+            </file>
+            <file id="O_OCurx1_next" name="O_OCurx1_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="O_OCurx1_to_SIUOCEAN" name="O_OCurx1_to_SIUOCEAN"/>
+            </file>
+            <file id="O_OCury1_next" name="O_OCury1_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="O_OCury1_to_SIVOCEAN" name="O_OCury1_to_SIVOCEAN"/>
+            </file>
+        </file_definition>
+    </context>
+    <context id="trip">
+        <calendar type="Gregorian" time_origin="2025-01-01" start_date="2025-01-01"/>
+        <grid_definition>
+            <grid id="grid_2D_gelato">
+                <domain id="domain_gelato">
+                    <generate_rectilinear_domain/>
+                </domain>
+            </grid>
+            <grid id="grid_2D_nemo-gelato">
+                <domain id="domain_nemo-gelato">
+                    <generate_rectilinear_domain/>
+                </domain>
+            </grid>
+            <grid id="grid_2D_trip">
+                <domain id="domain_trip">
+                    <generate_rectilinear_domain/>
+                </domain>
+            </grid>
+            <grid id="grid_2D_arpege-surfex">
+                <domain id="domain_arpege-surfex">
+                    <generate_rectilinear_domain/>
+                </domain>
+            </grid>
+        </grid_definition>
+        <variable_definition>
+            <variable id="toymodel_timestep_duration">3600s</variable>
+            <variable id="toymodel_duration">1d</variable>
+            <variable id="toymodel_ni_glo">10</variable>
+            <variable id="toymodel_nj_glo">10</variable>
+            <variable id="toymodel_type">rectilinear</variable>
+        </variable_definition>
+        <field_definition>
+            <field id="TRRUNOFF" field_ref="SXRUNOFF_to_TRRUNOFF"/>
+            <field id="TRDRAIN" field_ref="SXDRAIN_to_TRDRAIN"/>
+            <field id="TRCALV" field_ref="SXCALV_to_TRCALV"/>
+            <field id="TRSRCFLD" field_ref="SXSRCFLD_to_TRSRCFLD"/>
+            <field id="TRTWS" grid_ref="grid_2D_trip" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="TRWTD" grid_ref="grid_2D_trip" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="TRFWTD" grid_ref="grid_2D_trip" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="TRFFLD" grid_ref="grid_2D_trip" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="TRPIFLD" grid_ref="grid_2D_trip" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="TRRIVDIS" grid_ref="grid_2D_trip" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="TRCALVGR" grid_ref="grid_2D_trip" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="TRCALVAN" grid_ref="grid_2D_trip" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="OLakeWat" field_ref="LKWATBUD_to_OLakeWat"/>
+        </field_definition>
+        <coupler_out_definition>
+            <coupler_out context="arpege-surfex::arpege-surfex">
+                <field id="TRTWS_to_SXTWS" field_ref="TRTWS" freq_op="1ts" expr="@this_ref"/>
+                <field id="SXTWS_restart" field_ref="SXTWS_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="arpege-surfex::arpege-surfex">
+                <field id="TRWTD_to_SXWTD" field_ref="TRWTD" freq_op="1ts" expr="@this_ref"/>
+                <field id="SXWTD_restart" field_ref="SXWTD_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="arpege-surfex::arpege-surfex">
+                <field id="TRFWTD_to_SXFWTD" field_ref="TRFWTD" freq_op="1ts" expr="@this_ref"/>
+                <field id="SXFWTD_restart" field_ref="SXFWTD_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="arpege-surfex::arpege-surfex">
+                <field id="TRFFLD_to_SXFFLD" field_ref="TRFFLD" freq_op="1ts" expr="@this_ref"/>
+                <field id="SXFFLD_restart" field_ref="SXFFLD_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="arpege-surfex::arpege-surfex">
+                <field id="TRPIFLD_to_SXPIFLD" field_ref="TRPIFLD" freq_op="1ts" expr="@this_ref"/>
+                <field id="SXPIFLD_restart" field_ref="SXPIFLD_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="nemo-gelato::nemo-gelato">
+                <field id="TRRIVDIS_to_O_Runoff" field_ref="TRRIVDIS" freq_op="1ts" expr="@this_ref"/>
+                <field id="O_Runoff_restart" field_ref="O_Runoff_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="nemo-gelato::nemo-gelato">
+                <field id="TRCALVGR_to_Ocalvigr" field_ref="TRCALVGR" freq_op="1ts" expr="@this_ref"/>
+                <field id="Ocalvigr_restart" field_ref="Ocalvigr_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="nemo-gelato::nemo-gelato">
+                <field id="TRCALVAN_to_Ocalvian" field_ref="TRCALVAN" freq_op="1ts" expr="@this_ref"/>
+                <field id="Ocalvian_restart" field_ref="Ocalvian_restart_read" freq_op="1y"/>
+            </coupler_out>
+        </coupler_out_definition>
+        <coupler_in_definition>
+            <coupler_in context="arpege-surfex::arpege-surfex">
+                <field id="SXRUNOFF_to_TRRUNOFF" grid_ref="grid_2D_arpege-surfex" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="TRRUNOFF_restart" grid_ref="grid_2D_arpege-surfex" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="arpege-surfex::arpege-surfex">
+                <field id="SXDRAIN_to_TRDRAIN" grid_ref="grid_2D_arpege-surfex" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="TRDRAIN_restart" grid_ref="grid_2D_arpege-surfex" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="arpege-surfex::arpege-surfex">
+                <field id="SXCALV_to_TRCALV" grid_ref="grid_2D_arpege-surfex" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="TRCALV_restart" grid_ref="grid_2D_arpege-surfex" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="arpege-surfex::arpege-surfex">
+                <field id="SXSRCFLD_to_TRSRCFLD" grid_ref="grid_2D_arpege-surfex" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="TRSRCFLD_restart" grid_ref="grid_2D_arpege-surfex" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="arpege-surfex::arpege-surfex">
+                <field id="LKWATBUD_to_OLakeWat" grid_ref="grid_2D_arpege-surfex" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="OLakeWat_restart" grid_ref="grid_2D_arpege-surfex" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+        </coupler_in_definition>
+        <file_definition>
+            <file id="zero_restart_file" name="zero_restart_file" enabled="true" type="one_file" output_freq="100000y" record_offset="0" mode="read">
+                <field id="SXTWS_restart_read" name="zero_restart" grid_ref="grid_2D_trip" operation="instant" read_access="true"/>
+                <field id="SXWTD_restart_read" name="zero_restart" grid_ref="grid_2D_trip" operation="instant" read_access="true"/>
+                <field id="SXFWTD_restart_read" name="zero_restart" grid_ref="grid_2D_trip" operation="instant" read_access="true"/>
+                <field id="SXFFLD_restart_read" name="zero_restart" grid_ref="grid_2D_trip" operation="instant" read_access="true"/>
+                <field id="SXPIFLD_restart_read" name="zero_restart" grid_ref="grid_2D_trip" operation="instant" read_access="true"/>
+                <field id="O_Runoff_restart_read" name="zero_restart" grid_ref="grid_2D_trip" operation="instant" read_access="true"/>
+                <field id="Ocalvigr_restart_read" name="zero_restart" grid_ref="grid_2D_trip" operation="instant" read_access="true"/>
+                <field id="Ocalvian_restart_read" name="zero_restart" grid_ref="grid_2D_trip" operation="instant" read_access="true"/>
+            </file>
+            <file id="TRTWS_next" name="TRTWS_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="TRTWS_to_SXTWS" name="TRTWS_to_SXTWS"/>
+            </file>
+            <file id="TRWTD_next" name="TRWTD_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="TRWTD_to_SXWTD" name="TRWTD_to_SXWTD"/>
+            </file>
+            <file id="TRFWTD_next" name="TRFWTD_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="TRFWTD_to_SXFWTD" name="TRFWTD_to_SXFWTD"/>
+            </file>
+            <file id="TRFFLD_next" name="TRFFLD_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="TRFFLD_to_SXFFLD" name="TRFFLD_to_SXFFLD"/>
+            </file>
+            <file id="TRPIFLD_next" name="TRPIFLD_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="TRPIFLD_to_SXPIFLD" name="TRPIFLD_to_SXPIFLD"/>
+            </file>
+            <file id="TRRIVDIS_next" name="TRRIVDIS_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="TRRIVDIS_to_O_Runoff" name="TRRIVDIS_to_O_Runoff"/>
+            </file>
+            <file id="TRCALVGR_next" name="TRCALVGR_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="TRCALVGR_to_Ocalvigr" name="TRCALVGR_to_Ocalvigr"/>
+            </file>
+            <file id="TRCALVAN_next" name="TRCALVAN_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="TRCALVAN_to_Ocalvian" name="TRCALVAN_to_Ocalvian"/>
+            </file>
+        </file_definition>
+    </context>
+    <context id="arpege-surfex">
+        <calendar type="Gregorian" time_origin="2025-01-01" start_date="2025-01-01"/>
+        <grid_definition>
+            <grid id="grid_2D_gelato">
+                <domain id="domain_gelato">
+                    <generate_rectilinear_domain/>
+                </domain>
+            </grid>
+            <grid id="grid_2D_nemo-gelato">
+                <domain id="domain_nemo-gelato">
+                    <generate_rectilinear_domain/>
+                </domain>
+            </grid>
+            <grid id="grid_2D_trip">
+                <domain id="domain_trip">
+                    <generate_rectilinear_domain/>
+                </domain>
+            </grid>
+            <grid id="grid_2D_arpege-surfex">
+                <domain id="domain_arpege-surfex">
+                    <generate_rectilinear_domain/>
+                </domain>
+            </grid>
+        </grid_definition>
+        <variable_definition>
+            <variable id="toymodel_timestep_duration">3600s</variable>
+            <variable id="toymodel_duration">1d</variable>
+            <variable id="toymodel_ni_glo">10</variable>
+            <variable id="toymodel_nj_glo">10</variable>
+            <variable id="toymodel_type">rectilinear</variable>
+        </variable_definition>
+        <field_definition>
+            <field id="SISUTESU" field_ref="O_SSTSST_to_SISUTESU"/>
+            <field id="SIICECOV" field_ref="OIceFrc_to_SIICECOV"/>
+            <field id="SIALBEDO" field_ref="O_AlbIce_to_SIALBEDO"/>
+            <field id="SIICETEM" field_ref="O_TepIce_to_SIICETEM"/>
+            <field id="SIUOCEAN" field_ref="O_OCurx1_to_SIUOCEAN"/>
+            <field id="SIVOCEAN" field_ref="O_OCury1_to_SIVOCEAN"/>
+            <field id="COZOTAUX" grid_ref="grid_2D_arpege-surfex" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="COMETAUY" grid_ref="grid_2D_arpege-surfex" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="COTAUMOD" grid_ref="grid_2D_arpege-surfex" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="COWINMOD" grid_ref="grid_2D_arpege-surfex" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="COSUBLIM" grid_ref="grid_2D_arpege-surfex" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="CONSFICE" grid_ref="grid_2D_arpege-surfex" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="COSHFICE" grid_ref="grid_2D_arpege-surfex" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="COTOSOPR" grid_ref="grid_2D_arpege-surfex" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="COTOLIPR" grid_ref="grid_2D_arpege-surfex" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="COTHSHSU" grid_ref="grid_2D_arpege-surfex" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="CONSFTOT" grid_ref="grid_2D_arpege-surfex" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="COSHFTOT" grid_ref="grid_2D_arpege-surfex" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="SXRUNOFF" grid_ref="grid_2D_arpege-surfex" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="SXDRAIN" grid_ref="grid_2D_arpege-surfex" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="SXCALV" grid_ref="grid_2D_arpege-surfex" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="SXSRCFLD" grid_ref="grid_2D_arpege-surfex" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+            <field id="SXTWS" field_ref="TRTWS_to_SXTWS"/>
+            <field id="SXWTD" field_ref="TRWTD_to_SXWTD"/>
+            <field id="SXFWTD" field_ref="TRFWTD_to_SXFWTD"/>
+            <field id="SXFFLD" field_ref="TRFFLD_to_SXFFLD"/>
+            <field id="SXPIFLD" field_ref="TRPIFLD_to_SXPIFLD"/>
+            <field id="LKWATBUD" grid_ref="grid_2D_arpege-surfex" operation="instant" freq_op="1ts" freq_offset="0ts"/>
+        </field_definition>
+        <coupler_out_definition>
+            <coupler_out context="nemo-gelato::nemo-gelato">
+                <field id="COZOTAUX_to_O_OTaux1" field_ref="COZOTAUX" freq_op="1ts" expr="@this_ref"/>
+                <field id="O_OTaux1_restart" field_ref="O_OTaux1_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="nemo-gelato::nemo-gelato">
+                <field id="COMETAUY_to_O_OTauy1" field_ref="COMETAUY" freq_op="1ts" expr="@this_ref"/>
+                <field id="O_OTauy1_restart" field_ref="O_OTauy1_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="nemo-gelato::nemo-gelato">
+                <field id="COTAUMOD_to_O_TauMod" field_ref="COTAUMOD" freq_op="1ts" expr="@this_ref"/>
+                <field id="O_TauMod_restart" field_ref="O_TauMod_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="nemo-gelato::nemo-gelato">
+                <field id="COWINMOD_to_O_Wind10" field_ref="COWINMOD" freq_op="1ts" expr="@this_ref"/>
+                <field id="O_Wind10_restart" field_ref="O_Wind10_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="gelato::gelato">
+                <field id="COSUBLIM_to_OlceEvap" field_ref="COSUBLIM" freq_op="1ts" expr="@this_ref"/>
+                <field id="OlceEvap_restart" field_ref="OlceEvap_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="gelato::gelato">
+                <field id="CONSFICE_to_O_QnsIce" field_ref="CONSFICE" freq_op="1ts" expr="@this_ref"/>
+                <field id="O_QnsIce_restart" field_ref="O_QnsIce_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="gelato::gelato">
+                <field id="COSHFICE_to_O_QsrIce" field_ref="COSHFICE" freq_op="1ts" expr="@this_ref"/>
+                <field id="O_QsrIce_restart" field_ref="O_QsrIce_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="nemo-gelato::nemo-gelato">
+                <field id="COTOSOPR_to_OTotSnow" field_ref="COTOSOPR" freq_op="1ts" expr="@this_ref"/>
+                <field id="OTotSnow_restart" field_ref="OTotSnow_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="nemo-gelato::nemo-gelato">
+                <field id="COTOLIPR_to_OTotRain" field_ref="COTOLIPR" freq_op="1ts" expr="@this_ref"/>
+                <field id="OTotRain_restart" field_ref="OTotRain_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="nemo-gelato::nemo-gelato">
+                <field id="COTHSHSU_to_OTotEvap" field_ref="COTHSHSU" freq_op="1ts" expr="@this_ref"/>
+                <field id="OTotEvap_restart" field_ref="OTotEvap_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="nemo-gelato::nemo-gelato">
+                <field id="CONSFTOT_to_O_QnsMIx" field_ref="CONSFTOT" freq_op="1ts" expr="@this_ref"/>
+                <field id="O_QnsMIx_restart" field_ref="O_QnsMIx_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="nemo-gelato::nemo-gelato">
+                <field id="COSHFTOT_to_O_QsrMix" field_ref="COSHFTOT" freq_op="1ts" expr="@this_ref"/>
+                <field id="O_QsrMix_restart" field_ref="O_QsrMix_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="trip::trip">
+                <field id="SXRUNOFF_to_TRRUNOFF" field_ref="SXRUNOFF" freq_op="1ts" expr="@this_ref"/>
+                <field id="TRRUNOFF_restart" field_ref="TRRUNOFF_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="trip::trip">
+                <field id="SXDRAIN_to_TRDRAIN" field_ref="SXDRAIN" freq_op="1ts" expr="@this_ref"/>
+                <field id="TRDRAIN_restart" field_ref="TRDRAIN_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="trip::trip">
+                <field id="SXCALV_to_TRCALV" field_ref="SXCALV" freq_op="1ts" expr="@this_ref"/>
+                <field id="TRCALV_restart" field_ref="TRCALV_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="trip::trip">
+                <field id="SXSRCFLD_to_TRSRCFLD" field_ref="SXSRCFLD" freq_op="1ts" expr="@this_ref"/>
+                <field id="TRSRCFLD_restart" field_ref="TRSRCFLD_restart_read" freq_op="1y"/>
+            </coupler_out>
+            <coupler_out context="trip::trip">
+                <field id="LKWATBUD_to_OLakeWat" field_ref="LKWATBUD" freq_op="1ts" expr="@this_ref"/>
+                <field id="OLakeWat_restart" field_ref="OLakeWat_restart_read" freq_op="1y"/>
+            </coupler_out>
+        </coupler_out_definition>
+        <coupler_in_definition>
+            <coupler_in context="nemo-gelato::nemo-gelato">
+                <field id="O_SSTSST_to_SISUTESU" grid_ref="grid_2D_nemo-gelato" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="SISUTESU_restart" grid_ref="grid_2D_nemo-gelato" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="gelato::gelato">
+                <field id="OIceFrc_to_SIICECOV" grid_ref="grid_2D_gelato" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="SIICECOV_restart" grid_ref="grid_2D_gelato" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="gelato::gelato">
+                <field id="O_AlbIce_to_SIALBEDO" grid_ref="grid_2D_gelato" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="SIALBEDO_restart" grid_ref="grid_2D_gelato" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="gelato::gelato">
+                <field id="O_TepIce_to_SIICETEM" grid_ref="grid_2D_gelato" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="SIICETEM_restart" grid_ref="grid_2D_gelato" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="nemo-gelato::nemo-gelato">
+                <field id="O_OCurx1_to_SIUOCEAN" grid_ref="grid_2D_nemo-gelato" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="SIUOCEAN_restart" grid_ref="grid_2D_nemo-gelato" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="nemo-gelato::nemo-gelato">
+                <field id="O_OCury1_to_SIVOCEAN" grid_ref="grid_2D_nemo-gelato" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="SIVOCEAN_restart" grid_ref="grid_2D_nemo-gelato" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="trip::trip">
+                <field id="TRTWS_to_SXTWS" grid_ref="grid_2D_trip" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="SXTWS_restart" grid_ref="grid_2D_trip" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="trip::trip">
+                <field id="TRWTD_to_SXWTD" grid_ref="grid_2D_trip" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="SXWTD_restart" grid_ref="grid_2D_trip" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="trip::trip">
+                <field id="TRFWTD_to_SXFWTD" grid_ref="grid_2D_trip" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="SXFWTD_restart" grid_ref="grid_2D_trip" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="trip::trip">
+                <field id="TRFFLD_to_SXFFLD" grid_ref="grid_2D_trip" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="SXFFLD_restart" grid_ref="grid_2D_trip" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+            <coupler_in context="trip::trip">
+                <field id="TRPIFLD_to_SXPIFLD" grid_ref="grid_2D_trip" freq_op="1ts" freq_offset="2ts" read_access="true"/>
+                <field id="SXPIFLD_restart" grid_ref="grid_2D_trip" freq_op="1y" freq_offset="1ts" read_access="true"/>
+            </coupler_in>
+        </coupler_in_definition>
+        <file_definition>
+            <file id="zero_restart_file" name="zero_restart_file" enabled="true" type="one_file" output_freq="100000y" record_offset="0" mode="read">
+                <field id="O_OTaux1_restart_read" name="zero_restart" grid_ref="grid_2D_arpege-surfex" operation="instant" read_access="true"/>
+                <field id="O_OTauy1_restart_read" name="zero_restart" grid_ref="grid_2D_arpege-surfex" operation="instant" read_access="true"/>
+                <field id="O_TauMod_restart_read" name="zero_restart" grid_ref="grid_2D_arpege-surfex" operation="instant" read_access="true"/>
+                <field id="O_Wind10_restart_read" name="zero_restart" grid_ref="grid_2D_arpege-surfex" operation="instant" read_access="true"/>
+                <field id="OlceEvap_restart_read" name="zero_restart" grid_ref="grid_2D_arpege-surfex" operation="instant" read_access="true"/>
+                <field id="O_QnsIce_restart_read" name="zero_restart" grid_ref="grid_2D_arpege-surfex" operation="instant" read_access="true"/>
+                <field id="O_QsrIce_restart_read" name="zero_restart" grid_ref="grid_2D_arpege-surfex" operation="instant" read_access="true"/>
+                <field id="OTotSnow_restart_read" name="zero_restart" grid_ref="grid_2D_arpege-surfex" operation="instant" read_access="true"/>
+                <field id="OTotRain_restart_read" name="zero_restart" grid_ref="grid_2D_arpege-surfex" operation="instant" read_access="true"/>
+                <field id="OTotEvap_restart_read" name="zero_restart" grid_ref="grid_2D_arpege-surfex" operation="instant" read_access="true"/>
+                <field id="O_QnsMIx_restart_read" name="zero_restart" grid_ref="grid_2D_arpege-surfex" operation="instant" read_access="true"/>
+                <field id="O_QsrMix_restart_read" name="zero_restart" grid_ref="grid_2D_arpege-surfex" operation="instant" read_access="true"/>
+                <field id="TRRUNOFF_restart_read" name="zero_restart" grid_ref="grid_2D_arpege-surfex" operation="instant" read_access="true"/>
+                <field id="TRDRAIN_restart_read" name="zero_restart" grid_ref="grid_2D_arpege-surfex" operation="instant" read_access="true"/>
+                <field id="TRCALV_restart_read" name="zero_restart" grid_ref="grid_2D_arpege-surfex" operation="instant" read_access="true"/>
+                <field id="TRSRCFLD_restart_read" name="zero_restart" grid_ref="grid_2D_arpege-surfex" operation="instant" read_access="true"/>
+                <field id="OLakeWat_restart_read" name="zero_restart" grid_ref="grid_2D_arpege-surfex" operation="instant" read_access="true"/>
+            </file>
+            <file id="COZOTAUX_next" name="COZOTAUX_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="COZOTAUX_to_O_OTaux1" name="COZOTAUX_to_O_OTaux1"/>
+            </file>
+            <file id="COMETAUY_next" name="COMETAUY_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="COMETAUY_to_O_OTauy1" name="COMETAUY_to_O_OTauy1"/>
+            </file>
+            <file id="COTAUMOD_next" name="COTAUMOD_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="COTAUMOD_to_O_TauMod" name="COTAUMOD_to_O_TauMod"/>
+            </file>
+            <file id="COWINMOD_next" name="COWINMOD_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="COWINMOD_to_O_Wind10" name="COWINMOD_to_O_Wind10"/>
+            </file>
+            <file id="COSUBLIM_next" name="COSUBLIM_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="COSUBLIM_to_OlceEvap" name="COSUBLIM_to_OlceEvap"/>
+            </file>
+            <file id="CONSFICE_next" name="CONSFICE_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="CONSFICE_to_O_QnsIce" name="CONSFICE_to_O_QnsIce"/>
+            </file>
+            <file id="COSHFICE_next" name="COSHFICE_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="COSHFICE_to_O_QsrIce" name="COSHFICE_to_O_QsrIce"/>
+            </file>
+            <file id="COTOSOPR_next" name="COTOSOPR_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="COTOSOPR_to_OTotSnow" name="COTOSOPR_to_OTotSnow"/>
+            </file>
+            <file id="COTOLIPR_next" name="COTOLIPR_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="COTOLIPR_to_OTotRain" name="COTOLIPR_to_OTotRain"/>
+            </file>
+            <file id="COTHSHSU_next" name="COTHSHSU_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="COTHSHSU_to_OTotEvap" name="COTHSHSU_to_OTotEvap"/>
+            </file>
+            <file id="CONSFTOT_next" name="CONSFTOT_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="CONSFTOT_to_O_QnsMIx" name="CONSFTOT_to_O_QnsMIx"/>
+            </file>
+            <file id="COSHFTOT_next" name="COSHFTOT_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="COSHFTOT_to_O_QsrMix" name="COSHFTOT_to_O_QsrMix"/>
+            </file>
+            <file id="SXRUNOFF_next" name="SXRUNOFF_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="SXRUNOFF_to_TRRUNOFF" name="SXRUNOFF_to_TRRUNOFF"/>
+            </file>
+            <file id="SXDRAIN_next" name="SXDRAIN_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="SXDRAIN_to_TRDRAIN" name="SXDRAIN_to_TRDRAIN"/>
+            </file>
+            <file id="SXCALV_next" name="SXCALV_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="SXCALV_to_TRCALV" name="SXCALV_to_TRCALV"/>
+            </file>
+            <file id="SXSRCFLD_next" name="SXSRCFLD_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="SXSRCFLD_to_TRSRCFLD" name="SXSRCFLD_to_TRSRCFLD"/>
+            </file>
+            <file id="LKWATBUD_next" name="LKWATBUD_next" output_freq="1d" type="one_file" enabled="true" append="false">
+                <field field_ref="LKWATBUD_to_OLakeWat" name="LKWATBUD_to_OLakeWat"/>
+            </file>
+        </file_definition>
+    </context>
+    <context id="xios">
+        <variable_definition>
+            <variable_group id="parameters">
+                <variable id="print_file" type="bool">true</variable>
+                <variable id="transport_protocol" type="string">p2p</variable>
+            </variable_group>
+        </variable_definition>
+    </context>
+</simulation>

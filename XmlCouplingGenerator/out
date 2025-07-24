@@ -1,0 +1,113 @@
+All components of source and destination: {'gelato', 'nemo-gelato', 'trip', 'arpege-surfex'}
+     src_var   dst_var       src_comp       dst_comp
+0   O_SSTSST  SISUTESU    nemo-gelato  arpege-surfex
+1    OIceFrc  SIICECOV         gelato  arpege-surfex
+2   O_AlbIce  SIALBEDO         gelato  arpege-surfex
+3   O_TepIce  SIICETEM         gelato  arpege-surfex
+4   O_OCurx1  SIUOCEAN    nemo-gelato  arpege-surfex
+5   O_OCury1  SIVOCEAN    nemo-gelato  arpege-surfex
+6   COZOTAUX  O_OTaux1  arpege-surfex    nemo-gelato
+7   COMETAUY  O_OTauy1  arpege-surfex    nemo-gelato
+8   COTAUMOD  O_TauMod  arpege-surfex    nemo-gelato
+9   COWINMOD  O_Wind10  arpege-surfex    nemo-gelato
+10  COSUBLIM  OlceEvap  arpege-surfex         gelato
+11  CONSFICE  O_QnsIce  arpege-surfex         gelato
+12  COSHFICE  O_QsrIce  arpege-surfex         gelato
+13  COTOSOPR  OTotSnow  arpege-surfex    nemo-gelato
+14  COTOLIPR  OTotRain  arpege-surfex    nemo-gelato
+15  COTHSHSU  OTotEvap  arpege-surfex    nemo-gelato
+16  CONSFTOT  O_QnsMIx  arpege-surfex    nemo-gelato
+17  COSHFTOT  O_QsrMix  arpege-surfex    nemo-gelato
+18  SXRUNOFF  TRRUNOFF  arpege-surfex           trip
+19   SXDRAIN   TRDRAIN  arpege-surfex           trip
+20    SXCALV    TRCALV  arpege-surfex           trip
+21  SXSRCFLD  TRSRCFLD  arpege-surfex           trip
+22     TRTWS     SXTWS           trip  arpege-surfex
+23     TRWTD     SXWTD           trip  arpege-surfex
+24    TRFWTD    SXFWTD           trip  arpege-surfex
+25    TRFFLD    SXFFLD           trip  arpege-surfex
+26   TRPIFLD   SXPIFLD           trip  arpege-surfex
+27  TRRIVDIS  O_Runoff           trip    nemo-gelato
+28  TRCALVGR  Ocalvigr           trip    nemo-gelato
+29  TRCALVAN  Ocalvian           trip    nemo-gelato
+30  LKWATBUD  OLakeWat  arpege-surfex           trip
+Component: gelato
+len=3 Source variables: ['OIceFrc', 'O_AlbIce', 'O_TepIce']
+len=3 Destination variables: ['OlceEvap', 'O_QnsIce', 'O_QsrIce']
+
+Component: nemo-gelato
+len=3 Source variables: ['O_SSTSST', 'O_OCurx1', 'O_OCury1']
+len=12 Destination variables: ['O_OTaux1', 'O_OTauy1', 'O_TauMod', 'O_Wind10', 'OTotSnow', 'OTotRain', 'OTotEvap', 'O_QnsMIx', 'O_QsrMix', 'O_Runoff', 'Ocalvigr', 'Ocalvian']
+
+Component: trip
+len=8 Source variables: ['TRTWS', 'TRWTD', 'TRFWTD', 'TRFFLD', 'TRPIFLD', 'TRRIVDIS', 'TRCALVGR', 'TRCALVAN']
+len=5 Destination variables: ['TRRUNOFF', 'TRDRAIN', 'TRCALV', 'TRSRCFLD', 'OLakeWat']
+
+Component: arpege-surfex
+len=17 Source variables: ['COZOTAUX', 'COMETAUY', 'COTAUMOD', 'COWINMOD', 'COSUBLIM', 'CONSFICE', 'COSHFICE', 'COTOSOPR', 'COTOLIPR', 'COTHSHSU', 'CONSFTOT', 'COSHFTOT', 'SXRUNOFF', 'SXDRAIN', 'SXCALV', 'SXSRCFLD', 'LKWATBUD']
+len=11 Destination variables: ['SISUTESU', 'SIICECOV', 'SIALBEDO', 'SIICETEM', 'SIUOCEAN', 'SIVOCEAN', 'SXTWS', 'SXWTD', 'SXFWTD', 'SXFFLD', 'SXPIFLD']
+
+     src_var   dst_var       src_comp       dst_comp
+0   O_SSTSST  SISUTESU    nemo-gelato  arpege-surfex
+1    OIceFrc  SIICECOV         gelato  arpege-surfex
+2   O_AlbIce  SIALBEDO         gelato  arpege-surfex
+3   O_TepIce  SIICETEM         gelato  arpege-surfex
+4   O_OCurx1  SIUOCEAN    nemo-gelato  arpege-surfex
+5   O_OCury1  SIVOCEAN    nemo-gelato  arpege-surfex
+6   COZOTAUX  O_OTaux1  arpege-surfex    nemo-gelato
+7   COMETAUY  O_OTauy1  arpege-surfex    nemo-gelato
+8   COTAUMOD  O_TauMod  arpege-surfex    nemo-gelato
+9   COWINMOD  O_Wind10  arpege-surfex    nemo-gelato
+10  COSUBLIM  OlceEvap  arpege-surfex         gelato
+11  CONSFICE  O_QnsIce  arpege-surfex         gelato
+12  COSHFICE  O_QsrIce  arpege-surfex         gelato
+13  COTOSOPR  OTotSnow  arpege-surfex    nemo-gelato
+14  COTOLIPR  OTotRain  arpege-surfex    nemo-gelato
+15  COTHSHSU  OTotEvap  arpege-surfex    nemo-gelato
+16  CONSFTOT  O_QnsMIx  arpege-surfex    nemo-gelato
+17  COSHFTOT  O_QsrMix  arpege-surfex    nemo-gelato
+18  SXRUNOFF  TRRUNOFF  arpege-surfex           trip
+19   SXDRAIN   TRDRAIN  arpege-surfex           trip
+20    SXCALV    TRCALV  arpege-surfex           trip
+21  SXSRCFLD  TRSRCFLD  arpege-surfex           trip
+22     TRTWS     SXTWS           trip  arpege-surfex
+23     TRWTD     SXWTD           trip  arpege-surfex
+24    TRFWTD    SXFWTD           trip  arpege-surfex
+25    TRFFLD    SXFFLD           trip  arpege-surfex
+26   TRPIFLD   SXPIFLD           trip  arpege-surfex
+27  TRRIVDIS  O_Runoff           trip    nemo-gelato
+28  TRCALVGR  Ocalvigr           trip    nemo-gelato
+29  TRCALVAN  Ocalvian           trip    nemo-gelato
+30  LKWATBUD  OLakeWat  arpege-surfex           trip
+Adding restart field SISUTESU_restart_read to file zero_restart_file in context nemo-gelato
+Adding restart field SIICECOV_restart_read to file zero_restart_file in context gelato
+Adding restart field SIALBEDO_restart_read to file zero_restart_file in context gelato
+Adding restart field SIICETEM_restart_read to file zero_restart_file in context gelato
+Adding restart field SIUOCEAN_restart_read to file zero_restart_file in context nemo-gelato
+Adding restart field SIVOCEAN_restart_read to file zero_restart_file in context nemo-gelato
+Adding restart field O_OTaux1_restart_read to file zero_restart_file in context arpege-surfex
+Adding restart field O_OTauy1_restart_read to file zero_restart_file in context arpege-surfex
+Adding restart field O_TauMod_restart_read to file zero_restart_file in context arpege-surfex
+Adding restart field O_Wind10_restart_read to file zero_restart_file in context arpege-surfex
+Adding restart field OlceEvap_restart_read to file zero_restart_file in context arpege-surfex
+Adding restart field O_QnsIce_restart_read to file zero_restart_file in context arpege-surfex
+Adding restart field O_QsrIce_restart_read to file zero_restart_file in context arpege-surfex
+Adding restart field OTotSnow_restart_read to file zero_restart_file in context arpege-surfex
+Adding restart field OTotRain_restart_read to file zero_restart_file in context arpege-surfex
+Adding restart field OTotEvap_restart_read to file zero_restart_file in context arpege-surfex
+Adding restart field O_QnsMIx_restart_read to file zero_restart_file in context arpege-surfex
+Adding restart field O_QsrMix_restart_read to file zero_restart_file in context arpege-surfex
+Adding restart field TRRUNOFF_restart_read to file zero_restart_file in context arpege-surfex
+Adding restart field TRDRAIN_restart_read to file zero_restart_file in context arpege-surfex
+Adding restart field TRCALV_restart_read to file zero_restart_file in context arpege-surfex
+Adding restart field TRSRCFLD_restart_read to file zero_restart_file in context arpege-surfex
+Adding restart field SXTWS_restart_read to file zero_restart_file in context trip
+Adding restart field SXWTD_restart_read to file zero_restart_file in context trip
+Adding restart field SXFWTD_restart_read to file zero_restart_file in context trip
+Adding restart field SXFFLD_restart_read to file zero_restart_file in context trip
+Adding restart field SXPIFLD_restart_read to file zero_restart_file in context trip
+Adding restart field O_Runoff_restart_read to file zero_restart_file in context trip
+Adding restart field Ocalvigr_restart_read to file zero_restart_file in context trip
+Adding restart field Ocalvian_restart_read to file zero_restart_file in context trip
+Adding restart field OLakeWat_restart_read to file zero_restart_file in context arpege-surfex
+✅ XML written to coupling_config.xml
