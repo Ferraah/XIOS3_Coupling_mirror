@@ -1,0 +1,35 @@
+# Compiler and flags
+FC = mpiifort
+FFLAGS = -g -O0
+INCLUDES = -I/scratch/globc/valcke/XIOS_3.0/trunk/build_ifort_CERFACS_debug/inc \
+		   -I/softs/local_intel/netcdf/4.4.4_phdf5_1.10.4/include \
+		   -I/scratch/globc/valcke/XIOS_3.0/trunk/extern/boost_extraction/include \
+		   -I/scratch/globc/valcke/XIOS_3.0/trunk/extern/blitz
+CPPKEY=WITH_XIOS
+
+# Libraries and paths
+LIBS = -L/scratch/globc/valcke/XIOS_3.0/trunk/build_ifort_CERFACS_debug/lib \
+	   -L/softs/local_intel/netcdf/4.4.4_phdf5_1.10.4/lib \
+	   -L/softs/local_intel/phdf5/1.10.4_impi/lib \
+	   -lnetcdff -lnetcdf -lhdf5_hl -lhdf5 -lxios -lstdc++
+
+# Source files and objects
+SRC = toy_retraite.F90
+OBJ = $(SRC:.F90=.o)
+
+# Executable name
+EXEC = toy_retraite.exe
+
+# Rules
+all: $(EXEC)
+
+$(EXEC): $(OBJ)
+	$(FC) $(FFLAGS) -o $@ $^ $(LIBS)
+
+%.o: %.F90
+	$(FC) -D${CPPKEY} $(FFLAGS) $(INCLUDES) $(DEFINES) -c $< -o $@
+
+clean:
+	rm -f $(OBJ) $(EXEC)
+
+.PHONY: all clean
