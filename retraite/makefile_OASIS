@@ -1,0 +1,41 @@
+#
+include $(OASIS_COUPLE)/util/make_dir/make.inc
+LIBPSMILE = $(ARCHDIR)/lib/libpsmile.${CHAN}.a $(ARCHDIR)/lib/libmct.a $(ARCHDIR)/lib/libmpeu.a $(ARCHDIR)/lib/libscrip.a
+#
+CPPKEY=WITH_OASIS
+#
+default: toy_retraite.exe
+#
+all: oasis3_psmile toy_retraite.exe 
+#
+# Compile and link libaries
+oasis3_psmile:
+	(cd $(OASIS_COUPLE)/util/make_dir ; $(MAKE) RECONF=NO oasis3_psmile -f TopMakefileOasis3)
+#
+#
+#-------------------------------------------------------------------------------
+# Rules for executables
+#-------------------------------------------------------------------------------
+#
+toy_retraite.exe: toy_retraite.o $(LIBPSMILE)
+	$(LD) $(LDFLAGS) -o $@ toy_retraite.o $(LIBPSMILE) $(FLIBS)
+toy_retraite.o :      toy_retraite.F90 
+	$(F90) $(F90FLAGS) -D$(CPPKEY) -c toy_retraite.F90
+#
+#-------------------------------------------------------------------------------
+# Utilities
+#-------------------------------------------------------------------------------
+#
+help:
+	more Make.help
+#
+# Clean directory
+#
+clean:
+	-rm -f *.o toy_retraite.F90.exe
+#
+# Make sure to recompile everything
+#
+realclean: clean remove
+remove:
+	(cd $(OASIS_COUPLE)/util/make_dir ; $(MAKE) realclean -f TopMakefileOasis3)
