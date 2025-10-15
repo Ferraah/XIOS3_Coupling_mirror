@@ -1,0 +1,91 @@
+# This is a typical input file for OASIS3-MCT, using netCDF format
+# for restart input files.  Oasis reads in
+# this file at run-time. Don't hesitate to ask precisions or make
+# suggestions (oasishelp@cerfacs.fr). 
+#
+# Any line beginning with # is ignored. Blank lines are not allowed.
+#########################################################################
+ $NFIELDS
+# Put the number of fields exchanged by OASIS.
+# If it is bigger than twice the number of fields exchanged, put also on 
+# the same line the maximum number of prism_def_var_proto
+# called by one component model in the coupled system (optional).
+# For the definition of the fields, see under $STRINGS keyword
+#
+             1
+ $END
+##########################################################################
+ $NBMODEL
+# This gives you the number of models running in this experiment +
+# their names (6 characters) + , in option, the maximum Fortran unit
+# number used by each model; 1024 will be used if none are given.
+#
+   1  1_cpl_time_params.exe  99  99
+ $END
+###########################################################################
+ $RUNTIME
+# This gives you the total simulated time for this run in seconds (here 6 days)
+#
+  86400
+ $END
+###########################################################################
+ $NLOGPRT
+# Index of printing level in output file cplout: 0 = no printing
+#  1 = main routines and field names when treated, 2 = complete output
+  1
+ $END
+#
+$NMATXRD
+ceg
+#
+$NMAPDEC
+decomp_wghtfile
+#
+$NWGTOPT
+abort_on_bad_index
+###########################################################################
+ $STRINGS
+#
+# The above variables are the general parameters for the experiment.
+# Everything below has to do with the fields being exchanged.
+#
+############################################################################
+#                      OCEAN  --->>>  ATMOS
+#                      --------------------
+# Field 1 : 
+#
+#   First line:
+# 1) and 2) Symbolic names for the field before and after interpolation
+#           (8 characters maximum)
+# 3) Index of field in cf_name_table.txt
+# 4) Exchange frequency for the field in seconds (here 1 day)
+# 5) Number of analysis to be performed
+# 6) Restart input NetCDF file names
+# 7) Field status (EXPORTED, AUXILARY, IGNORED, EXPOUT, IGNOUT, INPUT, OUTPUT)
+#
+FSENDOCN FRECVATM 1 3600  2  restart.nc EXPOUT
+#
+#   Second line:
+# 1) and 2) locator prefix (4 characters) used to read the source and
+# target grid characteristics in grid auxiliary files, 
+# + possibly LAG and SEQ additional indices if needed 
+#
+10 10 10 10 grdo grda LAG=+900
+#
+#   Third line:
+# Source grid characteristic (P or R) and number of overlapping grid points
+# + Target grid characteristic (P or R) and number of overlapping grid points
+R  0  R  0
+#
+# List of analyses
+#
+CHECKIN CHECKOUT
+#
+# Specific parameters for each analysis
+# SCRIPR: 1) method 2) source grid type 3) field type 4) search restriction
+#         type 5) number of restriction bins 6)number of neighbours used
+INT=1
+INT=1
+#
+#
+ $END
